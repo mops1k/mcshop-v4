@@ -1,0 +1,5 @@
+locale_prefix:
+    resource: 'routing_app.yml'
+    prefix:    /{_locale}
+    defaults:
+        _locale: 'ru'

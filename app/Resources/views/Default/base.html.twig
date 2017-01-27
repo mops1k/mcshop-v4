@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale|split('_')[0] }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="McShop v4 development template">
+    <meta name="author" content="mops1k<bednyj.mops@gmail.com>">
+
+    <title>{% block title %}Minecraft Shop CMS{% endblock %}</title>
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon.png') }}" />
+
+    {% block stylesheets %}
+    <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/bootstrap-theme.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.offcanvas.min.css') }}"/>
+
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    {% endblock %}
+</head>
+
+<body>
+<div class="wrapper">
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle offcanvas-toggle pull-right" data-toggle="offcanvas" data-target="#js-bootstrap-offcanvas">
+                    <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img src="{{ asset('assets/img/brand.png') }}" width="30px" alt=""> {% block brand %}McShop v4{% endblock %}
+                </a>
+            </div>
+            <div class="navbar-offcanvas navbar-offcanvas-touch" id="js-bootstrap-offcanvas">
+                {% block top_menu %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><i class="fa fa-sign-in"></i> Sign in</a></li>
+                    <li><a href="#"><i class="fa fa-key"></i> Sign up</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="{{ asset('assets/img/flags/'~app.request.locale~'.png') }}" alt="{{ app.request.locale|trans }}"> {{ app.request.locale|trans }} <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><img src="{{ asset('assets/img/flags/ru.png') }}" alt="{{ 'ru'|trans }}"> {{ 'ru'|trans }}</a></li>
+                            <li class="active"><a href="#"><img src="{{ asset('assets/img/flags/en.png') }}" alt="{{ 'en'|trans }}"> {{ 'en'|trans }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                {% endblock %}
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+
+    {% block header %}
+    <div id="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h1>Minecraft for fun</h1>
+                    <h2 class="subtitle">No need huge slogan, we believe in less is better</h2>
+                </div>
+                <div class="col-lg-4 col-lg-offset-2">
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    <div id="content">
+        <div class="container">
+            {% block container %}
+            <div class="row">
+                <div class="col-md-3">
+                    {% block left_menu %}
+                    <div class="row col-md-12">
+                        <div class="panel panel-default panel-menu">
+                            <div class="panel-heading" data-toggle="collapse" data-target="#menu-1"
+                                 aria-expanded="false" aria-controls="menu-1">Menu</div>
+                            <div class="panel-body collapse in" id="menu-1">
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="#">test</a></li>
+                                    <li><a href="#">test</a></li>
+                                    <li><a href="#">test</a></li>
+                                    <li><a href="#">test</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {% endblock %}
+                </div>
+                <div class="col-md-9">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+
+    {% block footer %}
+    <div id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="copyright">&copy; mops1k</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="credits">
+                        <a href="#">Minecraft Shop CMS</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</div>
+
+{% block javascripts %}
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="{{ asset('assets/js/bootstrap.offcanvas.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+{% endblock %}
+
+</body>
+</html>
