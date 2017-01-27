@@ -3,6 +3,9 @@ services:
         class: McShop\UserBundle\Services\RoleHierarchy
         arguments: [ '%security.role_hierarchy.roles%', '@doctrine' ]
 
+    md5salted_encoder:
+        class: McShop\UserBundle\Encoders\Md5PasswordEncoder
+
     mc_shop.user.menu:
         class: McShop\UserBundle\Menu\UserMenu
         arguments:
