@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             // McShop v4 System bundles
             new McShop\NewsBundle\McShopNewsBundle(),
             new McShop\UserBundle\McShopUserBundle(),
+            new McShop\MenuBundle\McShopMenuBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

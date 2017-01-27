@@ -2,3 +2,19 @@ services:
     security.role_hierarchy:
         class: McShop\UserBundle\Services\RoleHierarchy
         arguments: [ '%security.role_hierarchy.roles%', '@doctrine' ]
+
+    mc_shop.user.menu:
+        class: McShop\UserBundle\Menu\UserMenu
+        arguments:
+            - '@router'
+            - '@security.authorization_checker'
+            - '@security.token_storage'
+        tags:
+            - { name: mc_shop_menu, alias: user }
+
+    mc_shop.user.builder:
+        class: McShop\UserBundle\Menu\Builder\UserMenuBuilder
+        arguments:
+            - '@translator'
+        tags:
+            - { name: mc_shop_menu.builder, alias: user }

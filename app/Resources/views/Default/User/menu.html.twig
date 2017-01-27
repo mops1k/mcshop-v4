@@ -1,0 +1,44 @@
+<ul class="nav navbar-nav navbar-right">
+    {% for key,item in menu %}
+        {% if item.items is defined %}
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    {% if item.icon is defined %}<i class="fa {{ item.icon }}"></i> {% endif %}
+                    {{ item.title }}
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    {% for subkey, subitem in item.items %}
+                        {%- set class = path(app.request.get('_route'), app.request.get('_route_params')) == subitem.url|default(null) ? 'active '~subitem.class|default(null) : subitem.class|default(null) %}
+                        <li{{ ' class='~class }}>
+                            {% if subitem.url is defined %}
+                                <a href="{{ subitem.url }}">
+                                    {% if subitem.icon is defined %}<i
+                                        class="{{ subitem.icon }}"></i> {% endif %}{{ subitem.title }}
+                                </a>
+                            {% else %}
+                                {{ subitem.title }}
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% else %}
+            {%- set class = path(app.request.get('_route'), app.request.get('_route_params')) == item.url|default(null) ? 'active '~item.class|default(null) : item.class|default(null) %}
+            {# Нет выпадающего меню #}
+            <li{{ ' class='~class }}>
+                <a href="{{ item.url }}">{% if item.icon is defined %}<i
+                        class="{{ item.icon }}"></i> {% endif %}{{ item.title }}</a>
+            </li>
+        {% endif %}
+    {% endfor %}
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <img src="{{ asset('assets/img/flags/'~app.request.locale~'.png') }}" alt="{{ app.request.locale|trans }}"> {{ app.request.locale|trans }} <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li{{ app.request.locale == 'ru' ?  ' class="active"' }}><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({_locale: 'ru'})) }}"><img src="{{ asset('assets/img/flags/ru.png') }}" alt="{{ 'ru'|trans }}"> {{ 'ru'|trans }}</a></li>
+            <li{{ app.request.locale == 'en' ?  ' class="active"' }}><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({_locale: 'en'})) }}"><img src="{{ asset('assets/img/flags/en.png') }}" alt="{{ 'en'|trans }}"> {{ 'en'|trans }}</a></li>
+        </ul>
+    </li>
+</ul>

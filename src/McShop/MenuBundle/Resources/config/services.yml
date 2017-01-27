@@ -1,0 +1,28 @@
+services:
+    mc_shop.menu.collection:
+        class: McShop\MenuBundle\Service\MenuCollection
+
+    mc_shop.builder.collection:
+        class: McShop\MenuBundle\Service\BuilderCollection
+
+    mc_shop.menu.base_menu:
+        abstract: true
+        arguments:
+            - '@router'
+            - '@security.authorization_checker'
+
+    mc_shop.menu.factory:
+        class: McShop\MenuBundle\Factory\MenuFactory
+        arguments:
+            - '@mc_shop.menu.collection'
+            - '@mc_shop.builder.collection'
+        calls:
+            - [ 'setContainer', [ '@service_container' ]]
+
+    mc_shop.menu.twig_extension:
+        class: McShop\MenuBundle\Twig\MenuExtension
+        arguments:
+            - '@mc_shop.menu.factory'
+            - '@twig'
+        tags:
+            - { name: twig.extension, alias: mc_shop_menu }

@@ -1,5 +1,10 @@
 ru:     Русский
 en:     English
+user:
+    menu:
+        logout:                 Выход
+        sign-in:                Авторизация
+        sign-up:                Регистрация
 login:
     username:                   Логин или E-mail
     password:                   Пароль

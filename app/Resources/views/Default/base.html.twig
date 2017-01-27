@@ -36,19 +36,7 @@
             </div>
             <div class="navbar-offcanvas navbar-offcanvas-touch" id="js-bootstrap-offcanvas">
                 {% block top_menu %}
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{ path('mc_shop_user_login') }}"><i class="fa fa-sign-in"></i> Sign in</a></li>
-                    <li><a href="#"><i class="fa fa-key"></i> Sign up</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="{{ asset('assets/img/flags/'~app.request.locale~'.png') }}" alt="{{ app.request.locale|trans }}"> {{ app.request.locale|trans }} <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li{{ app.request.locale == 'ru' ?  ' class="active"' }}><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({_locale: 'ru'})) }}"><img src="{{ asset('assets/img/flags/ru.png') }}" alt="{{ 'ru'|trans }}"> {{ 'ru'|trans }}</a></li>
-                            <li{{ app.request.locale == 'en' ?  ' class="active"' }}><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({_locale: 'en'})) }}"><img src="{{ asset('assets/img/flags/en.png') }}" alt="{{ 'en'|trans }}"> {{ 'en'|trans }}</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                {{ renderMenu('user.user', ':Default/User:menu.html.twig') }}
                 {% endblock %}
             </div><!--/.nav-collapse -->
         </div>
