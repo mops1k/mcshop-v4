@@ -1,0 +1,7 @@
+ru:     Русский
+en:     English
+login:
+    message:
+        welcome:                Sign In to McShop v4
+    error:
+        already_logged_in:      You are already logged before!

@@ -1,0 +1,7 @@
+mc_shop_user:
+    resource: "@McShopUserBundle/Resources/config/routing.yml"
+    prefix:   /user
+
+mc_shop_news:
+    resource: "@McShopNewsBundle/Resources/config/routing.yml"
+    prefix:   /news

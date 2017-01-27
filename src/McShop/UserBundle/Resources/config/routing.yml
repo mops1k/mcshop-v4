@@ -1,0 +1,6 @@
+mc_shop_user_login:
+    path:     /login
+    defaults: { _controller: McShopUserBundle:Default:login }
+
+mc_shop_user_logout:
+    path:     /logout

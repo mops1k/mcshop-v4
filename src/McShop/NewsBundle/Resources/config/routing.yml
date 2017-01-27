@@ -1,0 +1,3 @@
+mc_shop_news_homepage:
+    path:     /
+    defaults: { _controller: McShopNewsBundle:Default:index }

@@ -30,22 +30,22 @@
                 <button type="button" class="navbar-toggle offcanvas-toggle pull-right" data-toggle="offcanvas" data-target="#js-bootstrap-offcanvas">
                     <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="{{ path('homepage', {_locale: app.request.locale}) }}">
                     <img src="{{ asset('assets/img/brand.png') }}" width="30px" alt=""> {% block brand %}McShop v4{% endblock %}
                 </a>
             </div>
             <div class="navbar-offcanvas navbar-offcanvas-touch" id="js-bootstrap-offcanvas">
                 {% block top_menu %}
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><i class="fa fa-sign-in"></i> Sign in</a></li>
+                    <li><a href="{{ path('mc_shop_user_login') }}"><i class="fa fa-sign-in"></i> Sign in</a></li>
                     <li><a href="#"><i class="fa fa-key"></i> Sign up</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="{{ asset('assets/img/flags/'~app.request.locale~'.png') }}" alt="{{ app.request.locale|trans }}"> {{ app.request.locale|trans }} <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#"><img src="{{ asset('assets/img/flags/ru.png') }}" alt="{{ 'ru'|trans }}"> {{ 'ru'|trans }}</a></li>
-                            <li class="active"><a href="#"><img src="{{ asset('assets/img/flags/en.png') }}" alt="{{ 'en'|trans }}"> {{ 'en'|trans }}</a></li>
+                            <li{{ app.request.locale == 'ru' ?  ' class="active"' }}><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({_locale: 'ru'})) }}"><img src="{{ asset('assets/img/flags/ru.png') }}" alt="{{ 'ru'|trans }}"> {{ 'ru'|trans }}</a></li>
+                            <li{{ app.request.locale == 'en' ?  ' class="active"' }}><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({_locale: 'en'})) }}"><img src="{{ asset('assets/img/flags/en.png') }}" alt="{{ 'en'|trans }}"> {{ 'en'|trans }}</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -74,7 +74,10 @@
         <div class="container">
             {% block container %}
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-xs-12 col-md-9 col-md-push-3">
+                    {% block content %}{% endblock %}
+                </div>
+                <div class="col-xs-12 col-md-3 col-md-pull-9">
                     {% block left_menu %}
                     <div class="row col-md-12">
                         <div class="panel panel-default panel-menu">
@@ -91,9 +94,6 @@
                         </div>
                     </div>
                     {% endblock %}
-                </div>
-                <div class="col-md-9">
-                    {% block content %}{% endblock %}
                 </div>
             </div>
             {% endblock %}

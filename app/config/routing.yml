@@ -3,3 +3,18 @@ locale_prefix:
     prefix:    /{_locale}
     defaults:
         _locale: 'ru'
+
+homepage_main:
+    path: /
+    defaults:
+        _controller: McShopUserBundle:Redirect:redirect
+        route:       mc_shop_news_homepage
+        _locale:     'ru'
+        permanent:   true
+
+homepage:
+    path: /{_locale}
+    defaults:
+        _controller: McShopUserBundle:Redirect:redirect
+        route:       mc_shop_news_homepage
+        permanent:   true

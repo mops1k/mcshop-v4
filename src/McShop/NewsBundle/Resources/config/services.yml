@@ -1,0 +1,4 @@
+services:
+#    mc_shop_news.example:
+#        class: McShop\NewsBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
