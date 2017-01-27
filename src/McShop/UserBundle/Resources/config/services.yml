@@ -1,4 +1,4 @@
 services:
-#    mc_shop_user.example:
-#        class: McShop\UserBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    security.role_hierarchy:
+        class: McShop\UserBundle\Services\RoleHierarchy
+        arguments: [ '%security.role_hierarchy.roles%', '@doctrine' ]

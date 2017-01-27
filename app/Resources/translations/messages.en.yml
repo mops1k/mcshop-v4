@@ -1,6 +1,10 @@
 ru:     Русский
 en:     English
 login:
+    username:                   Username or E-mail
+    password:                   Password
+    remember_me:                Remember me
+    submit:                     Authorize
     message:
         welcome:                Sign In to McShop v4
     error:
