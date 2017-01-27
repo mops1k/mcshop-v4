@@ -122,6 +122,15 @@
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="{{ asset('assets/js/bootstrap.offcanvas.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/js/notify.min.js') }}"></script>
+<script>
+    {% set flashes = app.session.flashBag.all %}
+    {% for type, messages in flashes %}
+    {% for message in messages %}
+    $.notify("{{ message|raw }}", "{{ type }}");
+    {% endfor %}
+    {% endfor %}
+</script>
 {% endblock %}
 
 </body>

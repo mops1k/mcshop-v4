@@ -20,7 +20,7 @@ class DefaultController extends Controller
         $error = $authenticationUtils->getLastAuthenticationError();
         if ($error) {
             $this->addFlash(
-                'danger',
+                'error',
                 $this->get('translator')->trans($error->getMessageKey(), $error->getMessageData(), 'security')
             );
         }
