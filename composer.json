@@ -1,10 +1,13 @@
 {
-    "name": "symfony/framework-standard-edition",
+    "name": "mops1k/McShop-v4",
     "license": "MIT",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "description": "The \"McShop v4\" distribution",
     "autoload": {
-        "psr-4": { "": "src/" },
+        "psr-4": {
+            "": "src/",
+            "Application\\Migrations\\": "app/Resources/Migrations"
+        },
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
     },
     "require": {
@@ -16,7 +19,10 @@
         "symfony/monolog-bundle": "^3.0.2",
         "sensio/distribution-bundle": "~5.0",
         "sensio/framework-extra-bundle": "^3.0.2",
-        "incenteev/composer-parameter-handler": "~2.0"
+        "incenteev/composer-parameter-handler": "~2.0",
+        "doctrine/doctrine-migrations-bundle": "^1.2",
+        "matthiasnoback/symfony-console-form": "^2.1",
+        "doctrine/doctrine-fixtures-bundle": "^2.3"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",
@@ -39,9 +45,7 @@
         ]
     },
     "config": {
-        "platform": {
-            "php": "5.3.9"
-        }
+        "vendor-dir": "libs"
     },
     "extra": {
         "symfony-app-dir": "app",
@@ -51,7 +55,7 @@
             "file": "app/config/parameters.yml"
         },
         "branch-alias": {
-            "dev-master": "2.8-dev"
+            "dev-master": "0.1-dev"
         }
     }
 }

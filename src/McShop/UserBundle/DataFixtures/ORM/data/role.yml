@@ -1,0 +1,13 @@
+ROLE_SUPER_ADMIN:
+    name:   Главный администратор
+    role:   ROLE_SUPER_ADMIN
+
+ROLE_ALLOWED_TO_SWITCH:
+    name:   Вход как другой пользователь
+    role:   ROLE_ALLOWED_TO_SWITCH
+    parent: ROLE_SUPER_ADMIN
+
+ROLE_USER:
+    name:   Пользователь
+    role:   ROLE_USER
+    parent: ROLE_SUPER_ADMIN
