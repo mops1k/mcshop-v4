@@ -3,6 +3,7 @@
 namespace McShop\UserBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use McShop\UserBundle\Entity\Token;
 
 /**
  * TokenRepository
@@ -12,4 +13,22 @@ use Doctrine\ORM\EntityRepository;
  */
 class TokenRepository extends EntityRepository
 {
+    public function getUserByTokenValue($value)
+    {
+        $qb = $this->createQueryBuilder('t');
+        /** @var Token|null $token */
+        $token = $qb->select('t,u')
+            ->innerJoin('t.user', 'u')
+            ->where('t.value = :value')
+            ->setParameter('value', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+
+        if ($token === null || !$token->getActive()) {
+            return false;
+        }
+
+        return $token->getUser();
+    }
 }
