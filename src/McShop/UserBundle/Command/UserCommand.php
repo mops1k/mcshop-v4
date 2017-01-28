@@ -35,33 +35,21 @@ class UserCommand extends ContainerAwareCommand
 
         /** @var FormHelper $formHelper */
         $formHelper = $this->getHelper('form');
-        $orm = $this->getContainer()->get('doctrine.orm.default_entity_manager');
 
         /** @var User $user */
         $user = $formHelper->interactUsingForm(UserType::class, $input, $output);
 
-        $role = $orm->getRepository('McShopUserBundle:Role')->findOneByRole('ROLE_USER');
+        $role = 'ROLE_USER';
         if ($input->getOption('admin')) {
-            $role = $orm->getRepository('McShopUserBundle:Role')->findOneByRole('ROLE_SUPER_ADMIN');
+            $role = 'ROLE_SUPER_ADMIN';
         }
-
-        if ($role !== null) {
-            $user->addRole($role);
-        }
-
-        $user
-            ->setLocked(false)
-            ->setActive(true)
-            ->setSalt(uniqid(mt_rand()))
+        
+        $userHelper = $this->getContainer()->get('mc_shop.user.helper');
+        $userHelper
+            ->setRoleName($role)
+            ->setNewPassword(true)
+            ->saveUser($user, true)
         ;
-
-        $passwordEncoder = $this->getContainer()->get('security.password_encoder');
-        $encodedPassword = $passwordEncoder->encodePassword($user, $user->getPassword());
-
-        $user->setPassword($encodedPassword);
-
-        $orm->persist($user);
-        $orm->flush();
 
         $output->writeln('User created!');
     }
