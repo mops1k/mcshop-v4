@@ -1,0 +1,50 @@
+{% extends ':Default:base.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block header %}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        #content {
+            padding-top: 60px;
+        }
+    </style>
+{% endblock %}
+
+{% block container %}
+<div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-default">
+        <div class="panel-heading text-center">{{ 'register.message.welcome'|trans|upper }}</div>
+        <div class="panel-body">
+            {{ form_start(form) }}
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_label(form.username) }}
+                        {{ form_widget(form.username) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.password.first) }}
+                {{ form_widget(form.password.first) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.password.second) }}
+                {{ form_widget(form.password.second) }}
+            </div>
+            <div class="form-group">
+                <a href="{{ path('mc_shop_user_login') }}">{{ 'register.message.have_account'|trans }}</a>
+            </div>
+            <button type="submit" class="btn btn-block btn-primary">{{ 'register.button.signup' }}</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+    </div>
+{% endblock %}

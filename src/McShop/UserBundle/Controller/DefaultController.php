@@ -1,10 +1,7 @@
 <?php
-
 namespace McShop\UserBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
-class DefaultController extends Controller
+class DefaultController extends BaseController
 {
     public function loginAction()
     {
@@ -29,19 +26,5 @@ class DefaultController extends Controller
         return $this->render(':Default/User:login.html.twig', [
             'last_username'  => $lastUsername
         ]);
-    }
-
-    /**
-     * Redirect to referer
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
-    public function redirectToReferer()
-    {
-        $request = $this->get('request_stack')->getCurrentRequest();
-        $url = $request->headers->get('referer') === null ?
-            $this->generateUrl('homepage', [ '_locale' => $request->get('_locale')]) : $request->headers->get('referer')
-        ;
-        return $this->redirect($url);
     }
 }

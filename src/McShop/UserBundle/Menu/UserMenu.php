@@ -52,7 +52,7 @@ class UserMenu extends AbstractMenu
             ->addRootItem('signin', 'user.menu.sign-in', $this->generateUrlByRouteName('mc_shop_user_login'), [
                 'icon'  => 'fa fa-sign-in'
             ])
-            ->addRootItem('signup', 'user.menu.sign-up', '#', [
+            ->addRootItem('signup', 'user.menu.sign-up', $this->generateUrlByRouteName('mc_shop_user_registration'), [
                 'icon'  => 'fa fa-key'
             ])
         ;

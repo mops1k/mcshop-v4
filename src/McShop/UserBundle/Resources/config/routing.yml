@@ -4,3 +4,8 @@ mc_shop_user_login:
 
 mc_shop_user_logout:
     path:     /logout
+
+mc_shop_user_registration:
+    path:     /signup
+    defaults:
+        _controller: McShopUserBundle:Registration:register

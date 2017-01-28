@@ -48,7 +48,8 @@ class UserCommand extends ContainerAwareCommand
         $userHelper
             ->setRoleName($role)
             ->setNewPassword(true)
-            ->saveUser($user, true)
+            ->setUser($user)
+            ->save(true)
         ;
 
         $output->writeln('User created!');

@@ -2,6 +2,7 @@
 namespace McShop\UserBundle\Services\Helper;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
+use McShop\UserBundle\Entity\Token;
 use McShop\UserBundle\Entity\User;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
 
@@ -31,6 +32,13 @@ class UserHelper
      */
     private $roleName;
 
+    /** @var User */
+    private $user;
+
+    /** @var Token */
+    private $token;
+
+
     /**
      * UserHelper constructor.
      * @param ManagerRegistry $doctrine
@@ -43,36 +51,69 @@ class UserHelper
     }
 
     /**
+     * @param User $user
+     * @return UserHelper
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    /**
      * Save user entity to db
      *
-     * @param User $user
      * @param bool $active
      * @param bool $locked
+     * @return $this
      */
-    public function saveUser(User $user, $active = false, $locked = false)
+    public function save($active = false, $locked = false)
     {
         $role = $this->getEm('McShopUserBundle:Role')
             ->getRepository('McShopUserBundle:Role')
             ->findOneByRole($this->getRoleName())
         ;
 
-        $user
+        $this->user
             ->setLocked($locked)
             ->setActive($active)
         ;
 
         if ($role !== null) {
-            $user->addRole($role);
+            $this->user->addRole($role);
         }
 
         if ($this->newPassword) {
-            $user->setSalt(uniqid(mt_rand()));
-            $encodedPassword = $this->encoder->encodePassword($user, $user->getPassword());
-            $user->setPassword($encodedPassword);
+            $this->user->setSalt(uniqid(mt_rand()));
+            $encodedPassword = $this->encoder->encodePassword($this->user, $this->user->getPassword());
+            $this->user->setPassword($encodedPassword);
         }
 
-        $this->getEm(get_class($user))->persist($user);
-        $this->getEm(get_class($user))->flush();
+        $this->getEm(get_class($this->user))->persist($this->user);
+        $this->getEm(get_class($this->user))->flush();
+
+        return $this;
+    }
+
+    /**
+     * Generate new token for user
+     * @param int $kind
+     * @return $this
+     */
+    public function generateToken($kind = Token::KIND_REGISTER)
+    {
+        $this->token = new Token();
+        $this->token
+            ->setValue(uniqid(mt_rand()))
+            ->setActive(true)
+            ->setKind($kind)
+            ->setUser($this->user)
+        ;
+
+        $this->getEm(get_class($this->token))->persist($this->token);
+        $this->getEm(get_class($this->token))->flush();
+
+        return $this;
     }
 
     /**
@@ -111,5 +152,13 @@ class UserHelper
     {
         $this->newPassword = $bool;
         return $this;
+    }
+
+    /**
+     * @return Token
+     */
+    public function getToken()
+    {
+        return $this->token;
     }
 }
