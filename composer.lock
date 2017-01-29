@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0140748c8eed6480c9b2100a52eea2a7",
-    "content-hash": "72fec1b41272bf7f22afab9d5d254d30",
+    "hash": "8f5138b4438ff101fc57e0dfd9bd9c79",
+    "content-hash": "20353fc981c102e32ff48eb0350b18e1",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -968,6 +968,53 @@
                 "orm"
             ],
             "time": "2015-08-31 13:19:01"
+        },
+        {
+            "name": "eschmar/css-inliner-bundle",
+            "version": "v0.1.0",
+            "target-dir": "Eschmar/CssInlinerBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eschmar/css-inliner-bundle.git",
+                "reference": "e59366eae7a45719ab62d28dcaa37b16484edd2f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/eschmar/css-inliner-bundle/zipball/e59366eae7a45719ab62d28dcaa37b16484edd2f",
+                "reference": "e59366eae7a45719ab62d28dcaa37b16484edd2f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/symfony": ">=2.4",
+                "tijsverkoyen/css-to-inline-styles": "~1.5"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Eschmar\\CssInlinerBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marcel Eschmann",
+                    "homepage": "https://github.com/eschmar",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Simple twig css inliner for Symfony2.",
+            "homepage": "https://github.com/eschmar/css-inliner-bundle",
+            "keywords": [
+                "css",
+                "inline",
+                "symfony",
+                "twig"
+            ],
+            "time": "2016-04-25 19:26:41"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -2386,6 +2433,53 @@
                 "framework"
             ],
             "time": "2017-01-12 20:27:46"
+        },
+        {
+            "name": "tijsverkoyen/css-to-inline-styles",
+            "version": "1.5.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tijsverkoyen/CssToInlineStyles.git",
+                "reference": "9753fc340726e327e4d48b7c0604f85475ae0bc3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tijsverkoyen/CssToInlineStyles/zipball/9753fc340726e327e4d48b7c0604f85475ae0bc3",
+                "reference": "9753fc340726e327e4d48b7c0604f85475ae0bc3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "symfony/css-selector": "~2.1|~3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TijsVerkoyen\\CssToInlineStyles\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD"
+            ],
+            "authors": [
+                {
+                    "name": "Tijs Verkoyen",
+                    "email": "css_to_inline_styles@verkoyen.eu",
+                    "role": "Developer"
+                }
+            ],
+            "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
+            "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
+            "time": "2015-12-08 16:14:14"
         },
         {
             "name": "twig/twig",

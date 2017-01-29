@@ -13,7 +13,7 @@ use McShop\UserBundle\Entity\Token;
  */
 class TokenRepository extends EntityRepository
 {
-    public function getUserByTokenValue($value)
+    public function findTokenByValue($value)
     {
         $qb = $this->createQueryBuilder('t');
         /** @var Token|null $token */
@@ -29,6 +29,6 @@ class TokenRepository extends EntityRepository
             return false;
         }
 
-        return $token->getUser();
+        return $token;
     }
 }

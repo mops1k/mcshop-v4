@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             // Third party bundles
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Matthias\SymfonyConsoleForm\Bundle\SymfonyConsoleFormBundle(),
+            new Eschmar\CssInlinerBundle\EschmarCssInlinerBundle(),
             // McShop v4 System bundles
             new McShop\NewsBundle\McShopNewsBundle(),
             new McShop\UserBundle\McShopUserBundle(),

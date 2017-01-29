@@ -13,3 +13,5 @@
 /.idea/
 /app/SymfonyRequirements.php
 /app/check.php
+/app/spool/*
+!app/spool/.gitkeep

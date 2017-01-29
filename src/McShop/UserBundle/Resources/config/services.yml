@@ -12,6 +12,21 @@ services:
             - '@doctrine'
             - '@security.password_encoder'
 
+    mc_shop.user_email.helper:
+        class: McShop\UserBundle\Services\Helper\UserEmailHelper
+        arguments:
+            - '@twig'
+            - '@mailer'
+
+    mc_shop.user.registration.code.handler:
+            class: McShop\UserBundle\Services\CodeHandler\RegistrationHandler
+            arguments:
+                - '@doctrine'
+                - '@mc_shop.user_email.helper'
+                - '@translator'
+                - '@session'
+                - '@security.token_storage'
+
     mc_shop.user.menu:
         class: McShop\UserBundle\Menu\UserMenu
         arguments:

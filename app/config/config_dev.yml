@@ -11,6 +11,12 @@ web_profiler:
     toolbar: true
     intercept_redirects: false
 
+swiftmailer:
+    disable_delivery:  true
+    spool:
+        type: file
+        path: '%kernel.root_dir%/spool'
+
 monolog:
     handlers:
         main:

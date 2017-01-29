@@ -53,6 +53,12 @@ class Token
      */
     private $kind;
 
+    /** @var array */
+    private $handlers = [
+        self::KIND_REGISTER => 'mc_shop.user.registration.code.handler',
+        self::KIND_RECOVER  => 'mc_shop.user.recover.code.handler'
+    ];
+
     /**
      * Get id
      *
@@ -153,5 +159,13 @@ class Token
     public function getKind()
     {
         return $this->kind;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getHandlerName()
+    {
+        return isset($this->handlers[$this->getKind()]) ? $this->handlers[$this->getKind()] : null;
     }
 }
