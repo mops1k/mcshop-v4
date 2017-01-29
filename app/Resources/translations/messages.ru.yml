@@ -1,51 +1,51 @@
-ru:     Русский
-en:     English
+ru:                                 Русский
+en:                                 English
 user:
     menu:
-        logout:                 Выход
-        sign-in:                Авторизация
-        sign-up:                Регистрация
+        logout:                     Выход
+        sign-in:                    Авторизация
+        sign-up:                    Регистрация
 title:
     registration_form:              Регистрация
     code_activation:                Активация кода подтверждения
     authorization:                  Авторизация
 registration:
     label:
-        code:               Код подтверждения
+        code:                       Код подтверждения
     button:
-        check_code:     Отправить код
-        signup:         Зарегистрироваться
+        check_code:                 Отправить код
+        signup:                     Зарегистрироваться
     message:
         email:
-            registration_success: Вы успешно зарегистрировались!
-            activated:      Ваш аккаунт успешно активировн!
-            code:           |
-                "Для активации Вашего аккаунта перейдите по <a href=@code_link@>ссылке</a>. "
-                "Или введите код вручную <a href=@enter_code_link@>здесь</a>.<br />"
-                "Код активации: <b>@code@</b>"
-        approve_email:      Для завершения регистрации вы должны подтвердить свою почту!
-        wrong_code:         Код подтверждения неверен!
-        welcome:            Регистрация в системе McShop v4
-        code_activated:     Код подтверждения успешно активирован!
-        have_account:       У вас уже есть аккаунт?
+            registration_success:   Вы успешно зарегистрировались!
+            activated:              Ваш аккаунт успешно активировн!
+            code:                   |
+                                "Для активации Вашего аккаунта перейдите по <a href=@code_link@>ссылке</a>. "
+                                "Или введите код вручную <a href=@enter_code_link@>здесь</a>.<br />"
+                                "Код активации: <b>@code@</b>"
+        approve_email:              Для завершения регистрации вы должны подтвердить свою почту!
+        wrong_code:                 Код подтверждения неверен!
+        welcome:                    Регистрация в системе McShop v4
+        code_activated:             Код подтверждения успешно активирован!
+        have_account:               У вас уже есть аккаунт?
 system:
     message:
-        unknown_error:      Произошла неизвестная ошибка. Пожалуйста, обратитесь к администратору для ее устранения.
+        unknown_error:              Произошла неизвестная ошибка. Пожалуйста, обратитесь к администратору для ее устранения.
 form:
     registration:
-        username:               Логин
-        email:                  E-mail
-        password:               Пароль
-        re_password:            Повторите пароль
+        username:                   Логин
+        email:                      E-mail
+        password:                   Пароль
+        re_password:                Повторите пароль
 validation:
     password:
-        must_match:             Пароли должны совпадать!
+        must_match:                 Пароли должны совпадать!
 login:
-    username:                   Логин или E-mail
-    password:                   Пароль
-    remember_me:                Запомнить меня
-    submit:                     Авторизоваться
+    username:                       Логин или E-mail
+    password:                       Пароль
+    remember_me:                    Запомнить меня
+    submit:                         Авторизоваться
     message:
-        welcome:                Авторизация в системе McShop v4
+        welcome:                    Авторизация в системе McShop v4
     error:
-        already_logged_in:      Вы уже авторизованы в системе!
+        already_logged_in:          Вы уже авторизованы в системе!
