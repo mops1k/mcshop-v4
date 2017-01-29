@@ -12,6 +12,9 @@ class DefaultController extends BaseController
             );
             return $this->redirectToReferer();
         }
+
+        $this->get('app.title')->setValue('title.authorization');
+
         $authenticationUtils = $this->get('security.authentication_utils');
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();

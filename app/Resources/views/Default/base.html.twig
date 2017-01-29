@@ -7,7 +7,7 @@
     <meta name="description" content="McShop v4 development template">
     <meta name="author" content="mops1k<bednyj.mops@gmail.com>">
 
-    <title>{% block title %}Minecraft Shop CMS{% endblock %}</title>
+    <title>McShop v4{{ title is not null ? ' :: ' ~ title|trans }}</title>
 
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon.png') }}" />
 

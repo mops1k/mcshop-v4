@@ -26,6 +26,8 @@ class RegistrationController extends BaseController
             return $this->redirectToReferer();
         }
 
+        $this->get('app.title')->setValue('title.registration_form');
+
         $form = $this->createForm(UserType::class);
         $form->handleRequest($request);
 
@@ -86,6 +88,7 @@ class RegistrationController extends BaseController
      */
     public function codeAction()
     {
+        $this->get('app.title')->setValue('title.code_activation');
         return $this->render(':Default/User:registration_code.html.twig');
     }
 

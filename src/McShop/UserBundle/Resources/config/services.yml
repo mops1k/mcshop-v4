@@ -28,7 +28,6 @@ services:
             - '@session'
             - '@security.token_storage'
 
-
     mc_shop.user.recover.code.handler:
         class: McShop\UserBundle\Services\CodeHandler\RecoverHandler
         arguments:

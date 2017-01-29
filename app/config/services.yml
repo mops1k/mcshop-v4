@@ -4,6 +4,12 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    app.title:
+        class: McShop\Twig\Title
+
+    app.twig.title_extension:
+        class: McShop\Twig\Extension\TitleExtension
+        arguments:
+            - '@app.title'
+        tags:
+            - { name: twig.extension, alias: title }

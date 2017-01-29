@@ -5,6 +5,10 @@ user:
         logout:                 Выход
         sign-in:                Авторизация
         sign-up:                Регистрация
+title:
+    registration_form:              Регистрация
+    code_activation:                Активация кода подтверждения
+    authorization:                  Авторизация
 registration:
     label:
         code:               Код подтверждения
