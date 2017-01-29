@@ -19,14 +19,23 @@ services:
             - '@mailer'
 
     mc_shop.user.registration.code.handler:
-            class: McShop\UserBundle\Services\CodeHandler\RegistrationHandler
-            arguments:
-                - '@doctrine'
-                - '@mc_shop.user_email.helper'
-                - '%mailer_from%'
-                - '@translator'
-                - '@session'
-                - '@security.token_storage'
+        class: McShop\UserBundle\Services\CodeHandler\RegistrationHandler
+        arguments:
+            - '@doctrine'
+            - '@mc_shop.user_email.helper'
+            - '@translator'
+            - '%mailer_from%'
+            - '@session'
+            - '@security.token_storage'
+
+
+    mc_shop.user.recover.code.handler:
+        class: McShop\UserBundle\Services\CodeHandler\RecoverHandler
+        arguments:
+            - '@doctrine'
+            - '@mc_shop.user_email.helper'
+            - '@translator'
+            - '%mailer_from%'
 
     mc_shop.user.menu:
         class: McShop\UserBundle\Menu\UserMenu
