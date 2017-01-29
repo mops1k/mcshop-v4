@@ -27,11 +27,12 @@ class RegistrationHandler extends AbstractHandler
     public function __construct(
         ManagerRegistry $doctrine,
         UserEmailHelper $userEmailHelper,
+        $from,
         TranslatorInterface $translator,
         Session $session,
         TokenStorageInterface $tokenStorage
     ) {
-        parent::__construct($doctrine, $userEmailHelper, $translator);
+        parent::__construct($doctrine, $userEmailHelper, $translator, $from);
         $this->session = $session;
         $this->tokenStorage = $tokenStorage;
     }
@@ -57,6 +58,12 @@ class RegistrationHandler extends AbstractHandler
 
             $this->tokenStorage->setToken($usernamePasswordToken);
             $this->session->set('_security_main', serialize($usernamePasswordToken));
+
+            $this->userEmailHelper->setUser($token->getUser())->send(
+                $this->translator->trans('registration.message.email.registration_success'),
+                $this->from,
+                ':Default/User/Email:account_activated.html.twig'
+            );
         } catch (\Exception $e) {
             return false;
         }

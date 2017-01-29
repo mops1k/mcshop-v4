@@ -14,17 +14,20 @@ abstract class AbstractHandler
     protected $userEmailHelper;
     /** @var TranslatorInterface */
     protected $translator;
+    /** @var string */
+    protected $from;
 
     /**
      * AbstractHandler constructor.
      * @param ManagerRegistry $doctrine
      * @param UserEmailHelper $userEmailHelper
      */
-    public function __construct(ManagerRegistry $doctrine, UserEmailHelper $userEmailHelper, TranslatorInterface $translator)
+    public function __construct(ManagerRegistry $doctrine, UserEmailHelper $userEmailHelper, TranslatorInterface $translator, $from)
     {
         $this->doctrine = $doctrine;
         $this->userEmailHelper = $userEmailHelper;
         $this->translator = $translator;
+        $this->from = $from;
     }
 
     /**

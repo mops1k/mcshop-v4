@@ -5,6 +5,37 @@ user:
         logout:                 Logout
         sign-in:                Sign In
         sign-up:                Sign Up
+registration:
+    label:
+        code:               Confirmation code
+    button:
+        check_code:     Send code
+        signup:         SignUp
+    message:
+        email:
+            registration_success: Your registration was success!
+            activated:      Your account succesfully activated!
+            code:           |
+                "To activate your account you need to go <a href=@code_link@>this link</a>. "
+                "Or enter code below <a href=@enter_code_link@>here</a>.<br />"
+                "Your code: <b>@code@</b>"
+        approve_email:      For registration ending you must approve your email!
+        wrong_code:         Confirmation code is incorrect!
+        welcome:            Registration in McShop v4
+        code_activated:     Confirmation code sucessfull activated!
+        have_account:       Allready have account?
+system:
+    message:
+        unknown_error:      An unknown error occurred. Please contact the administrator to fix the problem.
+form:
+    registration:
+        username:               Username
+        email:                  E-mail
+        password:               Password
+        re_password:            Retype password
+validation:
+    password:
+        must_match:             Passwords must match!
 login:
     username:                   Username or E-mail
     password:                   Password

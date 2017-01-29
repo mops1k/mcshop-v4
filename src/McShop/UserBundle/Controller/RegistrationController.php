@@ -4,7 +4,6 @@ namespace McShop\UserBundle\Controller;
 use McShop\UserBundle\Form\UserType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Validator\ConstraintViolation;
 
 /**
@@ -62,6 +61,7 @@ class RegistrationController extends BaseController
                     $this->getParameter('mailer_from'),
                     ':Default/User/Email:registration.html.twig',
                     [
+                        'code'            => $userHelper->getToken()->getValue(),
                         'code_link'       => $this->generateUrl('mc_shop_user_registration_code_check', [
                             'code'    => $userHelper->getToken()->getValue(),
                             '_locale' => $request->getLocale(),

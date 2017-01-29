@@ -5,6 +5,37 @@ user:
         logout:                 Выход
         sign-in:                Авторизация
         sign-up:                Регистрация
+registration:
+    label:
+        code:               Код подтверждения
+    button:
+        check_code:     Отправить код
+        signup:         Зарегистрироваться
+    message:
+        email:
+            registration_success: Вы успешно зарегистрировались!
+            activated:      Ваш аккаунт успешно активировн!
+            code:           |
+                "Для активации Вашего аккаунта перейдите по <a href=@code_link@>ссылке</a>. "
+                "Или введите код вручную <a href=@enter_code_link@>здесь</a>.<br />"
+                "Код активации: <b>@code@</b>"
+        approve_email:      Для завершения регистрации вы должны подтвердить свою почту!
+        wrong_code:         Код подтверждения неверен!
+        welcome:            Регистрация в системе McShop v4
+        code_activated:     Код подтверждения успешно активирован!
+        have_account:       У вас уже есть аккаунт?
+system:
+    message:
+        unknown_error:      Произошла неизвестная ошибка. Пожалуйста, обратитесь к администратору для ее устранения.
+form:
+    registration:
+        username:               Логин
+        email:                  E-mail
+        password:               Пароль
+        re_password:            Повторите пароль
+validation:
+    password:
+        must_match:             Пароли должны совпадать!
 login:
     username:                   Логин или E-mail
     password:                   Пароль

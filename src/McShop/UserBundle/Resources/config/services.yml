@@ -23,6 +23,7 @@ services:
             arguments:
                 - '@doctrine'
                 - '@mc_shop.user_email.helper'
+                - '%mailer_from%'
                 - '@translator'
                 - '@session'
                 - '@security.token_storage'

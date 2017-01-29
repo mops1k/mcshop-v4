@@ -35,7 +35,7 @@ class UserEmailHelper
      * @param $template
      * @param array $templateArguments
      */
-    public function send($theme, $from, $template, array $templateArguments)
+    public function send($theme, $from, $template, array $templateArguments = [])
     {
         $message = \Swift_Message::newInstance()
             ->setSubject($theme)
