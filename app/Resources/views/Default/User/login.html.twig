@@ -29,6 +29,11 @@
                             <input type="checkbox" name="_remember_me"> {{ 'login.remember_me'|trans }}
                         </label>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6"><a href="{{ path('mc_shop_user_registration') }}">{{ 'login.message.no_account'|trans }}</a></div>
+                        <div class="col-md-6 text-right"><a href="#">{{ 'login.message.forgot_password'|trans }}</a></div>
+                    </div>
+                    <hr>
                     <button type="submit" class="btn btn-success btn-block btn-lg">{{ 'login.submit'|trans }}</button>
                 </form>
             </div>

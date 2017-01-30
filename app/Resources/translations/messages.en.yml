@@ -41,6 +41,9 @@ validation:
     password:
         must_match:                 Passwords must match!
 login:
+    message:
+        no_account:                 Do not have account? Register!
+        forgot_password:            Forgot password?
     username:                       Username or E-mail
     password:                       Password
     remember_me:                    Remember me

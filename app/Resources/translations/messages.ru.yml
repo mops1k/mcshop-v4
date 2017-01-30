@@ -41,6 +41,9 @@ validation:
     password:
         must_match:                 Пароли должны совпадать!
 login:
+    message:
+        no_account:                 У Вас еще нет аккаунта? Зарегистрируйтесь!
+        forgot_password:            Забыли пароль?
     username:                       Логин или E-mail
     password:                       Пароль
     remember_me:                    Запомнить меня
