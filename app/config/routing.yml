@@ -2,14 +2,14 @@ locale_prefix:
     resource: 'routing_app.yml'
     prefix:    /{_locale}
     defaults:
-        _locale: 'ru'
+        _locale: '%defaultlocale%'
 
 homepage_main:
     path: /
     defaults:
         _controller: McShopUserBundle:Redirect:redirect
         route:       mc_shop_news_homepage
-        _locale:     'ru'
+        _locale:     '%defaultlocale%'
         permanent:   true
 
 homepage:
