@@ -17,6 +17,7 @@ registration:
         signup:                     Зарегистрироваться
     message:
         email:
+            approve_code:           Подтверждение Вашей регистрации!
             registration_success:   Вы успешно зарегистрировались!
             activated:              Ваш аккаунт успешно активировн!
             code:                   |

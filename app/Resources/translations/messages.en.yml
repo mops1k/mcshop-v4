@@ -17,6 +17,7 @@ registration:
         signup:                     SignUp
     message:
         email:
+            approve_code:           Confirm your registration
             registration_success:   Your registration was success!
             activated:              Your account succesfully activated!
             code:                   |

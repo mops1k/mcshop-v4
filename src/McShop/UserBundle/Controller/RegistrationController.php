@@ -59,7 +59,7 @@ class RegistrationController extends BaseController
             $userEmailHelper
                 ->setUser($userHelper->getToken()->getUser())
                 ->send(
-                    $this->getUser(),
+                    $this->get('translator')->trans('registration.message.email.approve_code'),
                     $this->getParameter('mailer_from'),
                     ':Default/User/Email:registration.html.twig',
                     [
@@ -71,7 +71,8 @@ class RegistrationController extends BaseController
                         'enter_code_link' => $this->generateUrl('mc_shop_user_registration_code', [
                             '_locale' => $request->getLocale(),
                         ])
-                ])
+                    ]
+                )
             ;
             $this->addFlash('info', $this->get('translator')->trans('registration.message.approve_email'));
 
