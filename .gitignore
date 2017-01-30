@@ -7,7 +7,6 @@
 !app/logs/.gitkeep
 /app/phpunit.xml
 /build/
-/vendor/
 /bin/
 /composer.phar
 /.idea/
@@ -15,3 +14,4 @@
 /app/check.php
 /app/spool/*
 !app/spool/.gitkeep
+/libs
