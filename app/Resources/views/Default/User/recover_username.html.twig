@@ -1,0 +1,15 @@
+{% extends ':Default:base.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block header %}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        #content {
+            padding-top: 60px;
+        }
+    </style>
+{% endblock %}
+
+{% block container %}
+{% endblock %}
