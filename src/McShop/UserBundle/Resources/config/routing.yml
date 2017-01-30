@@ -20,3 +20,18 @@ mc_shop_user_registration_code:
     path:     /signup/code
     defaults:
         _controller: McShopUserBundle:Registration:code
+
+mc_shop_user_recover_username:
+    path:     /recover
+    defaults:
+        _controller: McShopUserBundle:Recover:recover
+
+mc_shop_user_recover_code:
+    path:     /recover/code
+    defaults:
+        _controller: McShopUserBundle:Recover:code
+
+mc_shop_user_recover_code_check:
+    path:     /recover/code/{code}
+    defaults:
+        _controller: McShopUserBundle:Recover:codeCheck

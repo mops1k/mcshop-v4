@@ -5,14 +5,7 @@ class DefaultController extends BaseController
 {
     public function loginAction()
     {
-        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
-            $this->addFlash(
-                'info',
-                $this->get('translator')->trans('login.error.already_logged_in')
-            );
-            return $this->redirectToReferer();
-        }
-
+        $this->isAuthenticatedErrorShow();
         $this->get('app.title')->setValue('title.authorization');
 
         $authenticationUtils = $this->get('security.authentication_utils');

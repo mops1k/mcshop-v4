@@ -18,4 +18,20 @@ class BaseController extends Controller
         ;
         return $this->redirect($url);
     }
+
+    /**
+     * @return null|\Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function isAuthenticatedErrorShow()
+    {
+        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $this->addFlash(
+                'info',
+                $this->get('translator')->trans('login.error.already_logged_in')
+            );
+            return $this->redirectToReferer();
+        }
+
+        return null;
+    }
 }

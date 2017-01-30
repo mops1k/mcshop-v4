@@ -1,0 +1,39 @@
+{% extends ':Default:base.html.twig' %}
+
+{% block header %}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        #content {
+            padding-top: 60px;
+        }
+    </style>
+{% endblock %}
+
+{% block container %}
+    <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-10 form-inline">
+            <div class="form-group">
+                <label for="code">{{ 'registration.label.code'|trans }}</label>
+                <input type="text" id="code" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-success">{{ 'registration.button.check_code'|trans }}</button>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function () {
+            $('button').on('click', function () {
+                if (!$('#code').val().length == 0) {
+                    var path = '{{ path('mc_shop_user_recover_code_check', {'code': '__CODE__', '_locale': app.request.locale}) }}';
+                    window.location.href = path.replace('__CODE__', $('#code').val());
+                }
+            });
+        });
+    </script>
+{% endblock %}

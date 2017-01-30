@@ -1,7 +1,6 @@
 <?php
 namespace McShop\UserBundle\Services\CodeHandler;
 
-
 use McShop\UserBundle\Entity\Token;
 
 class RecoverHandler extends AbstractHandler

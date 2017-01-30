@@ -11,6 +11,8 @@ services:
         arguments:
             - '@doctrine'
             - '@security.password_encoder'
+            - '@session'
+            - '@security.token_storage'
 
     mc_shop.user_email.helper:
         class: McShop\UserBundle\Services\Helper\UserEmailHelper

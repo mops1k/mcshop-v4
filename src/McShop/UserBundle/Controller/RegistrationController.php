@@ -18,13 +18,7 @@ class RegistrationController extends BaseController
      */
     public function registerAction(Request $request)
     {
-        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
-            $this->addFlash(
-                'info',
-                $this->get('translator')->trans('login.error.already_logged_in')
-            );
-            return $this->redirectToReferer();
-        }
+        $this->isAuthenticatedErrorShow();
 
         $this->get('app.title')->setValue('title.registration_form');
 
@@ -89,6 +83,7 @@ class RegistrationController extends BaseController
      */
     public function codeAction()
     {
+        $this->isAuthenticatedErrorShow();
         $this->get('app.title')->setValue('title.code_activation');
         return $this->render(':Default/User:registration_code.html.twig');
     }
@@ -100,13 +95,14 @@ class RegistrationController extends BaseController
      */
     public function codeCheckAction($code, Request $request)
     {
+        $this->isAuthenticatedErrorShow();
         $token = $this->getDoctrine()
             ->getManagerForClass('McShopUserBundle:Token')
             ->getRepository('McShopUserBundle:Token')
             ->findTokenByValue($code)
         ;
 
-        if (!$token) {
+        if ($token === null || !$token->getActive()) {
             $this->addFlash('error', $this->get('translator')->trans('registration.message.wrong_code'));
             return $this->redirectToRoute('mc_shop_user_registration_code');
         }

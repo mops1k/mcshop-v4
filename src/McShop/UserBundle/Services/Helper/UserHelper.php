@@ -4,7 +4,10 @@ namespace McShop\UserBundle\Services\Helper;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use McShop\UserBundle\Entity\Token;
 use McShop\UserBundle\Entity\User;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * Class UserHelper
@@ -30,7 +33,7 @@ class UserHelper
     /**
      * @var string
      */
-    private $roleName;
+    private $roleName = null;
 
     /** @var User */
     private $user;
@@ -38,16 +41,30 @@ class UserHelper
     /** @var Token */
     private $token;
 
+    /** @var Session */
+    private $session;
+
+    /** @var TokenStorageInterface */
+    private $tokenStorage;
+
 
     /**
      * UserHelper constructor.
      * @param ManagerRegistry $doctrine
      * @param UserPasswordEncoder $encoder
+     * @param Session $session
+     * @param TokenStorageInterface $tokenStorage
      */
-    public function __construct(ManagerRegistry $doctrine, UserPasswordEncoder $encoder)
-    {
+    public function __construct(
+        ManagerRegistry $doctrine,
+        UserPasswordEncoder $encoder,
+        Session $session,
+        TokenStorageInterface $tokenStorage
+    ) {
         $this->doctrine = $doctrine;
         $this->encoder = $encoder;
+        $this->session = $session;
+        $this->tokenStorage = $tokenStorage;
     }
 
     /**
@@ -93,6 +110,18 @@ class UserHelper
         $this->getEm(get_class($this->user))->flush();
 
         return $this;
+    }
+
+    public function authUser()
+    {
+        $usernamePasswordToken = new UsernamePasswordToken(
+            $this->user,
+            null,
+            'main',
+            $this->user->getRoles()
+        );
+        $this->tokenStorage->setToken($usernamePasswordToken);
+        $this->session->set('_security_main', serialize($usernamePasswordToken));
     }
 
     /**
