@@ -1,3 +1,7 @@
 mc_shop_news_homepage:
     path:     /
     defaults: { _controller: McShopNewsBundle:Default:index }
+
+mc_shop_news_view:
+    path:     /{id}
+    defaults: { _controller: McShopNewsBundle:Default:view }

@@ -10,6 +10,7 @@ use McShop\UserBundle\Entity\User;
  *
  * @ORM\Table(name="post")
  * @ORM\Entity(repositoryClass="McShop\NewsBundle\Repository\PostRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Post
 {
@@ -226,5 +227,13 @@ class Post
     public function getCommentaries()
     {
         return $this->commentaries;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function prePersist()
+    {
+        $this->createdAt = new \DateTime('NOW');
     }
 }

@@ -1,0 +1,44 @@
+{% extends ':Default:base.html.twig' %}
+{% if  is_granted('ROLE_USER') %}
+    {% form_theme form 'bootstrap_3_layout.html.twig' %}
+{% endif %}
+
+{% block content %}
+    <div class="panel panel-default">
+    	<div class="panel-body">
+            <div class="pull-left">
+                <b>{{ post.subject }}</b>
+            </div>
+            <div class="pull-right">
+                <small>{{ post.user.username }}</small>
+            </div>
+            <br><hr>
+    	    {{ post.fullContent|raw }}
+            <hr>
+            <div class="pull-left">
+                <small>{{ post.createdAt|date('d.m.Y H:i') }}</small>
+            </div>
+    	</div>
+    </div>
+    <hr>
+    {% if form is defined %}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-success">{{ 'news.comments.send'|trans }}</button>
+        {{ form_end(form) }}
+    {% else %}
+        <div class="alert alert-danger">{{ 'news.comments.no_rights'|trans }}</div>
+    {% endif %}
+    <hr>
+    {% if commentaries|length == 0 %}
+        <div class="alert alert-info">{{ 'news.comments.no_comments'|trans }}</div>
+    {% endif %}
+    {% for commentary in commentaries %}
+        <!-- the comments -->
+        <h3><i class="fa fa-comment"></i> {{ 'news.commentary.user_says'|trans({'@username@': commentary.user.username}) }}:
+            <small> {{ commentary.createdAt|date('d.m.Y H:i') }}</small>
+        </h3>
+        <p>{{ commentary.content }}</p>
+    {% endfor %}
+    {{ commentaries.hasNextPage ? pagerfanta(commentaries, 'twitter_bootstrap3', { 'omitFirstPage': true}) }}
+{% endblock %}

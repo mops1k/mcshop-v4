@@ -10,6 +10,7 @@ use McShop\UserBundle\Entity\User;
  *
  * @ORM\Table(name="commentary")
  * @ORM\Entity(repositoryClass="McShop\NewsBundle\Repository\CommentaryRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Commentary
 {
@@ -40,6 +41,12 @@ class Commentary
      * @ORM\ManyToOne(targetEntity="Post", inversedBy="commentaries")
      */
     private $news;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
 
     /**
      * Get id
@@ -77,10 +84,10 @@ class Commentary
     /**
      * Set user
      *
-     * @param \McShop\NewsBundle\Entity\User $user
+     * @param User $user
      * @return Commentary
      */
-    public function setUser(\McShop\NewsBundle\Entity\User $user = null)
+    public function setUser(User $user = null)
     {
         $this->user = $user;
 
@@ -90,7 +97,7 @@ class Commentary
     /**
      * Get user
      *
-     * @return \McShop\NewsBundle\Entity\User 
+     * @return User
      */
     public function getUser()
     {
@@ -100,10 +107,10 @@ class Commentary
     /**
      * Set news
      *
-     * @param \McShop\NewsBundle\Entity\Post $news
+     * @param Post $news
      * @return Commentary
      */
-    public function setNews(\McShop\NewsBundle\Entity\Post $news = null)
+    public function setNews(Post $news = null)
     {
         $this->news = $news;
 
@@ -113,10 +120,36 @@ class Commentary
     /**
      * Get news
      *
-     * @return \McShop\NewsBundle\Entity\Post 
+     * @return Post
      */
     public function getNews()
     {
         return $this->news;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param \DateTime $createdAt
+     * @return $this
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+        return $this;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function prePersist()
+    {
+        $this->createdAt = new \DateTime('NOW');
     }
 }

@@ -1,5 +1,10 @@
 ru:                                 Русский
 en:                                 English
+news:
+    no_posts:                       There are no published news!
+    link.read_more:                 Read more
+    comments:
+        count:                      commentaries: @count@
 user:
     launcher:
         login:

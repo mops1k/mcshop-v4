@@ -1,5 +1,10 @@
 ru:                                 Русский
 en:                                 English
+news:
+    no_posts:                       На данный момент еще не было опубликовано новостей!
+    link.read_more:                 Просмотреть новость
+    comments:
+        count:                      комментарии: @count@
 user:
     launcher:
         login:

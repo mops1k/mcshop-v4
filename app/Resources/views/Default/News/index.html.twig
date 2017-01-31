@@ -1,5 +1,34 @@
 {% extends ':Default:base.html.twig' %}
 
 {% block content %}
-    asdfsadf
+    {% if posts|length == 0 %}
+    <div class="alert alert-info">
+        {{ 'news.no_posts'|trans }}
+    </div>
+    {% endif %}
+    {% for post in posts %}
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="pull-left">
+                    <b>{{ post.subject }}</b>
+                    <small>| {{ 'news.comments.count'|trans({'@count@': post.commentaries|length}) }}</small>
+                </div>
+                <div class="pull-right">
+                    <small><a href="#">{{ post.user.username }}</a></small>
+                </div>
+                <br /><hr>
+                {{ (post.lessContent is not null ? post.lessContent : post.fullContent)|raw }}
+                <hr>
+                <div class="pull-left">
+                    {{ post.createdAt|date('d.m.Y H:i') }}
+                </div>
+                <div class="pull-right">
+                    <a href="{{ path('mc_shop_news_view', {'id': post.id}) }}" class="btn btn-sm btn-default">
+                        <i class="fa fa-eye"></i>
+                        {{ 'news.link.read_more'|trans }}</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    {{ posts.hasNextPage ? pagerfanta(posts, 'twitter_bootstrap3', { 'omitFirstPage': true}) }}
 {% endblock %}
