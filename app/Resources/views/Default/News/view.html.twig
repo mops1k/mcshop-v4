@@ -18,6 +18,11 @@
             <div class="pull-left">
                 <small>{{ post.createdAt|date('d.m.Y H:i') }}</small>
             </div>
+            {% if is_granted('ROLE_SUOER_ADMIN') or post.user == app.user %}
+            <div class="pull-right">
+                edit | delete
+            </div>
+            {% endif %}
     	</div>
     </div>
     <hr>
