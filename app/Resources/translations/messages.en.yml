@@ -1,6 +1,9 @@
 ru:                                 Русский
 en:                                 English
 user:
+    launcher:
+        login:
+            error:                  Wrong username or password!
     menu:
         logout:                     Logout
         sign-in:                    Sign In

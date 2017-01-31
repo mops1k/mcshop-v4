@@ -1,6 +1,9 @@
 ru:                                 Русский
 en:                                 English
 user:
+    launcher:
+        login:
+            error:                  Неверный логин или пароль!
     menu:
         logout:                     Выход
         sign-in:                    Авторизация
