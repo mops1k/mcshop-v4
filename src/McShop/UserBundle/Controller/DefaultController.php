@@ -1,6 +1,10 @@
 <?php
 namespace McShop\UserBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+
 class DefaultController extends BaseController
 {
     public function loginAction()
@@ -22,5 +26,19 @@ class DefaultController extends BaseController
         return $this->render(':Default/User:login.html.twig', [
             'last_username'  => $lastUsername
         ]);
+    }
+
+    public function minecraftLoginAction($username, $password)
+    {
+        $user = $this->getDoctrine()
+            ->getManagerForClass('McShopUserBundle:User')
+            ->getRepository('McShopUserBundle:User')
+            ->loadUserByUsername($username);
+
+        if ($user === null || !$this->get('security.password_encoder')->isPasswordValid($user, $password)) {
+            return new Response($this->get('translator')->trans('user.launcher.login.error'));
+        }
+
+        return new Response('OK:'.$username);
     }
 }

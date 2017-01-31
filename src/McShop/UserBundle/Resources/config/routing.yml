@@ -35,3 +35,8 @@ mc_shop_user_recover_code_check:
     path:     /recover/code/{code}
     defaults:
         _controller: McShopUserBundle:Recover:codeCheck
+
+mc_shop_user_minecraft_login:
+    path:   /minecraft/{username}/{password}
+    defaults:
+        _controller: McShopUserBundle:Default:minecraftLogin

@@ -24,6 +24,24 @@ class User implements AdvancedUserInterface, \Serializable
 
     /**
      * @var string
+     * @ORM\Column(type="guid", nullable=true, unique=true)
+     */
+    private $uuid = null;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=32, nullable=true, options={"fixed": true})
+     */
+    private $accessToken = null;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=41, nullable=true)
+     */
+    private $serverID = null;
+
+    /**
+     * @var string
      *
      * @ORM\Column(name="username", type="string", length=255, unique=true)
      */
@@ -367,5 +385,59 @@ class User implements AdvancedUserInterface, \Serializable
             // see section on salt below
             $this->salt
             ) = unserialize($serialized);
+    }
+
+    /**
+     * @param string $uuid
+     * @return User
+     */
+    public function setUuid($uuid)
+    {
+        $this->uuid = $uuid;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUuid()
+    {
+        return $this->uuid;
+    }
+
+    /**
+     * @param string $accessToken
+     * @return User
+     */
+    public function setAccessToken($accessToken)
+    {
+        $this->accessToken = $accessToken;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAccessToken()
+    {
+        return $this->accessToken;
+    }
+
+    /**
+     * @return string
+     */
+    public function getServerID()
+    {
+        return $this->serverID;
+    }
+
+    /**
+     * @param string $serverID
+     * @return $this
+     */
+    public function setServerID($serverID)
+    {
+        $this->serverID = $serverID;
+        return $this;
     }
 }
