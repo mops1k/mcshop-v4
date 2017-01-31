@@ -18,9 +18,14 @@
             <div class="pull-left">
                 <small>{{ post.createdAt|date('d.m.Y H:i') }}</small>
             </div>
-            {% if is_granted('ROLE_SUOER_ADMIN') or post.user == app.user %}
+            {% if is_granted('ROLE_SUPER_ADMIN') or post.user == app.user %}
             <div class="pull-right">
-                edit | delete
+                <span class="btn-group btn-group-sm">
+                    <button class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></button>
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                    {% endif %}
+                </span>
             </div>
             {% endif %}
     	</div>
@@ -40,10 +45,35 @@
     {% endif %}
     {% for commentary in commentaries %}
         <!-- the comments -->
-        <h3><i class="fa fa-comment"></i> {{ 'news.commentary.user_says'|trans({'@username@': commentary.user.username}) }}:
-            <small> {{ commentary.createdAt|date('d.m.Y H:i') }}</small>
-        </h3>
-        <p>{{ commentary.content }}</p>
+        <div class="comment">
+            <h3><i class="fa fa-comment"></i> {{ 'news.commentary.user_says'|trans({'@username@': commentary.user.username}) }}:
+                <small> {{ commentary.createdAt|date('d.m.Y H:i') }}</small>
+                {% if is_granted('ROLE_SUPER_ADMIN') or post.user == app.user %}
+                <div class="pull-right">
+                    <span class="btn-group btn-group-sm">
+                        <button class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></button>
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                            <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                        {% endif %}
+                    </span>
+                </div>
+                {% endif %}
+            </h3>
+            <p>{{ commentary.content }}</p>
+        </div>
     {% endfor %}
     {{ commentaries.hasNextPage ? pagerfanta(commentaries, 'twitter_bootstrap3', { 'omitFirstPage': true}) }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .comment {
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .comment:hover {
+            background-color: #d9d9d9;
+        }
+    </style>
 {% endblock %}
