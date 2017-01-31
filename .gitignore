@@ -15,3 +15,7 @@
 /app/spool/*
 !app/spool/.gitkeep
 /libs
+/web/skins/*
+!web/skins/.gitkeep
+/web/cloacks/*
+!web/cloacks/.gitkeep
