@@ -3,6 +3,8 @@
 namespace McShop\NewsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
+use Gedmo\Mapping\Annotation as Gedmo;
 use McShop\UserBundle\Entity\User;
 
 /**
@@ -11,9 +13,12 @@ use McShop\UserBundle\Entity\User;
  * @ORM\Table(name="commentary")
  * @ORM\Entity(repositoryClass="McShop\NewsBundle\Repository\CommentaryRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt")
  */
 class Commentary
 {
+    use SoftDeleteableEntity;
+
     /**
      * @var int
      *

@@ -3,6 +3,9 @@
 namespace McShop\NewsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Evence\Bundle\SoftDeleteableExtensionBundle\Mapping\Annotation\onSoftDelete;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use McShop\UserBundle\Entity\User;
 
 /**
@@ -11,9 +14,12 @@ use McShop\UserBundle\Entity\User;
  * @ORM\Table(name="post")
  * @ORM\Entity(repositoryClass="McShop\NewsBundle\Repository\PostRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt")
  */
 class Post
 {
+    use SoftDeleteableEntity;
+
     /**
      * @var int
      *
@@ -60,9 +66,9 @@ class Post
     /**
      * @var Commentary
      * @ORM\OneToMany(targetEntity="Commentary", mappedBy="news")
+     * @onSoftDelete(type="CASCADE")
      */
     private $commentaries;
-
 
     /**
      * Get id
