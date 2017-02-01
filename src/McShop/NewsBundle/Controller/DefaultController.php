@@ -6,7 +6,6 @@ use McShop\NewsBundle\Entity\Commentary;
 use McShop\NewsBundle\Entity\Post;
 use McShop\NewsBundle\Form\CommentaryType;
 use McShop\NewsBundle\Repository\PostRepository;
-use Pagerfanta\Adapter\ArrayAdapter;
 use Pagerfanta\Adapter\DoctrineCollectionAdapter;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
@@ -29,6 +28,7 @@ class DefaultController extends Controller
             ->getManagerForClass('McShopNewsBundle:Post')
             ->getRepository('McShopNewsBundle:Post')
             ->findAll(PostRepository::RETURN_QUERY)
+            ->orderBy('p.id', 'DESC')
         ;
 
         $adapter = new DoctrineORMAdapter($posts);

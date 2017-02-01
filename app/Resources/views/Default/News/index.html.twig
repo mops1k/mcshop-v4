@@ -8,7 +8,7 @@
     {% endif %}
     {% if is_granted('ROLE_NEWS_ADD') %}
         <div class="pull-right">
-            <button class="btn btn-primary"><i class="fa fa-plus"></i> {{ 'news.add'|trans }}</button>
+            <a href="{{ path('mc_shop_news_new') }}" class="btn btn-primary"><i class="fa fa-plus"></i> {{ 'news.add'|trans }}</a>
         </div>
         <br>
         <hr>

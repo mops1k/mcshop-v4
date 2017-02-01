@@ -3,5 +3,17 @@ mc_shop_news_homepage:
     defaults: { _controller: McShopNewsBundle:Default:index }
 
 mc_shop_news_view:
-    path:     /{id}
+    path:     /{id}/view
     defaults: { _controller: McShopNewsBundle:Default:view }
+
+mc_shop_news_new:
+    path:     /new
+    defaults: { _controller: McShopNewsBundle:NewsCrud:new }
+
+mc_shop_news_edit:
+    path:     /{id}/edit
+    defaults: { _controller: McShopNewsBundle:NewsCrud:edit }
+
+mc_shop_news_remove:
+    path:     /{id}/remove
+    defaults: { _controller: McShopNewsBundle:NewsCrud:remove }
