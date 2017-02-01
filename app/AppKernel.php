@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Matthias\SymfonyConsoleForm\Bundle\SymfonyConsoleFormBundle(),
             new Eschmar\CssInlinerBundle\EschmarCssInlinerBundle(),
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+            new Evence\Bundle\SoftDeleteableExtensionBundle\EvenceSoftDeleteableExtensionBundle(),
             // McShop v4 System bundles
             new McShop\NewsBundle\McShopNewsBundle(),
             new McShop\UserBundle\McShopUserBundle(),
