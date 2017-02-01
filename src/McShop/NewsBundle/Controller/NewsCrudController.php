@@ -92,6 +92,8 @@ class NewsCrudController extends BaseController
         $this->getDoctrine()->getManagerForClass(get_class($post))->remove($post);
         $this->getDoctrine()->getManagerForClass(get_class($post))->flush();
 
+        $this->addFlash('info', $this->get('translator')->trans('news.remove_success'));
+
         return $this->redirectToRoute('mc_shop_news_homepage');
     }
 

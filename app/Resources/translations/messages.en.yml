@@ -1,11 +1,25 @@
 ru:                                 Русский
 en:                                 English
 news:
+    new_success:                    Post added!
+    edit_success:                   Post edited success!
+    remove_success:                 Post removed!
     show:                           'Full news "@subject@"'
     add:                            Add post
+    add.title:                      New post
+    edit.title:                     "Edit news ID #@id@"
     no_posts:                       There are no published news!
     link.read_more:                 Read more
+    submit:                         Save post
+    form:
+        subject:                    Subject
+        less_content:               Preview content
+        full_content:               Full content
     comments:
+        submit:                     Complete edit
+        edit_success:               Commentary edited success!
+        remove_success:             Commentary removed!
+        edit_title:                 Commentary edit
         count:                      commentaries: @count@
         send:                       Send your commentary
         no_rights:                  To post you commentary you have to login or register!
