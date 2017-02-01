@@ -18,16 +18,16 @@
             <div class="pull-left">
                 <small>{{ post.createdAt|date('d.m.Y H:i') }}</small>
             </div>
-            {% if is_granted('ROLE_SUPER_ADMIN') or post.user == app.user %}
             <div class="pull-right">
                 <span class="btn-group btn-group-sm">
+                {% if is_granted('ROLE_NEWS_EDIT') or post.user == app.user %}
                     <button class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></button>
-                    {% if is_granted('ROLE_SUPER_ADMIN') %}
-                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
-                    {% endif %}
+                {% endif %}
+                {% if is_granted('ROLE_NEWS_REMOVE') %}
+                    <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                {% endif %}
                 </span>
             </div>
-            {% endif %}
     	</div>
     </div>
     <hr>
@@ -48,16 +48,16 @@
         <div class="comment">
             <h3><i class="fa fa-comment"></i> {{ 'news.comments.user_says'|trans({'@username@': commentary.user.username}) }}:
                 <small> {{ commentary.createdAt|date('d.m.Y H:i') }}</small>
-                {% if is_granted('ROLE_SUPER_ADMIN') or post.user == app.user %}
                 <div class="pull-right">
                     <span class="btn-group btn-group-sm">
+                    {% if is_granted('ROLE_COMMENTARY_EDIT') or post.user == app.user %}
                         <button class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></button>
-                        {% if is_granted('ROLE_SUPER_ADMIN') %}
-                            <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
-                        {% endif %}
+                    {% endif %}
+                    {% if is_granted('ROLE_COMMENTARY_REMOVE') %}
+                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                    {% endif %}
                     </span>
                 </div>
-                {% endif %}
             </h3>
             <p>{{ commentary.content }}</p>
         </div>

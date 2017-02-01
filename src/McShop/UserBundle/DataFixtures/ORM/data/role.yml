@@ -2,6 +2,11 @@ ROLE_SUPER_ADMIN:
     name:   Главный администратор
     role:   ROLE_SUPER_ADMIN
 
+ROLE_MODERATOR:
+    name:   Модератор
+    role:   ROLE_MODERATOR
+    parent: ROLE_SUPER_ADMIN
+
 ROLE_ALLOWED_TO_SWITCH:
     name:   Вход как другой пользователь
     role:   ROLE_ALLOWED_TO_SWITCH
@@ -10,4 +15,39 @@ ROLE_ALLOWED_TO_SWITCH:
 ROLE_USER:
     name:   Пользователь
     role:   ROLE_USER
-    parent: ROLE_SUPER_ADMIN
+    parent: ROLE_MODERATOR
+
+ROLE_NEWS_ADMIN:
+    name:   Управление новостями
+    role:   ROLE_NEWS_ADMIN
+    parent: ROLE_MODERATOR
+
+ROLE_NEWS_ADD:
+    name:   Добавление новостей
+    role:   ROLE_NEWS_ADD
+    parent: ROLE_NEWS_ADMIN
+
+ROLE_NEWS_EDIT:
+    name:   Редактирование новостей
+    role:   ROLE_NEWS_EDIT
+    parent: ROLE_NEWS_ADMIN
+
+ROLE_NEWS_REMOVE:
+    name:   Удаление новостей
+    role:   ROLE_NEWS_REMOVE
+    parent: ROLE_NEWS_ADMIN
+
+ROLE_COMMENTARY_ADMIN:
+    name:   Управление новостными комментариями
+    role:   ROLE_COMMENTARY_ADMIN
+    parent: ROLE_NEWS_ADMIN
+
+ROLE_COMMENTARY_EDIT:
+    name:   Редактирование комментариев
+    role:   ROLE_COMMENTARY_EDIT
+    parent: ROLE_COMMENTARY_ADMIN
+
+ROLE_COMMENTARY_REMOVE:
+    name:   Удаление комментариев
+    role:   ROLE_COMMENTARY_REMOVE
+    parent: ROLE_COMMENTARY_ADMIN
