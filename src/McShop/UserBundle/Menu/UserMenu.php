@@ -17,7 +17,7 @@ class UserMenu extends AbstractMenu
      * UserMenu constructor.
      * @param Router $router
      * @param AuthorizationCheckerInterface $authorizationChecker
-     * @param TokenInterface $token
+     * @param TokenStorageInterface $token
      */
     public function __construct(
         Router $router,
