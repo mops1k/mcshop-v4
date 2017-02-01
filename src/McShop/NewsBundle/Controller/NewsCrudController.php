@@ -83,7 +83,7 @@ class NewsCrudController extends BaseController
      * @param Post $post
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    private function removeAction(Post $post) {
+    public function removeAction(Post $post) {
         if (!$this->isGranted('ROLE_NEWS_REMOVE')) {
             throw $this->createAccessDeniedException();
         }
