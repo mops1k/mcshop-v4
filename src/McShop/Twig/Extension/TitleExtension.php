@@ -23,7 +23,7 @@ class TitleExtension extends \Twig_Extension implements \Twig_Extension_GlobalsI
     public function getGlobals()
     {
         return [
-            'title' => $this->title->getValue()
+            'title' => $this->title
         ];
     }
 

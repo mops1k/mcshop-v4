@@ -51,8 +51,14 @@ class DefaultController extends Controller
      */
     public function viewAction(Post $post, Request $request)
     {
+        $this->get('app.title')
+            ->setValue('news.show')
+            ->setAttributes([
+                '@subject@' => $post->getSubject(),
+            ])
+        ;
         $additional = [];
-        if ($this->isGranted('ROLE_USER')) {
+        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
             $form = $this->createForm(CommentaryType::class);
 
             if ($request->isMethod($request::METHOD_POST)) {

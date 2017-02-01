@@ -1,6 +1,8 @@
 ru:                                 Русский
 en:                                 English
 news:
+    show:                           'Full news "@subject@"'
+    add:                            Add post
     no_posts:                       There are no published news!
     link.read_more:                 Read more
     comments:

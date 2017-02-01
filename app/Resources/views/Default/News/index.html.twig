@@ -8,8 +8,10 @@
     {% endif %}
     {% if is_granted('ROLE_NEWS_ADD') %}
         <div class="pull-right">
-            <button class="btn btn-action"><i class="fa fa-plus"></i></button>
+            <button class="btn btn-primary"><i class="fa fa-plus"></i> {{ 'news.add'|trans }}</button>
         </div>
+        <br>
+        <hr>
     {% endif %}
     {% for post in posts %}
         <div class="panel panel-default">

@@ -35,7 +35,7 @@ class UserMenu extends AbstractMenu
     {
         /** @var UserMenuBuilder $builder */
         $builder = $this->getBuilder();
-        if ($this->isGranted('ROLE_USER')) {
+        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
             $builder
                 ->addRootItem('user', $this->token->getUsername(), null, [
                     'icon'  => 'fa fa-user'
