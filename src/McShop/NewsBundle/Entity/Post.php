@@ -66,6 +66,7 @@ class Post
     /**
      * @var Commentary
      * @ORM\OneToMany(targetEntity="Commentary", mappedBy="news")
+     * @ORM\OrderBy({"id": "DESC"})
      * @onSoftDelete(type="CASCADE")
      */
     private $commentaries;

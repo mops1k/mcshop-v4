@@ -51,10 +51,10 @@
                 <div class="pull-right">
                     <span class="btn-group btn-group-sm">
                     {% if is_granted('ROLE_COMMENTARY_EDIT') or post.user == app.user %}
-                        <button class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></button>
+                        <a href="{{ path('mc_shop_commentary_edit', {'id': commentary.id}) }}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
                     {% endif %}
                     {% if is_granted('ROLE_COMMENTARY_REMOVE') %}
-                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                        <a href="{{ path('mc_shop_commentary_remove', {'id': commentary.id}) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                     {% endif %}
                     </span>
                 </div>

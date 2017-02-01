@@ -17,3 +17,11 @@ mc_shop_news_edit:
 mc_shop_news_remove:
     path:     /{id}/remove
     defaults: { _controller: McShopNewsBundle:NewsCrud:remove }
+
+mc_shop_commentary_edit:
+    path:     /commentary/{id}/edit
+    defaults: { _controller: McShopNewsBundle:CommentaryCrud:edit }
+
+mc_shop_commentary_remove:
+    path:     /commentary/{id}/remove
+    defaults: { _controller: McShopNewsBundle:CommentaryCrud:remove }

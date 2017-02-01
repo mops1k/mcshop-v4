@@ -83,7 +83,8 @@ class NewsCrudController extends BaseController
      * @param Post $post
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function removeAction(Post $post) {
+    public function removeAction(Post $post)
+    {
         if (!$this->isGranted('ROLE_NEWS_REMOVE')) {
             throw $this->createAccessDeniedException();
         }
@@ -112,7 +113,8 @@ class NewsCrudController extends BaseController
      * @param FormInterface $form
      * @return bool
      */
-    private function processForm(FormInterface $form) {
+    private function processForm(FormInterface $form)
+    {
         if (!$form->isValid()) {
             $errors = $this->get('validator')->validate($form);
             foreach ($errors as $error) {
