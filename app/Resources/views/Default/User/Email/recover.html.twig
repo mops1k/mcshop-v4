@@ -1,5 +1,5 @@
 {% extends ':Default:email_base.html.twig' %}
 
 {% block body %}
-    {{ 'recover.message.email.code'|trans({'@code_link@': code_link, '@enter_code_link@': enter_code_link})|raw }}
+    {{ 'user.recover.email.message.code'|trans({'@code@': code,'@code_link@': code_link, '@enter_code_link@': enter_code_link})|raw }}
 {% endblock %}

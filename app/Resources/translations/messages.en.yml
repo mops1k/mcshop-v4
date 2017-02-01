@@ -5,6 +5,11 @@ news:
     link.read_more:                 Read more
     comments:
         count:                      commentaries: @count@
+        send:                       Send your commentary
+        no_rights:                  To post you commentary you have to login or register!
+        no_comments:                No commentaries for post yet!
+        user_says:                  @username@ says
+        form.title:                 Write your commentary
 user:
     launcher:
         login:
@@ -13,6 +18,20 @@ user:
         logout:                     Logout
         sign-in:                    Sign In
         sign-up:                    Sign Up
+    recover:
+        user_not_found:             User not found!
+        message:
+            password_title:         Set new password
+            success:                Password recovering completed!
+        form:
+            title:                  Username or E-mail
+        email:
+            code:                   Password recovery confirmation code
+            message:
+                code:               |
+                                "To restore your password you need to go <a href=@code_link@>this link</a>. "
+                                "Or enter code below <a href=@enter_code_link@>here</a>.<br />"
+                                "Your code: <b>@code@</b>"
 title:
     registration_form:              Registration
     code_activation:                Confirmation code activation

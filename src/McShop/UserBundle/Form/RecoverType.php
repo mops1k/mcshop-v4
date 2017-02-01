@@ -19,7 +19,7 @@ class RecoverType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('user', TextType::class, [
-            'label' => 'user.recover.email',
+            'label' => 'user.recover.form.title',
             'constraints'   => [
                 new Assert\NotBlank(),
             ]

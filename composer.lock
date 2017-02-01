@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "dc872f534a14ae456d7b5762a47391df",
-    "content-hash": "739a5b34147e28a67fde7b4094cf5280",
+    "hash": "804d1269eaa30c79c51523dcc60cb5c9",
+    "content-hash": "0a69e6417ffcabfa884d6367c09df7fd",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1015,6 +1015,52 @@
                 "twig"
             ],
             "time": "2016-04-25 19:26:41"
+        },
+        {
+            "name": "evence/soft-deleteable-extension-bundle",
+            "version": "1.1",
+            "target-dir": "Evence/Bundle/SoftDeleteableExtensionBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/E-vence/SoftDeleteableListenerExtensionBundle.git",
+                "reference": "93b97f437145aaeb66796694ef6a5499939f71c3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/E-vence/SoftDeleteableListenerExtensionBundle/zipball/93b97f437145aaeb66796694ef6a5499939f71c3",
+                "reference": "93b97f437145aaeb66796694ef6a5499939f71c3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/framework-bundle": "~2.0 || ~3.0"
+            },
+            "require-dev": {
+                "symfony/console": "~2.0 || ~3.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Evence\\Bundle\\SoftDeleteableExtensionBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Ruben Harms",
+                    "homepage": "http://www.rubenharms.nl/"
+                }
+            ],
+            "description": "Provides exta functions to the soft deleteable listener of gedmo",
+            "keywords": [
+                "soft-deleteable"
+            ],
+            "time": "2016-10-05 14:11:32"
         },
         {
             "name": "incenteev/composer-parameter-handler",

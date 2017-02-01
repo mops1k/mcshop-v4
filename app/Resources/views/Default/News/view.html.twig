@@ -46,7 +46,7 @@
     {% for commentary in commentaries %}
         <!-- the comments -->
         <div class="comment">
-            <h3><i class="fa fa-comment"></i> {{ 'news.commentary.user_says'|trans({'@username@': commentary.user.username}) }}:
+            <h3><i class="fa fa-comment"></i> {{ 'news.comments.user_says'|trans({'@username@': commentary.user.username}) }}:
                 <small> {{ commentary.createdAt|date('d.m.Y H:i') }}</small>
                 {% if is_granted('ROLE_SUPER_ADMIN') or post.user == app.user %}
                 <div class="pull-right">

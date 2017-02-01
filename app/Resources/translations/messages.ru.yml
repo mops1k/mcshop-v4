@@ -5,6 +5,11 @@ news:
     link.read_more:                 Просмотреть новость
     comments:
         count:                      комментарии: @count@
+        send:                       Отправить комментарий
+        no_rights:                  Только зарегистрированные пользователи могут комментировать новости!
+        no_comments:                Комментариев нет!
+        user_says:                  @username@ пишет
+        form.title:                 Напишите свой комментарий
 user:
     launcher:
         login:
@@ -13,6 +18,20 @@ user:
         logout:                     Выход
         sign-in:                    Авторизация
         sign-up:                    Регистрация
+    recover:
+        user_not_found:             Пользователь не найден!
+        message:
+            password_title:         Установить новый пароль
+            success:                Восстановление пароля прошло успешно!
+        form:
+            title:                  Логин или E-mail
+        email:
+            code:                   Код подтверждения для восстановления пароля
+            message:
+                code:               |
+                                "Чтобы восстановить свой пароль перейдите по <a href=@code_link@>этой ссылке</a>. "
+                                "Или введите код вручную <a href=@enter_code_link@>здесь</a>.<br />"
+                                "Код активации: <b>@code@</b>"
 title:
     registration_form:              Регистрация
     code_activation:                Активация кода подтверждения
