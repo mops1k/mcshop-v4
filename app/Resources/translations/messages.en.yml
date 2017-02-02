@@ -1,5 +1,23 @@
 ru:                                 Русский
 en:                                 English
+page:
+    not_found:                      Page not found!
+    no_rights:                      You do not have rights to view this page!
+    error:                          Error @number@!
+    add_success:                    Page has created!
+    add.title:                      Create new static page
+    submit:                         Save page
+    edit_success:                   Page edited!
+    edit.title:                     Edit page
+    deleted:                        Page was deleted!
+    form:
+        slug:                       Page address name
+        title:                      Page title
+        content:                    Content
+        show_in_menu:               Show page in menu
+        role:                       Page view role
+    menu:
+        add:                        Create static page
 news:
     new_success:                    Post added!
     edit_success:                   Post edited success!

@@ -1,0 +1,16 @@
+services:
+    mc_shop.page.menu:
+        class: McShop\StaticPageBundle\Menu\PageMenu
+        arguments:
+            - '@router'
+            - '@security.authorization_checker'
+            - '@doctrine'
+        tags:
+            - { name: mc_shop_menu, alias: page }
+
+    mc_shop.page.builder:
+        class: McShop\StaticPageBundle\Menu\Builder\PageMenuBuilder
+        arguments:
+            - '@translator'
+        tags:
+            - { name: mc_shop_menu.builder, alias: page }

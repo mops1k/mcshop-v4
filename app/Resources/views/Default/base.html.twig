@@ -7,9 +7,10 @@
     <meta name="description" content="McShop v4 development template">
     <meta name="author" content="mops1k<bednyj.mops@gmail.com>">
 
-    <title>McShop v4{{ title.value is not null ? ' :: ' ~ title.value|trans(title.attributes) }}</title>
+    <title>McShop v4{{ app_title.value is not null ? ' :: ' ~ app_title.value|trans(app_title.attributes) }}</title>
 
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon.png') }}" />
+    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}" type="image/png">
 
     {% block stylesheets %}
     <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
@@ -36,6 +37,7 @@
             </div>
             <div class="navbar-offcanvas navbar-offcanvas-touch" id="js-bootstrap-offcanvas">
                 {% block top_menu %}
+                {{ renderMenu('page.page', ':Default/StaticPage:menu.html.twig') }}
                 {{ renderMenu('user.user', ':Default/User:menu.html.twig') }}
                 {% endblock %}
             </div><!--/.nav-collapse -->

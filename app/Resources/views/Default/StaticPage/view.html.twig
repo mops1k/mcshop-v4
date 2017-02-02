@@ -1,0 +1,19 @@
+{% extends ':Default:base.html.twig' %}
+
+{% block content %}
+    {% if content != 'page.not_found'|trans and content != 'page.no_rights'|trans %}
+    <div class="row">
+        <div class="pull-right btn-group btn-group-sm">
+            {% if is_granted('ROLE_STATIC_PAGE_EDIT') %}
+                <a href="{{ path('mc_shop_static_page_edit', {'slug': app.request.get('slug')}) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></a>
+            {% endif %}
+            {% if is_granted('ROLE_STATIC_PAGE_REMOVE') %}
+                <a href="{{ path('mc_shop_static_page_remove', {'slug': app.request.get('slug')}) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+    <div class="row">
+        {{ content|raw }}
+    </div>
+{% endblock %}

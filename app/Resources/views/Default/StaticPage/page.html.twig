@@ -1,0 +1,39 @@
+{% extends ':Default:base.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block content %}
+    <h4>{{ header_title|raw }}</h4>
+
+    {{ form_start(form) }}
+    <div class="form-group">
+        {{ form_label(form.showInMenu) }}
+        {{ form_widget(form.showInMenu) }}
+    </div>
+    <div class="row">
+        {% if not app.request.get('slug') %}
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_label(form.slug) }}
+                {{ form_widget(form.slug) }}
+            </div>
+        </div>
+        {% endif %}
+        <div class="col-md-{{ app.request.get('slug') ? '12' : '6' }}">
+            <div class="form-group">
+                {{ form_label(form.role) }}
+                {{ form_widget(form.role) }}
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(form.title) }}
+        {{ form_widget(form.title) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.content) }}
+        {{ form_widget(form.content) }}
+    </div>
+
+    <button type="submit" class="btn btn-success">{{ 'page.submit'|trans }}</button>
+    {{ form_end(form) }}
+{% endblock %}
