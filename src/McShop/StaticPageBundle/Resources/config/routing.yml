@@ -1,3 +1,11 @@
 mc_shop_static_page_view:
-    path:     /{slug}
+    path:     /{slug}/read
     defaults: { _controller: McShopStaticPageBundle:Default:index }
+
+mc_shop_static_page_new:
+    path:     /new
+    defaults: { _controller: McShopStaticPageBundle:PageCrud:new }
+
+mc_shop_static_page_edit:
+    path:     /{slug}/edit
+    defaults: { _controller: McShopStaticPageBundle:PageCrud:edit }

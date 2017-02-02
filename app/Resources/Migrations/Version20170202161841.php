@@ -22,6 +22,7 @@ class Version20170202161841 extends AbstractMigration
         $this->addSql('ALTER TABLE page ADD CONSTRAINT FK_140AB620D60322AC FOREIGN KEY (role_id) REFERENCES role (id)');
         $this->addSql('ALTER TABLE page ADD CONSTRAINT FK_140AB620A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
         $this->addSql('ALTER TABLE post CHANGE createdAt createdAt DATETIME NOT NULL');
+        $this->addSql('ALTER TABLE page ADD deleted_at DATETIME DEFAULT NULL');
     }
 
     /**

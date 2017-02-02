@@ -40,6 +40,20 @@ class UserMenu extends AbstractMenu
                 ->addRootItem('user', $this->token->getUsername(), null, [
                     'icon'  => 'fa fa-user'
                 ])
+            ;
+            if ($this->isGranted('ROLE_STATIC_PAGE_ADD')) {
+                $builder
+                    ->addItem(
+                        'static_page',
+                        'page.menu.add',
+                        $this->generateUrlByRouteName('mc_shop_static_page_new'), [
+                            'icon'  => 'fa fa-code'
+                        ]
+                    )
+                ;
+            }
+            $builder->addDivider();
+            $builder
                 ->addItem('logout', 'user.menu.logout', $this->generateUrlByRouteName('mc_shop_user_logout'), [
                     'icon'  => 'fa fa-sign-out'
                 ])

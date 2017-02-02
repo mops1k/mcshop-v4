@@ -3,6 +3,8 @@
 namespace McShop\StaticPageBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use McShop\UserBundle\Entity\Role;
 use McShop\UserBundle\Entity\User;
 
@@ -11,9 +13,12 @@ use McShop\UserBundle\Entity\User;
  *
  * @ORM\Table(name="page")
  * @ORM\Entity(repositoryClass="McShop\StaticPageBundle\Repository\PageRepository")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt")
  */
 class Page
 {
+    use SoftDeleteableEntity;
+
     /**
      * @var int
      *
