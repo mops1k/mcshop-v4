@@ -3,6 +3,7 @@
 namespace McShop\StaticPageBundle\Controller;
 
 use McShop\UserBundle\Controller\BaseController;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends BaseController
 {
@@ -16,20 +17,33 @@ class DefaultController extends BaseController
         $page = $manager->getRepository('McShopStaticPageBundle:Page')->findOneBySlug($slug);
 
         if ($page === null) {
-            $this->addFlash('error', $this->get('translator')->trans('page.not_found'));
+            $this->get('app.title')->setValue('page.error')->setAttributes([
+                '@number'   => Response::HTTP_NOT_FOUND,
+            ]);
+            $response = $this->render(':Default/StaticPage:view.html.twig', [
+                'title'     => $this->get('translator')->trans('page.error', [
+                    '@number'   => Response::HTTP_NOT_FOUND,
+                ]),
+                'content'   => $this->get('translator')->trans('page.not_found'),
+            ]);
+            $response->setStatusCode(Response::HTTP_NOT_FOUND);
 
-            return $this->redirectToReferer();
+            return $response;
         }
-
 
         if ($page->getRole() !== null
             && (!$this->isGranted($page->getRole()->getRole()) || !$this->isGranted('ROLE_SUPER_ADMIN'))
         ) {
             $this->get('app.title')->setValue($this->get('translator')->trans('page.error'));
-            return $this->render(':Default/StaticPage:view.html.twig', [
-                'title'     => $this->get('translator')->trans('page.error'),
+            $response = $this->render(':Default/StaticPage:view.html.twig', [
+                'title'     => $this->get('translator')->trans('page.error', [
+                    '@number'   => Response::HTTP_FORBIDDEN,
+                ]),
                 'content'   => $this->get('translator')->trans('page.no_rights'),
             ]);
+            $response->setStatusCode(Response::HTTP_FORBIDDEN);
+
+            return $response;
         }
 
         $this->get('app.title')->setValue($page->getTitle());
