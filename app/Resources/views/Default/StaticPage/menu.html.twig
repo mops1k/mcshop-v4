@@ -1,0 +1,9 @@
+<ul class="nav navbar-nav">
+    {% for name, item in menu %}
+        {%- set class = path(app.request.get('_route'), app.request.get('_route_params')) == item.url|default(null) ? 'active '~item.class|default(null) : item.class|default(null) %}
+        <li{{ ' class='~class }}>
+            <a href="{{ item.url }}">{% if item.icon is defined %}<i
+                    class="{{ item.icon }}"></i> {% endif %}{{ item.title|upper }}</a>
+        </li>
+    {% endfor %}
+</ul>

@@ -9,3 +9,7 @@ mc_shop_static_page_new:
 mc_shop_static_page_edit:
     path:     /{slug}/edit
     defaults: { _controller: McShopStaticPageBundle:PageCrud:edit }
+
+mc_shop_static_page_remove:
+    path:     /{slug}/remove
+    defaults: { _controller: McShopStaticPageBundle:PageCrud:remove }

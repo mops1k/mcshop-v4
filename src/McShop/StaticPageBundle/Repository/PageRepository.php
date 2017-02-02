@@ -31,4 +31,21 @@ class PageRepository extends EntityRepository
             ->getOneOrNullResult()
         ;
     }
+
+    /**
+     * @return Page[]|null
+     */
+    public function findAllForMenu()
+    {
+        $qb = $this->createQueryBuilder('p');
+        return $qb
+            ->select('p, u, r')
+            ->innerJoin('p.user', 'u')
+            ->leftJoin('p.role', 'r')
+            ->where('p.showInMenu = :bool')
+            ->setParameter('bool', true)
+            ->getQuery()
+            ->execute()
+        ;
+    }
 }
