@@ -18,11 +18,11 @@ class DefaultController extends BaseController
 
         if ($page === null) {
             $this->get('app.title')->setValue('page.error')->setAttributes([
-                '@number'   => Response::HTTP_NOT_FOUND,
+                '@number@'   => Response::HTTP_NOT_FOUND,
             ]);
             $response = $this->render(':Default/StaticPage:view.html.twig', [
                 'title'     => $this->get('translator')->trans('page.error', [
-                    '@number'   => Response::HTTP_NOT_FOUND,
+                    '@number@'   => Response::HTTP_NOT_FOUND,
                 ]),
                 'content'   => $this->get('translator')->trans('page.not_found'),
             ]);
@@ -34,10 +34,12 @@ class DefaultController extends BaseController
         if ($page->getRole() !== null
             && (!$this->isGranted($page->getRole()->getRole()) || !$this->isGranted('ROLE_SUPER_ADMIN'))
         ) {
-            $this->get('app.title')->setValue($this->get('translator')->trans('page.error'));
+            $this->get('app.title')->setValue('page.error')->setAttributes([
+                '@number@'   => Response::HTTP_FORBIDDEN,
+            ]);
             $response = $this->render(':Default/StaticPage:view.html.twig', [
                 'title'     => $this->get('translator')->trans('page.error', [
-                    '@number'   => Response::HTTP_FORBIDDEN,
+                    '@number@'   => Response::HTTP_FORBIDDEN,
                 ]),
                 'content'   => $this->get('translator')->trans('page.no_rights'),
             ]);

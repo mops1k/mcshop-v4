@@ -1,5 +1,9 @@
 ru:                                 Русский
 en:                                 English
+page:
+    not_found:                      Страница не найдена!
+    no_rights:                      У Вас нет прав для просмотра данной страницы!
+    error:                          Ошибка @number@!
 news:
     new_success:                    Новость добавлена!
     edit_success:                   Новость успешно отредактированна!
