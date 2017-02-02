@@ -51,3 +51,24 @@ ROLE_COMMENTARY_REMOVE:
     name:   Удаление комментариев
     role:   ROLE_COMMENTARY_REMOVE
     parent: ROLE_COMMENTARY_ADMIN
+
+ROLE_STATIC_PAGE_ADMIN:
+    name:   Управление статическими страницами
+    role:   ROLE_STATIC_PAGE_ADMIN
+    parent: ROLE_SUPER_ADMIN
+
+ROLE_STATIC_PAGE_ADD:
+    name:   Создание статических страниц
+    role:   ROLE_STATIC_PAGE_ADD
+    parent: ROLE_STATIC_PAGE_ADMIN
+
+ROLE_STATIC_PAGE_EDIT:
+    name:   Редактирование статических страниц
+    role:   ROLE_STATIC_PAGE_EDIT
+    parent: ROLE_STATIC_PAGE_ADMIN
+
+ROLE_STATIC_PAGE_REMOVE:
+    name:   Удаление статических страниц
+    role:   ROLE_STATIC_PAGE_REMOVE
+    parent: ROLE_STATIC_PAGE_ADMIN
+

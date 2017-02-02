@@ -1,0 +1,3 @@
+mc_shop_static_page_view:
+    path:     /{slug}
+    defaults: { _controller: McShopStaticPageBundle:Default:index }

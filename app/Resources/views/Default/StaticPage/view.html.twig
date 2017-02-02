@@ -1,0 +1,17 @@
+{% extends ':Default:base.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="pull-right btn-group btn-group-sm">
+            {% if is_granted('ROLE_STATIC_PAGE_EDIT') %}
+                <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></a>
+            {% endif %}
+            {% if is_granted('ROLE_STATIC_PAGE_REMOVE') %}
+                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        {{ content|raw }}
+    </div>
+{% endblock %}
