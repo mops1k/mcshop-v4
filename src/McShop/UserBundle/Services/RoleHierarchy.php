@@ -39,8 +39,8 @@ class RoleHierarchy extends RoleHierarchyStandart
         $qb = $this->em->createQueryBuilder();
         $qb->select('r,p,c')
             ->from('McShopUserBundle:Role', 'r')
-            ->leftJoin('r.parent_role', 'p')
-            ->leftJoin('r.children_roles', 'c')
+            ->leftJoin('r.parents', 'p')
+            ->leftJoin('r.childrens', 'c')
         ;
         $query = $qb->getQuery();
         $query->useResultCache(true, 600);
@@ -52,7 +52,7 @@ class RoleHierarchy extends RoleHierarchyStandart
             /** @var Role $role */
             $hierarchy[$role->getRole()] = [];
 
-            foreach ($role->getChildrenRoles() as $childrenRole) {
+            foreach ($role->getChildrens() as $childrenRole) {
                 if (!in_array($childrenRole->getRole(), $hierarchy[$role->getRole()])) {
                     $hierarchy[$role->getRole()][] = $childrenRole->getRole();
                 }

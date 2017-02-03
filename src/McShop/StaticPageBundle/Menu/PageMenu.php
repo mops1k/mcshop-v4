@@ -34,9 +34,15 @@ class PageMenu extends AbstractMenu
         $builder = $this->getBuilder();
 
         foreach ($pages as $page) {
-            $builder->addItem($page->getSlug(), $page->getTitle(), $this->generateUrlByRouteName('mc_shop_static_page_view', [
-                'slug'  => $page->getSlug(),
-            ]));
+            if ($page->getRole() === null || $this->isGranted($page->getRole()->getRole())) {
+                $builder->addItem(
+                    $page->getSlug(),
+                    $page->getTitle(),
+                    $this->generateUrlByRouteName('mc_shop_static_page_view', [
+                        'slug'  => $page->getSlug(),
+                    ])
+                );
+            }
         }
 
         return $builder->getMenu();
