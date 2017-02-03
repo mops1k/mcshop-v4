@@ -1,69 +1,105 @@
-Symfony Standard Edition
+Minecraft Shop version 4
 ========================
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
+Проект магазина для серверов minecraft со встроенной системой управления контентом.
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+Заявленный функционал на релиз
+-------------
+- Новостная лента с комментированием
+- Генератор статических страниц
+- Гибкая система прав основанная на ролевых привилегиях
+- Регистрация и авторизация новых пользователей с подтвержденией E-mail адреса
+- Возможность восстановления пароля
+- Пополнение счета пользователя через [InterKassa][1]
+- Мультисерверная продажа статусов, предметов, регионов и т.д. через плагин [ShoppingCart][2]
+- Загрузка скинов и плащей (с поддержкой HD версий)
+- RCON консоль для управления серверами
+- Кеширующий мониторинг серверов
 
-What's inside?
---------------
+**Системные требования**:
+- Apache 2.4 или nginx (необязательно)
+- Версия PHP 5.4 или выше (поддерживается 7 версия PHP)
+- Расширения PHP: gd, pdo-mysql, mbstring, curl и все расширения, которые требуются для установки [Symfony 2.8][3]
+- База данных [MySQL][4] 5.6 или выше (или [MariaDB][5] 10.1)
+- Установленный [composer][6]
+- acl (**только для linux**) (необязательно)
 
-The Symfony Standard Edition is configured with the following defaults:
+#### Установка системы
+Клонировать репозиторий к себе:
+```bash
+git clone https://gitlab.com/mops1k/McShop-v4.git mcshop
+```
 
-  * An AppBundle you can use to start coding;
+Установить зависимости
+```bash
+cd mcshop/
+composer install
+```
+В процессе установки зависимостей система задаст несколько вопросов для определения настроек. Соответственно Вам необходимо
+ввести Ваши настройки.
 
-  * Twig as the only configured template engine;
+Если установлен *acl* и система linux, то делаем следующее:
+```bash
+rm -rf app/cache/*
+rm -rf app/logs/*
 
-  * Doctrine ORM/DBAL;
+HTTPDUSER=`ps axo user,comm | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1`
+sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX app/cache app/logs
+sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX app/cache app/logs
+```
 
-  * Swiftmailer;
+Если acl не установлен делаем следующее:
+```bash
+rm -rf app/cache/*
+rm -rf app/logs/*
+chmod 0777 app/cache
+chmod 0777 app/logs
+```
+Добавляем в файл web/app.php строку **umask(0000);**
+```php
+<?php
 
-  * Annotations enabled for everything.
+use Symfony\Component\HttpFoundation\Request;
 
-It comes pre-configured with the following bundles:
+umask(0000);
 
-  * **FrameworkBundle** - The core Symfony framework bundle
+/** @var \Composer\Autoload\ClassLoader $loader */
+$loader = require __DIR__.'/../app/autoload.php';
+include_once __DIR__.'/../app/bootstrap.php.cache';
+....
+```
 
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
+База данных, которую Вы указали при установке зависимостей уже должна быть создана или пользователь, указанный в настройках
+должен иметь право на создание баз данных.
+Если пользователь имеет право на создание баз данных тогда выполняем:
+```bash
+php app/console doctrine:database:create
+```
+После этого инициализируем схему базы и загрузим в нее системные роли:
+```bash
+php app/console doctrine:migrations:migrate
+php app/console doctrine:fixtures:load --append
+```
 
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
+Теперь создаем администратора в системе выполнив команду и ответив на вопросы в ней:
+```bash
+php app/console mc_shop:user:new --admin
+```
 
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
+Нам осталось почистить кеш и можно приступать к работе с системой:
+```bash
+php app/console cache:clear -e prod
+```
 
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
+Если у Вас стоит Apache или nginx, тогда необходимо настроить хост на папку web проекта.
+Если же у вас не стоит ни того и ни другого, то Вы можете запустить проект командой:
+```bash
+php app/console server:run
+```
 
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
-
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
-
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
-
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
-
-  * [**SensioGeneratorBundle**][13] (in dev/test env) - Adds code generation
-    capabilities
-
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
-
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
-
-[1]:  https://symfony.com/doc/2.8/setup.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/2.8/doctrine.html
-[8]:  https://symfony.com/doc/2.8/templating.html
-[9]:  https://symfony.com/doc/2.8/security.html
-[10]: https://symfony.com/doc/2.8/email.html
-[11]: https://symfony.com/doc/2.8/logging.html
-[12]: https://symfony.com/doc/2.8/assetic/asset_management.html
-[13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
+[1]: https://www.interkassa.com/
+[2]: http://rubukkit.org/threads/admn-shoppingcart-reloaded-1-2-plagin-dlja-vydachi-predmetov-iz-bd-1-4-7-1-7-2r-0-3.28052/
+[3]: http://symfony.com/
+[4]: https://www.mysql.com/
+[5]: https://mariadb.org/
+[6]: https://getcomposer.org/
