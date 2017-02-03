@@ -31,7 +31,7 @@ class LoadRoleData extends AbstractFixture implements FixtureInterface
             ;
 
             if (isset($item['parent']) && $this->hasReference($item['parent'])) {
-                $role->setParentRole($this->getReference($item['parent']));
+                $role->addParent($this->getReference($item['parent']));
             }
 
             $manager->persist($role);

@@ -38,19 +38,18 @@ class Role implements RoleInterface
     private $role;
 
     /**
-     * @var Role
+     * @var Role[]
      *
-     * @ORM\ManyToOne(targetEntity="Role", inversedBy="children_roles")
-     * @ORM\JoinColumn(name="parent_id", nullable=true)
+     * @ORM\ManyToMany(targetEntity="Role", inversedBy="childrens")
      */
-    private $parent_role;
+    private $parents;
 
     /**
      * @var Role[]
      *
-     * @ORM\OneToMany(targetEntity="Role", mappedBy="parent_role")
+     * @ORM\ManyToMany(targetEntity="Role", mappedBy="parents")
      */
-    private $children_roles;
+    private $childrens;
 
     /**
      * @var User[]
@@ -58,14 +57,6 @@ class Role implements RoleInterface
      * @ORM\ManyToMany(targetEntity="User", mappedBy="roles")
      */
     private $users;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->children_roles = new ArrayCollection();
-    }
 
     /**
      * Get id
@@ -124,62 +115,6 @@ class Role implements RoleInterface
     }
 
     /**
-     * Set parent_role
-     *
-     * @param Role $parentRole
-     * @return Role
-     */
-    public function setParentRole(Role $parentRole = null)
-    {
-        $this->parent_role = $parentRole;
-
-        return $this;
-    }
-
-    /**
-     * Get parent_role
-     *
-     * @return Role
-     */
-    public function getParentRole()
-    {
-        return $this->parent_role;
-    }
-
-    /**
-     * Add children_roles
-     *
-     * @param Role $childrenRole
-     * @return Role
-     */
-    public function addChildrenRole(Role $childrenRole)
-    {
-        $this->children_roles[] = $childrenRole;
-
-        return $this;
-    }
-
-    /**
-     * Remove children_roles
-     *
-     * @param Role $childrenRole
-     */
-    public function removeChildrenRole(Role $childrenRole)
-    {
-        $this->children_roles->removeElement($childrenRole);
-    }
-
-    /**
-     * Get children_roles
-     *
-     * @return Role[]
-     */
-    public function getChildrenRoles()
-    {
-        return $this->children_roles;
-    }
-
-    /**
      * Add users
      *
      * @param User $user
@@ -210,5 +145,80 @@ class Role implements RoleInterface
     public function getUsers()
     {
         return $this->users;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->parents = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->childrens = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add parents
+     *
+     * @param Role $parents
+     * @return Role
+     */
+    public function addParent(Role $parents)
+    {
+        $this->parents[] = $parents;
+
+        return $this;
+    }
+
+    /**
+     * Remove parents
+     *
+     * @param Role $parents
+     */
+    public function removeParent(Role $parents)
+    {
+        $this->parents->removeElement($parents);
+    }
+
+    /**
+     * Get parents
+     *
+     * @return Role[]
+     */
+    public function getParents()
+    {
+        return $this->parents;
+    }
+
+    /**
+     * Add childrens
+     *
+     * @param Role $childrens
+     * @return Role
+     */
+    public function addChildren(Role $childrens)
+    {
+        $this->childrens[] = $childrens;
+
+        return $this;
+    }
+
+    /**
+     * Remove childrens
+     *
+     * @param Role $childrens
+     */
+    public function removeChildren(Role $childrens)
+    {
+        $this->childrens->removeElement($childrens);
+    }
+
+    /**
+     * Get childrens
+     *
+     * @return Role[]
+     */
+    public function getChildrens()
+    {
+        return $this->childrens;
     }
 }
