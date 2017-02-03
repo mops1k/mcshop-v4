@@ -1,0 +1,3 @@
+mc_shop_finance_sendForm:
+    path:     /{amount}/form
+    defaults: { _controller: McShopFinanceBundle:Payment:sendForm }
