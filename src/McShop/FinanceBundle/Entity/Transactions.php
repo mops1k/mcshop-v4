@@ -3,6 +3,7 @@
 namespace McShop\FinanceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use McShop\UserBundle\Entity\User;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -17,6 +18,9 @@ class Transactions
     const STATUS_IN_PROCCESS = 0;
     const STATUS_SUCCESS = 1;
     const STATUS_FAILURE = 2;
+
+    use TimestampableEntity;
+
     /**
      * @var int
      *
