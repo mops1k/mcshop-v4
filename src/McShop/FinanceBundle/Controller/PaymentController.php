@@ -3,11 +3,11 @@
 namespace McShop\FinanceBundle\Controller;
 
 use McShop\FinanceBundle\Entity\Transactions;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use McShop\UserBundle\Controller\BaseController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class PaymentController extends Controller
+class PaymentController extends BaseController
 {
     /**
      * @param $amount
@@ -15,6 +15,9 @@ class PaymentController extends Controller
      */
     public function sendFormAction($amount)
     {
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
         return $this->redirect($this->get('mc_shop_finance.payment')->payForm($amount));
     }
 
@@ -71,6 +74,10 @@ class PaymentController extends Controller
 
     public function failAction(Request $request)
     {
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+
         $manager = $this->getDoctrine()->getManagerForClass('McShopFinanceBundle:Transactions');
         $transaction = $manager->getRepository('McShopFinanceBundle:Transactions')->find($request->get('ik_pm_no'));
 

@@ -9,7 +9,9 @@ class DefaultController extends BaseController
 {
     public function loginAction()
     {
-        $this->isAuthenticatedErrorShow();
+        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->isAuthenticatedErrorShow();
+        }
         $this->get('app.title')->setValue('title.authorization');
 
         $authenticationUtils = $this->get('security.authentication_utils');
