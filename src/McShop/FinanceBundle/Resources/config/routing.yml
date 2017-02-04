@@ -5,3 +5,4 @@ mc_shop_finance_sendForm:
 mc_shop_finance_interraction:
     path:     /interraction.html
     defaults: { _controller: McShopFinanceBundle:Payment:interraction }
+    methods: [POST]

@@ -61,6 +61,7 @@ class Payment
         if ($data['ik_pw_via'] == 'test_interkassa_test_xts' && !$this->ik['testing']) {
             return false;
         }
+
         ksort($data, SORT_STRING); // сортируем массив
         array_push($data, $key); // внедряем переменуую $key в массив
         $signStr = implode(':', $data); // записываем массив в формат @string через :

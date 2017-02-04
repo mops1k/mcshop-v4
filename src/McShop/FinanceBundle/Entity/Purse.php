@@ -80,6 +80,16 @@ class Purse
     }
 
     /**
+     * @param $amount
+     * @return $this
+     */
+    public function increaseRealCash($amount)
+    {
+        $this->realCash += $amount;
+        return $this;
+    }
+
+    /**
      * Set gameCash
      *
      * @param float $gameCash
