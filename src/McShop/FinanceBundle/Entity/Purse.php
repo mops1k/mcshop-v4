@@ -90,6 +90,15 @@ class Purse
     }
 
     /**
+     * @param $amount
+     * @return bool
+     */
+    public function isEnoughMoney($amount)
+    {
+        return $this->realCash - $amount > 0;
+    }
+
+    /**
      * Set gameCash
      *
      * @param float $gameCash

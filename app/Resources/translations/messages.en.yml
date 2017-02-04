@@ -45,6 +45,7 @@ news:
         user_says:                  @username@ says
         form.title:                 Write your commentary
 user:
+    real_cash:                      'Money: @cash@ RUB'
     launcher:
         login:
             error:                  Wrong username or password!
