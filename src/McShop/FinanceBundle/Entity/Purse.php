@@ -41,7 +41,7 @@ class Purse
 
     /**
      * @var User
-     * @ORM\ManyToOne(targetEntity="McShop\UserBundle\Entity\User")
+     * @ORM\OneToOne(targetEntity="McShop\UserBundle\Entity\User", inversedBy="purse")
      * @ORM\JoinColumn(nullable=false, unique=true)
      */
     private $user;

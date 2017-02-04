@@ -3,6 +3,7 @@ namespace McShop\UserBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use McShop\FinanceBundle\Entity\Purse;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
@@ -81,6 +82,12 @@ class User implements AdvancedUserInterface, \Serializable
      * @ORM\Column(name="active", type="boolean", nullable=false)
      */
     private $active = false;
+
+    /**
+     * @var Purse
+     * @ORM\OneToOne(targetEntity="McShop\FinanceBundle\Entity\Purse", mappedBy="user")
+     */
+    private $purse;
 
     /**
      * @var Role[]
