@@ -44,6 +44,13 @@ class UserMenuBuilder extends AbstractBuilder
         return $this;
     }
 
+
+    public function addHeader($title, array $parameters = [])
+    {
+        $this->addItem('header', $this->trans($title, $parameters), 'empty', ['class' => 'dropdown-header']);
+        return $this;
+    }
+
     /**
      * Add item to menu
      *

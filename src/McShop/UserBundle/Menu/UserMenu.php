@@ -41,6 +41,11 @@ class UserMenu extends AbstractMenu
                     'icon'  => 'fa fa-user'
                 ])
             ;
+            $builder->addHeader(
+                'user.real_cash',
+                [ '@cash@' => $this->token->getUser()->getPurse() !== null ?
+                    $this->token->getUser()->getPurse()->getRealCash() : 0 ]
+            );
             if ($this->isGranted('ROLE_STATIC_PAGE_ADD')) {
                 $builder
                     ->addItem(

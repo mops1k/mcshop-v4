@@ -3,6 +3,7 @@ namespace McShop\UserBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use McShop\FinanceBundle\Entity\Purse;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
@@ -83,12 +84,17 @@ class User implements AdvancedUserInterface, \Serializable
     private $active = false;
 
     /**
+     * @var Purse
+     * @ORM\OneToOne(targetEntity="McShop\FinanceBundle\Entity\Purse", mappedBy="user")
+     */
+    private $purse;
+
+    /**
      * @var Role[]
      *
      * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
      */
     private $roles;
-
 
     /**
      * Constructor
@@ -439,5 +445,29 @@ class User implements AdvancedUserInterface, \Serializable
     {
         $this->serverID = $serverID;
         return $this;
+    }
+
+    /**
+     * Set purse
+     *
+     * @param \McShop\FinanceBundle\Entity\Purse $purse
+     *
+     * @return User
+     */
+    public function setPurse(\McShop\FinanceBundle\Entity\Purse $purse = null)
+    {
+        $this->purse = $purse;
+
+        return $this;
+    }
+
+    /**
+     * Get purse
+     *
+     * @return \McShop\FinanceBundle\Entity\Purse
+     */
+    public function getPurse()
+    {
+        return $this->purse;
     }
 }
