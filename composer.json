@@ -22,11 +22,14 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "doctrine/doctrine-migrations-bundle": "^1.2",
         "matthiasnoback/symfony-console-form": "^2.1",
+        "zendframework/zend-eventmanager": "^2.6",
+        "doctrine/data-fixtures": "~1.1",
         "doctrine/doctrine-fixtures-bundle": "^2.3",
         "eschmar/css-inliner-bundle": "^0.1.0",
         "white-october/pagerfanta-bundle": "^1.0",
         "evence/soft-deleteable-extension-bundle": "^1.1",
-        "mops1k-forked/doctrine-extensions-bundle": "^1.2"
+        "mops1k-forked/doctrine-extensions-bundle": "^1.2",
+        "mops1k/minecraftserverstatus": "~1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",
