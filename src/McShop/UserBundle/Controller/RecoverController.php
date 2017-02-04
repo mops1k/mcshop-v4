@@ -20,7 +20,9 @@ class RecoverController extends BaseController
      */
     public function recoverAction(Request $request)
     {
-        $this->isAuthenticatedErrorShow();
+        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->isAuthenticatedErrorShow();
+        }
         $this->get('app.title')->setValue('user.recover.message.title');
 
         $form = $this->createForm(RecoverType::class);
@@ -90,7 +92,9 @@ class RecoverController extends BaseController
      */
     public function codeAction()
     {
-        $this->isAuthenticatedErrorShow();
+        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->isAuthenticatedErrorShow();
+        }
         $this->get('app.title')->setValue('title.code_activation');
 
         return $this->render(':Default/User:recover_code.html.twig');
@@ -103,7 +107,9 @@ class RecoverController extends BaseController
      */
     public function codeCheckAction($code, Request $request)
     {
-        $this->isAuthenticatedErrorShow();
+        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->isAuthenticatedErrorShow();
+        }
         $this->get('app.title')->setValue('user.recover.message.password_title');
 
         $token = $this->getDoctrine()

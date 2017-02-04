@@ -18,8 +18,9 @@ class RegistrationController extends BaseController
      */
     public function registerAction(Request $request)
     {
-        $this->isAuthenticatedErrorShow();
-
+        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->isAuthenticatedErrorShow();
+        }
         $this->get('app.title')->setValue('title.registration_form');
 
         $form = $this->createForm(UserType::class);
@@ -83,7 +84,9 @@ class RegistrationController extends BaseController
      */
     public function codeAction()
     {
-        $this->isAuthenticatedErrorShow();
+        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->isAuthenticatedErrorShow();
+        }
         $this->get('app.title')->setValue('title.code_activation');
         return $this->render(':Default/User:registration_code.html.twig');
     }
@@ -95,7 +98,9 @@ class RegistrationController extends BaseController
      */
     public function codeCheckAction($code, Request $request)
     {
-        $this->isAuthenticatedErrorShow();
+        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->isAuthenticatedErrorShow();
+        }
         $token = $this->getDoctrine()
             ->getManagerForClass('McShopUserBundle:Token')
             ->getRepository('McShopUserBundle:Token')

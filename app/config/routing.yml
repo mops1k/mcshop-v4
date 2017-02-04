@@ -1,3 +1,4 @@
+
 locale_prefix:
     resource: 'routing_app.yml'
     prefix:    /{_locale}
@@ -18,3 +19,7 @@ homepage:
         _controller: McShopUserBundle:Redirect:redirect
         route:       mc_shop_news_homepage
         permanent:   true
+
+mc_shop_finance:
+    resource: "@McShopFinanceBundle/Resources/config/routing.yml"
+    prefix:   /payment

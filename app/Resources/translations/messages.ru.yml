@@ -45,6 +45,7 @@ news:
         user_says:                  @username@ пишет
         form.title:                 Напишите свой комментарий
 user:
+    real_cash:                      'На счету: @cash@ руб.'
     launcher:
         login:
             error:                  Неверный логин или пароль!

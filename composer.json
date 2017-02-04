@@ -11,7 +11,7 @@
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
     },
     "require": {
-        "php": ">=5.3.9",
+        "php": ">=5.4",
         "symfony/symfony": "2.8.*",
         "doctrine/orm": "^2.4.8",
         "doctrine/doctrine-bundle": "~1.4",
@@ -22,6 +22,7 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "doctrine/doctrine-migrations-bundle": "^1.2",
         "matthiasnoback/symfony-console-form": "^2.1",
+        "doctrine/data-fixtures": "^1.1",
         "doctrine/doctrine-fixtures-bundle": "^2.3",
         "eschmar/css-inliner-bundle": "^0.1.0",
         "white-october/pagerfanta-bundle": "^1.0",

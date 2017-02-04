@@ -20,3 +20,11 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    interkassa:
+        shop_id: ''   # ID магазина InterKassa
+        desc: ''      # Описание платежа в InterKassa
+        cur: 'RUB'    # Тип валюты (RUB UAH USD EUR)
+        key: ''       # Секретный ключ
+        test_key: ''  # Тестовый секретный ключ
+        testing: true # Включить режим тестирования?

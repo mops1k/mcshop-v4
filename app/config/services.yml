@@ -20,3 +20,10 @@ services:
             - { name: 'doctrine.event_subscriber' }
         calls:
             - [ 'setAnnotationReader', [ '@annotation_reader' ] ]
+
+    gedmo.listener.timestampable:
+        class: Gedmo\Timestampable\TimestampableListener
+        tags:
+            - { name: doctrine.event_subscriber }
+        calls:
+            - [ 'setAnnotationReader', [ '@annotation_reader' ] ]

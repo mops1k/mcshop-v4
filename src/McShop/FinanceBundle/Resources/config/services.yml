@@ -1,0 +1,4 @@
+services:
+    mc_shop_finance.payment:
+        class: McShop\FinanceBundle\Services\Payment
+        arguments: ["@doctrine", "@security.token_storage", "%interkassa%"]
