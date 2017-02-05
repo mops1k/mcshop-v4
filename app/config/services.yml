@@ -5,10 +5,10 @@ parameters:
 
 services:
     app.title:
-        class: McShop\Twig\Title
+        class: McShop\Core\Twig\Title
 
     app.twig.title_extension:
-        class: McShop\Twig\Extension\TitleExtension
+        class: McShop\Core\Twig\Extension\TitleExtension
         arguments:
             - '@app.title'
         tags:
@@ -27,3 +27,47 @@ services:
             - { name: doctrine.event_subscriber }
         calls:
             - [ 'setAnnotationReader', [ '@annotation_reader' ] ]
+
+    mc_shop_console_form.number_transformer:
+        class: McShop\Core\Form\NumberTransformer
+        public: false
+        arguments:
+            - '@translator'
+        tags:
+            - { name: form_to_question_transformer, form_type: Symfony\Component\Form\Extension\Core\Type\NumberType }
+
+    matthias_symfony_console_form.text_transformer:
+        class: McShop\Core\Form\TextTransformer
+        arguments:
+            - '@translator'
+        public: false
+        tags:
+            - { name: form_to_question_transformer, form_type: Symfony\Component\Form\Extension\Core\Type\TextType }
+            - { name: form_to_question_transformer, form_type: Symfony\Component\Form\Extension\Core\Type\TextareaType }
+
+    matthias_symfony_console_form.date_time_transformer:
+        class: McShop\Core\Form\DateTimeTransformer
+        arguments:
+            - '@translator'
+        public: false
+        tags:
+            - { name: form_to_question_transformer, form_type: Symfony\Component\Form\Extension\Core\Type\TimeType }
+            - { name: form_to_question_transformer, form_type: Symfony\Component\Form\Extension\Core\Type\DateType }
+            - { name: form_to_question_transformer, form_type: Symfony\Component\Form\Extension\Core\Type\DateTimeType }
+
+    matthias_symfony_console_form.password_transformer:
+        class: McShop\Core\Form\PasswordTransformer
+        public: false
+        arguments:
+            - '@translator'
+        tags:
+            - { name: form_to_question_transformer, form_type: Symfony\Component\Form\Extension\Core\Type\PasswordType }
+
+    matthias_symfony_console_form.choice_transformer:
+        class: McShop\Core\Form\ChoiceTransformer
+        public: false
+        arguments:
+            - '@translator'
+        tags:
+            - { name: form_to_question_transformer, form_type: Symfony\Component\Form\Extension\Core\Type\ChoiceType }
+            - { name: form_to_question_transformer, form_type: Symfony\Component\Form\Extension\Core\Type\CountryType }

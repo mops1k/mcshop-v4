@@ -1,5 +1,5 @@
 <?php
-namespace McShop\Twig;
+namespace McShop\Core\Twig;
 
 
 class Title

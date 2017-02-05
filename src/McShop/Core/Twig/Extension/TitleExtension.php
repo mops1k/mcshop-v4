@@ -1,7 +1,7 @@
 <?php
-namespace McShop\Twig\Extension;
+namespace McShop\Core\Twig\Extension;
 
-use McShop\Twig\Title;
+use McShop\Core\Twig\Title;
 
 class TitleExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
