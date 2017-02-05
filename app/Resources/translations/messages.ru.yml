@@ -122,3 +122,4 @@ server:
     shopping_cart_id:               "Идентификатор в таблице плагина ShoppingCart"
     block_title:                    Мониторинг
     offline:                        Выключен
+    total:                          Общий онлайн

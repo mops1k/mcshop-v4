@@ -122,3 +122,4 @@ server:
     shopping_cart_id:               "Identificator in shopping cart plugin table"
     block_title:                    Monitoring
     offline:                        Offline
+    total:                          Total online
