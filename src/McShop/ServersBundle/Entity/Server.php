@@ -38,9 +38,9 @@ class Server
     /**
      * @var int
      *
-     * @ORM\Column(name="port", type="integer")
+     * @ORM\Column(name="port", type="integer", options={"default": 25565})
      */
-    private $port;
+    private $port = 25565;
 
 
     /**

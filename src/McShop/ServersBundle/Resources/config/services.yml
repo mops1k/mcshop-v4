@@ -1,3 +1,11 @@
 services:
     minecraft.server.status:
         class:  MinecraftServerStatus\MinecraftServerStatus
+
+    mc_shop_console_form.number_transformer:
+        class: McShop\ServersBundle\Services\Form\NumberTransformer
+        public: false
+        arguments:
+            - '@translator'
+        tags:
+            - { name: form_to_question_transformer, form_type: Symfony\Component\Form\Extension\Core\Type\NumberType }

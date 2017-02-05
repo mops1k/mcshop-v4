@@ -115,3 +115,8 @@ login:
         welcome:                    Sign In to McShop v4
     error:
         already_logged_in:          You are already logged in before!
+server:
+    name:                           "Display name"
+    host:                           "Server host (or ip address)"
+    port:                           "Server port (default: 25565)"
+    shopping_cart_id:               "Identificator in shopping cart plugin table"
