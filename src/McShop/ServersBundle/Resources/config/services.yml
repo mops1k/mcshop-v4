@@ -1,6 +1,13 @@
 services:
     minecraft.server.status:
         class:  MinecraftServerStatus\MinecraftServerStatus
+        public: false
+
+    mc_shop.server.query:
+        class:  McShop\ServersBundle\Services\ServerStatusUpdate
+        arguments:
+            - '@doctrine'
+            - '@minecraft.server.status'
 
     mc_shop.server.listener:
         class:  McShop\ServersBundle\Listener\ServerListener

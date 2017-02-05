@@ -13,7 +13,7 @@ use McShop\ServersBundle\Entity\Server;
 class ServerRepository extends EntityRepository
 {
     /**
-     * @return Server[]|null
+     * @return Server[]
      */
     public function findAll()
     {

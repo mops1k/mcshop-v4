@@ -6,8 +6,45 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
-    public function indexAction()
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function queryAllAction()
     {
-        return $this->render('McShopServersBundle:Default:index.html.twig');
+        $servers = $this->getDoctrine()
+            ->getManagerForClass('McShopServersBundle:Server')
+            ->getRepository('McShopServersBundle:Server')
+            ->findAll()
+        ;
+
+        $query = $this->get('mc_shop.server.query');
+
+        $serversData = [];
+        $totalOnline = [
+            'players' => 0,
+            'maxPlayers' => 0
+        ];
+        foreach ($servers as $server) {
+            $serversData[$server->getId()] = [
+                'serverName'    => $server->getName(),
+                'status'        => true,
+                'data'          => null,
+            ];
+
+            if (!$query->update($server)) {
+                $serversData[$server->getId()]['status'] = false;
+                continue;
+            }
+
+            $serversData[$server->getId()]['data']  = $query->getData();
+
+            $totalOnline['players'] += $query->getData()->getPlayers();
+            $totalOnline['maxPlayers'] += $query->getData()->getMaxPlayers();
+        }
+
+        return $this->render(':Default/Monitoring:all.html.twig', [
+            'data'          => $serversData,
+            'totalOnline'   => $totalOnline,
+        ]);
     }
 }

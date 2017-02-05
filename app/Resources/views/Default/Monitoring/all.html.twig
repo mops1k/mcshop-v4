@@ -1,0 +1,53 @@
+<div class="col-md-12">
+    {% for server in data %}
+    <div class="row">
+        {% if server.status %}
+        <div class="col-md-12">
+            <span class="pull-left" data-toggle="tooltip" data-placement="right" title="{{ server.data.version }}">
+                {{ server.serverName }}
+            </span>
+                    <span class="pull-right" data-toggle="tooltip" data-placement="left" title="Ping: {{ server.data.ping }}ms">
+                {{ server.data.players }}/{{ server.data.maxPlayers }}
+            </span>
+        </div>
+        <div class="progress col-md-12">
+            <div class="progress-bar progress-bar-success"
+                 role="progressbar" aria-valuenow="{{ server.data.players }}" aria-valuemin="0"
+                 aria-valuemax="{{ server.data.maxPlayers }}" style="width: {{ (server.data.players*100/server.data.maxPlayers)|round }}%;">
+            </div>
+        </div>
+        {% else %}
+        <div class="col-md-12">
+            <span class="pull-left">
+                {{ server.serverName }}
+            </span>
+            <span class="pull-right">
+                {{ 'server.offline'|trans }}
+            </span>
+        </div>
+        <div class="progress col-md-12">
+            <div class="progress-bar progress-bar-danger"
+                 role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                 aria-valuemax="0" style="width: 100%">
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+    <div class="row">
+        <div class="col-md-12">
+        <span class="pull-left">
+            Общий онлайн:
+        </span>
+            <span class="pull-right">
+            {{ totalOnline.players }}/{{ totalOnline.maxPlayers }}
+        </span>
+        </div>
+        <div class="progress col-md-12">
+            <div class="progress-bar progress-bar-info"
+                 role="progressbar" aria-valuenow="{{ totalOnline.players }}" aria-valuemin="0"
+                 aria-valuemax="{{ totalOnline.maxPlayers }}" style="width: {{ (totalOnline.players*100/totalOnline.maxPlayers)|round }}%;">
+            </div>
+        </div>
+    </div>
+</div>

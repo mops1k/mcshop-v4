@@ -9,3 +9,7 @@ mc_shop_news:
 mc_shop_static_page:
     resource: "@McShopStaticPageBundle/Resources/config/routing.yml"
     prefix:   /page
+
+mc_shop_servers:
+    resource: "@McShopServersBundle/Resources/config/routing.yml"
+    prefix:   /server

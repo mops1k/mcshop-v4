@@ -116,7 +116,9 @@ login:
     error:
         already_logged_in:          Вы уже авторизованы в системе!
 server:
-    name:                           "Display name"
-    host:                           "Server host (or ip address)"
-    port:                           "Server port (default: 25565)"
-    shopping_cart_id:               "Identificator in shopping cart plugin table"
+    name:                           "Название сервера"
+    host:                           "Адрес сервера (домен или IP адрес)"
+    port:                           "Порт сервера (по умолчанию: 25565)"
+    shopping_cart_id:               "Идентификатор в таблице плагина ShoppingCart"
+    block_title:                    Мониторинг
+    offline:                        Выключен

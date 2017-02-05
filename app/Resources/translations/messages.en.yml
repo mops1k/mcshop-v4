@@ -120,3 +120,5 @@ server:
     host:                           "Server host (or ip address)"
     port:                           "Server port (default: 25565)"
     shopping_cart_id:               "Identificator in shopping cart plugin table"
+    block_title:                    Monitoring
+    offline:                        Offline
