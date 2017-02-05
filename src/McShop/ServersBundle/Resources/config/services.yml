@@ -1,0 +1,23 @@
+services:
+    minecraft.server.status:
+        class:  MinecraftServerStatus\MinecraftServerStatus
+        public: false
+
+    mc_shop.server.query:
+        class:  McShop\ServersBundle\Services\ServerStatusUpdate
+        arguments:
+            - '@doctrine'
+            - '@minecraft.server.status'
+
+    mc_shop.server.listener:
+        class:  McShop\ServersBundle\Listener\ServerListener
+        tags:
+            - { name: doctrine.event_listener, event: 'prePersist', method: 'prePersist'}
+
+    mc_shop_console_form.number_transformer:
+        class: McShop\ServersBundle\Services\Form\NumberTransformer
+        public: false
+        arguments:
+            - '@translator'
+        tags:
+            - { name: form_to_question_transformer, form_type: Symfony\Component\Form\Extension\Core\Type\NumberType }

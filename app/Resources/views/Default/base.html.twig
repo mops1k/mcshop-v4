@@ -72,14 +72,9 @@
                     <div class="row col-md-12">
                         <div class="panel panel-default panel-menu">
                             <div class="panel-heading" data-toggle="collapse" data-target="#menu-1"
-                                 aria-expanded="false" aria-controls="menu-1">Menu</div>
+                                 aria-expanded="false" aria-controls="menu-1">{{ 'server.block_title'|trans }}</div>
                             <div class="panel-body collapse in" id="menu-1">
-                                <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="#">test</a></li>
-                                    <li><a href="#">test</a></li>
-                                    <li><a href="#">test</a></li>
-                                    <li><a href="#">test</a></li>
-                                </ul>
+                                {{ render(controller('McShopServersBundle:Default:queryAll', {'_locale': app.request.locale})) }}
                             </div>
                         </div>
                     </div>
@@ -113,6 +108,7 @@
 <script src="{{ asset('assets/js/bootstrap.offcanvas.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/js/notify.min.js') }}"></script>
+<script src="{{ asset('assets/js/app.js') }}"></script>
 <script>
     {% set flashes = app.session.flashBag.all %}
     {% for type, messages in flashes %}

@@ -115,3 +115,10 @@ login:
         welcome:                    Авторизация в системе McShop v4
     error:
         already_logged_in:          Вы уже авторизованы в системе!
+server:
+    name:                           "Название сервера"
+    host:                           "Адрес сервера (домен или IP адрес)"
+    port:                           "Порт сервера (по умолчанию: 25565)"
+    shopping_cart_id:               "Идентификатор в таблице плагина ShoppingCart"
+    block_title:                    Мониторинг
+    offline:                        Выключен

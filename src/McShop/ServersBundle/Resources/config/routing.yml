@@ -1,0 +1,3 @@
+mc_shop_servers_queryAll:
+    path:     /all
+    defaults: { _controller: McShopServersBundle:Default:queryAll }
