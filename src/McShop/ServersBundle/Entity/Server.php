@@ -3,15 +3,21 @@
 namespace McShop\ServersBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Evence\Bundle\SoftDeleteableExtensionBundle\Mapping\Annotation\onSoftDelete;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 
 /**
  * Server
  *
  * @ORM\Table(name="server")
  * @ORM\Entity(repositoryClass="McShop\ServersBundle\Repository\ServerRepository")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt")
  */
 class Server
 {
+    use SoftDeleteableEntity;
+
     /**
      * @var int
      *
@@ -38,7 +44,7 @@ class Server
     /**
      * @var int
      *
-     * @ORM\Column(name="port", type="integer", options={"default": 25565})
+     * @ORM\Column(name="port", type="integer", options={"default": 25565}, nullable=true)
      */
     private $port = 25565;
 
@@ -50,6 +56,13 @@ class Server
      */
     private $shoppingCartId;
 
+    /**
+     * @var ServerCache
+     * @ORM\OneToOne(targetEntity="McShop\ServersBundle\Entity\ServerCache", inversedBy="server")
+     * @ORM\JoinColumn(nullable=true)
+     * @onSoftDelete(type="CASCADE")
+     */
+    private $cache;
 
     /**
      * Get id
@@ -156,5 +169,28 @@ class Server
     {
         return $this->shoppingCartId;
     }
-}
 
+    /**
+     * Set cache
+     *
+     * @param \McShop\ServersBundle\Entity\ServerCache $cache
+     *
+     * @return Server
+     */
+    public function setCache(\McShop\ServersBundle\Entity\ServerCache $cache = null)
+    {
+        $this->cache = $cache;
+
+        return $this;
+    }
+
+    /**
+     * Get cache
+     *
+     * @return \McShop\ServersBundle\Entity\ServerCache
+     */
+    public function getCache()
+    {
+        return $this->cache;
+    }
+}

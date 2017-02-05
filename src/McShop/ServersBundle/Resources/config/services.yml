@@ -2,6 +2,11 @@ services:
     minecraft.server.status:
         class:  MinecraftServerStatus\MinecraftServerStatus
 
+    mc_shop.server.listener:
+        class:  McShop\ServersBundle\Listener\ServerListener
+        tags:
+            - { name: doctrine.event_listener, event: 'prePersist', method: 'prePersist'}
+
     mc_shop_console_form.number_transformer:
         class: McShop\ServersBundle\Services\Form\NumberTransformer
         public: false
