@@ -51,6 +51,8 @@ user:
         skin_preview:               Current player skin
         upload_skin:                Skin
         upload_cloak:               Cape
+        skin:                       Skin
+        cloak:                      Cape
         upload:                     Upload
         skins:
             wrong_type:             Wrong file type

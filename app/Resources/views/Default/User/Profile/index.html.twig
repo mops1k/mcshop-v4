@@ -49,6 +49,15 @@
             <input type="file" class="filestyle" data-buttonBefore="true" name="skin_or_cloak"
                     data-buttonText="{{ 'user.profile.upload'|trans }}" data-icon="false">
         </form>
+        <br>
+        <div class="btn-group btn-group-justified">
+            <a href="{{ path('mc_shop_user_unlink', {'type': 'skin'}) }}" class="btn btn-danger">
+                <i class="fa fa-trash"></i>
+                {{ 'user.profile.skin'|trans }}</a>
+            <a href="{{ path('mc_shop_user_unlink', {'type': 'cloak'}) }}" class="btn btn-danger">
+                <i class="fa fa-trash"></i>
+                {{ 'user.profile.cloak'|trans }}</a>
+        </div>
     </div>
     <div class="col-md-9">
         <p><b>{{ 'form.registration.username'|trans }}:</b> {{ app.user.username }}</p>

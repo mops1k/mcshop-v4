@@ -50,3 +50,8 @@ mc_shop_user_upload_file:
     path:   /profile/upload
     defaults:
         _controller: McShopUserBundle:Profile:uploadFile
+
+mc_shop_user_unlink:
+    path:   /profile/{type}/unlink
+    defaults:
+        _controller: McShopUserBundle:Profile:unlink

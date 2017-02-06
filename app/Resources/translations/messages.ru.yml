@@ -51,6 +51,8 @@ user:
         skin_preview:               Текущий скин игрока
         upload_skin:                Скин
         upload_cloak:               Плащ
+        skin:                       Скин
+        cloak:                      Плащ
         upload:                     Загрузить
         skins:
             wrong_type:             Неверный тип файла

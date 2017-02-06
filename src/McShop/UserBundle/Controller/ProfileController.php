@@ -42,7 +42,9 @@ class ProfileController extends Controller
                 }
 
                 $directory = 'minecraft/skins/';
-                unlink($directory . $filename);
+                if (file_exists($directory . $filename)) {
+                    unlink($directory . $filename);
+                }
                 unlink('minecraft/head/' . $this->getUser()->getUuid() . '.png');
                 unlink('minecraft/preview/' . $this->getUser()->getUuid() . '_front.png');
                 unlink('minecraft/preview/' . $this->getUser()->getUuid() . '_back.png');
@@ -60,15 +62,51 @@ class ProfileController extends Controller
                     return $this->redirectToRoute('mc_shop_user_profile');
                 }
 
-                $directory = 'minecraft/cloak/';
+                $directory = 'minecraft/cloacks/';
 
-                $file->move($directory, $filename);
-                unlink($directory . $filename);
+                if (file_exists($directory . $filename)) {
+                    unlink($directory . $filename);
+                }
                 unlink('minecraft/preview/' . $this->getUser()->getUuid() . '_back.png');
+                $file->move($directory, $filename);
                 $this->getUser()->getSkinPreview('back');
 
                 return $this->redirectToRoute('mc_shop_user_profile');
             }
+        }
+
+        return $this->redirectToRoute('mc_shop_user_profile');
+    }
+
+    /**
+     * @param $type
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function unlinkAction($type)
+    {
+        $filename = $this->getUser()->getUUID() . '.png';
+
+        if ($type === 'skin') {
+            $directory = 'minecraft/skins/';
+            if (file_exists($directory . $filename)) {
+                unlink($directory . $filename);
+            }
+
+            unlink('minecraft/head/' . $this->getUser()->getUuid() . '.png');
+            unlink('minecraft/preview/' . $this->getUser()->getUuid() . '_front.png');
+            unlink('minecraft/preview/' . $this->getUser()->getUuid() . '_back.png');
+            $this->getUser()->getSkinPreview('front');
+            $this->getUser()->getSkinPreview('back');
+        }
+
+        if ($type === 'cloak') {
+            $directory = 'minecraft/cloacks/';
+            if (file_exists($directory . $filename)) {
+                unlink($directory . $filename);
+            }
+
+            unlink('minecraft/preview/' . $this->getUser()->getUuid() . '_back.png');
+            $this->getUser()->getSkinPreview('back');
         }
 
         return $this->redirectToRoute('mc_shop_user_profile');
