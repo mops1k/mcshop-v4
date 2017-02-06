@@ -46,6 +46,11 @@ class UserMenu extends AbstractMenu
                 [ '@cash@' => $this->token->getUser()->getPurse() !== null ?
                     $this->token->getUser()->getPurse()->getRealCash() : 0 ]
             );
+            $builder->addItem(
+                'profile',
+                'user.menu.profile',
+                $this->generateUrlByRouteName('mc_shop_user_profile')
+            );
             if ($this->isGranted('ROLE_STATIC_PAGE_ADD')) {
                 $builder
                     ->addItem(

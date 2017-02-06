@@ -45,11 +45,25 @@ news:
         user_says:                  @username@ пишет
         form.title:                 Напишите свой комментарий
 user:
+    profile:
+        avatar_help:                Максимальный размер аватара 200px на 200px.
+        upload_avatar:              Загрузить аватар
+        skin_preview:               Текущий скин игрока
+        upload_skin:                Скин
+        upload_cloak:               Плащ
+        upload:                     Загрузить
+        skins:
+            wrong_type:             Неверный тип файла
+            no_hd_rights:           Нет прав на загрузку
+        avatar:
+            wrong_type:             Неверный тип файла
+            wrong_size:             Неверный размер аватара
     real_cash:                      'На счету: @cash@ руб.'
     launcher:
         login:
             error:                  Неверный логин или пароль!
     menu:
+        profile:                    Профиль
         logout:                     Выход
         sign-in:                    Авторизация
         sign-up:                    Регистрация

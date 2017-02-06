@@ -45,3 +45,8 @@ mc_shop_user_profile:
     path:   /profile
     defaults:
         _controller: McShopUserBundle:Profile:index
+
+mc_shop_user_upload_file:
+    path:   /profile/upload
+    defaults:
+        _controller: McShopUserBundle:Profile:uploadFile

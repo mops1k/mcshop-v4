@@ -623,6 +623,31 @@ class User implements AdvancedUserInterface, \Serializable
         return null;
     }
 
+    /**
+     * @param string $side
+     * @return bool|resource
+     */
+    public function getSkinPreview($side = 'front')
+    {
+        $path = 'minecraft/preview/' . $this->uuid . '_' . $side . '.png';
+        if (!file_exists($path)) {
+            $skinView = new SkinView();
+            $skinView
+                ->setWaySkin($this->getSkin())
+                ->setWayCloak($this->getCloak())
+                ->setSaveSkin($path)
+                ->setSide($side)
+            ;
+            $skinView->savePreview();
+        }
+
+
+        return $path;
+    }
+
+    /**
+     * @return string
+     */
     public function getAvatarPath()
     {
         if (!$this->skinAsAvatar) {

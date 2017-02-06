@@ -22,3 +22,5 @@
 !web/minecraft/cloacks/.gitkeep
 /web/minecraft/head/*
 !web/minecraft/head/.gitkeep
+/web/minecraft/preview/*
+!web/minecraft/preview/.gitkeep
