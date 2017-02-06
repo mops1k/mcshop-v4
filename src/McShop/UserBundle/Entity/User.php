@@ -107,7 +107,7 @@ class User implements AdvancedUserInterface, \Serializable
      * @var bool
      * @ORM\Column(type="boolean")
      */
-    private $skinAsAvatar;
+    private $skinAsAvatar = false;
 
     /**
      * @var \DateTime
