@@ -45,7 +45,10 @@ class ProfileController extends Controller
                 if (file_exists($directory . $filename)) {
                     unlink($directory . $filename);
                 }
-                unlink('minecraft/head/' . $this->getUser()->getUuid() . '.png');
+
+                if (file_exists('minecraft/head/' . $this->getUser()->getUuid() . '.png')) {
+                    unlink('minecraft/head/' . $this->getUser()->getUuid() . '.png');
+                }
                 unlink('minecraft/preview/' . $this->getUser()->getUuid() . '_front.png');
                 unlink('minecraft/preview/' . $this->getUser()->getUuid() . '_back.png');
 
@@ -92,7 +95,9 @@ class ProfileController extends Controller
                 unlink($directory . $filename);
             }
 
-            unlink('minecraft/head/' . $this->getUser()->getUuid() . '.png');
+            if (file_exists('minecraft/head/' . $this->getUser()->getUuid() . '.png')) {
+                unlink('minecraft/head/' . $this->getUser()->getUuid() . '.png');
+            }
             unlink('minecraft/preview/' . $this->getUser()->getUuid() . '_front.png');
             unlink('minecraft/preview/' . $this->getUser()->getUuid() . '_back.png');
             $this->getUser()->getSkinPreview('front');
