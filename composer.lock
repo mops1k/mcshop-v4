@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cde995d3f2338c72e7efb7c0b5ea8cdb",
-    "content-hash": "82a5ce657ea1b2119fb4a8c5b75dc2eb",
+    "hash": "f9eda31b91b7286dad051843974ff802",
+    "content-hash": "f05496e293ae8a362b6a7ee50c5165e6",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1616,6 +1616,47 @@
                 "status"
             ],
             "time": "2017-02-04 22:26:08"
+        },
+        {
+            "name": "mops1k/minecraftskinview",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mops1k/minecraftskinview.git",
+                "reference": "8a4cf4db873437ecf93431e4e6cc20b17a63e4a5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mops1k/minecraftskinview/zipball/8a4cf4db873437ecf93431e4e6cc20b17a63e4a5",
+                "reference": "8a4cf4db873437ecf93431e4e6cc20b17a63e4a5",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Minecraft\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD"
+            ],
+            "authors": [
+                {
+                    "name": "mops1k",
+                    "email": "bednyj.mops@gmail.com"
+                }
+            ],
+            "description": "Minecraft skin preview converter (support HD skins and capes)",
+            "keywords": [
+                "cape",
+                "cloak",
+                "head",
+                "minecraft",
+                "preview",
+                "skin"
+            ],
+            "time": "2017-01-31 23:24:49"
         },
         {
             "name": "ocramius/proxy-manager",
@@ -3318,7 +3359,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.3.9"
+        "php": ">=5.4"
     },
     "platform-dev": []
 }

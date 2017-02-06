@@ -15,7 +15,10 @@
 /app/spool/*
 !app/spool/.gitkeep
 /libs
-/web/skins/*
-!web/skins/.gitkeep
-/web/cloacks/*
-!web/cloacks/.gitkeep
+/web/minecraft/skins/*
+!web/minecraft/skins/default.png
+!web/minecraft/skins/.gitkeep
+/web/minecraft/cloacks/*
+!web/minecraft/cloacks/.gitkeep
+/web/minecraft/head/*
+!web/minecraft/head/.gitkeep
