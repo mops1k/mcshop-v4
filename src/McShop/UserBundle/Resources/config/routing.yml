@@ -40,3 +40,18 @@ mc_shop_user_minecraft_login:
     path:   /minecraft/{username}/{password}
     defaults:
         _controller: McShopUserBundle:Default:minecraftLogin
+
+mc_shop_user_profile:
+    path:   /profile
+    defaults:
+        _controller: McShopUserBundle:Profile:index
+
+mc_shop_user_upload_file:
+    path:   /profile/upload
+    defaults:
+        _controller: McShopUserBundle:Profile:uploadFile
+
+mc_shop_user_unlink:
+    path:   /profile/{type}/unlink
+    defaults:
+        _controller: McShopUserBundle:Profile:unlink

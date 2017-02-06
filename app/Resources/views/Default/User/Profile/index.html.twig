@@ -1,0 +1,68 @@
+{% extends ':Default:base.html.twig' %}
+
+{% block header %}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-toggle.min.css') }}">
+    <style>
+        #content {
+            padding-top: 60px;
+        }
+    </style>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/bootstrap-filestyle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap-toggle.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('input[type="file"]').on("change", function() {
+                $(this).parent().submit();
+            });
+        });
+    </script>
+{% endblock %}
+
+
+{% block container %}
+<div class="row">
+    <div class="col-md-3 text-center">
+        <img class="img-thumbnail media-object center-block" src="{{ asset(app.user.avatarPath) }}" alt="avatar" width="150px"><br>
+        <form action="{{ path('mc_shop_user_upload_file') }}" enctype="multipart/form-data" method="post">
+            <small class="text-danger">{{ 'user.profile.avatar_help'|trans }}</small>
+            <input type="file" class="filestyle" data-buttonBefore="true" name="avatar"
+                   data-buttonText="{{ 'user.profile.upload_avatar'|trans }}" data-icon="false">
+        </form>
+        <hr>
+        <h5>{{ 'user.profile.skin_preview'|trans }}</h5>
+        <img src="{{ asset(app.user.getSkinPreview()) }}" alt="front">
+        <img src="{{ asset(app.user.getSkinPreview('back')) }}" alt="front"><br><br>
+        <form action="{{ path('mc_shop_user_upload_file') }}" enctype="multipart/form-data" method="post">
+            <div class="form-group">
+                <div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
+                    <label class="btn btn-default active">
+                        <input type="radio" name="type" value="0" autocomplete="off" checked="">{{ 'user.profile.upload_skin'|trans }}</label>
+                    <label class="btn btn-default {{ app.user.hdBuyDate is null ? 'disabled' }}">
+                        <input type="radio" name="type" value="1" autocomplete="off">{{ 'user.profile.upload_cloak'|trans }}</label>
+                </div>
+            </div>
+            <input type="file" class="filestyle" data-buttonBefore="true" name="skin_or_cloak"
+                    data-buttonText="{{ 'user.profile.upload'|trans }}" data-icon="false">
+        </form>
+        <br>
+        <div class="btn-group btn-group-justified">
+            <a href="{{ path('mc_shop_user_unlink', {'type': 'skin'}) }}" class="btn btn-danger">
+                <i class="fa fa-trash"></i>
+                {{ 'user.profile.skin'|trans }}</a>
+            <a href="{{ path('mc_shop_user_unlink', {'type': 'cloak'}) }}" class="btn btn-danger">
+                <i class="fa fa-trash"></i>
+                {{ 'user.profile.cloak'|trans }}</a>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <p><b>{{ 'form.registration.username'|trans }}:</b> {{ app.user.username }}</p>
+        <p>{{ 'user.real_cash'|trans({'@cash@': app.user.purse is null ? 0 : app.user.purse.realCash}) }}</p>
+        <p><b>{{ 'form.registration.email'|trans }}:</b> {{ app.user.email }}</p>
+    </div>
+</div>
+{% endblock %}

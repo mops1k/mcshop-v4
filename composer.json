@@ -29,7 +29,8 @@
         "white-october/pagerfanta-bundle": "^1.0",
         "evence/soft-deleteable-extension-bundle": "^1.1",
         "mops1k-forked/doctrine-extensions-bundle": "^1.2",
-        "mops1k/minecraftserverstatus": "~1.0"
+        "mops1k/minecraftserverstatus": "~1.0",
+        "mops1k/minecraftskinview": "^1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",

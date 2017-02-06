@@ -38,13 +38,21 @@ class UserMenu extends AbstractMenu
         if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
             $builder
                 ->addRootItem('user', $this->token->getUsername(), null, [
-                    'icon'  => 'fa fa-user'
+                    'img'   => $this->token->getUser()->getAvatarPath(),
                 ])
             ;
             $builder->addHeader(
                 'user.real_cash',
                 [ '@cash@' => $this->token->getUser()->getPurse() !== null ?
                     $this->token->getUser()->getPurse()->getRealCash() : 0 ]
+            );
+            $builder->addItem(
+                'profile',
+                'user.menu.profile',
+                $this->generateUrlByRouteName('mc_shop_user_profile'),
+                [
+                    'icon'  => 'fa fa-address-card'
+                ]
             );
             if ($this->isGranted('ROLE_STATIC_PAGE_ADD')) {
                 $builder

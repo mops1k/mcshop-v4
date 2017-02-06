@@ -4,6 +4,7 @@ namespace McShop\UserBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use McShop\FinanceBundle\Entity\Purse;
+use Minecraft\SkinView;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
@@ -95,6 +96,30 @@ class User implements AdvancedUserInterface, \Serializable
      * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
      */
     private $roles;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $avatar;
+
+    /**
+     * @var bool
+     * @ORM\Column(type="boolean")
+     */
+    private $skinAsAvatar;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $hdBuyDate;
+
+    /**
+     * @var integer
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $hdDays;
 
     /**
      * Constructor
@@ -469,5 +494,177 @@ class User implements AdvancedUserInterface, \Serializable
     public function getPurse()
     {
         return $this->purse;
+    }
+
+    /**
+     * Set avatar
+     *
+     * @param string $avatar
+     *
+     * @return User
+     */
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * Get avatar
+     *
+     * @return string
+     */
+    public function getAvatar()
+    {
+        $avatar = $this->avatar;
+        if (!file_exists($avatar)) {
+            $avatar = 'assets/img/no-user.png';
+        }
+
+        return $avatar;
+    }
+
+    /**
+     * Set skinAsAvatar
+     *
+     * @param boolean $skinAsAvatar
+     *
+     * @return User
+     */
+    public function setSkinAsAvatar($skinAsAvatar)
+    {
+        $this->skinAsAvatar = $skinAsAvatar;
+
+        return $this;
+    }
+
+    /**
+     * Get skinAsAvatar
+     *
+     * @return boolean
+     */
+    public function getSkinAsAvatar()
+    {
+        return $this->skinAsAvatar;
+    }
+
+    /**
+     * Set hdBuyDate
+     *
+     * @param \DateTime $hdBuyDate
+     *
+     * @return User
+     */
+    public function setHdBuyDate($hdBuyDate)
+    {
+        $this->hdBuyDate = $hdBuyDate;
+
+        return $this;
+    }
+
+    /**
+     * Get hdBuyDate
+     *
+     * @return \DateTime
+     */
+    public function getHdBuyDate()
+    {
+        return $this->hdBuyDate;
+    }
+
+    /**
+     * Set hdDays
+     *
+     * @param integer $hdDays
+     *
+     * @return User
+     */
+    public function setHdDays($hdDays)
+    {
+        $this->hdDays = $hdDays;
+
+        return $this;
+    }
+
+    /**
+     * Get hdDays
+     *
+     * @return integer
+     */
+    public function getHdDays()
+    {
+        return $this->hdDays;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getSkin()
+    {
+        $path = 'minecraft/skins/' . $this->uuid . '.png';
+        if (file_exists($path)) {
+            return $path;
+        }
+
+        return 'minecraft/skins/default.png';
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getCloak()
+    {
+        $path = 'minecraft/cloacks/' . $this->uuid . '.png';
+        if (file_exists($path)) {
+            return $path;
+        }
+
+        return null;
+    }
+
+    /**
+     * @param string $side
+     * @return bool|resource
+     */
+    public function getSkinPreview($side = 'front')
+    {
+        $path = 'minecraft/preview/' . $this->uuid . '_' . $side . '.png';
+        if (!file_exists($path)) {
+            $skinView = new SkinView();
+            $skinView
+                ->setWaySkin($this->getSkin())
+                ->setWayCloak($this->getCloak())
+                ->setSaveSkin($path)
+                ->setSide($side)
+            ;
+            $skinView->savePreview();
+        }
+
+
+        return $path;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAvatarPath()
+    {
+        if (!$this->skinAsAvatar) {
+            return $this->getAvatar();
+        }
+
+        $head = 'minecraft/head/' . $this->uuid . '.png';
+        if (!file_exists($head)) {
+            $skinView = new SkinView();
+            $skinView
+                ->setWaySkin($this->getSkin())
+                ->setSaveHead($head)
+                ->setSize(200)
+                ->saveHead()
+            ;
+        }
+
+        return $head;
     }
 }

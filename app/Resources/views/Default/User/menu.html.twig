@@ -3,7 +3,8 @@
         {% if item.items is defined %}
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    {% if item.icon is defined %}<i class="fa {{ item.icon }}"></i> {% endif %}
+                    {% if item.img is defined and item.icon is not defined %}<img width="30px" height="30px" src="{{ asset(item.img) }}" alt="avatar">{% endif %}
+                    {% if item.icon is defined and item.img is not defined %}<i class="fa {{ item.icon }}"></i> {% endif %}
                     {{ item.title }}
                     <span class="caret"></span>
                 </a>
