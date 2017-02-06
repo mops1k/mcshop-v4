@@ -24,3 +24,5 @@
 !web/minecraft/head/.gitkeep
 /web/minecraft/preview/*
 !web/minecraft/preview/.gitkeep
+/web/upload/*
+!web/upload/.gitkeep
