@@ -221,4 +221,9 @@ class Role implements RoleInterface
     {
         return $this->childrens;
     }
+
+    final public function clearParents()
+    {
+        $this->parents = null;
+    }
 }
