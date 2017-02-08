@@ -139,3 +139,11 @@ server:
     block_title:                    Monitoring
     offline:                        Offline
     total:                          Total online
+    menu:
+        rcon:                       RCON managment
+    rcon:
+        select:                     Select server for RCON connection
+        select_server:              No server selected!
+        no_command:                 No command to send!
+        unknown_server:             Unknown server selected!
+        no_connection:              RCON connection error!

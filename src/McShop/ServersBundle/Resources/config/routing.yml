@@ -1,3 +1,12 @@
 mc_shop_servers_queryAll:
     path:     /all
     defaults: { _controller: McShopServersBundle:Default:queryAll }
+
+mc_shop_servers_rcon_page:
+    path:     /rcon
+    defaults: { _controller: McShopServersBundle:Rcon:page }
+
+mc_shop_servers_rcon_command:
+    path:     /rcon/command
+    defaults: { _controller: McShopServersBundle:Rcon:command }
+    methods: ["POST"]

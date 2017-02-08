@@ -3,6 +3,9 @@ services:
         class:  MinecraftServerStatus\MinecraftServerStatus
         public: false
 
+    minecraft.server.rcon:
+        class:  MinecraftRcon\Rcon
+
     mc_shop.server.query:
         class:  McShop\ServersBundle\Services\ServerStatusUpdate
         arguments:

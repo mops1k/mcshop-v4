@@ -139,3 +139,11 @@ server:
     block_title:                    Мониторинг
     offline:                        Выключен
     total:                          Общий онлайн
+    menu:
+        rcon:                       Управление RCON
+    rcon:
+        select:                     Выберите сервер на который будут отправлять команды RCON
+        select_server:              Сервер не выбран!
+        no_command:                 Нет команды для отправки!
+        unknown_server:             Выбран неизвестный сервер!
+        no_connection:              Ошибка соединения RCON!

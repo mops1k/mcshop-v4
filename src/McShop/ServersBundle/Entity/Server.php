@@ -48,6 +48,18 @@ class Server
      */
     private $port = 25565;
 
+    /**
+     * @var int
+     * @ORM\Column(name="rcon_port", type="integer", nullable=true)
+     */
+    private $rconPort;
+
+    /**
+     * @var string
+     * @ORM\Column(name="rcon_password", type="string", nullable=true)
+     */
+    private $rconPassword;
+
 
     /**
      * @var string
@@ -192,5 +204,53 @@ class Server
     public function getCache()
     {
         return $this->cache;
+    }
+
+    /**
+     * Set rconPort
+     *
+     * @param integer $rconPort
+     *
+     * @return Server
+     */
+    public function setRconPort($rconPort)
+    {
+        $this->rconPort = $rconPort;
+
+        return $this;
+    }
+
+    /**
+     * Get rconPort
+     *
+     * @return integer
+     */
+    public function getRconPort()
+    {
+        return $this->rconPort;
+    }
+
+    /**
+     * Set rconPassword
+     *
+     * @param string $rconPassword
+     *
+     * @return Server
+     */
+    public function setRconPassword($rconPassword)
+    {
+        $this->rconPassword = $rconPassword;
+
+        return $this;
+    }
+
+    /**
+     * Get rconPassword
+     *
+     * @return string
+     */
+    public function getRconPassword()
+    {
+        return $this->rconPassword;
     }
 }

@@ -59,8 +59,21 @@ class UserMenu extends AbstractMenu
                     ->addItem(
                         'static_page',
                         'page.menu.add',
-                        $this->generateUrlByRouteName('mc_shop_static_page_new'), [
+                        $this->generateUrlByRouteName('mc_shop_static_page_new'),
+                        [
                             'icon'  => 'fa fa-code'
+                        ]
+                    )
+                ;
+            }
+            if ($this->isGranted('ROLE_RCON_MANAGMENT')) {
+                $builder
+                    ->addItem(
+                        'rcon_page',
+                        'server.menu.rcon',
+                        $this->generateUrlByRouteName('mc_shop_servers_rcon_page'),
+                        [
+                            'icon'  => 'fa fa-terminal'
                         ]
                     )
                 ;
