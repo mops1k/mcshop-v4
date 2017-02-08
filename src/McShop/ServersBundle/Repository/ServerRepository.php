@@ -26,4 +26,20 @@ class ServerRepository extends EntityRepository
             ->execute()
         ;
     }
+
+    /**
+     * @return array
+     */
+    public function findRcon()
+    {
+        $qb = $this->createQueryBuilder('s');
+
+        return $qb
+            ->select('s.id, s.rconPort, s.rconPassword, s.host, s.name')
+            ->where('s.rconPort is not null')
+            ->andWhere('s.rconPassword is not null')
+            ->getQuery()
+            ->execute()
+        ;
+    }
 }

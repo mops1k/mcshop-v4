@@ -72,3 +72,8 @@ ROLE_STATIC_PAGE_REMOVE:
     role:   ROLE_STATIC_PAGE_REMOVE
     parent: ROLE_STATIC_PAGE_ADMIN
 
+
+ROLE_RCON_MANAGMENT:
+    name:   Управление серверами через RCON
+    role:   ROLE_RCON_MANAGMENT
+    parent: ROLE_SUPER_ADMIN
