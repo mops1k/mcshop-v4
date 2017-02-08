@@ -1,4 +1,5 @@
 {% extends ':Default:base.html.twig' %}
+{% form_theme passwordForm 'bootstrap_3_layout.html.twig' %}
 
 {% block header %}{% endblock %}
 {% block stylesheets %}
@@ -60,9 +61,16 @@
         </div>
     </div>
     <div class="col-md-9">
-        <p><b>{{ 'form.registration.username'|trans }}:</b> {{ app.user.username }}</p>
-        <p>{{ 'user.real_cash'|trans({'@cash@': app.user.purse is null ? 0 : app.user.purse.realCash}) }}</p>
-        <p><b>{{ 'form.registration.email'|trans }}:</b> {{ app.user.email }}</p>
+        <div class="row">
+            <div class="col-md-offset-1 col-md-5 well"></div>
+            <div class="col-md-offset-1 col-md-5 well">
+                <label>{{ 'user.profile.password.change'|trans }}</label>
+                {{ form_start(passwordForm) }}
+                {{ form_widget(passwordForm) }}
+                <button type="submit" class="btn btn-block btn-warning">{{ 'user.profile.password.change_button'|trans }}</button>
+                {{ form_end(passwordForm) }}
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
