@@ -230,3 +230,7 @@ p.copyright {
 ul.dropdown-menu.shown {
   display: block;
 }
+
+.progress {
+    width: 100%;
+}
