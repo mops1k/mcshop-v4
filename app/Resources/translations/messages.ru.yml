@@ -65,6 +65,7 @@ user:
             wrong_type:             Неверный тип файла
             wrong_size:             Неверный размер аватара
     real_cash:                      'На счету: @cash@ руб.'
+    increase_real_cash:             Пополнить счет
     launcher:
         login:
             error:                  Неверный логин или пароль!
