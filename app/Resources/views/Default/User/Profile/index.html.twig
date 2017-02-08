@@ -31,7 +31,7 @@
                 }
 
                 return false;
-            })
+            });
         });
     </script>
 {% endblock %}
@@ -41,11 +41,19 @@
 <div class="row">
     <div class="col-md-3 text-center">
         <img class="img-thumbnail media-object center-block" src="{{ asset(app.user.avatarPath) }}" alt="avatar" width="150px"><br>
+        <div class="btn-group btn-group-sm btn-group-justified">
+            <a href="{{ path('mc_shop_user_image_type_change', {'choice': 'avatar'}) }}" class="btn btn-sm btn-warning{{ app.user.skinAsAvatar ? null : ' active' }}">
+                {{ 'user.profile.use.avatar'|trans }}</a>
+            <a href="{{ path('mc_shop_user_image_type_change', {'choice': 'head'}) }}" class="btn btn-sm btn-warning{{ not app.user.skinAsAvatar ? null : ' active' }}">
+                {{ 'user.profile.use.head'|trans }}</a>
+        </div>
+        {% if not app.user.skinAsAvatar %}
         <form action="{{ path('mc_shop_user_upload_file') }}" enctype="multipart/form-data" method="post">
             <small class="text-danger">{{ 'user.profile.avatar_help'|trans }}</small>
             <input type="file" class="filestyle" data-buttonBefore="true" name="avatar"
                    data-buttonText="{{ 'user.profile.upload_avatar'|trans }}" data-icon="false">
         </form>
+        {% endif %}
         <hr>
         <h5>{{ 'user.profile.skin_preview'|trans }}</h5>
         <img src="{{ asset(app.user.getSkinPreview()) }}" alt="front">
