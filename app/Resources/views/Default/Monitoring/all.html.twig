@@ -10,7 +10,7 @@
                 {{ server.data.players }}/{{ server.data.maxPlayers }}
             </span>
         </div>
-        <div class="progress col-md-12">
+        <div class="progress">
             <div class="progress-bar progress-bar-success"
                  role="progressbar" aria-valuenow="{{ server.data.players }}" aria-valuemin="0"
                  aria-valuemax="{{ server.data.maxPlayers }}" style="width: {{ (server.data.players*100/server.data.maxPlayers)|round }}%;">
