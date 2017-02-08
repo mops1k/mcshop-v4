@@ -46,6 +46,9 @@ news:
         form.title:                 Write your commentary
 user:
     profile:
+        use:
+            avatar:                 Show avatar
+            head:                   Show head from skin
         avatar_help:                Maximal resolution of image is 200x200 pixels
         upload_avatar:              Upload avatar
         skin_preview:               Current player skin

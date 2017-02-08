@@ -45,6 +45,29 @@ class ProfileController extends Controller
         return $this->redirectToRoute('mc_shop_user_profile');
     }
 
+    /**
+     * @param $choice
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function skinAsAvatarAction($choice)
+    {
+        $user = $this->getUser();
+
+        switch ($choice) {
+            case 'avatar':
+                $user->setSkinAsAvatar(false);
+                break;
+            case 'head':
+                $user->setSkinAsAvatar(true);
+                break;
+        }
+
+        $this->getDoctrine()->getManagerForClass('McShopUserBundle:User')->persist($user);
+        $this->getDoctrine()->getManagerForClass('McShopUserBundle:User')->flush();
+
+        return $this->redirectToRoute('mc_shop_user_profile');
+    }
+
     public function uploadFileAction(Request $request)
     {
         $files = $request->files->all();
