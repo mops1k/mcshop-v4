@@ -2,7 +2,7 @@
 
 namespace McShop\UserBundle\Controller;
 
-use Minecraft\SkinView;
+use McShop\UserBundle\Form\PasswordType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,7 +11,38 @@ class ProfileController extends Controller
 {
     public function indexAction()
     {
-        return $this->render(':Default/User/Profile:index.html.twig', []);
+        $passwordForm = $this->createForm(PasswordType::class, $this->getUser(), [
+            'action'    => $this->generateUrl("mc_shop_user_password_change"),
+        ]);
+
+        return $this->render(':Default/User/Profile:index.html.twig', [
+            'passwordForm' => $passwordForm->createView(),
+        ]);
+    }
+
+    public function passwordAction(Request $request)
+    {
+        $passwordForm = $this->createForm(PasswordType::class, $this->getUser(), []);
+        $passwordForm->handleRequest($request);
+
+        if (!$passwordForm->isValid()) {
+            $errors = $this->get('validator')->validate($passwordForm);
+            foreach ($errors as $error) {
+                $this->addFlash('error', $this->get('translator')->trans($error->getMessage()));
+            }
+            return $this->redirectToRoute('mc_shop_user_profile');
+        }
+
+        $userHelper = $this->get('mc_shop.user.helper');
+        $userHelper
+            ->setUser($this->getUser())
+            ->setNewPassword(true)
+            ->save($this->getUser()->getActive(), $this->getUser()->getLocked())
+        ;
+
+        $this->addFlash('info', $this->get('translator')->trans('user.profile.password.changed'));
+
+        return $this->redirectToRoute('mc_shop_user_profile');
     }
 
     public function uploadFileAction(Request $request)

@@ -55,3 +55,9 @@ mc_shop_user_unlink:
     path:   /profile/{type}/unlink
     defaults:
         _controller: McShopUserBundle:Profile:unlink
+
+mc_shop_user_password_change:
+    path:   /profile/password/change
+    defaults:
+        _controller: McShopUserBundle:Profile:password
+    methods: ["POST"]

@@ -54,6 +54,10 @@ user:
         skin:                       Скин
         cloak:                      Плащ
         upload:                     Загрузить
+        password:
+            change:                 Смена пароля
+            change_button:          Сменить
+            changed:                Пароль успешно изменен!
         skins:
             wrong_type:             Неверный тип файла
             no_hd_rights:           Нет прав на загрузку

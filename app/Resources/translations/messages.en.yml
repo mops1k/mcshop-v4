@@ -54,6 +54,10 @@ user:
         skin:                       Skin
         cloak:                      Cape
         upload:                     Upload
+        password:
+            change:                 Change your password
+            change_button:          Change
+            changed:                Password has changed!
         skins:
             wrong_type:             Wrong file type
             no_hd_rights:           No rights for upload
