@@ -65,6 +65,7 @@ user:
             wrong_type:             Wrong file type
             wrong_size:             Wrong file resolution
     real_cash:                      'Money: @cash@ RUB'
+    increase_real_cash:             Add real cash
     launcher:
         login:
             error:                  Wrong username or password!

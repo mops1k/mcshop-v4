@@ -17,9 +17,21 @@
     <script src="{{ asset('assets/js/bootstrap-toggle.min.js') }}"></script>
     <script>
         $(document).ready(function () {
+            var $formMoney = $('#realCashForm'),
+                $input = $('#increaseRealCash');
+
             $('input[type="file"]').on("change", function() {
                 $(this).parent().submit();
             });
+
+            $formMoney.on('submit', function () {
+                var path = "{{ path('mc_shop_finance_sendForm', { 'amount': '__AMOUNT__'}) }}";
+                if ($input.val() != "" || $input.val() > 0) {
+                    window.location.href = path.replace('__AMOUNT__', $input.val());
+                }
+
+                return false;
+            })
         });
     </script>
 {% endblock %}
@@ -62,7 +74,18 @@
     </div>
     <div class="col-md-9">
         <div class="row">
-            <div class="col-md-offset-1 col-md-5 well"></div>
+            <div class="col-md-offset-1 col-md-5 well">
+                <label>{{ 'user.real_cash'|trans({'@cash@': app.user.purse is null ? 0 : app.user.purse.realCash}) }}</label>
+                <form id="realCashForm">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="number" id="increaseRealCash" class="form-control" placeholder="0" min="1">
+                            <span class="input-group-addon"><i class="fa fa-rub"></i></span>
+                        </div>
+                    </div>
+                    <button class="btn btn-block btn-success">{{ 'user.increase_real_cash'|trans }}</button>
+                </form>
+            </div>
             <div class="col-md-offset-1 col-md-5 well">
                 <label>{{ 'user.profile.password.change'|trans }}</label>
                 {{ form_start(passwordForm) }}
