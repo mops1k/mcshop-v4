@@ -74,7 +74,6 @@ class RconController extends BaseController
             ->setPassword($server->getRconPassword())
             ->setTimeout(10)
         ;
-        dump($rcon);
 
         if ($rcon->connect()) {
             $rcon->sendCommand($command);
