@@ -4,7 +4,10 @@ namespace McShop\StaticPageBundle\Controller;
 
 use McShop\StaticPageBundle\Entity\Page;
 use McShop\StaticPageBundle\Form\PageType;
+use McShop\StaticPageBundle\Repository\PageRepository;
 use McShop\UserBundle\Controller\BaseController;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
@@ -15,6 +18,30 @@ use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
  */
 class PageCrudController extends BaseController
 {
+    public function listAction(Request $request)
+    {
+        if (!$this->isGranted('ROLE_STATIC_PAGE_ADMIN')) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $query = $this->getDoctrine()
+            ->getManagerForClass('McShopStaticPageBundle:Page')
+            ->getRepository('McShopStaticPageBundle:Page')
+            ->findAll(PageRepository::RETURN_QUERY)
+        ;
+
+        $adapter = new DoctrineORMAdapter($query);
+        /** @var Page[] $posts */
+        $pages = new Pagerfanta($adapter);
+        $pages
+            ->setMaxPerPage($request->get('per_page', 10))
+            ->setCurrentPage($request->get('page', 1))
+        ;
+
+        return $this->render(':Default/StaticPage:list.html.twig', [
+            'pages' => $pages,
+        ]);
+    }
     /**
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response

@@ -3,6 +3,7 @@
 namespace McShop\StaticPageBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use McShop\StaticPageBundle\Entity\Page;
 
 /**
@@ -13,6 +14,9 @@ use McShop\StaticPageBundle\Entity\Page;
  */
 class PageRepository extends EntityRepository
 {
+    const RETURN_QUERY = 0;
+    const RETURN_RESULT = 1;
+
     /**
      * @param $slug
      * @return Page|null
@@ -30,6 +34,30 @@ class PageRepository extends EntityRepository
             ->getQuery()
             ->getOneOrNullResult()
         ;
+    }
+
+    /**
+     * @return Page[]|QueryBuilder|null
+     */
+    public function findAll($returnType = self::RETURN_RESULT)
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        $qb
+            ->select('p, u, r')
+            ->innerJoin('p.user', 'u')
+            ->leftJoin('p.role', 'r')
+        ;
+
+        if ($returnType === self::RETURN_QUERY) {
+            return $qb;
+        }
+
+        if ($returnType === self::RETURN_RESULT) {
+            return $qb->getQuery()->execute();
+        }
+
+        return null;
     }
 
     /**

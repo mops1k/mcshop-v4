@@ -1,5 +1,7 @@
 ru:                                 Русский
 en:                                 English
+yes:                                Yes
+no:                                 No
 page:
     not_found:                      Page not found!
     no_rights:                      You do not have rights to view this page!
@@ -16,8 +18,11 @@ page:
         content:                    Content
         show_in_menu:               Show page in menu
         role:                       Page view role
+    list:
+        title:                      Static pages
     menu:
         add:                        Create static page
+        title:                      Static pages
 news:
     new_success:                    Post added!
     edit_success:                   Post edited success!
