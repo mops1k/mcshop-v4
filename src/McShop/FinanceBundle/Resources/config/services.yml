@@ -2,3 +2,7 @@ services:
     mc_shop_finance.payment:
         class: McShop\FinanceBundle\Services\Payment
         arguments: ["@doctrine", "@security.token_storage", "%interkassa%"]
+
+    mc_shop_finance.coupon_generator:
+        class: McShop\FinanceBundle\Services\Generator
+        arguments: ["@doctrine", "@security.token_storage"]
