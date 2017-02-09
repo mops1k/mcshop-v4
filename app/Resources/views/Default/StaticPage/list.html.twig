@@ -1,0 +1,73 @@
+{% extends ':Default:base.html.twig' %}
+
+{% block header %}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        #content {
+            padding-top: 60px;
+        }
+    </style>
+{% endblock %}
+
+{% block container %}
+    <div class="pull-left">
+        <h4><i class="fa fa-code"></i> {{ 'page.list.title'|trans }}</h4>
+    </div>
+    {% if is_granted('ROLE_STATIC_PAGE_ADD') %}
+        <div class="pull-right">
+            <a href="{{ path('mc_shop_static_page_new') }}" class="btn btn-primary"><i class="fa fa-plus"></i> {{ 'page.add.title'|trans }}</a>
+        </div>
+        <br>
+        <hr>
+    {% endif %}
+    {% if pages|length == 0 %}
+        <div class="alert alert-info">
+            {{ 'page.no_pages'|trans }}
+        </div>
+    {% else %}
+        <table class="table table-bordered table-hover table-condensed">
+            <thead>
+                <tr class="success">
+                    <th class="text-center">#</th>
+                    <th class="text-center">{{ 'page.form.slug'|trans }}</th>
+                    <th class="text-center">{{ 'page.form.title'|trans }}</th>
+                    <th class="text-center">{{ 'page.form.show_in_menu'|trans }}</th>
+                    <th class="text-center">{{ 'page.form.role'|trans }}</th>
+                    <th class="text-center">
+                        <i class="fa fa-cog"></i>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for page in pages %}
+                <tr>
+                    <td><b>{{ page.id }}</b></td>
+                    <td>{{ page.slug }}</td>
+                    <td>{{ page.title }}</td>
+                    <td class="text-center">
+                        {% if page.showInMenu %}
+                            <span class="label label-success">{{ 'yes'|trans }}</span>
+                        {% else %}
+                            <span class="label label-danger">{{ 'no'|trans }}</span>
+                        {% endif %}
+                    </td>
+                    <td class="text-center">{{ page.role is not null ? page.role.name }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <a href="{{ path('mc_shop_static_page_view', {'slug': page.slug}) }}" class="btn btn-default btn-sm"><i class="fa fa-eye"></i></a>
+                            {% if is_granted('ROLE_STATIC_PAGE_EDIT') %}
+                                <a href="{{ path('mc_shop_static_page_edit', {'slug': page.slug}) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></a>
+                            {% endif %}
+                            {% if is_granted('ROLE_STATIC_PAGE_REMOVE') %}
+                                <a href="{{ path('mc_shop_static_page_remove', {'slug': page.slug}) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {{ pages.hasNextPage ? pagerfanta(pages, 'twitter_bootstrap3', { 'omitFirstPage': true}) }}
+    {% endif %}
+{% endblock %}

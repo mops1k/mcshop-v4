@@ -58,8 +58,8 @@ class UserMenu extends AbstractMenu
                 $builder
                     ->addItem(
                         'static_page',
-                        'page.menu.add',
-                        $this->generateUrlByRouteName('mc_shop_static_page_new'),
+                        'page.menu.title',
+                        $this->generateUrlByRouteName('mc_shop_static_page_list'),
                         [
                             'icon'  => 'fa fa-code'
                         ]

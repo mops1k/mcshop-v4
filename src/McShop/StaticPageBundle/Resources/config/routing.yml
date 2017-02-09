@@ -13,3 +13,7 @@ mc_shop_static_page_edit:
 mc_shop_static_page_remove:
     path:     /{slug}/remove
     defaults: { _controller: McShopStaticPageBundle:PageCrud:remove }
+
+mc_shop_static_page_list:
+    path:     /list
+    defaults: { _controller: McShopStaticPageBundle:PageCrud:list }
