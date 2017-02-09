@@ -13,3 +13,8 @@ mc_shop_static_page:
 mc_shop_servers:
     resource: "@McShopServersBundle/Resources/config/routing.yml"
     prefix:   /server
+
+
+mc_shop_finance_coupon:
+    resource: "@McShopFinanceBundle/Resources/config/routing_coupon.yml"
+    prefix:   /coupon

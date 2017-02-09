@@ -1,0 +1,82 @@
+{% extends ':Default:base.html.twig' %}
+{% form_theme form "bootstrap_3_layout.html.twig" %}
+{% form_theme filterForm "bootstrap_3_layout.html.twig" %}
+
+{% block header %}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        #content {
+            padding-top: 60px;
+        }
+    </style>
+{% endblock %}
+
+{% block left_menu %}
+<div class="panel panel-default panel-menu">
+    <div class="panel-heading" data-toggle="collapse" data-target="#menu-1"
+         aria-expanded="false" aria-controls="menu-1">{{ 'finance.coupon.filter.title'|trans }}</div>
+    <div class="panel-body collapse in" id="menu-1">
+        {{ form_start(filterForm) }}
+        {{ form_widget(filterForm) }}
+        <button type="submit" class="btn btn-block btn-default">{{ 'finance.coupon.filter_button'|trans }}</button>
+        <br>
+        <a href="{{ path('mc_shop_finance_coupon_admin') }}" class="btn btn-block btn-warning">{{ 'filter.reset'|trans }}</a>
+        {{ form_end(filterForm) }}
+    </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+    <div class="well">
+        <h4>{{ 'finance.coupon.generation'|trans }}</h4>
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col-md-4">{{ form_row(form.amount) }}</div>
+            <div class="col-md-4">{{ form_row(form.count) }}</div>
+            <div class="col-md-4">{{ form_row(form.dueDate) }}</div>
+        </div>
+        <button type="submit" class="btn btn-success">{{ 'finance.coupon.generate_button'|trans }}</button>
+        {{ form_end(form) }}
+    </div>
+
+    {% if coupons|length == 0 %}
+        <div class="alert alert-info">{{ 'finance.coupon.not_found'|trans }}</div>
+    {% else %}
+        {{ coupons.hasNextPage or coupons.hasPreviousPage ? pagerfanta(coupons, 'twitter_bootstrap3', { 'omitFirstPage': true}) }}
+
+        <table class="table table-bordered table-hover table-condensed">
+            <thead>
+                <tr class="success">
+                    <th class="text-center">{{ 'finance.coupon.code'|trans }}</th>
+                    <th class="text-center">{{ 'finance.coupon.amount'|trans }}</th>
+                    <th class="text-center">{{ 'finance.coupon.status'|trans }}</th>
+                    <th class="text-center">{{ 'finance.coupon.due_date'|trans }}</th>
+                    <th class="text-center">{{ 'finance.coupon.activated_by'|trans }}</th>
+                    <th class="text-center">{{ 'finance.coupon.activated_at'|trans }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for coupon in coupons %}
+                    <tr>
+                        <td class="text-center">{{ coupon.code }}</td>
+                        <td class="text-center">{{ coupon.amount }}</td>
+                        <td class="text-center">
+                            {% if coupon.isActive %}
+                            <span class="label label-success">{{ 'finance.coupon.status_active'|trans }}</span>
+                            {% else %}
+                            <span class="label label-danger">{{ 'finance.coupon.status_disabled'|trans }}</span>
+                            {% endif %}
+                        </td>
+                        <td class="text-center">{{ coupon.dueDate is not null ? coupon.dueDate|date('d.m.Y') }}</td>
+                        <td class="text-center">{{ coupon.activatedBy is not null ? coupon.activatedBy.username }}</td>
+                        <td class="text-center">{{ coupon.activatedAt is not null ? coupon.activatedAt|date('d.m.Y H:i:s') }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {{ coupons.hasNextPage or coupons.hasPreviousPage ? pagerfanta(coupons, 'twitter_bootstrap3', { 'omitFirstPage': true}) }}
+    {% endif %}
+{% endblock %}

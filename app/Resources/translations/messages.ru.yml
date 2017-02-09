@@ -160,3 +160,26 @@ server:
         no_command:                 Нет команды для отправки!
         unknown_server:             Выбран неизвестный сервер!
         no_connection:              Ошибка соединения RCON!
+finance:
+    coupon:
+        amount:                     Сумма
+        count:                      Количество
+        due_date:                   Крайний срок активации
+        status:                     Статус
+        generation:                 Генерация купонов
+        generate_button:            Сгенерировать новые купоны
+        code:                       Код активации
+        activated_by:               Активировал
+        activated_at:               Дата активации
+        status_active:              Не активирован
+        status_disabled:            Активирован
+        filter_button:              Применить
+        not_found:                  Купоны не найдены
+        filter:
+            title:                  Фильтр
+            amount:                 Сумма
+            due_date:               Крайний срок активации
+            activated_at:           Дата активации
+            activated_by:           Активировал
+            active:                 Активен?
+filter.reset:                       Обнулить фильтр

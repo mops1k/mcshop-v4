@@ -11,4 +11,3 @@ mc_shop_finance_fail:
     path:     /fail.html
     defaults: { _controller: McShopFinanceBundle:Payment:fail }
     methods: [POST]
-

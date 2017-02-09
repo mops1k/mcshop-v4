@@ -1,0 +1,3 @@
+mc_shop_finance_coupon_admin:
+    path:       /
+    defaults:   { _controller: McShopFinanceBundle:Coupon:index }
