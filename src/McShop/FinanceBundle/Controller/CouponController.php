@@ -71,4 +71,21 @@ class CouponController extends BaseController
             'coupons'       => $coupons,
         ]);
     }
+
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function activateAction(Request $request)
+    {
+        $code = $request->get('code');
+        if (!$this->get('mc_shop_finance.coupon_generator')->activateCoupon($code)) {
+            $this->addFlash('danger', $this->get('translator')->trans('finance.coupon.activation_error'));
+            return $this->redirectToReferer();
+        }
+
+        $this->addFlash('danger', $this->get('translator')->trans('finance.coupon.activation_success'));
+
+        return $this->redirectToReferer();
+    }
 }

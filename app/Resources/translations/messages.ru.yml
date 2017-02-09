@@ -162,6 +162,7 @@ server:
         no_connection:              Ошибка соединения RCON!
 finance:
     coupon:
+        menu:                       Генерация купонов
         amount:                     Сумма
         count:                      Количество
         due_date:                   Крайний срок активации
@@ -175,6 +176,8 @@ finance:
         status_disabled:            Активирован
         filter_button:              Применить
         not_found:                  Купоны не найдены
+        deactive:                   Активирован
+        active:                     Не активирован
         filter:
             title:                  Фильтр
             amount:                 Сумма

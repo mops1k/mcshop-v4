@@ -160,3 +160,29 @@ server:
         no_command:                 No command to send!
         unknown_server:             Unknown server selected!
         no_connection:              RCON connection error!
+finance:
+    coupon:
+        menu:                       Generate coupons
+        amount:                     Cash
+        count:                      Amount
+        due_date:                   Due date
+        status:                     Status
+        generation:                 Generate coupons
+        generate_button:            Generate new coupons
+        code:                       Activation code
+        activated_by:               Activated by
+        activated_at:               Activation date
+        status_active:              Not actovated
+        status_disabled:            Activated
+        filter_button:              Apply
+        not_found:                  Coupons not found!
+        deactive:                   Activated
+        active:                     Not activated
+        filter:
+            title:                  Filter
+            amount:                 Cash
+            due_date:               Due date
+            activated_at:           Activation date
+            activated_by:           Activated by
+            active:                 Is active?
+filter.reset:                       Reset filter

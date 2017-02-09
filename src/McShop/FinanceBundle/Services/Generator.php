@@ -75,6 +75,10 @@ class Generator
         $manager->flush();
     }
 
+    /**
+     * @param $code
+     * @return bool
+     */
     public function activateCoupon($code)
     {
         $manager = $this->doctrine->getManagerForClass('McShopFinanceBundle:Coupon');

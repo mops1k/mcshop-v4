@@ -66,6 +66,18 @@ class UserMenu extends AbstractMenu
                     )
                 ;
             }
+            if ($this->isGranted('ROLE_COUPON_ADMIN')) {
+                $builder
+                    ->addItem(
+                        'coupon_admin',
+                        'finance.coupon.menu',
+                        $this->generateUrlByRouteName('mc_shop_finance_coupon_admin'),
+                        [
+                            'icon'  => 'fa fa-hashtag'
+                        ]
+                    )
+                ;
+            }
             if ($this->isGranted('ROLE_RCON_MANAGMENT')) {
                 $builder
                     ->addItem(
