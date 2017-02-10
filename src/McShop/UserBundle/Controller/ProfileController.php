@@ -2,6 +2,7 @@
 
 namespace McShop\UserBundle\Controller;
 
+use McShop\FinanceBundle\Form\CouponCodeType;
 use McShop\UserBundle\Form\PasswordType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -15,8 +16,13 @@ class ProfileController extends Controller
             'action'    => $this->generateUrl("mc_shop_user_password_change"),
         ]);
 
+        $couponForm = $this->createForm(CouponCodeType::class, null, [
+            'action'    => $this->generateUrl("mc_shop_finance_coupon_activation")
+        ]);
+
         return $this->render(':Default/User/Profile:index.html.twig', [
             'passwordForm' => $passwordForm->createView(),
+            'couponForm'   => $couponForm->createView(),
         ]);
     }
 

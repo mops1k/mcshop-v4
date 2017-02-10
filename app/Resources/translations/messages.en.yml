@@ -73,6 +73,8 @@ user:
             wrong_type:             Wrong file type
             wrong_size:             Wrong file resolution
     real_cash:                      'Money: @cash@ RUB'
+    coupon_activate:                Coupon code activation
+    activate:                       Activate
     increase_real_cash:             Add real cash
     launcher:
         login:
@@ -178,6 +180,8 @@ finance:
         not_found:                  Coupons not found!
         deactive:                   Activated
         active:                     Not activated
+        activation_error:           Error occured! Maybe wrong coupon or due date of activation is end!
+        activation_success:         Coupon activated!
         filter:
             title:                  Filter
             amount:                 Cash

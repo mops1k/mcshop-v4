@@ -2,6 +2,7 @@
 namespace McShop\FinanceBundle\Controller;
 
 use McShop\FinanceBundle\Entity\Coupon;
+use McShop\FinanceBundle\Form\CouponCodeType;
 use McShop\FinanceBundle\Form\CouponFilter;
 use McShop\FinanceBundle\Form\CouponForm;
 use McShop\FinanceBundle\Repository\CouponRepository;
@@ -78,7 +79,10 @@ class CouponController extends BaseController
      */
     public function activateAction(Request $request)
     {
-        $code = $request->get('code');
+        $form = $this->createForm(CouponCodeType::class);
+        $form->handleRequest($request);
+
+        $code = $form->get('code')->getData();
         if (!$this->get('mc_shop_finance.coupon_generator')->activateCoupon($code)) {
             $this->addFlash('danger', $this->get('translator')->trans('finance.coupon.activation_error'));
             return $this->redirectToReferer();

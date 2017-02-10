@@ -95,7 +95,7 @@ class Generator
 
         if ($purse === null) {
             $purse = new Purse();
-            $user->setPurse($purse);
+            $purse->setUser($user);
         }
 
         $coupon
@@ -108,7 +108,6 @@ class Generator
 
         $manager->persist($coupon);
         $manager->persist($purse);
-        $manager->persist($user);
         $manager->flush();
 
         return true;

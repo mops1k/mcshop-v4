@@ -74,6 +74,8 @@ user:
             wrong_size:             Неверный размер аватара
     real_cash:                      'На счету: @cash@ руб.'
     increase_real_cash:             Пополнить счет
+    coupon_activate:                Активация купона
+    activate:                       Активировать
     launcher:
         login:
             error:                  Неверный логин или пароль!
@@ -178,6 +180,8 @@ finance:
         not_found:                  Купоны не найдены
         deactive:                   Активирован
         active:                     Не активирован
+        activation_error:           Во время активации купона произошла ошибка, вероятно ввы указали неверный купон или срок действия купона закончился!
+        activation_success:         Купон успешно активирован!
         filter:
             title:                  Фильтр
             amount:                 Сумма

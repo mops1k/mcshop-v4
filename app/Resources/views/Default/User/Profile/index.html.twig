@@ -1,5 +1,6 @@
 {% extends ':Default:base.html.twig' %}
 {% form_theme passwordForm 'bootstrap_3_layout.html.twig' %}
+{% form_theme couponForm 'bootstrap_3_layout.html.twig' %}
 
 {% block header %}{% endblock %}
 {% block stylesheets %}
@@ -82,24 +83,37 @@
     </div>
     <div class="col-md-9">
         <div class="row">
-            <div class="col-md-offset-1 col-md-5 well">
-                <label>{{ 'user.real_cash'|trans({'@cash@': app.user.purse is null ? 0 : app.user.purse.realCash}) }}</label>
-                <form id="realCashForm">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input type="number" id="increaseRealCash" class="form-control" placeholder="0" min="1">
-                            <span class="input-group-addon"><i class="fa fa-rub"></i></span>
+            <div class="col-md-6">
+                <div class="well">
+                    <label>{{ 'user.real_cash'|trans({'@cash@': app.user.purse is null ? 0 : app.user.purse.realCash}) }}</label>
+                    <form id="realCashForm">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="number" id="increaseRealCash" class="form-control" placeholder="0" min="1">
+                                <span class="input-group-addon"><i class="fa fa-rub"></i></span>
+                            </div>
                         </div>
-                    </div>
-                    <button class="btn btn-block btn-success">{{ 'user.increase_real_cash'|trans }}</button>
-                </form>
+                        <button class="btn btn-block btn-success">{{ 'user.increase_real_cash'|trans }}</button>
+                    </form>
+                </div>
+
+                <div class="well">
+                    <label>{{ 'user.coupon_activate'|trans({'@cash@': app.user.purse is null ? 0 : app.user.purse.realCash}) }}</label>
+                    {{ form_start(couponForm) }}
+                    {{ form_widget(couponForm) }}
+                    <button class="btn btn-block btn-primary">{{ 'user.activate'|trans }}</button>
+                    {{ form_end(couponForm) }}
+                </div>
             </div>
-            <div class="col-md-offset-1 col-md-5 well">
-                <label>{{ 'user.profile.password.change'|trans }}</label>
-                {{ form_start(passwordForm) }}
-                {{ form_widget(passwordForm) }}
-                <button type="submit" class="btn btn-block btn-warning">{{ 'user.profile.password.change_button'|trans }}</button>
-                {{ form_end(passwordForm) }}
+            <div class="col-md-6">
+                <div class="well">
+                    <label>{{ 'user.profile.password.change'|trans }}</label>
+                    {{ form_start(passwordForm) }}
+                    {{ form_widget(passwordForm) }}
+                    <button type="submit" class="btn btn-block btn-warning">{{ 'user.profile.password.change_button'|trans }}</button>
+                    {{ form_end(passwordForm) }}
+                </div>
+
             </div>
         </div>
     </div>
