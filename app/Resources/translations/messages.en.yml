@@ -4,6 +4,7 @@ yes:                                Yes
 no:                                 No
 page:
     not_found:                      Page not found!
+    no_pages:                       Pages not found!
     no_rights:                      You do not have rights to view this page!
     error:                          Error @number@!
     add_success:                    Page has created!
