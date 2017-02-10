@@ -77,3 +77,8 @@ ROLE_RCON_MANAGMENT:
     name:   Управление серверами через RCON
     role:   ROLE_RCON_MANAGMENT
     parent: ROLE_SUPER_ADMIN
+
+ROLE_COUPON_ADMIN:
+    name:   Генерация и просмотр купонов
+    role:   ROLE_COUPON_ADMIN
+    parent: ROLE_SUPER_ADMIN

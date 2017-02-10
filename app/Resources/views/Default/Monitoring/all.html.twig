@@ -13,7 +13,7 @@
         <div class="progress">
             <div class="progress-bar progress-bar-success"
                  role="progressbar" aria-valuenow="{{ server.data.players }}" aria-valuemin="0"
-                 aria-valuemax="{{ server.data.maxPlayers }}" style="width: {{ (server.data.players*100/server.data.maxPlayers)|round }}%;">
+                 aria-valuemax="{{ server.data.maxPlayers }}" style="width: {{ totalOnline.maxPlayers > 0 ? (server.data.players*100/server.data.maxPlayers)|round : '0' }}%;">
             </div>
         </div>
         {% else %}
@@ -46,7 +46,7 @@
         <div class="progress">
             <div class="progress-bar progress-bar-info"
                  role="progressbar" aria-valuenow="{{ totalOnline.players }}" aria-valuemin="0"
-                 aria-valuemax="{{ totalOnline.maxPlayers }}" style="width: {{ (totalOnline.players*100/totalOnline.maxPlayers)|round }}%;">
+                 aria-valuemax="{{ totalOnline.maxPlayers }}" style="width: {{ totalOnline.maxPlayers > 0 ? (totalOnline.players*100/totalOnline.maxPlayers)|round : '0' }}%;">
             </div>
         </div>
     </div>

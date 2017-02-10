@@ -1,0 +1,8 @@
+mc_shop_finance_coupon_admin:
+    path:       /
+    defaults:   { _controller: McShopFinanceBundle:Coupon:index }
+
+mc_shop_finance_coupon_activation:
+    path:       /activate
+    defaults:   { _controller: McShopFinanceBundle:Coupon:activate }
+    methods:    ["POST"]

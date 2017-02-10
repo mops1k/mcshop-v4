@@ -74,6 +74,8 @@ user:
             wrong_size:             Неверный размер аватара
     real_cash:                      'На счету: @cash@ руб.'
     increase_real_cash:             Пополнить счет
+    coupon_activate:                Активация купона
+    activate:                       Активировать
     launcher:
         login:
             error:                  Неверный логин или пароль!
@@ -160,3 +162,31 @@ server:
         no_command:                 Нет команды для отправки!
         unknown_server:             Выбран неизвестный сервер!
         no_connection:              Ошибка соединения RCON!
+finance:
+    coupon:
+        menu:                       Генерация купонов
+        amount:                     Сумма
+        count:                      Количество
+        due_date:                   Крайний срок активации
+        status:                     Статус
+        generation:                 Генерация купонов
+        generate_button:            Сгенерировать новые купоны
+        code:                       Код активации
+        activated_by:               Активировал
+        activated_at:               Дата активации
+        status_active:              Не активирован
+        status_disabled:            Активирован
+        filter_button:              Применить
+        not_found:                  Купоны не найдены
+        deactive:                   Активирован
+        active:                     Не активирован
+        activation_error:           Во время активации купона произошла ошибка, вероятно ввы указали неверный купон или срок действия купона закончился!
+        activation_success:         Купон успешно активирован!
+        filter:
+            title:                  Фильтр
+            amount:                 Сумма
+            due_date:               Крайний срок активации
+            activated_at:           Дата активации
+            activated_by:           Активировал
+            active:                 Активен?
+filter.reset:                       Обнулить фильтр
