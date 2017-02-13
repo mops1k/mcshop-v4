@@ -8,7 +8,7 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20170213125922ShopCart extends AbstractMigration
+class Version20170213140807ShoppingCartItem extends AbstractMigration
 {
     /**
      * @param Schema $schema
@@ -18,9 +18,8 @@ class Version20170213125922ShopCart extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE shopcart (id BIGINT AUTO_INCREMENT NOT NULL, type VARCHAR(255) DEFAULT \'item\' NOT NULL COLLATE latin1_swedish_ci, item VARCHAR(255) NOT NULL COLLATE latin1_swedish_ci, player VARCHAR(255) NOT NULL COLLATE latin1_swedish_ci, amount INT NOT NULL, extra VARCHAR(255) DEFAULT NULL COLLATE latin1_swedish_ci, server VARCHAR(255) NOT NULL COLLATE latin1_swedish_ci, INDEX shopcart_server_idx (server), INDEX shopcart_player_idx (player), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
-        $this->addSql('CREATE INDEX shopcart_server_idx ON shopcart (server)');
-        $this->addSql('CREATE INDEX shopcart_player_idx ON shopcart (player)');
+        $this->addSql('CREATE TABLE shopcart_item (id INT AUTO_INCREMENT NOT NULL, server_id INT DEFAULT NULL, name VARCHAR(255) NOT NULL, type VARCHAR(255) NOT NULL, item VARCHAR(255) NOT NULL, amount INT NOT NULL, price DOUBLE PRECISION NOT NULL, sale INT NOT NULL, image VARCHAR(255) DEFAULT NULL, INDEX IDX_5869AD11844E6B7 (server_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE shopcart_item ADD CONSTRAINT FK_5869AD11844E6B7 FOREIGN KEY (server_id) REFERENCES server (id)');
         $this->addSql('ALTER TABLE post CHANGE createdAt createdAt DATETIME NOT NULL');
     }
 
@@ -32,9 +31,7 @@ class Version20170213125922ShopCart extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('DROP INDEX shopcart_server_idx ON shopcart');
-        $this->addSql('DROP INDEX shopcart_player_idx ON shopcart');
-        $this->addSql('DROP TABLE shopcart');
+        $this->addSql('DROP TABLE shopcart_item');
         $this->addSql('ALTER TABLE post CHANGE createdAt createdAt DATETIME NOT NULL');
     }
 }
