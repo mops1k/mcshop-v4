@@ -30,9 +30,9 @@ class PostType extends AbstractType
                     'rows'  => 5
                 ],
                 'constraints'   => [
-                    new Assert\NotBlank(),
                     new Assert\Length(['max' => 500]),
                 ],
+                'required'      => false,
             ])
             ->add('fullContent', TextareaType::class, [
                 'label'         => 'news.form.full_content',
