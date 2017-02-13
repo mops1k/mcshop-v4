@@ -1,6 +1,23 @@
 {% extends ':Default:base.html.twig' %}
 {% form_theme form 'bootstrap_3_layout.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('assets/ckeditor/adapters/jquery.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            CKEDITOR.editorConfig = function (config)
+            {
+                config.skin = 'bootstrapck';
+                config.language = '{{ app.request.locale|default('ru') }}';
+            };
+
+            $("#{{ form.content.vars.id }}").ckeditor();
+        });
+    </script>
+{% endblock %}
+
 {% block content %}
     <h4>{{ header_title|raw }}</h4>
 

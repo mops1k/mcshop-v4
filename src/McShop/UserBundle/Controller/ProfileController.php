@@ -12,6 +12,10 @@ class ProfileController extends Controller
 {
     public function indexAction()
     {
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+
         $passwordForm = $this->createForm(PasswordType::class, $this->getUser(), [
             'action'    => $this->generateUrl("mc_shop_user_password_change"),
         ]);
@@ -28,6 +32,10 @@ class ProfileController extends Controller
 
     public function passwordAction(Request $request)
     {
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+
         $passwordForm = $this->createForm(PasswordType::class, $this->getUser(), []);
         $passwordForm->handleRequest($request);
 
@@ -57,6 +65,10 @@ class ProfileController extends Controller
      */
     public function skinAsAvatarAction($choice)
     {
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+
         $user = $this->getUser();
 
         switch ($choice) {
@@ -76,6 +88,10 @@ class ProfileController extends Controller
 
     public function uploadFileAction(Request $request)
     {
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+
         $files = $request->files->all();
 
         foreach ($files as $name => $file) {
@@ -147,6 +163,10 @@ class ProfileController extends Controller
      */
     public function unlinkAction($type)
     {
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+
         $filename = $this->getUser()->getUUID() . '.png';
 
         if ($type === 'skin') {

@@ -19,6 +19,10 @@ class CommentaryCrudController extends BaseController
      */
     public function editAction(Commentary $commentary, Request $request)
     {
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+
         $isOwner = $commentary->getUser() === $this->getUser();
         if (!$this->isGranted('ROLE_COMMENTARY_EDIT') && !$isOwner) {
             throw $this->createAccessDeniedException();

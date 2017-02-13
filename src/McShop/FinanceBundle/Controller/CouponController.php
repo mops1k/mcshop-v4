@@ -79,6 +79,10 @@ class CouponController extends BaseController
      */
     public function activateAction(Request $request)
     {
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+
         $form = $this->createForm(CouponCodeType::class);
         $form->handleRequest($request);
 
