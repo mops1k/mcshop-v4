@@ -18,3 +18,7 @@ mc_shop_servers:
 mc_shop_finance_coupon:
     resource: "@McShopFinanceBundle/Resources/config/routing_coupon.yml"
     prefix:   /coupon
+
+mc_shop_shopping_cart:
+    resource: "@McShopShoppingCartBundle/Resources/config/routing.yml"
+    prefix:   /shop

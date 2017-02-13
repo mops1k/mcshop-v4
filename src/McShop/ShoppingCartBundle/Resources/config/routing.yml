@@ -1,0 +1,3 @@
+mc_shop_shopping_cart_homepage:
+    path:     /
+    defaults: { _controller: McShopShoppingCartBundle:Default:index }
