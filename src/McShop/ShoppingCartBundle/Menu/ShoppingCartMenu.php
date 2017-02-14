@@ -19,7 +19,7 @@ class ShoppingCartMenu extends AbstractMenu
 
         $builder->addItem(
             'items',
-            'shopping_cart.admin.menu.items',
+            'shopping_cart.item.menu',
             '#'
         );
 

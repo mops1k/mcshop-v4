@@ -193,6 +193,10 @@ finance:
 filter.reset:                       Обнулить фильтр
 
 shopping_cart:
+    menu:
+        managment_title:            Управление магазином
+    item:
+        menu:                       Товары
     category:
         title:                      Категории
         edit_title:                 Редактирование категории

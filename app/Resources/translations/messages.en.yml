@@ -193,6 +193,10 @@ finance:
 filter.reset:                       Reset filter
 
 shopping_cart:
+    menu:
+        managment_title:            Shop managment
+    item:
+        menu:                       Items
     category:
         title:                      Categories
         edit_title:                 Category edit
