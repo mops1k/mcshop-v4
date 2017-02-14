@@ -1,3 +1,7 @@
 mc_shop_shopping_cart_index:
     path:     /
     defaults: { _controller: McShopShoppingCartBundle:Default:index }
+
+mc_shop_shopping_cart_category:
+    resource: 'routing/category.yml'
+    prefix:   /category

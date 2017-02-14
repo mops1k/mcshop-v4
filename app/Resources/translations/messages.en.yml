@@ -191,3 +191,19 @@ finance:
             activated_by:           Activated by
             active:                 Is active?
 filter.reset:                       Reset filter
+
+shopping_cart:
+    category:
+        title:                      Categories
+        edit_title:                 Category edit
+        new_title:                  Category create
+        new_success:                Category was created
+        edit_success:               Category was edited
+        delete_success:             Category and all subcategories was deleted
+        menu:                       Categories
+        new:                        Create new category of items
+        title:                      Title
+        parent:                     Parent category
+        items_count:                Items in category
+        empty:                      No any categories was found
+        save:                       Save

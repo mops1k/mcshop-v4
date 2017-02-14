@@ -9,18 +9,19 @@ class ShoppingCartMenu extends AbstractMenu
     {
         $builder = $this->getBuilder();
 
-        $builder
-            ->addItem(
+        if ($this->isGranted('ROLE_CATEGORY_LIST')) {
+            $builder->addItem(
                 'category',
-                'shopping_cart.admin.menu.category',
-                '#'
-            )
-            ->addItem(
-                'items',
-                'shopping_cart.admin.menu.items',
-                '#'
-            )
-        ;
+                'shopping_cart.category.menu',
+                $this->generateUrlByRouteName('mc_shop_shopping_cart_category_list')
+            );
+        }
+
+        $builder->addItem(
+            'items',
+            'shopping_cart.admin.menu.items',
+            '#'
+        );
 
         return $builder->getMenu();
     }

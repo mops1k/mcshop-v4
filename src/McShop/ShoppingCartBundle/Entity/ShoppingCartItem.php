@@ -78,6 +78,14 @@ class ShoppingCartItem
     private $image;
 
     /**
+     * @var ShoppingCartCategory
+     *
+     * @ORM\ManyToOne(targetEntity="McShop\ShoppingCartBundle\Entity\ShoppingCartCategory", inversedBy="items")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $category;
+
+    /**
      * Get id
      *
      * @return integer
@@ -277,5 +285,29 @@ class ShoppingCartItem
     public function getServer()
     {
         return $this->server;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \McShop\ShoppingCartBundle\Entity\ShoppingCartCategory $category
+     *
+     * @return ShoppingCartItem
+     */
+    public function setCategory(\McShop\ShoppingCartBundle\Entity\ShoppingCartCategory $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \McShop\ShoppingCartBundle\Entity\ShoppingCartCategory
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

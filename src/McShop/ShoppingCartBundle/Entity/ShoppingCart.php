@@ -218,4 +218,3 @@ class ShoppingCart
         return $this->server;
     }
 }
-

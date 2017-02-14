@@ -10,7 +10,7 @@ use Gedmo\Tree\Traits\NestedSetEntity;
  * ShoppingCartCategory
  *
  * @Gedmo\Tree(type="nested")
- * @ORM\Table(name="shopping_cart_category")
+ * @ORM\Table(name="shopcart_category")
  * @ORM\Entity(repositoryClass="McShop\ShoppingCartBundle\Repository\ShoppingCartCategoryRepository")
  */
 class ShoppingCartCategory
@@ -38,9 +38,15 @@ class ShoppingCartCategory
 
     /**
      * @ORM\OneToMany(targetEntity="ShoppingCartCategory", mappedBy="parent")
-     * @ORM\OrderBy({"lft" = "ASC"})
+     * @ORM\OrderBy({"left" = "ASC"})
      */
     private $children;
+
+    /**
+     * @var ShoppingCartItem[]
+     * @ORM\OneToMany(targetEntity="McShop\ShoppingCartBundle\Entity\ShoppingCartItem", mappedBy="category")
+     */
+    private $items;
 
     /**
      * @return mixed
@@ -89,5 +95,80 @@ class ShoppingCartCategory
     {
         return $this->parent;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->children = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->items = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add child
+     *
+     * @param \McShop\ShoppingCartBundle\Entity\ShoppingCartCategory $child
+     *
+     * @return ShoppingCartCategory
+     */
+    public function addChild(\McShop\ShoppingCartBundle\Entity\ShoppingCartCategory $child)
+    {
+        $this->children[] = $child;
+
+        return $this;
+    }
+
+    /**
+     * Remove child
+     *
+     * @param \McShop\ShoppingCartBundle\Entity\ShoppingCartCategory $child
+     */
+    public function removeChild(\McShop\ShoppingCartBundle\Entity\ShoppingCartCategory $child)
+    {
+        $this->children->removeElement($child);
+    }
+
+    /**
+     * Get children
+     *
+     * @return ShoppingCartCategory[]
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * Add item
+     *
+     * @param \McShop\ShoppingCartBundle\Entity\ShoppingCartItem $item
+     *
+     * @return ShoppingCartCategory
+     */
+    public function addItem(\McShop\ShoppingCartBundle\Entity\ShoppingCartItem $item)
+    {
+        $this->items[] = $item;
+
+        return $this;
+    }
+
+    /**
+     * Remove item
+     *
+     * @param \McShop\ShoppingCartBundle\Entity\ShoppingCartItem $item
+     */
+    public function removeItem(\McShop\ShoppingCartBundle\Entity\ShoppingCartItem $item)
+    {
+        $this->items->removeElement($item);
+    }
+
+    /**
+     * Get items
+     *
+     * @return ShoppingCartItem[]
+     */
+    public function getItems()
+    {
+        return $this->items;
+    }
+}

@@ -2,6 +2,8 @@
 namespace McShop\ShoppingCartBundle\Repository;
 
 use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
 
 /**
  * ShoppingCartCategoryRepository
@@ -11,4 +13,20 @@ use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
  */
 class ShoppingCartCategoryRepository extends NestedTreeRepository
 {
+    public function findAllWithPagination()
+    {
+        $qb = $this->createQueryBuilder('c');
+
+        $qb
+            ->select('c, p, ch, i')
+            ->leftJoin('c.parent', 'p')
+            ->leftJoin('c.children', 'ch')
+            ->leftJoin('c.items', 'i')
+            ->orderBy('c.id', 'ASC')
+        ;
+
+        $adapter = new DoctrineORMAdapter($qb);
+
+        return new Pagerfanta($adapter);
+    }
 }

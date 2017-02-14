@@ -82,3 +82,28 @@ ROLE_COUPON_ADMIN:
     name:   Генерация и просмотр купонов
     role:   ROLE_COUPON_ADMIN
     parent: ROLE_SUPER_ADMIN
+
+ROLE_CATEGORY_ADMIN:
+    name:   Управление категорями товаров
+    role:   ROLE_CATEGORY_ADMIN
+    parent: ROLE_SUPER_ADMIN
+
+ROLE_CATEGORY_LIST:
+    name:   Список категорий
+    role:   ROLE_CATEGORY_LIST
+    parent: ROLE_CATEGORY_ADMIN
+
+ROLE_CATEGORY_NEW:
+    name:   Создание категорий
+    role:   ROLE_CATEGORY_NEW
+    parent: ROLE_CATEGORY_ADMIN
+
+ROLE_CATEGORY_EDIT:
+    name:   Редактирование категорий
+    role:   ROLE_CATEGORY_EDIT
+    parent: ROLE_CATEGORY_ADMIN
+
+ROLE_CATEGORY_REMOVE:
+    name:   Удаление категорий
+    role:   ROLE_CATEGORY_REMOVE
+    parent: ROLE_CATEGORY_ADMIN

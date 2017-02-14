@@ -19,7 +19,7 @@ class ShoppingCartMenuBuilder extends AbstractBuilder
         if ($url !== 'empty') {
             $this->menu[ $name ]['url'] = $url;
         }
-        $this->menu[ $name ]['title'] = $title;
+        $this->menu[ $name ]['title'] = $this->trans($title);
 
         return $this;
     }

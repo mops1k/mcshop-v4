@@ -1,5 +1,4 @@
 <?php
-
 namespace McShop\ShoppingCartBundle\Form;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -14,10 +13,10 @@ class ShoppingCartCategoryType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label'         => 'shopping_cart.admin.form.category.title',
+                'label'         => 'shopping_cart.category.title',
             ])
             ->add('parent', EntityType::class, [
-                'label'         => 'shopping_cart.admin.form.category.title',
+                'label'         => 'shopping_cart.category.parent',
                 'required'      => false,
                 'class'         => 'McShop\ShoppingCartBundle\Entity\ShoppingCartCategory',
                 'choice_label'  => 'title',
