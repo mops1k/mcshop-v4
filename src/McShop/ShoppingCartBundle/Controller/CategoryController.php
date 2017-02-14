@@ -39,6 +39,10 @@ class CategoryController extends BaseController
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function newAction(Request $request)
     {
         if (!$this->isGranted('ROLE_CATEGORY_NEW')) {
@@ -63,7 +67,11 @@ class CategoryController extends BaseController
         ]);
     }
 
-
+    /**
+     * @param Category $category
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function editAction(Category $category, Request $request)
     {
         if (!$this->isGranted('ROLE_CATEGORY_EDIT')) {
@@ -88,6 +96,10 @@ class CategoryController extends BaseController
         ]);
     }
 
+    /**
+     * @param Category $category
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function removeAction(Category $category)
     {
         if (!$this->isGranted('ROLE_CATEGORY_REMOVE')) {
