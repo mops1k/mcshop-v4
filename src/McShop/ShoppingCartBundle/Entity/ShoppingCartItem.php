@@ -86,6 +86,13 @@ class ShoppingCartItem
     private $category;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="extra", type="string", length=255, nullable=true)
+     */
+    private $extra;
+
+    /**
      * Get id
      *
      * @return integer
@@ -309,5 +316,29 @@ class ShoppingCartItem
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set extra
+     *
+     * @param string $extra
+     *
+     * @return ShoppingCartItem
+     */
+    public function setExtra($extra)
+    {
+        $this->extra = $extra;
+
+        return $this;
+    }
+
+    /**
+     * Get extra
+     *
+     * @return string
+     */
+    public function getExtra()
+    {
+        return $this->extra;
     }
 }

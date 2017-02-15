@@ -25,6 +25,7 @@ class Version20170214192932ShoppingCart extends AbstractMigration
         $this->addSql('ALTER TABLE shopcart_item ADD CONSTRAINT FK_5869AD11844E6B7 FOREIGN KEY (server_id) REFERENCES server (id)');
         $this->addSql('ALTER TABLE shopcart_item ADD CONSTRAINT FK_5869AD112469DE2 FOREIGN KEY (category_id) REFERENCES shopcart_category (id)');
         $this->addSql('ALTER TABLE post CHANGE createdAt createdAt DATETIME NOT NULL');
+        $this->addSql('ALTER TABLE shopcart_item ADD extra VARCHAR(255) DEFAULT NULL');
     }
 
     /**
