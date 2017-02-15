@@ -34,4 +34,28 @@ class BaseController extends Controller
 
         return null;
     }
+
+    /**
+     * @param $id
+     * @param array $options
+     * @param string $domain
+     * @return string
+     */
+    public function trans($id, array $options = [], $domain = 'messages')
+    {
+        return $this->get('translator')->trans($id, $options, $domain);
+    }
+
+    /**
+     * @param $id
+     * @param $number
+     * @param array $options
+     * @param $domain
+     * @param string $domain
+     * @return string
+     */
+    public function transChoice($id, $number, array $options = [], $domain = 'messages')
+    {
+        return $this->get('translator')->transChoice($id, $number, $options, $domain);
+    }
 }
