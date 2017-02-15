@@ -11,6 +11,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class ShoppingCartItem
 {
+    /** Item types */
+    const TYPE_ITEM = "item";
+    const TYPE_MONEY = "money";
+    const TYPE_RGOWN = "rgown";
+    const TYPE_RGMEM = "rgmem";
+    const TYPE_PERMGROUP = "permgroup";
+    const TYPE_PERM = "perm";
+
     /**
      * @var int
      *
@@ -340,5 +348,22 @@ class ShoppingCartItem
     public function getExtra()
     {
         return $this->extra;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getTypes()
+    {
+        $prefix = 'shopping_cart.item.type.';
+
+        return [
+            self::TYPE_ITEM         => $prefix . self::TYPE_ITEM,
+            self::TYPE_MONEY        => $prefix . self::TYPE_MONEY,
+            self::TYPE_RGOWN        => $prefix . self::TYPE_RGOWN,
+            self::TYPE_RGMEM        => $prefix . self::TYPE_RGMEM,
+            self::TYPE_PERMGROUP    => $prefix . self::TYPE_PERMGROUP,
+            self::TYPE_PERM         => $prefix . self::TYPE_PERM,
+        ];
     }
 }

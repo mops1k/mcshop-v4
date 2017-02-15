@@ -5,3 +5,7 @@ mc_shop_shopping_cart_index:
 mc_shop_shopping_cart_category:
     resource: 'routing/category.yml'
     prefix:   /category
+
+mc_shop_shopping_cart_item:
+    resource: 'routing/item.yml'
+    prefix:   /item
