@@ -25,7 +25,7 @@ class CategoryController extends BaseController
             throw $this->createAccessDeniedException();
         }
 
-        $this->get('app.title')->setValue('shopping_cart.category.title');
+        $this->get('app.title')->setValue('shopping_cart.category.list_title');
 
         $categories = $this->getDoctrine()->getManagerForClass('McShopShoppingCartBundle:ShoppingCartCategory')
             ->getRepository('McShopShoppingCartBundle:ShoppingCartCategory')

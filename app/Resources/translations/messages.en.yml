@@ -198,7 +198,8 @@ shopping_cart:
     item:
         menu:                       Items
     category:
-        title:                      Categories
+        list_title:                 Category list
+        title:                      Title
         edit_title:                 Category edit
         new_title:                  Category create
         new_success:                Category was created
@@ -206,7 +207,6 @@ shopping_cart:
         delete_success:             Category and all subcategories was deleted
         menu:                       Categories
         new:                        Create new category of items
-        title:                      Title
         parent:                     Parent category
         items_count:                Items in category
         empty:                      No any categories was found
