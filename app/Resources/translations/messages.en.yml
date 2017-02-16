@@ -196,6 +196,23 @@ shopping_cart:
         managment_title:            Shop managment
     item:
         menu:                       Items
+        type:
+            item:                   Game item (block, weapon, etc.)
+            money:                  Vault game money
+            rgown:                  Region ownership
+            rgmem:                  Region membership
+            permgroup:              Permission group
+            perm:                   Single permission
+        server:                     Server
+        name:                       Item name
+        category:                   Category
+        image:                      Item image
+        item:                       Item in-game id
+        extra:                      Extra data for item (NBT tags)
+        item_type:                  Type
+        amount:                     Amount
+        price:                      Price
+        sale:                       Sale
     category:
         list_title:                 Category list
         title:                      Title

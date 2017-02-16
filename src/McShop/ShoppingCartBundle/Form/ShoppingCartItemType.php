@@ -17,10 +17,19 @@ class ShoppingCartItemType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('amount', NumberType::class)
-            ->add('price', NumberType::class)
+            ->add('name', TextType::class, [
+                'label'         => 'shopping_cart.item.name',
+            ])
+            ->add('amount', NumberType::class, [
+                'label'         => 'shopping_cart.item.amount',
+                'data'          => 1,
+            ])
+            ->add('price', NumberType::class, [
+                'label'         => 'shopping_cart.item.price',
+                'data'          => 0,
+            ])
             ->add('sale', NumberType::class, [
+                'label'         => 'shopping_cart.item.sale',
                 'data'          => 0,
                 'attr'          => [
                     'max'   => 100,
@@ -28,21 +37,38 @@ class ShoppingCartItemType extends AbstractType
                 ]
             ])
             ->add('category', EntityType::class, [
+                'label'         => 'shopping_cart.item.category',
                 'class'         => 'McShop\ShoppingCartBundle\Entity\ShoppingCartCategory',
                 'choice_label'  => 'title',
                 'required'      => false,
             ])
-            ->add('image', FileType::class)
-            ->add('item', TextType::class)
+            ->add('image', FileType::class, [
+                'label'         => 'shopping_cart.item.image',
+                'attr'          => [
+                     'class'    => 'filestyle',
+                ],
+                'mapped'        => false,
+                'required'      => false,
+            ])
+            ->add('item', TextType::class, [
+                'label'         => 'shopping_cart.item.item',
+            ])
             ->add('type', ChoiceType::class, [
+                'label'         => 'shopping_cart.item.item_type',
                 'choices'   => ShoppingCartItem::getTypes(),
             ])
             ->add('server', EntityType::class, [
+                'label'         => 'shopping_cart.item.server',
                 'class'         => 'McShop\ServersBundle\Entity\Server',
-                'choice_label'  => 'name',
+                'choice_label'  => function ($server) {
+                    return $server->getName() . ' (' . $server->getHost() . ':' . $server->getPort() . ')';
+                },
                 'required'      => true,
             ])
-            ->add('extra', TextType::class)
+            ->add('extra', TextType::class, [
+                'label'         => 'shopping_cart.item.extra',
+                'required'      => false,
+            ])
         ;
     }
 
