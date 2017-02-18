@@ -27,7 +27,22 @@
             {{ form_widget(form.category) }}
         </div>
     </div>
-    {{ form_row(form.image) }}
+    {% set entity = form.vars.data %}
+    <div class="form-group">
+        {{ form_label(form.image) }}
+        <div class="row">
+            <div class="col-md-1 text-right">
+                {% if entity is not null and entity.image is not null  %}
+                    <img src="{{ asset(entity.image) }}" class="img-thumbnail" width="38px" height="38px">
+                {% else %}
+                    <img src="{{ asset('assets/img/no-image.png') }}" class="img-thumbnail" width="38px" height="38px">
+                {% endif %}
+            </div>
+            <div class="col-md-11">
+                {{ form_widget(form.image) }}
+            </div>
+        </div>
+    </div>
 
     <div class="row">
         <div class="form-group col-md-4">

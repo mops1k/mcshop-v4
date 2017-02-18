@@ -78,6 +78,7 @@ class UserMenu extends AbstractMenu
                     )
                 ;
             }
+
             if ($this->isGranted('ROLE_RCON_MANAGMENT')) {
                 $builder
                     ->addItem(
@@ -86,6 +87,19 @@ class UserMenu extends AbstractMenu
                         $this->generateUrlByRouteName('mc_shop_servers_rcon_page'),
                         [
                             'icon'  => 'fa fa-terminal'
+                        ]
+                    )
+                ;
+            }
+
+            if ($this->isGranted('ROLE_SHOPPING_CART_MANAGE')) {
+                $builder
+                    ->addItem(
+                        'shopping_cart_manage',
+                        'shopping_cart.menu.managment_title',
+                        $this->generateUrlByRouteName('mc_shop_shopping_cart_manage_index'),
+                        [
+                            'icon'  => 'fa fa-percent'
                         ]
                     )
                 ;

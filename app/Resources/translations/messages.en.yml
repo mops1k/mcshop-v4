@@ -196,6 +196,15 @@ shopping_cart:
         managment_title:            Shop managment
     item:
         menu:                       Items
+        new:                        Add new item
+        new_success:                Item added
+        edit_success:               Item edited
+        remove_success:             Item removed
+        empty:                      Item's not found
+        title:
+            list:                   Item's list
+            edit:                   Edit item
+            new:                    Add item
         type:
             item:                   Game item (block, weapon, etc.)
             money:                  Vault game money

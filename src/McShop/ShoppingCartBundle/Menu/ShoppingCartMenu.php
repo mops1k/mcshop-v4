@@ -17,11 +17,13 @@ class ShoppingCartMenu extends AbstractMenu
             );
         }
 
-        $builder->addItem(
-            'items',
-            'shopping_cart.item.menu',
-            $this->generateUrlByRouteName('mc_shop_shopping_cart_manage_item_list')
-        );
+        if ($this->isGranted('ROLE_ITEM_LIST')) {
+            $builder->addItem(
+                'items',
+                'shopping_cart.item.menu',
+                $this->generateUrlByRouteName('mc_shop_shopping_cart_manage_item_list')
+            );
+        }
 
         return $builder->getMenu();
     }

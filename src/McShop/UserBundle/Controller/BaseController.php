@@ -36,14 +36,19 @@ class BaseController extends Controller
     }
 
     /**
-     * @param $id
-     * @param array $options
-     * @param string $domain
-     * @return string
+     * Translates the given message.
+     *
+     * @param string      $id         The message id (may also be an object that can be cast to string)
+     * @param array       $parameters An array of parameters for the message
+     * @param string|null $domain     The domain for the message or null to use the default
+     *
+     * @return string The translated string
+     *
+     * @throws \InvalidArgumentException If the locale contains invalid characters
      */
-    public function trans($id, array $options = [], $domain = 'messages')
+    public function trans($id, array $parameters = [], $domain = 'messages')
     {
-        return $this->get('translator')->trans($id, $options, $domain);
+        return $this->get('translator')->trans($id, $parameters, $domain);
     }
 
     /**

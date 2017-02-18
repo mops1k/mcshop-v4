@@ -22,15 +22,21 @@ class ShoppingCartItemType extends AbstractType
             ])
             ->add('amount', NumberType::class, [
                 'label'         => 'shopping_cart.item.amount',
-                'data'          => 1,
+                'data'          => $builder->getData() === null ? 1 : $builder->getData()->getAmount(),
+                'attr'          => [
+                    'min'       => 0,
+                ]
             ])
             ->add('price', NumberType::class, [
                 'label'         => 'shopping_cart.item.price',
-                'data'          => 0,
+                'data'          => $builder->getData() === null ? 0 : $builder->getData()->getPrice(),
+                'attr'          => [
+                    'min'       => 0,
+                ]
             ])
             ->add('sale', NumberType::class, [
                 'label'         => 'shopping_cart.item.sale',
-                'data'          => 0,
+                'data'          => $builder->getData() === null ? 0 : $builder->getData()->getSale(),
                 'attr'          => [
                     'max'   => 100,
                     'min'   => 0,

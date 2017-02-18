@@ -1,5 +1,8 @@
 <?php
 namespace McShop\ShoppingCartBundle\Repository;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+use Symfony\Component\Form\Test\FormInterface;
 
 /**
  * StorefrontRepository
@@ -9,4 +12,25 @@ namespace McShop\ShoppingCartBundle\Repository;
  */
 class ShoppingCartItemRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @return Pagerfanta
+     */
+    public function findAllAsPagination(FormInterface $form = null)
+    {
+        $qb = $this->createQueryBuilder('i');
+        $qb
+            ->select('i, c, s')
+            ->leftJoin('i.category', 'c')
+            ->innerJoin('i.server', 's')
+        ;
+
+        if ($form !== null) {
+            //todo: some filter logic
+        }
+
+        $adapter = new DoctrineORMAdapter($qb);
+        $pagination = new Pagerfanta($adapter);
+
+        return $pagination;
+    }
 }
