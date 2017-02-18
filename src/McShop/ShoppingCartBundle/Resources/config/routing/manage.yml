@@ -1,0 +1,11 @@
+mc_shop_shopping_cart_manage_index:
+    path:     /
+    defaults: { _controller: McShopShoppingCartBundle:Default:index }
+
+mc_shop_shopping_cart_manage_category:
+    resource: 'manage/category.yml'
+    prefix:   /category
+
+mc_shop_shopping_cart_manage_item:
+    resource: 'manage/item.yml'
+    prefix:   /item

@@ -12,7 +12,7 @@ class ItemController extends BaseController
 {
     public function listAction()
     {
-        return $this->render('', []);
+        return $this->render(':Default/ShoppingCart/Item:list.html.twig', []);
     }
 
     public function newAction(Request $request)
@@ -42,7 +42,7 @@ class ItemController extends BaseController
             if ($this->processForm($form, $callback)) {
                 $this->addFlash('success', $this->trans('shopping_cart.item.new_success'));
 
-                return $this->redirectToRoute('mc_shop_shopping_cart_item_list');
+                return $this->redirectToRoute('mc_shop_shopping_cart_manage_item_list');
             }
         }
 

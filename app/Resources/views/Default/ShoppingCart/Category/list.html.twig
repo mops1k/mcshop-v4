@@ -4,7 +4,7 @@
     {% if is_granted('ROLE_CATEGORY_NEW') %}
     <div class="row">
         <div class="pull-right">
-            <a href="{{ path('mc_shop_shopping_cart_category_new') }}" class="btn btn-success">{{ 'shopping_cart.category.new'|trans }}</a>
+            <a href="{{ path('mc_shop_shopping_cart_manage_category_new') }}" class="btn btn-success">{{ 'shopping_cart.category.new'|trans }}</a>
         </div>
     </div>
     <hr>
@@ -33,9 +33,9 @@
                 <td>{{ category.items|length }}</td>
                 <td class="text-right">
                     <div class="btn-group btn-group-sm">
-                        {% if is_granted('ROLE_CATEGORY_EDIT') %}<a href="{{ path('mc_shop_shopping_cart_category_edit', {'id': category.id}) }}"
+                        {% if is_granted('ROLE_CATEGORY_EDIT') %}<a href="{{ path('mc_shop_shopping_cart_manage_category_edit', {'id': category.id}) }}"
                            class="btn btn-primary"><i class="fa fa-pencil"></i></a>{% endif %}
-                        {% if is_granted('ROLE_CATEGORY_REMOVE') %}<a href="{{ path('mc_shop_shopping_cart_category_remove', {'id': category.id}) }}"
+                        {% if is_granted('ROLE_CATEGORY_REMOVE') %}<a href="{{ path('mc_shop_shopping_cart_manage_category_remove', {'id': category.id}) }}"
                            class="btn btn-danger"><i class="fa fa-trash"></i></a>{% endif %}
                     </div>
                 </td>

@@ -1,19 +1,19 @@
-mc_shop_shopping_cart_category_list:
+mc_shop_shopping_cart_manage_category_list:
     path:   /list
     defaults:
         _controller:    McShopShoppingCartBundle:Category:list
 
-mc_shop_shopping_cart_category_new:
+mc_shop_shopping_cart_manage_category_new:
     path:   /new
     defaults:
         _controller:    McShopShoppingCartBundle:Category:new
 
-mc_shop_shopping_cart_category_edit:
+mc_shop_shopping_cart_manage_category_edit:
     path:   /{id}/edit
     defaults:
         _controller:    McShopShoppingCartBundle:Category:edit
 
-mc_shop_shopping_cart_category_remove:
+mc_shop_shopping_cart_manage_category_remove:
     path:   /{id}/remove
     defaults:
         _controller:    McShopShoppingCartBundle:Category:remove

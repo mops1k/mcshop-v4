@@ -58,7 +58,7 @@ class CategoryController extends BaseController
             if ($this->processForm($form)) {
                 $this->addFlash('info', $this->get('translator')->trans('shopping_cart.category.new_success'));
 
-                return $this->redirectToRoute('mc_shop_shopping_cart_category_list');
+                return $this->redirectToRoute('mc_shop_shopping_cart_manage_category_list');
             }
         }
 
@@ -87,7 +87,7 @@ class CategoryController extends BaseController
             if ($this->processForm($form)) {
                 $this->addFlash('info', $this->get('translator')->trans('shopping_cart.category.edit_success'));
 
-                return $this->redirectToRoute('mc_shop_shopping_cart_category_list');
+                return $this->redirectToRoute('mc_shop_shopping_cart_manage_category_list');
             }
         }
 
@@ -116,7 +116,7 @@ class CategoryController extends BaseController
 
         $this->addFlash('success', $this->get('translator')->trans('shopping_cart.category.delete_success'));
 
-        return $this->redirectToRoute('mc_shop_shopping_cart_category_list');
+        return $this->redirectToRoute('mc_shop_shopping_cart_manage_category_list');
     }
 
     /**

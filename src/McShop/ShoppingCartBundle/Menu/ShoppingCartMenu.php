@@ -13,14 +13,14 @@ class ShoppingCartMenu extends AbstractMenu
             $builder->addItem(
                 'category',
                 'shopping_cart.category.menu',
-                $this->generateUrlByRouteName('mc_shop_shopping_cart_category_list')
+                $this->generateUrlByRouteName('mc_shop_shopping_cart_manage_category_list')
             );
         }
 
         $builder->addItem(
             'items',
             'shopping_cart.item.menu',
-            '#'
+            $this->generateUrlByRouteName('mc_shop_shopping_cart_manage_item_list')
         );
 
         return $builder->getMenu();

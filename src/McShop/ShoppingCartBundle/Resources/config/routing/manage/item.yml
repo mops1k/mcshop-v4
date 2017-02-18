@@ -1,7 +1,7 @@
-mc_shop_shopping_cart_item_list:
+mc_shop_shopping_cart_manage_item_list:
     path:   /
     defaults: { _controller: McShopShoppingCartBundle:Item:list }
 
-mc_shop_shopping_cart_item_new:
+mc_shop_shopping_cart_manage_item_new:
     path:   /new
     defaults: { _controller: McShopShoppingCartBundle:Item:new }
