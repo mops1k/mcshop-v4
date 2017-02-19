@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Eschmar\CssInlinerBundle\EschmarCssInlinerBundle(),
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             new Evence\Bundle\SoftDeleteableExtensionBundle\EvenceSoftDeleteableExtensionBundle(),
+            new SimpleThings\EntityAudit\SimpleThingsEntityAuditBundle(),
             // McShop v4 System bundles
             new McShop\NewsBundle\McShopNewsBundle(),
             new McShop\UserBundle\McShopUserBundle(),

@@ -236,3 +236,7 @@ shopping_cart:
         items_count:                Items in category
         empty:                      No any categories was found
         save:                       Save
+    storefront:
+        home:                       Shop home
+        empty:                      Item's in category and it's subcategories not found
+        categories_title:           Categories

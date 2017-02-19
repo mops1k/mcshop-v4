@@ -1,0 +1,52 @@
+{% extends ':Default:base.html.twig' %}
+
+{% block left_menu %}
+    {{ parent() }}
+    {% if categories|length > 0 %}
+    <div class="row col-md-12">
+        <div class="panel panel-default panel-menu">
+            <div class="panel-heading" data-toggle="collapse" data-target="#menu-3"
+                 aria-expanded="false" aria-controls="menu-3">{{ 'shopping_cart.storefront.categories_title'|trans }}</div>
+            <div class="panel-body collapse in" id="menu-3">
+                <ul class="nav nav-pills nav-stacked">
+                {% for category in categories %}
+                    <li><a href="{{ path('mc_shop_shopping_cart_storefront_category', {'id': category.id}) }}">{{ category.title }}</a></li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('mc_shop_shopping_cart_storefront') }}">{{ 'shopping_cart.storefront.home'|trans }}</a></li>
+        {% for category in breadcrumbs %}
+            {% if loop.last %}
+                <li class="active">{{ category.title }}</li>
+            {% else %}
+                <li><a href="{{ path('mc_shop_shopping_cart_storefront_category', {id: category.id}) }}">{{ category.title }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ol>
+
+    {% if items|length == 0 %}
+        <div class="alert alert-info">{{ 'shopping_cart.storefront.empty'|trans }}</div>
+    {% else %}
+        <div class="row">
+            {% for item in items %}
+            <div class="col-md-3 well">
+                <center>
+                    <h4>{{ item.name }}</h4>
+                    <img src="{{ asset(item.image|default('assets/img/no-image.png')) }}" width="150px" height="150px">
+                    <hr>
+                    <b>{{ 'shopping_cart.storefront.server'|trans }}: </b>{{ item.server.name }}
+                </center>
+            </div>
+            {% endfor %}
+        </div>
+        {{ items.hasPreviousPage or items.hasNextPage ? pagerfanta(items, 'twitter_bootstrap3', { 'omitFirstPage': true}) }}
+    {% endif %}
+{% endblock %}

@@ -1,3 +1,19 @@
 mc_shop_shopping_cart_manage:
     resource: 'routing/manage.yml'
     prefix:   /manage
+
+mc_shop_shopping_cart_storefront:
+    path:     /
+    defaults:
+        _controller: McShopShoppingCartBundle:Shop:storefront
+        category:    ~
+
+mc_shop_shopping_cart_storefront_category:
+    path:     /{id}
+    defaults:
+        _controller: McShopShoppingCartBundle:Shop:storefront
+
+mc_shop_shopping_cart_basket:
+    path:     /basket
+    defaults:
+        _controller: McShopShoppingCartBundle:Shop:basket
