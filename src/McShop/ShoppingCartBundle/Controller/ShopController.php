@@ -26,6 +26,8 @@ class ShopController extends BaseController
             throw $this->createAccessDeniedException();
         }
 
+        $this->get('app.title')->setValue('shopping_cart.storefront.home');
+
         $repository = $this->getDoctrine()->getManagerForClass('McShopShoppingCartBundle:ShoppingCartCategory')
             ->getRepository('McShopShoppingCartBundle:ShoppingCartCategory');
 
@@ -111,6 +113,8 @@ class ShopController extends BaseController
         if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
             throw $this->createAccessDeniedException();
         }
+
+        $this->get('app.title')->setValue('shopping_cart.basket.menu');
 
         $manager = $this->getDoctrine()->getManagerForClass('McShopShoppingCartBundle:Basket');
         $repository = $manager->getRepository('McShopShoppingCartBundle:Basket');
