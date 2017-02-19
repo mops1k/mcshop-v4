@@ -125,6 +125,7 @@ Date.prototype.format = function (mask, utc) {
             if (!isNaN($(this).attr('step'))) {
                 step = parseInt($(this).attr('step'));
             }
+
             if (typeof options !== typeof undefined && typeof options.readonly !== typeof undefined) {
                 $(this).attr('readonly', 'readonly');
             }
@@ -150,6 +151,10 @@ Date.prototype.format = function (mask, utc) {
             var $plus = rerendered.parent().find('#plus');
 
             $minus.on('click', function () {
+                if (isNaN(rerendered.val()) || rerendered.val() == "") {
+                    rerendered.val(0);
+                }
+
                 var value = parseInt(rerendered.val())-step;
 
                 if (typeof min !== typeof undefined) {
@@ -163,7 +168,12 @@ Date.prototype.format = function (mask, utc) {
             });
 
             $plus.on('click', function () {
+                if (isNaN(rerendered.val()) || rerendered.val() == "") {
+                    rerendered.val(0);
+                }
+
                 var value = parseInt(rerendered.val())+step;
+
                 if (typeof max !== typeof undefined) {
                     if (value <= parseInt(max)) {
                         rerendered.val(value);
