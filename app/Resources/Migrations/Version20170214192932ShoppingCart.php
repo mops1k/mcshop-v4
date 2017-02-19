@@ -26,6 +26,9 @@ class Version20170214192932ShoppingCart extends AbstractMigration
         $this->addSql('ALTER TABLE shopcart_item ADD CONSTRAINT FK_5869AD112469DE2 FOREIGN KEY (category_id) REFERENCES shopcart_category (id)');
         $this->addSql('ALTER TABLE post CHANGE createdAt createdAt DATETIME NOT NULL');
         $this->addSql('ALTER TABLE shopcart_item ADD extra VARCHAR(255) DEFAULT NULL');
+        $this->addSql('CREATE TABLE basket (id INT AUTO_INCREMENT NOT NULL, item_id INT DEFAULT NULL, user_id INT DEFAULT NULL, amount INT NOT NULL, INDEX IDX_2246507B126F525E (item_id), INDEX IDX_2246507BA76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE basket ADD CONSTRAINT FK_2246507B126F525E FOREIGN KEY (item_id) REFERENCES shopcart_item (id)');
+        $this->addSql('ALTER TABLE basket ADD CONSTRAINT FK_2246507BA76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
     }
 
     /**
@@ -41,6 +44,7 @@ class Version20170214192932ShoppingCart extends AbstractMigration
         $this->addSql('DROP TABLE shopcart');
         $this->addSql('DROP TABLE shopcart_category');
         $this->addSql('DROP TABLE shopcart_item');
+        $this->addSql('DROP TABLE basket');
         $this->addSql('ALTER TABLE post CHANGE createdAt createdAt DATETIME NOT NULL');
     }
 }
