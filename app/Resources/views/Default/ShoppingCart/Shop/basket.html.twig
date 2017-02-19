@@ -94,9 +94,9 @@
             </td>
             <td>
                 {% if app.user.purse.realCash|default(0) >= total %}
-                <button type="button" class="btn btn-success">
+                <a href="{{ path('mc_shop_shopping_cart_basket_buy') }}" class="btn btn-success">
                     {{ 'shopping_cart.basket.buy'|trans }} <span class="glyphicon glyphicon-play"></span>
-                </button>
+                </a>
                 {% else %}
                     <a href="{{ path('mc_shop_finance_sendForm', {'amount': total - app.user.purse.realCash|default(0)}) }}" class="btn btn-primary">
                         {{ 'shopping_cart.basket.more_money'|trans({'@amount@': total-app.user.purse.realCash|default(0)}) }} <span class="glyphicon glyphicon-play"></span>
