@@ -12,6 +12,10 @@ class ShopController extends BaseController
 {
     public function storefrontAction(ShoppingCartCategory $category = null, Request $request)
     {
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+
         $repository = $this->getDoctrine()->getManagerForClass('McShopShoppingCartBundle:ShoppingCartCategory')
             ->getRepository('McShopShoppingCartBundle:ShoppingCartCategory');
 
@@ -59,6 +63,10 @@ class ShopController extends BaseController
      */
     public function addToBasketAction(ShoppingCartItem $item)
     {
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+
         $manager = $this->getDoctrine()->getManagerForClass('McShopShoppingCartBundle:Basket');
         $repository = $manager->getRepository('McShopShoppingCartBundle:Basket');
 
@@ -87,6 +95,10 @@ class ShopController extends BaseController
 
     public function basketAction()
     {
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+
         $manager = $this->getDoctrine()->getManagerForClass('McShopShoppingCartBundle:Basket');
         $repository = $manager->getRepository('McShopShoppingCartBundle:Basket');
 
@@ -99,6 +111,10 @@ class ShopController extends BaseController
 
     public function basketRemoveAction(Basket $basket)
     {
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+
         $manager = $this->getDoctrine()->getManagerForClass('McShopShoppingCartBundle:Basket');
         $manager->remove($basket);
         $manager->flush();
@@ -110,6 +126,10 @@ class ShopController extends BaseController
 
     public function changeBasketAmountAction(Basket $basket, Request $request)
     {
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+
         $amount = $request->get('amount');
         if ($amount < 0) {
             $this->addFlash('error', $this->trans('shopping_cart.basket.wrong_amount'));

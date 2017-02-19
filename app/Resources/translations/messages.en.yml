@@ -237,6 +237,7 @@ shopping_cart:
         empty:                      No any categories was found
         save:                       Save
     storefront:
+        menu:                       Shop
         home:                       Shop home
         empty:                      Item's in category and it's subcategories not found
         categories_title:           Categories
@@ -257,6 +258,7 @@ shopping_cart:
             is_sale:                Is item in sale?
             type:                   Type
     basket:
+        menu:                       Shopping cart
         product:                    Item
         amount:                     Amount
         price:                      Price

@@ -110,6 +110,16 @@ class UserMenu extends AbstractMenu
                     'icon'  => 'fa fa-sign-out'
                 ])
             ;
+            $builder
+                ->addRootItem(
+                    'cart',
+                    'shopping_cart.basket.menu',
+                    $this->generateUrlByRouteName('mc_shop_shopping_cart_basket'),
+                    [
+                        'icon'   => 'fa fa-shopping-basket',
+                    ]
+                )
+            ;
 
             return $builder->getMenu();
         }

@@ -237,6 +237,7 @@ shopping_cart:
         empty:                      Категорий не найдено
         save:                       Сохранить
     storefront:
+        menu:                       Магазин
         home:                       Магазин
         empty:                      В данной категории и ее подкатегориях товаров нет!
         categories_title:           Категории
@@ -257,6 +258,7 @@ shopping_cart:
             is_sale:                Есть скидка
             type:                   Тип
     basket:
+        menu:                       Корзина
         product:                    Товар
         amount:                     Количество
         price:                      Цена

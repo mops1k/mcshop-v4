@@ -37,6 +37,16 @@
             </div>
             <div class="navbar-offcanvas navbar-offcanvas-touch" id="js-bootstrap-offcanvas">
                 {% block top_menu %}
+                {% if is_granted('ROLE_USER') %}
+                <ul class="nav navbar-nav">
+                    {%- set class = path(app.request.get('_route'), app.request.get('_route_params')) == path('mc_shop_shopping_cart_storefront') ? 'active' %}
+                    {# Нет выпадающего меню #}
+                    <li{{ ' class='~class }}>
+                        <a href="{{ path('mc_shop_shopping_cart_storefront') }}">
+                            <i class="fa fa-university"></i> {{ 'shopping_cart.storefront.menu'|trans }}</a>
+                    </li>
+                </ul>
+                {% endif %}
                 {{ renderMenu('page.page', ':Default/StaticPage:menu.html.twig') }}
                 {{ renderMenu('user.user', ':Default/User:menu.html.twig') }}
                 {% endblock %}
