@@ -272,3 +272,4 @@ shopping_cart:
         changed_amount:             Количество измененно
         more_money:                 "Пополнить счет на @amount@ руб."
         no_money:                   Недостаточно денег для совершения покупки
+        buy_success:                Покупка успешно совершена!

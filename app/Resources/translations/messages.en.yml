@@ -272,3 +272,4 @@ shopping_cart:
         changed_amount:             Amount was changed
         more_money:                 "Add account on the @ amount @ rub."
         no_money:                   No money for continue
+        buy_success:                Item's successfully buyed!
