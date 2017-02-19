@@ -246,3 +246,4 @@ shopping_cart:
         price:                      Price
         sale:                       Sale
         to_cart:                    add to cart
+        filter_title:               Filter (click to show/hide)

@@ -246,3 +246,4 @@ shopping_cart:
         price:                      Цена
         sale:                       Скидка
         to_cart:                    в корзину
+        filter_title:               Фильтр (кликните чтобы показать/скрыть)

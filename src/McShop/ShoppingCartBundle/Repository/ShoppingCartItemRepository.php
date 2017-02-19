@@ -4,6 +4,7 @@ use Doctrine\ORM\EntityRepository;
 use McShop\ShoppingCartBundle\Entity\ShoppingCartCategory;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
+use Symfony\Component\Form\Form;
 use Symfony\Component\Form\Test\FormInterface;
 
 /**
@@ -16,10 +17,10 @@ class ShoppingCartItemRepository extends EntityRepository
 {
     /**
      * @param ShoppingCartCategory[]|null $categories
-     * @param FormInterface $form
+     * @param Form $form
      * @return Pagerfanta
      */
-    public function findAllAsPagination(array $categories = [], FormInterface $form = null)
+    public function findAllAsPagination(array $categories = [], Form $form = null)
     {
         $qb = $this->createQueryBuilder('i');
         $qb

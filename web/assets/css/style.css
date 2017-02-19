@@ -259,3 +259,22 @@ ul.dropdown-menu.shown {
     content: "/ ";
     padding: 0 5px;
 }
+
+.filter {
+    border: 2px dashed #bcbcbc;
+    background: #f2f2f2;
+    width: 100%;
+    padding: 10px 10px 0 10px;
+}
+
+.filter .filter-header {
+    font-size: 18px;
+    font-weight: bolder;
+    color: #262626;
+    padding-bottom: 10px;
+}
+
+.filter .filter-body {
+    border-top: 2px dashed #bcbcbc;
+    padding: 10px;
+}

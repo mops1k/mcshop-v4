@@ -1,4 +1,5 @@
 {% extends ':Default:base.html.twig' %}
+{% form_theme filter 'bootstrap_3_horizontal_layout.html.twig' %}
 
 {% block left_menu %}
     {{ parent() }}
@@ -34,6 +35,18 @@
     {% if items|length == 0 %}
         <div class="alert alert-info">{{ 'shopping_cart.storefront.empty'|trans }}</div>
     {% else %}
+        <div class="row">
+            <div class="filter">
+                <div class="filter-header" data-toggle="collapse" data-target=".filter-body">
+                    {{ 'shopping_cart.storefront.filter_title'|trans }}
+                </div>
+                <div class="filter-body collapse">
+                    {{ form_start(filter) }}
+                    {{ form_widget(filter) }}
+                    {{ form_end(filter) }}
+                </div>
+            </div>
+        </div>
         <div class="storefront">
             {% set row = 0 %}
             {% for item in items %}

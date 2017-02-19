@@ -2,6 +2,7 @@
 namespace McShop\ShoppingCartBundle\Controller;
 
 use McShop\ShoppingCartBundle\Entity\ShoppingCartCategory;
+use McShop\ShoppingCartBundle\Form\StorefrontFilterType;
 use McShop\UserBundle\Controller\BaseController;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -9,7 +10,6 @@ class ShopController extends BaseController
 {
     public function storefrontAction(ShoppingCartCategory $category = null, Request $request)
     {
-
         $repository = $this->getDoctrine()->getManagerForClass('McShopShoppingCartBundle:ShoppingCartCategory')
             ->getRepository('McShopShoppingCartBundle:ShoppingCartCategory');
 
@@ -26,10 +26,12 @@ class ShopController extends BaseController
             $childrenCategories[] = $category;
         }
 
+        $filterForm = $this->createForm(StorefrontFilterType::class);
+        $filterForm->handleRequest($request);
 
         $items = $this->getDoctrine()->getManagerForClass('McShopShoppingCartBundle:ShoppingCartItem')
             ->getRepository('McShopShoppingCartBundle:ShoppingCartItem')
-            ->findAllAsPagination($childrenCategories)
+            ->findAllAsPagination($childrenCategories, $filterForm)
             ->setMaxPerPage($request->get('per_page', 16))
             ->setCurrentPage($request->get('page', 1))
         ;
@@ -45,6 +47,7 @@ class ShopController extends BaseController
             'items'         => $items,
             'breadcrumbs'   => $breadcrumbs,
             'categories'    => $childrenCategories,
+            'filter'        => $filterForm->createView(),
         ]);
     }
 
