@@ -247,3 +247,12 @@ shopping_cart:
         sale:                       Sale
         to_cart:                    add to cart
         filter_title:               Filter (click to show/hide)
+        filter_button:              Filter
+        filter_reset:               Reset filter
+        filter:
+            server:                 Server
+            amount:                 Amount
+            price_from:             Price from
+            price_to:               Price to
+            is_sale:                Is item in sale?
+            type:                   Type

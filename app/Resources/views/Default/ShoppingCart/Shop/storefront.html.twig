@@ -1,5 +1,5 @@
 {% extends ':Default:base.html.twig' %}
-{% form_theme filter 'bootstrap_3_horizontal_layout.html.twig' %}
+{% form_theme filter 'bootstrap_3_layout.html.twig' %}
 
 {% block left_menu %}
     {{ parent() }}
@@ -32,21 +32,36 @@
         {% endfor %}
     </ol>
 
+    <div class="row">
+        <div class="filter">
+            <div class="filter-header" data-toggle="collapse" data-target=".filter-body">
+                {{ 'shopping_cart.storefront.filter_title'|trans }}
+            </div>
+            <div class="filter-body collapse">
+                {{ form_start(filter) }}
+                {{ form_row(filter.server) }}
+                {{ form_row(filter.type) }}
+                <div class="row">
+                    <div class="col-md-3">{{ form_row(filter.priceFrom) }}</div>
+                    <div class="col-md-3">{{ form_row(filter.priceTo) }}</div>
+                    <div class="col-md-3">{{ form_row(filter.amount) }}</div>
+                    <div class="col-md-3">{{ form_row(filter.isSale) }}</div>
+                </div>
+                {{ form_widget(filter) }}
+                <div class="row">
+                    <div class="form-group pull-right">
+                        <button type="submit" class="btn btn-success">{{ 'shopping_cart.storefront.filter_button'|trans }}</button>
+                        <a class="btn btn-default" href="{{ path(app.request.get('_route'), app.request.get('_route_params')) }}">{{ 'shopping_cart.storefront.filter_reset'|trans }}</a>
+                    </div>
+                </div>
+                {{ form_end(filter) }}
+            </div>
+        </div>
+    </div>
+
     {% if items|length == 0 %}
         <div class="alert alert-info">{{ 'shopping_cart.storefront.empty'|trans }}</div>
     {% else %}
-        <div class="row">
-            <div class="filter">
-                <div class="filter-header" data-toggle="collapse" data-target=".filter-body">
-                    {{ 'shopping_cart.storefront.filter_title'|trans }}
-                </div>
-                <div class="filter-body collapse">
-                    {{ form_start(filter) }}
-                    {{ form_widget(filter) }}
-                    {{ form_end(filter) }}
-                </div>
-            </div>
-        </div>
         <div class="storefront">
             {% set row = 0 %}
             {% for item in items %}
@@ -83,43 +98,4 @@
         </div>
         {{ items.hasPreviousPage or items.hasNextPage ? pagerfanta(items, 'twitter_bootstrap3', { 'omitFirstPage': true}) }}
     {% endif %}
-{% endblock %}
-
-{% block stylesheets %}
-    {{ parent() }}
-    <style>
-        .storefront {
-            /*make it 100% width and a minimum of 1000px width*/
-            width: auto;
-            margin-left: 0px;
-            margin-right: 0px;
-            min-width: 847px;
-            padding: 0px;
-            display:table;
-        }
-        .storefront-row {
-            display: table-row;
-        }
-        .storefront-cell {
-            display: table-cell;
-            width: 25%;
-            padding: 5px;
-        }
-        .item {
-            position:relative;
-            padding-top:20px;
-            display:inline-block;
-        }
-        .notify-badge {
-            position: absolute;
-            right: -20px;
-            top: 10px;
-            background: red;
-            text-align: center;
-            border-radius: 10px;
-            color:white;
-            padding: 8px;
-            font-size:12px;
-        }
-    </style>
 {% endblock %}

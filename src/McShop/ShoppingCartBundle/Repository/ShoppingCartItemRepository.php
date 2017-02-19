@@ -36,8 +36,48 @@ class ShoppingCartItemRepository extends EntityRepository
         }
 
         if ($form !== null) {
-            //todo: some filter logic
+            if ($form->get('server')->getData() !== null) {
+                $qb
+                    ->andWhere('i.server = :server')
+                    ->setParameter('server', $form->get('server')->getData())
+                ;
+            }
+
+            if ($form->get('type')->getData() !== null) {
+                $qb
+                    ->andWhere('i.type = :type')
+                    ->setParameter('type', $form->get('type')->getData())
+                ;
+            }
+
+            if ($form->get('priceFrom')->getData() !== null) {
+                $qb
+                    ->andWhere('i.price >= :priceFrom')
+                    ->setParameter('priceFrom', $form->get('priceFrom')->getData())
+                ;
+            }
+
+            if ($form->get('priceTo')->getData() !== null) {
+                $qb
+                    ->andWhere('i.price <= :priceTo')
+                    ->setParameter('priceTo', $form->get('priceTo')->getData())
+                ;
+            }
+
+            if ($form->get('amount')->getData() !== null) {
+                $qb
+                    ->andWhere('i.amount = :amount')
+                    ->setParameter('amount', $form->get('amount')->getData())
+                ;
+            }
+
+            if ($form->get('isSale')->getViewData() !== null) {
+                dump($form);
+                $qb->andWhere('i.sale > 0');
+            }
         }
+
+        dump($qb);
 
         $adapter = new DoctrineORMAdapter($qb);
         $pagination = new Pagerfanta($adapter);

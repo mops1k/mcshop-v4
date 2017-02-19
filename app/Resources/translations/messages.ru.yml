@@ -247,3 +247,12 @@ shopping_cart:
         sale:                       Скидка
         to_cart:                    в корзину
         filter_title:               Фильтр (кликните чтобы показать/скрыть)
+        filter_button:              Фильтровать
+        filter_reset:               Сбросить фильтр
+        filter:
+            server:                 Сервер
+            amount:                 Количество
+            price_from:             Цена от
+            price_to:               Цена до
+            is_sale:                Есть скидка
+            type:                   Тип

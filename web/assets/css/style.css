@@ -265,6 +265,7 @@ ul.dropdown-menu.shown {
     background: #f2f2f2;
     width: 100%;
     padding: 10px 10px 0 10px;
+    margin-bottom: 10px;
 }
 
 .filter .filter-header {
@@ -277,4 +278,38 @@ ul.dropdown-menu.shown {
 .filter .filter-body {
     border-top: 2px dashed #bcbcbc;
     padding: 10px;
+}
+
+.storefront {
+    /*make it 100% width and a minimum of 1000px width*/
+    width: auto;
+    margin-left: 0px;
+    margin-right: 0px;
+    min-width: 847px;
+    padding: 0px;
+    display:table;
+}
+.storefront-row {
+    display: table-row;
+}
+.storefront-cell {
+    display: table-cell;
+    width: 25%;
+    padding: 5px;
+}
+.item {
+    position:relative;
+    padding-top:20px;
+    display:inline-block;
+}
+.notify-badge {
+    position: absolute;
+    right: -20px;
+    top: 10px;
+    background: red;
+    text-align: center;
+    border-radius: 10px;
+    color:white;
+    padding: 8px;
+    font-size:12px;
 }
