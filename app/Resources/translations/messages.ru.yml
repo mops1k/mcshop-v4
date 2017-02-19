@@ -240,3 +240,9 @@ shopping_cart:
         home:                       Магазин
         empty:                      В данной категории и ее подкатегориях товаров нет!
         categories_title:           Категории
+        server:                     Сервер
+        amount:                     Количество
+        old_price:                  Цена без скидки
+        price:                      Цена
+        sale:                       Скидка
+        to_cart:                    в корзину

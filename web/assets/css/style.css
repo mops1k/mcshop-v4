@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+@import url('https://fonts.googleapis.com/css?family=Arsenal');
 
 html,
 body {
@@ -6,8 +6,8 @@ body {
 }
 
 body {
-  background-color: #f2f2f2;
-    font-family: 'Roboto Condensed', sans-serif;
+    background-color: #f2f2f2;
+    font-family: 'Arsenal', sans-serif;
     font-weight: 300;
     font-size: 16px;
     color: #555;
@@ -17,12 +17,12 @@ body {
 }
 
 .wrapper {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Arsenal', sans-serif;
     font-weight: 300;
     color: #444;
 }
@@ -47,7 +47,7 @@ p {
 
 
 a {
-    color: #d6ee18;
+    /*color: #d6ee18;*/
     word-wrap: break-word;
     -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
     -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
@@ -58,7 +58,7 @@ a {
 
 a:hover,
 a:focus {
-    color: #b7cb1b;
+    /*color: #b7cb1b;*/
     text-decoration: none;
     outline: 0;
 }
@@ -71,9 +71,9 @@ a:after {
     -o-transition: color 0.1s ease-in, background 0.1s ease-in;
     transition: color 0.1s ease-in, background 0.1s ease-in;
 }
-.navbar-inverse .navbar-nav > li > a {
-    color: #c6d550;
-}
+/*.navbar-inverse .navbar-nav > li > a {*/
+    /*color: #c6d550;*/
+/*}*/
 
 .alignleft {
     text-align: left;
@@ -233,4 +233,29 @@ ul.dropdown-menu.shown {
 
 .progress {
     width: 100%;
+}
+
+.breadcrumb {
+    background: #444444;
+    color: #fff;
+    border: 1px solid #cecece;
+}
+
+.breadcrumb .active {
+    color: #cecece;
+}
+
+.breadcrumb li:before {
+    font-family: FontAwesome;
+    color: #cecece;
+    top:0;
+    left:-5px;
+    padding-right:10px;
+    content: "\f19c";
+}
+
+.breadcrumb > li + li:before {
+    color: #cecece;
+    content: "/ ";
+    padding: 0 5px;
 }

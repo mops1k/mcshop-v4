@@ -18,15 +18,19 @@ class ShopController extends BaseController
             $breadcrumbs = $repository->getPath($category);
         }
 
-        $childrenCategories = $repository->getChildren($category);
+        $childrenCategories = [];
+        if ($category !== null) {
+            $childrenCategories = $repository->getChildren($category);
 
-        // Текущая категория и подкатегории для запроса товаров из БД
-        $childrenCategories[] = $category;
+            // Текущая категория и подкатегории для запроса товаров из БД
+            $childrenCategories[] = $category;
+        }
+
 
         $items = $this->getDoctrine()->getManagerForClass('McShopShoppingCartBundle:ShoppingCartItem')
             ->getRepository('McShopShoppingCartBundle:ShoppingCartItem')
             ->findAllAsPagination($childrenCategories)
-            ->setMaxPerPage($request->get('per_page', 25))
+            ->setMaxPerPage($request->get('per_page', 16))
             ->setCurrentPage($request->get('page', 1))
         ;
 
