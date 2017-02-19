@@ -270,3 +270,4 @@ shopping_cart:
         remove_success:             Товар удален из корзины
         wrong_amount:               Неверное количество товара
         changed_amount:             Количество измененно
+        more_money:                 "Пополнить счет на @amount@ руб."

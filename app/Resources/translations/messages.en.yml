@@ -270,3 +270,4 @@ shopping_cart:
         remove_success:             Item was removed from cart
         wrong_amount:               Wrong items amount
         changed_amount:             Amount was changed
+        more_money:                 "Add account on the @ amount @ rub."
