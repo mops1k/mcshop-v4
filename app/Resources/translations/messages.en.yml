@@ -256,3 +256,15 @@ shopping_cart:
             price_to:               Price to
             is_sale:                Is item in sale?
             type:                   Type
+    basket:
+        product:                    Item
+        amount:                     Amount
+        price:                      Price
+        total:                      Total
+        remove:                     Remove
+        to_shop:                    Continue shopping
+        buy:                        Buy
+        add_success:                Item was added to cart
+        remove_success:             Item was removed from cart
+        wrong_amount:               Wrong items amount
+        changed_amount:             Amount was changed

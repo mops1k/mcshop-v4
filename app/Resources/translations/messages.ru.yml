@@ -256,3 +256,15 @@ shopping_cart:
             price_to:               Цена до
             is_sale:                Есть скидка
             type:                   Тип
+    basket:
+        product:                    Товар
+        amount:                     Количество
+        price:                      Цена
+        total:                      Итого
+        remove:                     Убрать
+        to_shop:                    Продолжить покупки
+        buy:                        Оплатить
+        add_success:                Товар добавлен в корзину
+        remove_success:             Товар удален из корзины
+        wrong_amount:               Неверное количество товара
+        changed_amount:             Количество измененно

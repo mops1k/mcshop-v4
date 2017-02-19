@@ -1,6 +1,18 @@
 {% extends ':Default:base.html.twig' %}
 {% form_theme filter 'bootstrap_3_layout.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function () {
+            $('#{{ filter.priceFrom.vars.id }}').number();
+            $('#{{ filter.priceTo.vars.id }}').number();
+            $('#{{ filter.amount.vars.id }}').number();
+        })
+    </script>
+{% endblock %}
+
+
 {% block left_menu %}
     {{ parent() }}
     {% if categories|length > 0 %}
@@ -86,7 +98,7 @@
                             </small>
                                 <b>{{ 'shopping_cart.storefront.price'|trans }}: </b> {% if item.sale > 0 %}<s>{{ item.price }}</s>{% endif %} {{ item.price-item.price/100*item.sale }} <i class="fa fa-rub"></i>
                         </center>
-                        <a href="#" class="btn btn-block btn-danger">
+                        <a href="{{ path('mc_shop_shopping_cart_basket_add', {'id': item.id}) }}" class="btn btn-block btn-danger">
                             <i class="fa fa-cart-plus"></i>
                             {{ 'shopping_cart.storefront.to_cart'|trans }}</a>
                     </div>

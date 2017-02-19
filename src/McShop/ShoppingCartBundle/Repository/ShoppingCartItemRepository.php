@@ -1,11 +1,11 @@
 <?php
 namespace McShop\ShoppingCartBundle\Repository;
+
 use Doctrine\ORM\EntityRepository;
 use McShop\ShoppingCartBundle\Entity\ShoppingCartCategory;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 use Symfony\Component\Form\Form;
-use Symfony\Component\Form\Test\FormInterface;
 
 /**
  * StorefrontRepository
@@ -76,8 +76,6 @@ class ShoppingCartItemRepository extends EntityRepository
                 $qb->andWhere('i.sale > 0');
             }
         }
-
-        dump($qb);
 
         $adapter = new DoctrineORMAdapter($qb);
         $pagination = new Pagerfanta($adapter);

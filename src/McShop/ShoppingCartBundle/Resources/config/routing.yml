@@ -12,8 +12,26 @@ mc_shop_shopping_cart_storefront_category:
     path:     /{id}
     defaults:
         _controller: McShopShoppingCartBundle:Shop:storefront
+    requirements:
+        id: ^\d+
+
+mc_shop_shopping_cart_basket_add:
+    path:     /basket/{id}/add
+    defaults:
+        _controller: McShopShoppingCartBundle:Shop:addToBasket
 
 mc_shop_shopping_cart_basket:
     path:     /basket
     defaults:
         _controller: McShopShoppingCartBundle:Shop:basket
+
+mc_shop_shopping_cart_basket_remove:
+    path:     /basket/{id}/remove
+    defaults:
+        _controller: McShopShoppingCartBundle:Shop:basketRemove
+
+mc_shop_shopping_cart_basket_change_amount:
+    path:     /basket/{id}/amount
+    methods:  ["POST"]
+    defaults:
+        _controller: McShopShoppingCartBundle:Shop:changeBasketAmount
