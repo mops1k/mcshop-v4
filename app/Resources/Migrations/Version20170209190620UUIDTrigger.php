@@ -8,7 +8,7 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class VersionUUIDTrigger extends AbstractMigration
+class Version20170209190620UUIDTrigger extends AbstractMigration
 {
     /**
      * @param Schema $schema

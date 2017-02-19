@@ -1,0 +1,14 @@
+<ul class="nav nav-pills nav-stacked">
+    {% for name, item in menu %}
+        {% set class = item.class|default({})|join(' ') %}
+        {% if path(app.request.get('_route'), app.request.get('_route_params')) == item.url %}
+            {% set class = class ~ ' active' %}
+        {% endif %}
+        <li class="{{ class }}">
+            <a href="{{ item.url }}">
+                {% if item.icon is defined %}<i class="{{ item.icon }}"></i>{% endif %}
+                {{ item.title }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>

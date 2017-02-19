@@ -1,0 +1,15 @@
+mc_shop_shopping_cart_manage_item_list:
+    path:   /
+    defaults: { _controller: McShopShoppingCartBundle:Item:list }
+
+mc_shop_shopping_cart_manage_item_new:
+    path:   /new
+    defaults: { _controller: McShopShoppingCartBundle:Item:new }
+
+mc_shop_shopping_cart_manage_item_edit:
+    path:   /{id}/edit
+    defaults: { _controller: McShopShoppingCartBundle:Item:edit }
+
+mc_shop_shopping_cart_manage_item_remove:
+    path:   /{id}/remove
+    defaults: { _controller: McShopShoppingCartBundle:Item:remove }

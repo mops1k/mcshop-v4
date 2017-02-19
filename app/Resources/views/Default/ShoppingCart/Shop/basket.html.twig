@@ -1,0 +1,109 @@
+{% extends ':Default:base.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function () {
+            $('input#amount').each(function (index) {
+                var old = {},
+                    $this = $(this);
+                old[index] = $this.val();
+
+                $this.on('keyup', function () {
+                    $('#buy').attr('disabled', 'disabled');
+
+                    if ($this.val() == old[index]) {
+                        $('#buy').removeAttr('disabled');
+                        return;
+                    }
+                });
+
+                $this.on('change', function () {
+                    if ($this.val() == old[index]) {
+                        return;
+                    }
+
+                    var path = "{{ path('mc_shop_shopping_cart_basket_change_amount', { id: '__ID__'}) }}",
+                        id = $this.data('id');
+                    $.post(path.replace('__ID__', id), {
+                        amount: $this.val()
+                    }, function () {
+                        window.location.reload();
+                    });
+                });
+            });
+        });
+    </script>
+{% endblock %}
+
+
+{% block content %}
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>{{ 'shopping_cart.basket.product'|trans }}</th>
+            <th>{{ 'shopping_cart.basket.amount'|trans }}</th>
+            <th class="text-center">{{ 'shopping_cart.basket.price'|trans }}</th>
+            <th class="text-center">{{ 'shopping_cart.basket.total'|trans }}</th>
+            <th> </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% set total = 0 %}
+        {% for data in basket %}
+        <tr>
+            <td class="col-sm-8 col-md-6">
+                <div class="media">
+                    <div class="thumbnail pull-left">
+                        <img class="media-object" src="{{ asset(data.item.image|default('assets/img/no-image.png')) }}" style="width: 72px; height: 72px;">
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading"><b>{{ data.item.name }}</b>
+                            {% if data.item.sale > 0 %}
+                                <span class="badge">{{ 'shopping_cart.storefront.sale'|trans }}: {{ data.item.sale }}%</span>
+                            {% endif %}</h4>
+                        <h5 class="media-heading"> {{ 'shopping_cart.item.server'|trans }}: <b>{{ data.item.server.name }}</b></h5>
+                        <h5 class="media-heading"> {{ 'shopping_cart.item.amount'|trans }}: <b>{{ data.item.amount }}</b></h5>
+                    </div>
+                </div></td>
+            <td class="col-sm-1 col-md-1" style="text-align: center">
+                <input data-id="{{ data.id }}" id="amount" type="text" class="form-control" value="{{ data.amount }}" min="1">
+            </td>
+            {% set current = data.item.price - data.item.price/100*data.item.sale %}
+            {% set total = total + current * data.amount %}
+            <td class="col-sm-1 col-md-1 text-center"><strong>{{ current }} <i class="fa fa-rub"></i></strong></td>
+            <td class="col-sm-1 col-md-1 text-center"><strong>{{ current * data.amount }} <i class="fa fa-rub"></i></strong></td>
+            <td class="col-sm-1 col-md-1">
+                <a href="{{ path('mc_shop_shopping_cart_basket_remove', {'id': data.id}) }}" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-remove"></span> {{ 'shopping_cart.basket.remove'|trans }}
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="3"></td>
+            <td><h3>{{ 'shopping_cart.basket.total'|trans }}</h3></td>
+            <td class="text-right"><h3><strong>{{ total }} <i class="fa fa-rub"></i></strong></h3></td>
+        </tr>
+        <tr>
+            <td colspan="3"></td>
+            <td>
+                <a href="{{ path('mc_shop_shopping_cart_storefront') }}" class="btn btn-default">
+                    <span class="glyphicon glyphicon-shopping-cart"></span> {{ 'shopping_cart.basket.to_shop'|trans }}
+                </a>
+            </td>
+            <td>
+                {% if app.user.purse.realCash|default(0) >= total %}
+                <a href="{{ path('mc_shop_shopping_cart_basket_buy') }}" class="btn btn-success">
+                    {{ 'shopping_cart.basket.buy'|trans }} <span class="glyphicon glyphicon-play"></span>
+                </a>
+                {% else %}
+                    <a href="{{ path('mc_shop_finance_sendForm', {'amount': total - app.user.purse.realCash|default(0)}) }}" class="btn btn-primary">
+                        {{ 'shopping_cart.basket.more_money'|trans({'@amount@': total-app.user.purse.realCash|default(0)}) }} <span class="glyphicon glyphicon-play"></span>
+                    </a>
+                {% endif %}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

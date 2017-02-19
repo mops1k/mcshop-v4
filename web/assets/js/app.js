@@ -3,7 +3,6 @@ $(function () {
     $('[data-toggle="popover"]').popover();
 });
 
-
 var dateFormat = function () {
     var	token = /d{1,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|[LloSZ]|"[^"]*"|'[^']*'/g,
         timezone = /\b(?:[PMCEA][SDP]T|(?:Pacific|Mountain|Central|Eastern|Atlantic) (?:Standard|Daylight|Prevailing) Time|(?:GMT|UTC)(?:[-+]\d{4})?)\b/g,
@@ -115,3 +114,75 @@ dateFormat.i18n = {
 Date.prototype.format = function (mask, utc) {
     return dateFormat(this, mask, utc);
 };
+
+(function( $ ) {
+    $.fn.number = function(options) {
+        this.each(function () {
+            var min = $(this).attr('min'),
+                max = $(this).attr('max'),
+                step = 1;
+
+            if (!isNaN($(this).attr('step'))) {
+                step = parseInt($(this).attr('step'));
+            }
+
+            if (typeof options !== typeof undefined && typeof options.readonly !== typeof undefined) {
+                $(this).attr('readonly', 'readonly');
+            }
+
+            $(this).before(
+                '<div class="input-group">' +
+                '<span class="input-group-btn">' +
+                '<button type="button" id="minus" class="btn btn-default"><i class="fa fa-minus"></i></button>' +
+                '</span>' +
+                $(this)[0].outerHTML +
+                '<span class="input-group-btn">' +
+                '<button type="button" id="plus" class="btn btn-default"><i class="fa fa-plus"></i></button>' +
+                '</span>' +
+                '</div>'
+            );
+
+            var id = $(this).attr('id');
+            $(this).remove();
+
+            var rerendered = $('#' + id);
+
+            var $minus = rerendered.parent().find('#minus');
+            var $plus = rerendered.parent().find('#plus');
+
+            $minus.on('click', function () {
+                if (isNaN(rerendered.val()) || rerendered.val() == "") {
+                    rerendered.val(0);
+                }
+
+                var value = parseInt(rerendered.val())-step;
+
+                if (typeof min !== typeof undefined) {
+                    if (value >= parseInt(min)) {
+                        rerendered.val(value);
+                    }
+                    return;
+                }
+
+                rerendered.val(value);
+            });
+
+            $plus.on('click', function () {
+                if (isNaN(rerendered.val()) || rerendered.val() == "") {
+                    rerendered.val(0);
+                }
+
+                var value = parseInt(rerendered.val())+step;
+
+                if (typeof max !== typeof undefined) {
+                    if (value <= parseInt(max)) {
+                        rerendered.val(value);
+                    }
+                    return;
+                }
+
+                rerendered.val(value);
+            })
+        });
+    };
+})(jQuery);

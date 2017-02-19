@@ -1,0 +1,79 @@
+{% extends ':Default/ShoppingCart:index.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/bootstrap-filestyle.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#{{ form.amount.vars.id }}').number();
+            $('#{{ form.price.vars.id }}').number();
+            $('#{{ form.sale.vars.id }}').number();
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    {{ form_start(form) }}
+    {{ form_row(form.server) }}
+    <div class="row">
+        <div class="form-group col-md-6">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}
+        </div>
+        <div class="form-group col-md-6">
+            {{ form_label(form.category) }}
+            {{ form_widget(form.category) }}
+        </div>
+    </div>
+    {% set entity = form.vars.data %}
+    <div class="form-group">
+        {{ form_label(form.image) }}
+        <div class="row">
+            <div class="col-md-1 text-right">
+                {% if entity is not null and entity.image is not null  %}
+                    <img src="{{ asset(entity.image) }}" class="img-thumbnail" width="38px" height="38px">
+                {% else %}
+                    <img src="{{ asset('assets/img/no-image.png') }}" class="img-thumbnail" width="38px" height="38px">
+                {% endif %}
+            </div>
+            <div class="col-md-11">
+                {{ form_widget(form.image) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-4">
+            {{ form_label(form.item) }}
+            {{ form_widget(form.item) }}
+        </div>
+        <div class="form-group col-md-4">
+            {{ form_label(form.extra) }}
+            {{ form_widget(form.extra) }}
+        </div>
+        <div class="form-group col-md-4">
+            {{ form_label(form.type) }}
+            {{ form_widget(form.type) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-4">
+            {{ form_label(form.amount) }}
+            {{ form_widget(form.amount) }}
+        </div>
+        <div class="form-group col-md-4">
+            {{ form_label(form.price) }}
+            {{ form_widget(form.price) }}
+        </div>
+        <div class="form-group col-md-4">
+            {{ form_label(form.sale) }}
+            {{ form_widget(form.sale) }}
+        </div>
+    </div>
+    {{ form_widget(form) }}
+    <button type="submit" class="btn btn-primary">{{ 'shopping_cart.category.save'|trans }}</button>
+    {{ form_end(form) }}
+{% endblock %}

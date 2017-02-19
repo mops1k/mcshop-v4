@@ -1,0 +1,58 @@
+{% extends ':Default/ShoppingCart:index.html.twig' %}
+
+{% block content %}
+    {% if is_granted('ROLE_ITEM_NEW') %}
+        <div class="row">
+            <div class="pull-right">
+                <a href="{{ path('mc_shop_shopping_cart_manage_item_new') }}" class="btn btn-success">{{ 'shopping_cart.item.new'|trans }}</a>
+            </div>
+        </div>
+        <hr>
+    {% endif %}
+    {% if items|length == 0 %}
+        <div class="alert alert-info">{{ 'shopping_cart.item.empty'|trans }}</div>
+    {% else %}
+<table class="table table-bordered table-hover table-condensed">
+    <thead>
+    <tr class="success">
+        <th class="text-center">#</th>
+        <th class="text-center">{{ 'shopping_cart.item.name'|trans }}</th>
+        <th class="text-center">{{ 'shopping_cart.item.category'|trans }}</th>
+        <th class="text-center">{{ 'shopping_cart.item.item'|trans }}</th>
+        <th class="text-center">{{ 'shopping_cart.item.price'|trans }}</th>
+        <th class="text-center">{{ 'shopping_cart.item.sale'|trans }}</th>
+        <th class="text-center">{{ 'shopping_cart.item.server'|trans }}</th>
+        <th class="text-center">
+            <i class="fa fa-cog"></i>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+            <tr>
+                <td><strong>{{ item.id }}</strong></td>
+                <td><img src="{{ asset(item.image|default('assets/img/no-image.png')) }}" width="24px" height="24px"> {{ item.name }}</td>
+                <td>{{ item.category is not null ? item.category.title }}</td>
+                <td>{{ item.item }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.sale }}</td>
+                <td>{{ item.server.name }}</td>
+                <td class="text-right">
+                    <div class="btn-group btn-group-sm">
+                        {% if is_granted('ROLE_ITEM_EDIT') %}
+                        <a href="{{ path('mc_shop_shopping_cart_manage_item_edit', {'id': item.id}) }}"
+                           class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                        {% endif %}
+                        {% if is_granted('ROLE_ITEM_REMOVE') %}
+                        <a href="{{ path('mc_shop_shopping_cart_manage_item_remove', {'id': item.id}) }}"
+                           class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                        {% endif %}
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    {{ items.hasPreviousPage or items.hasNextPage ? pagerfanta(items, 'twitter_bootstrap3', { 'omitFirstPage': true}) }}
+    {% endif %}
+{% endblock %}

@@ -6,7 +6,7 @@ page:
     not_found:                      Page not found!
     no_pages:                       Pages not found!
     no_rights:                      You do not have rights to view this page!
-    error:                          Error @number@!
+    error:                          "Error @number@!"
     add_success:                    Page has created!
     add.title:                      Create new static page
     submit:                         Save page
@@ -44,11 +44,11 @@ news:
         edit_success:               Commentary edited success!
         remove_success:             Commentary removed!
         edit_title:                 Commentary edit
-        count:                      commentaries: @count@
+        count:                      "commentaries: @count@"
         send:                       Send your commentary
         no_rights:                  To post you commentary you have to login or register!
         no_comments:                No commentaries for post yet!
-        user_says:                  @username@ says
+        user_says:                  "@username@ says"
         form.title:                 Write your commentary
 user:
     profile:
@@ -96,9 +96,9 @@ user:
             code:                   Password recovery confirmation code
             message:
                 code:               |
-                                "To restore your password you need to go <a href=@code_link@>this link</a>. "
-                                "Or enter code below <a href=@enter_code_link@>here</a>.<br />"
-                                "Your code: <b>@code@</b>"
+                                To restore your password you need to go <a href=@code_link@>this link</a>.
+                                Or enter code below <a href=@enter_code_link@>here</a>.<br />
+                                Your code: <b>@code@</b>
 title:
     registration_form:              Registration
     code_activation:                Confirmation code activation
@@ -115,9 +115,9 @@ registration:
             registration_success:   Your registration was success!
             activated:              Your account succesfully activated!
             code:                   |
-                                "To activate your account you need to go <a href=@code_link@>this link</a>. "
-                                "Or enter code below <a href=@enter_code_link@>here</a>.<br />"
-                                "Your code: <b>@code@</b>"
+                                To activate your account you need to go <a href=@code_link@>this link</a>.
+                                Or enter code below <a href=@enter_code_link@>here</a>.<br />
+                                Your code: <b>@code@</b>
         approve_email:              For registration ending you must approve your email!
         wrong_code:                 Confirmation code is incorrect!
         welcome:                    Registration in McShop v4
@@ -139,12 +139,11 @@ login:
     message:
         no_account:                 Do not have account? Register!
         forgot_password:            Forgot password?
+        welcome:                    Sign In to McShop v4
     username:                       Username or E-mail
     password:                       Password
     remember_me:                    Remember me
     submit:                         Authorize
-    message:
-        welcome:                    Sign In to McShop v4
     error:
         already_logged_in:          You are already logged in before!
 server:
@@ -191,3 +190,86 @@ finance:
             activated_by:           Activated by
             active:                 Is active?
 filter.reset:                       Reset filter
+
+shopping_cart:
+    menu:
+        managment_title:            Shop managment
+    item:
+        menu:                       Items
+        new:                        Add new item
+        new_success:                Item added
+        edit_success:               Item edited
+        remove_success:             Item removed
+        empty:                      Item's not found
+        title:
+            list:                   Item's list
+            edit:                   Edit item
+            new:                    Add item
+        type:
+            item:                   Game item (block, weapon, etc.)
+            money:                  Vault game money
+            rgown:                  Region ownership
+            rgmem:                  Region membership
+            permgroup:              Permission group
+            perm:                   Single permission
+        server:                     Server
+        name:                       Item name
+        category:                   Category
+        image:                      Item image
+        item:                       Item in-game id
+        extra:                      Extra data for item (NBT tags)
+        item_type:                  Type
+        amount:                     Amount
+        price:                      Price
+        sale:                       Sale
+    category:
+        list_title:                 Category list
+        title:                      Title
+        edit_title:                 Category edit
+        new_title:                  Category create
+        new_success:                Category was created
+        edit_success:               Category was edited
+        delete_success:             Category and all subcategories was deleted
+        menu:                       Categories
+        new:                        Create new category of items
+        parent:                     Parent category
+        items_count:                Items in category
+        empty:                      No any categories was found
+        save:                       Save
+    storefront:
+        menu:                       Shop
+        home:                       Shop home
+        empty:                      Item's in category and it's subcategories not found
+        categories_title:           Categories
+        server:                     Server
+        amount:                     Amount
+        old_price:                  Old price
+        price:                      Price
+        sale:                       Sale
+        to_cart:                    add to cart
+        filter_title:               Filter (click to show/hide)
+        filter_button:              Filter
+        filter_reset:               Reset filter
+        filter:
+            server:                 Server
+            amount:                 Amount
+            price_from:             Price from
+            price_to:               Price to
+            is_sale:                Is item in sale?
+            type:                   Type
+    basket:
+        menu:                       Shopping cart
+        product:                    Item
+        amount:                     Amount
+        price:                      Price
+        total:                      Total
+        remove:                     Remove
+        to_shop:                    Continue shopping
+        buy:                        Buy
+        add_success:                Item was added to cart
+        remove_success:             Item was removed from cart
+        wrong_amount:               Wrong items amount
+        changed_amount:             Amount was changed
+        more_money:                 "Add account on the @ amount @ rub."
+        no_money:                   No money for continue
+        buy_success:                Item's successfully buyed!

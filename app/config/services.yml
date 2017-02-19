@@ -28,6 +28,13 @@ services:
         calls:
             - [ 'setAnnotationReader', [ '@annotation_reader' ] ]
 
+    gedmo.listener.tree:
+        class: Gedmo\Tree\TreeListener
+        tags:
+            - { name: doctrine.event_subscriber }
+        calls:
+            - [ 'setAnnotationReader', [ '@annotation_reader' ] ]
+
     mc_shop_console_form.number_transformer:
         class: McShop\Core\Form\NumberTransformer
         public: false

@@ -1,0 +1,113 @@
+{% extends ':Default:base.html.twig' %}
+{% form_theme filter 'bootstrap_3_layout.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function () {
+            $('#{{ filter.priceFrom.vars.id }}').number();
+            $('#{{ filter.priceTo.vars.id }}').number();
+            $('#{{ filter.amount.vars.id }}').number();
+        })
+    </script>
+{% endblock %}
+
+
+{% block left_menu %}
+    {{ parent() }}
+    {% if categories|length > 0 %}
+    <div class="row col-md-12">
+        <div class="panel panel-default panel-menu">
+            <div class="panel-heading" data-toggle="collapse" data-target="#menu-3"
+                 aria-expanded="false" aria-controls="menu-3">{{ 'shopping_cart.storefront.categories_title'|trans }}</div>
+            <div class="panel-body collapse in" id="menu-3">
+                <ul class="nav nav-pills nav-stacked">
+                {% for category in categories %}
+                    <li><a href="{{ path('mc_shop_shopping_cart_storefront_category', {'id': category.id}) }}">{{ category.title }}</a></li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('mc_shop_shopping_cart_storefront') }}">{{ 'shopping_cart.storefront.home'|trans }}</a></li>
+        {% for category in breadcrumbs %}
+            {% if loop.last %}
+                <li class="active">{{ category.title }}</li>
+            {% else %}
+                <li><a href="{{ path('mc_shop_shopping_cart_storefront_category', {id: category.id}) }}">{{ category.title }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ol>
+
+    <div class="row">
+        <div class="filter">
+            <div class="filter-header" data-toggle="collapse" data-target=".filter-body">
+                {{ 'shopping_cart.storefront.filter_title'|trans }}
+            </div>
+            <div class="filter-body collapse">
+                {{ form_start(filter) }}
+                {{ form_row(filter.server) }}
+                {{ form_row(filter.type) }}
+                <div class="row">
+                    <div class="col-md-3">{{ form_row(filter.priceFrom) }}</div>
+                    <div class="col-md-3">{{ form_row(filter.priceTo) }}</div>
+                    <div class="col-md-3">{{ form_row(filter.amount) }}</div>
+                    <div class="col-md-3">{{ form_row(filter.isSale) }}</div>
+                </div>
+                {{ form_widget(filter) }}
+                <div class="row">
+                    <div class="form-group pull-right">
+                        <button type="submit" class="btn btn-success">{{ 'shopping_cart.storefront.filter_button'|trans }}</button>
+                        <a class="btn btn-default" href="{{ path(app.request.get('_route'), app.request.get('_route_params')) }}">{{ 'shopping_cart.storefront.filter_reset'|trans }}</a>
+                    </div>
+                </div>
+                {{ form_end(filter) }}
+            </div>
+        </div>
+    </div>
+
+    {% if items|length == 0 %}
+        <div class="alert alert-info">{{ 'shopping_cart.storefront.empty'|trans }}</div>
+    {% else %}
+        <div class="storefront">
+            {% set row = 0 %}
+            {% for item in items %}
+            {% if loop.index%(row*4+1) == 0 or loop.first %}
+                {% set row = row + 1 %}
+            <div class="storefront-row">
+            {% endif %}
+                <div class="storefront-cell">
+                    <div class="well">
+                        <center>
+                            <h4>{{ item.name }}</h4>
+                            <div class="item">
+                                {% if item.sale > 0 %}
+                                    <span class="notify-badge">{{ 'shopping_cart.storefront.sale'|trans }}: {{ item.sale }}%</span>
+                                {% endif %}
+                                <img src="{{ asset(item.image|default('assets/img/no-image.png')) }}" width="150px" height="150px">
+                            </div>
+                            <hr>
+                            <small>
+                                <b>{{ 'shopping_cart.storefront.server'|trans }}: </b>{{ item.server.name }}<br>
+                                <b>{{ 'shopping_cart.storefront.amount'|trans }}: </b>{{ item.amount }}<br>
+                            </small>
+                                <b>{{ 'shopping_cart.storefront.price'|trans }}: </b> {% if item.sale > 0 %}<s>{{ item.price }}</s>{% endif %} {{ item.price-item.price/100*item.sale }} <i class="fa fa-rub"></i>
+                        </center>
+                        <a href="{{ path('mc_shop_shopping_cart_basket_add', {'id': item.id}) }}" class="btn btn-block btn-danger">
+                            <i class="fa fa-cart-plus"></i>
+                            {{ 'shopping_cart.storefront.to_cart'|trans }}</a>
+                    </div>
+                </div>
+            {% if loop.index%4 == 0 or loop.index == items.currentPageResults|length %}
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {{ items.hasPreviousPage or items.hasNextPage ? pagerfanta(items, 'twitter_bootstrap3', { 'omitFirstPage': true}) }}
+    {% endif %}
+{% endblock %}

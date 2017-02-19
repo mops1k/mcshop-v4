@@ -78,6 +78,7 @@ class UserMenu extends AbstractMenu
                     )
                 ;
             }
+
             if ($this->isGranted('ROLE_RCON_MANAGMENT')) {
                 $builder
                     ->addItem(
@@ -90,11 +91,34 @@ class UserMenu extends AbstractMenu
                     )
                 ;
             }
+
+            if ($this->isGranted('ROLE_SHOPPING_CART_MANAGE')) {
+                $builder
+                    ->addItem(
+                        'shopping_cart_manage',
+                        'shopping_cart.menu.managment_title',
+                        $this->generateUrlByRouteName('mc_shop_shopping_cart_manage_index'),
+                        [
+                            'icon'  => 'fa fa-percent'
+                        ]
+                    )
+                ;
+            }
             $builder->addDivider();
             $builder
                 ->addItem('logout', 'user.menu.logout', $this->generateUrlByRouteName('mc_shop_user_logout'), [
                     'icon'  => 'fa fa-sign-out'
                 ])
+            ;
+            $builder
+                ->addRootItem(
+                    'cart',
+                    'shopping_cart.basket.menu',
+                    $this->generateUrlByRouteName('mc_shop_shopping_cart_basket'),
+                    [
+                        'icon'   => 'fa fa-shopping-basket',
+                    ]
+                )
             ;
 
             return $builder->getMenu();

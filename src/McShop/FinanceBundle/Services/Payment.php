@@ -72,7 +72,7 @@ class Payment
 
     public function payForm($amount)
     {
-        $amount = (int) $amount;
+        $amount = (float) $amount;
         if ($amount <= 0) {
             /** заменить на сгенерированный урл ошибки платежа */
             return "/{$this->config['path']}/payment.php?reply=fail";

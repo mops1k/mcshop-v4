@@ -22,3 +22,7 @@ mc_shop_finance_coupon:
 mc_shop_shopping_cart:
     resource: "@McShopShoppingCartBundle/Resources/config/routing.yml"
     prefix:   /shop
+#
+#simple_things_entity_audit:
+#    resource: "@SimpleThingsEntityAuditBundle/Resources/config/routing.yml"
+#    prefix: /audit

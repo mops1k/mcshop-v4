@@ -6,7 +6,7 @@ page:
     not_found:                      Страница не найдена!
     no_pages:                       Статических страниц не найдено!
     no_rights:                      У Вас нет прав для просмотра данной страницы!
-    error:                          Ошибка @number@!
+    error:                          "Ошибка @number@!"
     add_success:                    Страница успешно создана!
     add.title:                      Создание новой страницы
     submit:                         Сохранить страницу
@@ -44,11 +44,11 @@ news:
         edit_success:               Комментарий успешно отредактирован!
         remove_success:             Комментарий удален!
         edit_title:                 Редактирование комментария
-        count:                      комментарии: @count@
+        count:                      "комментарии: @count@"
         send:                       Отправить комментарий
         no_rights:                  Только зарегистрированные пользователи могут комментировать новости!
         no_comments:                Комментариев нет!
-        user_says:                  @username@ пишет
+        user_says:                  "@username@ пишет"
         form.title:                 Напишите свой комментарий
 user:
     profile:
@@ -96,9 +96,9 @@ user:
             code:                   Код подтверждения для восстановления пароля
             message:
                 code:               |
-                                "Чтобы восстановить свой пароль перейдите по <a href=@code_link@>этой ссылке</a>. "
-                                "Или введите код вручную <a href=@enter_code_link@>здесь</a>.<br />"
-                                "Код активации: <b>@code@</b>"
+                                Чтобы восстановить свой пароль перейдите по <a href=@code_link@>этой ссылке</a>.
+                                Или введите код вручную <a href=@enter_code_link@>здесь</a>.<br />
+                                Код активации: <b>@code@</b>
 title:
     registration_form:              Регистрация
     code_activation:                Активация кода подтверждения
@@ -115,9 +115,9 @@ registration:
             registration_success:   Вы успешно зарегистрировались!
             activated:              Ваш аккаунт успешно активировн!
             code:                   |
-                                "Для активации Вашего аккаунта перейдите по <a href=@code_link@>ссылке</a>. "
-                                "Или введите код вручную <a href=@enter_code_link@>здесь</a>.<br />"
-                                "Код активации: <b>@code@</b>"
+                                Для активации Вашего аккаунта перейдите по <a href=@code_link@>ссылке</a>.
+                                Или введите код вручную <a href=@enter_code_link@>здесь</a>.<br />
+                                Код активации: <b>@code@</b>
         approve_email:              Для завершения регистрации вы должны подтвердить свою почту!
         wrong_code:                 Код подтверждения неверен!
         welcome:                    Регистрация в системе McShop v4
@@ -139,12 +139,11 @@ login:
     message:
         no_account:                 У Вас еще нет аккаунта? Зарегистрируйтесь!
         forgot_password:            Забыли пароль?
+        welcome:                    Авторизация в системе McShop v4
     username:                       Логин или E-mail
     password:                       Пароль
     remember_me:                    Запомнить меня
     submit:                         Авторизоваться
-    message:
-        welcome:                    Авторизация в системе McShop v4
     error:
         already_logged_in:          Вы уже авторизованы в системе!
 server:
@@ -191,3 +190,86 @@ finance:
             activated_by:           Активировал
             active:                 Активен?
 filter.reset:                       Обнулить фильтр
+
+shopping_cart:
+    menu:
+        managment_title:            Управление магазином
+    item:
+        menu:                       Товары
+        new:                        Добавить новый товар
+        new_success:                Товар успешно добавлен
+        edit_success:               Товар успешно отредактирован
+        remove_success:             Товар удален
+        empty:                      Товаров не найдено
+        title:
+            list:                   Список товаров
+            edit:                   Редактирование товара
+            new:                    Добавление товара
+        type:
+            item:                   Игровой пердмет (блок, оружие и т.д.)
+            money:                  Игровая валюта
+            rgown:                  Владение регионом
+            rgmem:                  Вхождение в регион как участник
+            permgroup:              Группа прав
+            perm:                   Единичное право
+        server:                     Сервер
+        name:                       Название
+        category:                   Категория
+        image:                      Изображение
+        item:                       Идентификатор товара в игре
+        extra:                      Дополнительные данные товара (NBT теги)
+        item_type:                  Тип товара
+        amount:                     Количество
+        price:                      Стоимость
+        sale:                       Скидка
+    category:
+        list_title:                 Список категорий
+        title:                      Название категории
+        edit_title:                 Редактирование категории
+        new_title:                  Создание новой категории
+        new_success:                Категория успешно создана
+        edit_success:               Категория успешно отредактирована
+        delete_success:             Категория и все её подкатегории успешно удалены
+        menu:                       Категории
+        new:                        Создать новую категорию товаров
+        parent:                     Категория родитель
+        items_count:                Товаров в категории
+        empty:                      Категорий не найдено
+        save:                       Сохранить
+    storefront:
+        menu:                       Магазин
+        home:                       Магазин
+        empty:                      В данной категории и ее подкатегориях товаров нет!
+        categories_title:           Категории
+        server:                     Сервер
+        amount:                     Количество
+        old_price:                  Цена без скидки
+        price:                      Цена
+        sale:                       Скидка
+        to_cart:                    в корзину
+        filter_title:               Фильтр (кликните чтобы показать/скрыть)
+        filter_button:              Фильтровать
+        filter_reset:               Сбросить фильтр
+        filter:
+            server:                 Сервер
+            amount:                 Количество
+            price_from:             Цена от
+            price_to:               Цена до
+            is_sale:                Есть скидка
+            type:                   Тип
+    basket:
+        menu:                       Корзина
+        product:                    Товар
+        amount:                     Количество
+        price:                      Цена
+        total:                      Итого
+        remove:                     Убрать
+        to_shop:                    Продолжить покупки
+        buy:                        Оплатить
+        add_success:                Товар добавлен в корзину
+        remove_success:             Товар удален из корзины
+        wrong_amount:               Неверное количество товара
+        changed_amount:             Количество измененно
+        more_money:                 "Пополнить счет на @amount@ руб."
+        no_money:                   Недостаточно денег для совершения покупки
+        buy_success:                Покупка успешно совершена!

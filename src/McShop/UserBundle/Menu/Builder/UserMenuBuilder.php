@@ -1,13 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mops1k
- * Date: 27.01.2017
- * Time: 23:14
- */
-
 namespace McShop\UserBundle\Menu\Builder;
-
 
 use McShop\MenuBundle\Model\Common\AbstractBuilder;
 
@@ -17,6 +9,8 @@ class UserMenuBuilder extends AbstractBuilder
      * @var null
      */
     protected $lastRootName = null;
+    /** @var int */
+    private $currentDivider = 0;
 
     /**
      * Add root item
@@ -40,7 +34,7 @@ class UserMenuBuilder extends AbstractBuilder
 
     public function addDivider()
     {
-        $this->addItem('divider', '', 'empty', ['class' => 'divider']);
+        $this->addItem('divider_' . $this->currentDivider++, '', 'empty', ['class' => 'divider']);
         return $this;
     }
 

@@ -1,0 +1,26 @@
+{% extends ':Default:base.html.twig' %}
+
+{% block header %}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        #content {
+            padding-top: 60px;
+        }
+    </style>
+{% endblock %}
+
+{% block left_menu %}
+    <div class="panel panel-default panel-menu">
+        <div class="panel-heading" data-toggle="collapse" data-target="#menu-2"
+             aria-expanded="false" aria-controls="menu-2">{{ 'shopping_cart.menu.managment_title'|trans }}</div>
+        <div class="panel-body collapse in" id="menu-2">
+            {{ renderMenu('shopping_cart.admin', ':Default/ShoppingCart:menu.html.twig') }}
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block content %}
+    <p><b>Категории: {{ total.categories }}</b></p>
+{% endblock %}
