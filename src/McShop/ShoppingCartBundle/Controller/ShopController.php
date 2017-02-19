@@ -2,14 +2,24 @@
 namespace McShop\ShoppingCartBundle\Controller;
 
 use McShop\ShoppingCartBundle\Entity\Basket;
+use McShop\ShoppingCartBundle\Entity\ShoppingCart;
 use McShop\ShoppingCartBundle\Entity\ShoppingCartCategory;
 use McShop\ShoppingCartBundle\Entity\ShoppingCartItem;
 use McShop\ShoppingCartBundle\Form\StorefrontFilterType;
 use McShop\UserBundle\Controller\BaseController;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class ShopController
+ * @package McShop\ShoppingCartBundle\Controller
+ */
 class ShopController extends BaseController
 {
+    /**
+     * @param ShoppingCartCategory|null $category
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function storefrontAction(ShoppingCartCategory $category = null, Request $request)
     {
         if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
@@ -93,6 +103,9 @@ class ShopController extends BaseController
         return $this->redirectToReferer();
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function basketAction()
     {
         if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
@@ -109,6 +122,10 @@ class ShopController extends BaseController
         ]);
     }
 
+    /**
+     * @param Basket $basket
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function basketRemoveAction(Basket $basket)
     {
         if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
@@ -124,6 +141,11 @@ class ShopController extends BaseController
         return $this->redirectToReferer();
     }
 
+    /**
+     * @param Basket $basket
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function changeBasketAmountAction(Basket $basket, Request $request)
     {
         if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
@@ -150,5 +172,55 @@ class ShopController extends BaseController
         $this->addFlash('info', $this->trans('shopping_cart.basket.changed_amount'));
 
         return $this->redirectToReferer();
+    }
+
+    public function buyAction()
+    {
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $manager = $this->getDoctrine()->getManagerForClass('McShopShoppingCartBundle:Basket');
+        $repository = $manager->getRepository('McShopShoppingCartBundle:Basket');
+
+        /** @var Basket[] $baskets */
+        $baskets = $repository->findByUser($this->getUser());
+
+        $total = 0;
+        foreach ($baskets as $basket) {
+            $price = $basket->getItem()->getPrice()-$basket->getItem()->getPrice()/100*$basket->getItem()->getSale();
+            $total += $price*$basket->getAmount();
+        }
+
+        if ($this->getUser()->getPurse() === null || $this->getUser()->getPurse()->getRealCash() < $total) {
+            $this->addFlash('info', $this->trans('shopping_cart.basket.no_money'));
+
+            return $this->redirectToReferer();
+        }
+
+        $purse = $this->getUser()->getPurse();
+        $purse->setRealCash($purse->getRealCash() - $total);
+
+        $manager->persist($purse);
+
+        foreach ($baskets as $basket) {
+            $shoppingCart = new ShoppingCart();
+            $shoppingCart
+                ->setAmount($basket->getItem()->getAmount() * $basket->getAmount())
+                ->setItem($basket->getItem()->getItem())
+                ->setType($basket->getItem()->getType())
+                ->setExtra($basket->getItem()->getExtra())
+                ->setServer($basket->getItem()->getServer()->getShoppingCartId())
+                ->setPlayer($basket->getUser()->getUsername())
+            ;
+
+            $manager->persist($shoppingCart);
+            $manager->remove($basket);
+        }
+
+        $manager->flush();
+
+        $this->addFlash('info', $this->trans('shopping_cart.basket.buy_success'));
+        return $this->redirectToRoute('mc_shop_user_profile');
     }
 }

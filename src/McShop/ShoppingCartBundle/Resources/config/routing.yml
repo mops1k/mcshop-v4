@@ -35,3 +35,8 @@ mc_shop_shopping_cart_basket_change_amount:
     methods:  ["POST"]
     defaults:
         _controller: McShopShoppingCartBundle:Shop:changeBasketAmount
+
+mc_shop_shopping_cart_basket_buy:
+    path:     /basket/buy
+    defaults:
+        _controller: McShopShoppingCartBundle:Shop:buy
