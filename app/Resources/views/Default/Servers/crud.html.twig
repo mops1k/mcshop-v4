@@ -1,0 +1,28 @@
+{% extends ':Default:base.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block header %}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        #content {
+            padding-top: 60px;
+        }
+    </style>
+{% endblock %}
+
+{% block container %}
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    <div class="row">
+        <div class="col-md-6">{{ form_row(form.host) }}</div>
+        <div class="col-md-6">{{ form_row(form.port) }}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">{{ form_row(form.rconPort) }}</div>
+        <div class="col-md-6">{{ form_row(form.rconPassword) }}</div>
+    </div>
+    {{ form_widget(form) }}
+    <button class="btn btn-success">{{ 'server.save'|trans }}</button>
+    {{ form_end(form) }}
+{% endblock %}

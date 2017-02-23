@@ -10,3 +10,19 @@ mc_shop_servers_rcon_command:
     path:     /rcon/command
     defaults: { _controller: McShopServersBundle:Rcon:command }
     methods: ["POST"]
+
+mc_shop_servers_list:
+    path:     /list
+    defaults: { _controller: McShopServersBundle:Crud:list }
+
+mc_shop_servers_edit:
+    path:     /{id}/edit
+    defaults: { _controller: McShopServersBundle:Crud:edit }
+
+mc_shop_servers_new:
+    path:     /new
+    defaults: { _controller: McShopServersBundle:Crud:new }
+
+mc_shop_servers_remove:
+    path:     /{id}/remove
+    defaults: { _controller: McShopServersBundle:Crud:remove }

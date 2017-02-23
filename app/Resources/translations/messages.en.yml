@@ -149,19 +149,33 @@ login:
 server:
     name:                           "Display name"
     host:                           "Server host (or ip address)"
-    port:                           "Server port (default: 25565)"
+    port:                           "Server port"
     shopping_cart_id:               "Identificator in shopping cart plugin table"
     block_title:                    Monitoring
     offline:                        Offline
     total:                          Total online
+    manage:
+        list:                       Server's list
+        new:                        Creating server
+        add:                        New server
+        edit:                       Edit server
+        name:                       Name
+        host:                       Domain or IP-address
+        port:                       Port
+        rcon:
+            port:                   RCON port
+            password:               RCON password
     menu:
         rcon:                       RCON managment
+        list:                       Server's managment
     rcon:
         select:                     Select server for RCON connection
         select_server:              No server selected!
         no_command:                 No command to send!
         unknown_server:             Unknown server selected!
         no_connection:              RCON connection error!
+        port:                       "RCON port"
+        password:                   "RCON password"
 finance:
     coupon:
         menu:                       Generate coupons

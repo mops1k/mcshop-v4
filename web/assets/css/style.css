@@ -313,3 +313,14 @@ ul.dropdown-menu.shown {
     padding: 8px;
     font-size:12px;
 }
+
+.table-header-dark thead>tr {
+    color: #bbb;
+    background-color: #222;
+    border-color: #080808;
+}
+
+.required:after {
+    content: ' *';
+    color: #ff0000;
+}

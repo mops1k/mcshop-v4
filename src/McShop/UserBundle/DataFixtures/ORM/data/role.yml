@@ -137,3 +137,28 @@ ROLE_SHOPPING_CART_MANAGE:
     name:   Управление магазином
     role:   ROLE_SHOPPING_CART_MANAGE
     parent: ROLE_SUPER_ADMIN
+
+ROLE_SERVER_ADMIN:
+    name:   Управление серверами
+    role:   ROLE_SERVER_ADMIN
+    parent: ROLE_SUPER_ADMIN
+
+ROLE_SERVER_LIST:
+    name:   Список серверов
+    role:   ROLE_SERVER_LIST
+    parent: ROLE_SERVER_ADMIN
+
+ROLE_SERVER_NEW:
+    name:   Добавление серверов
+    role:   ROLE_SERVER_NEW
+    parent: ROLE_SERVER_ADMIN
+
+ROLE_SERVER_EDIT:
+    name:   Редактирование серверов
+    role:   ROLE_SERVER_EDIT
+    parent: ROLE_SERVER_ADMIN
+
+ROLE_SERVER_REMOVE:
+    name:   Удаление серверов
+    role:   ROLE_SERVER_REMOVE
+    parent: ROLE_SERVER_ADMIN
