@@ -18,7 +18,6 @@ class ServerType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'label' => 'server.name',
-                'required'  => false,
             ])
             ->add('host', TextType::class, [
                 'label' => 'server.host',
@@ -31,6 +30,17 @@ class ServerType extends AbstractType
                 'attr'      => [
                     'placeholder' => 25565
                 ],
+            ])
+            ->add('rconPort', NumberType::class, [
+                'label' => 'server.rcon.port',
+                'attr'  => [
+                    'placeholder'   => 25575,
+                ],
+                'required'  => false,
+            ])
+            ->add('rconPassword', TextType::class, [
+                'label' => 'server.rcon.password',
+                'required'  => false,
             ])
             ->add('shoppingCartId', TextType::class, [
                 'label' => 'server.shopping_cart_id',

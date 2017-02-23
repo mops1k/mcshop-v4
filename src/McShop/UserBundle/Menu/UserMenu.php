@@ -79,6 +79,19 @@ class UserMenu extends AbstractMenu
                 ;
             }
 
+            if ($this->isGranted('ROLE_SERVER_LIST')) {
+                $builder
+                    ->addItem(
+                        'server_list',
+                        'server.menu.list',
+                        $this->generateUrlByRouteName('mc_shop_servers_list'),
+                        [
+                            'icon'  => 'fa fa-database'
+                        ]
+                    )
+                ;
+            }
+
             if ($this->isGranted('ROLE_RCON_MANAGMENT')) {
                 $builder
                     ->addItem(

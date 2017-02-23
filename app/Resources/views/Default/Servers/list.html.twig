@@ -1,0 +1,51 @@
+{% extends ':Default:base.html.twig' %}
+
+{% block header %}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        #content {
+            padding-top: 60px;
+        }
+    </style>
+{% endblock %}
+
+{% block container %}
+    <div class="page-header">
+        <span class="pull-right">
+            <a href="{{ path('mc_shop_servers_new') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> {{ 'server.manage.add'|trans }}</a>
+        </span>
+        <h4>{{ 'server.manage.list'|trans }}</h4>
+    </div>
+    <table class="table table-striped table-hover table-header-dark">
+        <thead>
+        <tr>
+            <th>{{ 'server.manage.name'|trans }}</th>
+            <th>{{ 'server.manage.host'|trans }}</th>
+            <th>{{ 'server.manage.port'|trans }}</th>
+            <th>{{ 'server.manage.rcon.port'|trans }}</th>
+            <th>{{ 'server.manage.rcon.password'|trans }}</th>
+            <th class="text-right">
+                <i class="fa fa-cogs"></i>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for server in servers %}
+            <tr>
+                <td>{{ server.name }}</td>
+                <td>{{ server.host }}</td>
+                <td>{{ server.port }}</td>
+                <td>{{ server.rconPort }}</td>
+                <td>{{ server.rconPassword }}</td>
+                <td class="text-right">
+                    <div class="btn-group btn-group-sm">
+                        <a href="{{ path('mc_shop_servers_edit', {'id': server.id}) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></a>
+                        <a href="{{ path('mc_shop_servers_remove', {'id': server.id}) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

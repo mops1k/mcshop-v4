@@ -149,19 +149,33 @@ login:
 server:
     name:                           "Название сервера"
     host:                           "Адрес сервера (домен или IP адрес)"
-    port:                           "Порт сервера (по умолчанию: 25565)"
+    port:                           "Порт сервера"
     shopping_cart_id:               "Идентификатор в таблице плагина ShoppingCart"
     block_title:                    Мониторинг
     offline:                        Выключен
     total:                          Общий онлайн
+    manage:
+        list:                       Список серверов
+        new:                        Добавление сервера
+        add:                        Добавить сервер
+        edit:                       Редактирование сервера
+        name:                       Название
+        host:                       Домен или IP-адрес
+        port:                       Порт
+        rcon:
+            port:                   RCON порт
+            password:               RCON пароль
     menu:
         rcon:                       Управление RCON
+        list:                       Управление серверами
     rcon:
         select:                     Выберите сервер на который будут отправлять команды RCON
         select_server:              Сервер не выбран!
         no_command:                 Нет команды для отправки!
         unknown_server:             Выбран неизвестный сервер!
         no_connection:              Ошибка соединения RCON!
+        port:                       "RCON порт"
+        password:                   "RCON пароль"
 finance:
     coupon:
         menu:                       Генерация купонов
