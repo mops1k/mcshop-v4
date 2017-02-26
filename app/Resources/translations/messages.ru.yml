@@ -87,7 +87,10 @@ user:
         sign-up:                    Регистрация
     recover:
         user_not_found:             Пользователь не найден!
+        button:
+            recover:                Восстановить
         message:
+            welcome:                Восстановление пароля для учетной записи
             password_title:         Установить новый пароль
             success:                Восстановление пароля прошло успешно!
         form:

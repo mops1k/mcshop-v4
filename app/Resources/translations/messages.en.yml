@@ -87,7 +87,10 @@ user:
         sign-up:                    Sign Up
     recover:
         user_not_found:             User not found!
+        button:
+            recover:                Recover
         message:
+            welcome:                Account password recovering
             password_title:         Set new password
             success:                Password recovering completed!
         form:
