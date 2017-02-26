@@ -1,5 +1,5 @@
 {% extends ':Default:email_base.html.twig' %}
 
 {% block body %}
-    {{ 'registration.message.email.code'|trans({'@code_link@': code_link, '@enter_code_link@': enter_code_link})|raw }}
+    {{ 'registration.message.email.code'|trans({'@code_link@': code_link, '@enter_code_link@': enter_code_link, '@code@': code})|raw }}
 {% endblock %}
