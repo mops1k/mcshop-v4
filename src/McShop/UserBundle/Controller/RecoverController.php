@@ -118,7 +118,7 @@ class RecoverController extends BaseController
             ->findTokenByValue($code)
         ;
 
-        if ($token === null || ($token !== null && !$token->getActive())) {
+        if ($token === null || !$token) {
             return $this->redirectToRoute('mc_shop_user_recover_code', ['_locale'=>$request->getLocale()]);
         }
 

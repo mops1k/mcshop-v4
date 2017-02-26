@@ -107,7 +107,7 @@ class RegistrationController extends BaseController
             ->findTokenByValue($code)
         ;
 
-        if ($token === null || ($token !== null && !$token->getActive())) {
+        if ($token === null || !$token) {
             $this->addFlash('error', $this->get('translator')->trans('registration.message.wrong_code'));
             return $this->redirectToRoute('mc_shop_user_registration_code');
         }
