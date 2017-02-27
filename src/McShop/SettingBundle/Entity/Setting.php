@@ -26,7 +26,7 @@ class Setting
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
-     * @Assert\Regex(pattern="/^\w+/", message="setting.name")
+     * @Assert\Regex(pattern="/^[a-z_]+/i", message="setting.name")
      */
     private $name;
 
