@@ -24,5 +24,8 @@ services:
         arguments:
             - '@mc_shop.menu.factory'
             - '@twig'
+            - '@mc_shop.setting.helper'
+            - '@filesystem'
+            - '%kernel.root_dir%'
         tags:
             - { name: twig.extension, alias: mc_shop_menu }
