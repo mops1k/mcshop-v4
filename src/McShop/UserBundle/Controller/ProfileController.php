@@ -102,7 +102,9 @@ class ProfileController extends Controller
             }
 
             $type = $request->get('type');
-            if (!in_array($file->getClientMimeType(), ['image/png'])) {
+
+            $allowedTypes = [ IMAGETYPE_PNG ];
+            if (!in_array(exif_imagetype($file->getPathname()), $allowedTypes)) {
                 $this->addFlash('error', $this->get('translator')->trans('user.profile.skins.wrong_type'));
                 return $this->redirectToRoute('mc_shop_user_profile');
             }
@@ -200,11 +202,14 @@ class ProfileController extends Controller
     /**
      * @param UploadedFile $file
      */
-    private function uploadAvatar(UploadedFile $file) {
+    private function uploadAvatar(UploadedFile $file)
+    {
         $user = $this->getUser();
         $directory = 'upload/avatar/';
         $filename = md5($this->getUser()->getUsername()) . '.' . $file->getClientOriginalExtension();
-        if (!in_array($file->getClientMimeType(), ['image/png', 'image/jpeg'])) {
+
+        $allowedTypes = [ IMAGETYPE_PNG, IMAGETYPE_JPEG ];
+        if (!in_array(exif_imagetype($file->getPathname()), $allowedTypes)) {
             $this->addFlash('error', $this->get('translator')->trans('user.profile.avatar.wrong_type'));
             return;
         }

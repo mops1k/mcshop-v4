@@ -4,6 +4,7 @@ namespace McShop\UserBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use McShop\FinanceBundle\Entity\Purse;
+use McShop\UserBundle\Validation\Constraint\Username;
 use Minecraft\SkinView;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
@@ -46,6 +47,8 @@ class User implements AdvancedUserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=255, unique=true)
+     *
+     * @Username()
      */
     private $username;
 
