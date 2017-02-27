@@ -2,9 +2,9 @@
 
 namespace McShop\ServersBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use McShop\Core\Controller\BaseController;
 
-class DefaultController extends Controller
+class DefaultController extends BaseController
 {
     /**
      * @return \Symfony\Component\HttpFoundation\Response

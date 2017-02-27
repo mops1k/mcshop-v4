@@ -1,9 +1,9 @@
 <?php
 namespace McShop\NewsBundle\Controller;
 
+use McShop\Core\Controller\BaseController;
 use McShop\NewsBundle\Entity\Post;
 use McShop\NewsBundle\Form\PostType;
-use McShop\UserBundle\Controller\BaseController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;

@@ -1,9 +1,9 @@
 <?php
 namespace McShop\NewsBundle\Controller;
 
+use McShop\Core\Controller\BaseController;
 use McShop\NewsBundle\Entity\Commentary;
 use McShop\NewsBundle\Form\CommentaryType;
-use McShop\UserBundle\Controller\BaseController;
 use Symfony\Component\HttpFoundation\Request;
 
 /**

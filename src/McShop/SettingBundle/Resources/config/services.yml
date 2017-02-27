@@ -1,0 +1,9 @@
+services:
+    mc_shop.setting.helper:
+        class: McShop\SettingBundle\Service\SettingHelper
+        arguments: [ "@doctrine" ]
+
+    mc_shop.setting.twig:
+        class: McShop\SettingBundle\Twig\SettingExtension
+        arguments: [ "@mc_shop.setting.helper" ]
+        tags: [{ name: twig.extension, alias: setting }]

@@ -1,12 +1,12 @@
 <?php
 namespace McShop\ShoppingCartBundle\Controller;
 
+use McShop\Core\Controller\BaseController;
 use McShop\ShoppingCartBundle\Entity\Basket;
 use McShop\ShoppingCartBundle\Entity\ShoppingCart;
 use McShop\ShoppingCartBundle\Entity\ShoppingCartCategory;
 use McShop\ShoppingCartBundle\Entity\ShoppingCartItem;
 use McShop\ShoppingCartBundle\Form\StorefrontFilterType;
-use McShop\UserBundle\Controller\BaseController;
 use Symfony\Component\HttpFoundation\Request;
 
 /**

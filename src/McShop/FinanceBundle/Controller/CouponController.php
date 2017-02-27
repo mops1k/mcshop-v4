@@ -1,12 +1,12 @@
 <?php
 namespace McShop\FinanceBundle\Controller;
 
+use McShop\Core\Controller\BaseController;
 use McShop\FinanceBundle\Entity\Coupon;
 use McShop\FinanceBundle\Form\CouponCodeType;
 use McShop\FinanceBundle\Form\CouponFilter;
 use McShop\FinanceBundle\Form\CouponForm;
 use McShop\FinanceBundle\Repository\CouponRepository;
-use McShop\UserBundle\Controller\BaseController;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;

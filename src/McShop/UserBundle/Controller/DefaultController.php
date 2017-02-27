@@ -1,9 +1,8 @@
 <?php
 namespace McShop\UserBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
+use McShop\Core\Controller\BaseController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class DefaultController extends BaseController
 {

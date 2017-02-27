@@ -2,7 +2,7 @@
 
 namespace McShop\StaticPageBundle\Controller;
 
-use McShop\UserBundle\Controller\BaseController;
+use McShop\Core\Controller\BaseController;
 use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends BaseController

@@ -2,6 +2,7 @@
 
 namespace McShop\NewsBundle\Controller;
 
+use McShop\Core\Controller\BaseController;
 use McShop\NewsBundle\Entity\Commentary;
 use McShop\NewsBundle\Entity\Post;
 use McShop\NewsBundle\Form\CommentaryType;
@@ -9,14 +10,13 @@ use McShop\NewsBundle\Repository\PostRepository;
 use Pagerfanta\Adapter\DoctrineCollectionAdapter;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class DefaultController
  * @package McShop\NewsBundle\Controller
  */
-class DefaultController extends Controller
+class DefaultController extends BaseController
 {
     /**
      * @param Request $request

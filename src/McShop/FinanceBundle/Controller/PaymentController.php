@@ -2,8 +2,8 @@
 
 namespace McShop\FinanceBundle\Controller;
 
+use McShop\Core\Controller\BaseController;
 use McShop\FinanceBundle\Entity\Transactions;
-use McShop\UserBundle\Controller\BaseController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 

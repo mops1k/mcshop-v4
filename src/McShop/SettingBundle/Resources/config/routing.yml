@@ -1,0 +1,3 @@
+#mc_shop_setting_homepage:
+#    path:     /
+#    defaults: { _controller: McShopSettingBundle:Default:index }

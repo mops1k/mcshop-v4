@@ -2,12 +2,12 @@
 namespace McShop\UserBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use McShop\UserBundle\Entity\Role;
 use Symfony\Component\Yaml\Yaml;
 
-class LoadRoleData extends AbstractFixture implements FixtureInterface
+class LoadRoleData extends AbstractFixture implements OrderedFixtureInterface
 {
 
     /**
@@ -41,5 +41,16 @@ class LoadRoleData extends AbstractFixture implements FixtureInterface
         }
 
         $manager->flush();
+    }
+
+
+    /**
+     * Get the order of this fixture
+     *
+     * @return integer
+     */
+    public function getOrder()
+    {
+        return 0;
     }
 }

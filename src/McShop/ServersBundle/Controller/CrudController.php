@@ -1,8 +1,8 @@
 <?php
 namespace McShop\ServersBundle\Controller;
 
+use McShop\Core\Controller\BaseController;
 use McShop\ServersBundle\Entity\Server;
-use McShop\UserBundle\Controller\BaseController;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 

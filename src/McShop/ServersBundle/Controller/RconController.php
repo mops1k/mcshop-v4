@@ -1,7 +1,7 @@
 <?php
 namespace McShop\ServersBundle\Controller;
 
-use McShop\UserBundle\Controller\BaseController;
+use McShop\Core\Controller\BaseController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

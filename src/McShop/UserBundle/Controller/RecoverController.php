@@ -1,6 +1,7 @@
 <?php
 namespace McShop\UserBundle\Controller;
 
+use McShop\Core\Controller\BaseController;
 use McShop\UserBundle\Entity\Token;
 use McShop\UserBundle\Form\RecoverType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;

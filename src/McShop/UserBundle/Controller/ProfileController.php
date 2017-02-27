@@ -2,13 +2,13 @@
 
 namespace McShop\UserBundle\Controller;
 
+use McShop\Core\Controller\BaseController;
 use McShop\FinanceBundle\Form\CouponCodeType;
 use McShop\UserBundle\Form\PasswordType;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 
-class ProfileController extends Controller
+class ProfileController extends BaseController
 {
     public function indexAction()
     {
