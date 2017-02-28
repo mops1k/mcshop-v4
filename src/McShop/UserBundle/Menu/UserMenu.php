@@ -117,6 +117,20 @@ class UserMenu extends AbstractMenu
                     )
                 ;
             }
+
+            if ($this->isGranted('ROLE_SETTING_EDIT')) {
+                $builder
+                    ->addItem(
+                        'system_setting',
+                        'setting.title',
+                        $this->generateUrlByRouteName('mc_shop_setting_homepage'),
+                        [
+                            'icon'  => 'fa fa-list'
+                        ]
+                    )
+                ;
+            }
+
             $builder->addDivider();
             $builder
                 ->addItem('logout', 'user.menu.logout', $this->generateUrlByRouteName('mc_shop_user_logout'), [

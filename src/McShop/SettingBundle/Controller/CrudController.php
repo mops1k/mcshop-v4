@@ -11,6 +11,10 @@ class CrudController extends BaseController
 {
     public function indexAction()
     {
+        if (!$this->isGranted('ROLE_SETTING_EDIT')) {
+            throw $this->createAccessDeniedException();
+        }
+
         $this->get('app.title')->setValue('setting.title');
 
         $finder = new Finder();
@@ -29,6 +33,10 @@ class CrudController extends BaseController
 
     public function saveAction(Request $request)
     {
+        if (!$this->isGranted('ROLE_SETTING_EDIT')) {
+            throw $this->createAccessDeniedException();
+        }
+
         $updatedSettings = $request->get('setting', []);
 
         foreach ($updatedSettings as $name => $value) {
