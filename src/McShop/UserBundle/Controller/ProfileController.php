@@ -104,7 +104,8 @@ class ProfileController extends BaseController
             $type = $request->get('type');
 
             $allowedTypes = [ IMAGETYPE_PNG ];
-            if (!in_array(exif_imagetype($file->getPathname()), $allowedTypes)) {
+            if (!in_array(exif_imagetype($file->getPathname()), $allowedTypes)
+                || $file->getClientOriginalExtension() !== 'png') {
                 $this->addFlash('error', $this->get('translator')->trans('user.profile.skins.wrong_type'));
                 return $this->redirectToRoute('mc_shop_user_profile');
             }
@@ -209,7 +210,8 @@ class ProfileController extends BaseController
         $filename = md5($this->getUser()->getUsername()) . '.' . $file->getClientOriginalExtension();
 
         $allowedTypes = [ IMAGETYPE_PNG, IMAGETYPE_JPEG ];
-        if (!in_array(exif_imagetype($file->getPathname()), $allowedTypes)) {
+        if (!in_array(exif_imagetype($file->getPathname()), $allowedTypes)
+            || !in_array($file->getClientOriginalExtension(), [ 'jpg', 'jpeg', 'png' ])) {
             $this->addFlash('error', $this->get('translator')->trans('user.profile.avatar.wrong_type'));
             return;
         }
