@@ -2,13 +2,13 @@
 
 namespace McShop\UserBundle\Controller;
 
+use McShop\Core\Controller\BaseController;
 use McShop\FinanceBundle\Form\CouponCodeType;
 use McShop\UserBundle\Form\PasswordType;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 
-class ProfileController extends Controller
+class ProfileController extends BaseController
 {
     public function indexAction()
     {
@@ -104,7 +104,8 @@ class ProfileController extends Controller
             $type = $request->get('type');
 
             $allowedTypes = [ IMAGETYPE_PNG ];
-            if (!in_array(exif_imagetype($file->getPathname()), $allowedTypes)) {
+            if (!in_array(exif_imagetype($file->getPathname()), $allowedTypes)
+                || $file->getClientOriginalExtension() !== 'png') {
                 $this->addFlash('error', $this->get('translator')->trans('user.profile.skins.wrong_type'));
                 return $this->redirectToRoute('mc_shop_user_profile');
             }
@@ -209,7 +210,8 @@ class ProfileController extends Controller
         $filename = md5($this->getUser()->getUsername()) . '.' . $file->getClientOriginalExtension();
 
         $allowedTypes = [ IMAGETYPE_PNG, IMAGETYPE_JPEG ];
-        if (!in_array(exif_imagetype($file->getPathname()), $allowedTypes)) {
+        if (!in_array(exif_imagetype($file->getPathname()), $allowedTypes)
+            || !in_array($file->getClientOriginalExtension(), [ 'jpg', 'jpeg', 'png' ])) {
             $this->addFlash('error', $this->get('translator')->trans('user.profile.avatar.wrong_type'));
             return;
         }

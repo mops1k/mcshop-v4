@@ -1,6 +1,7 @@
 <?php
 namespace McShop\UserBundle\Controller;
 
+use McShop\Core\Controller\BaseController;
 use McShop\UserBundle\Form\UserType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;

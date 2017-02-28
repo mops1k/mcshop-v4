@@ -1,9 +1,9 @@
 <?php
 namespace McShop\ShoppingCartBundle\Controller;
 
+use McShop\Core\Controller\BaseController;
 use McShop\ShoppingCartBundle\Entity\ShoppingCartItem as Item;
 use McShop\ShoppingCartBundle\Form\ShoppingCartItemType;
-use McShop\UserBundle\Controller\BaseController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;

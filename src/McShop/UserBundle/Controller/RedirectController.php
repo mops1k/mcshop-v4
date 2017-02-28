@@ -2,7 +2,7 @@
 
 namespace McShop\UserBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use McShop\Core\Controller\BaseController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  * Class RedirectController
  * @package McShop\UserBundle\Controller
  */
-class RedirectController extends Controller
+class RedirectController extends BaseController
 {
     public function redirectAction(Request $request, $route, $permanent = false, $ignoreAttributes = false)
     {

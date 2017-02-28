@@ -1,0 +1,9 @@
+mc_shop_setting_homepage:
+    path:     /
+    methods:  [ "GET" ]
+    defaults: { _controller: McShopSettingBundle:Crud:index }
+
+mc_shop_setting_save:
+    path:     /
+    methods:  [ "POST" ]
+    defaults: { _controller: McShopSettingBundle:Crud:save }

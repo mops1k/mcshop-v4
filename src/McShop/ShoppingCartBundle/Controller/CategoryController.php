@@ -1,9 +1,9 @@
 <?php
 namespace McShop\ShoppingCartBundle\Controller;
 
+use McShop\Core\Controller\BaseController;
 use McShop\ShoppingCartBundle\Entity\ShoppingCartCategory as Category;
 use McShop\ShoppingCartBundle\Form\ShoppingCartCategoryType;
-use McShop\UserBundle\Controller\BaseController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;

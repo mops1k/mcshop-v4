@@ -7,7 +7,7 @@
     <meta name="description" content="McShop v4 development template">
     <meta name="author" content="mops1k<bednyj.mops@gmail.com>">
 
-    <title>McShop v4{{ app_title.value is not null ? ' :: ' ~ app_title.value|trans(app_title.attributes) }}</title>
+    <title>{{ 'project_title'|setting('McShop v4') }}{{ app_title.value is not null ? ' :: ' ~ app_title.value|trans(app_title.attributes) }}</title>
 
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon.png') }}" />
     <link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}" type="image/png">
@@ -32,7 +32,7 @@
                     <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="{{ path('homepage', {_locale: app.request.locale}) }}">
-                    <img src="{{ asset('assets/img/brand.png') }}" width="26px"> {% block brand %}McShop v4{% endblock %}
+                    <img src="{{ asset('assets/img/brand.png') }}" width="26px"> {{ 'project_brand'|setting('McShop v4') }}
                 </a>
             </div>
             <div class="navbar-offcanvas navbar-offcanvas-touch" id="js-bootstrap-offcanvas">
@@ -64,7 +64,6 @@
                 </div>
                 <div class="col-lg-4 col-lg-offset-2">
                 </div>
-
             </div>
         </div>
     </div>

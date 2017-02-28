@@ -32,6 +32,7 @@ class AppKernel extends Kernel
             new McShop\ServersBundle\McShopServersBundle(),
             new McShop\FinanceBundle\McShopFinanceBundle(),
             new McShop\ShoppingCartBundle\McShopShoppingCartBundle(),
+            new McShop\SettingBundle\McShopSettingBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

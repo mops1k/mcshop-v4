@@ -2,10 +2,10 @@
 
 namespace McShop\StaticPageBundle\Controller;
 
+use McShop\Core\Controller\BaseController;
 use McShop\StaticPageBundle\Entity\Page;
 use McShop\StaticPageBundle\Form\PageType;
 use McShop\StaticPageBundle\Repository\PageRepository;
-use McShop\UserBundle\Controller\BaseController;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 use Symfony\Component\Form\FormInterface;
