@@ -1,0 +1,64 @@
+{% extends ':Default:base.html.twig' %}
+
+{% block header %}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        #content {
+            padding-top: 60px;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function () {
+            $('input[type="number"]').number();
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>{{ 'setting.title'|trans }}</h1>
+    </div>
+    <form class="form-horizontal" method="post">
+        <div class="form-group">
+            <label for="project_brand" class="col-sm-4 control-label">{{ 'setting.project_brand'|trans }}</label>
+            <div class="col-sm-8">
+                <input type="text" name="setting[project_brand]" class="form-control" id="project_brand" value="{{ 'project_brand'|setting }}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="project_title" class="col-sm-4 control-label">{{ 'setting.project_title'|trans }}</label>
+            <div class="col-sm-8">
+                <input type="text" name="setting[project_title]" class="form-control" id="project_title" value="{{ 'project_title'|setting }}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="template" class="col-sm-4 control-label">{{ 'setting.template'|trans }}</label>
+            <div class="col-sm-8">
+                <select name="setting[template]" id="template" class="form-control">
+                    {% for template in templates %}
+                        <option value="{{ template }}"{{ 'template'|setting('Default') == template ? ' selected' }}>{{ template }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="hd_price" class="col-sm-4 control-label">{{ 'setting.hd_price'|trans }}</label>
+            <div class="col-sm-8">
+                <input type="number" name="setting[hd_price]" class="form-control" id="hd_price" min="0" step="5" value="{{ 'hd_price'|setting }}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="hd_days" class="col-sm-4 control-label">{{ 'setting.hd_days'|trans }}</label>
+            <div class="col-sm-8">
+                <input type="number" name="setting[hd_days]" class="form-control" id="hd_days" min="0" step="10" value="{{ 'hd_days'|setting(0) }}">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success pull-right">{{ 'setting.save'|trans }}</button>
+    </form>
+{% endblock %}

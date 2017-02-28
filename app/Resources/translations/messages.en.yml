@@ -290,3 +290,12 @@ shopping_cart:
         more_money:                 "Add account on the @ amount @ rub."
         no_money:                   No money for continue
         buy_success:                Item's successfully buyed!
+setting:
+    title:                          System settings
+    project_title:                  Project pages title
+    project_brand:                  Project brand
+    hd_price:                       Price for capes and HD skins
+    hd_days:                        Buy days for capes and HD skins (0 - forewer)
+    template:                       Project template
+    save:                           Save settings
+    save_success:                   Settings was saved!
