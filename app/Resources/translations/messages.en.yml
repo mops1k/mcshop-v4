@@ -129,12 +129,15 @@ registration:
 system:
     message:
         unknown_error:              An unknown error occurred. Please contact the administrator to fix the problem.
+    error:                          "Error @code@"
 form:
     registration:
         username:                   Username
         email:                      E-mail
         password:                   Password
         re_password:                Retype password
+        captcha:                    Code
+        captcha_help:               Enter code from picture
 validation:
     password:
         must_match:                 Passwords must match!

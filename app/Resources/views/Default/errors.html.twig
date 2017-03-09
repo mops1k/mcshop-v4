@@ -4,7 +4,7 @@
 
 {% block content %}
     <div class="page-header">
-        <h3>{{ 'system.error'|trans({'@code@': exception.code}) }}</h3>
+        <h3>{{ 'system.error'|trans({'@code@': exception.statusCode}) }}!!!</h3>
     </div>
     <strong class="text-danger">{{ exception.message }}</strong>
 {% endblock %}

@@ -32,11 +32,11 @@ class ExceptionListener
 
     public function onKernelException(GetResponseForExceptionEvent $event)
     {
-        if ($this->env === 'dev') {
+        if (in_array($this->env, ['dev', 'test'])) {
             return;
         }
 
-        $this->title->setValue('system.error')->setAttributes(['@code@' => $event->getException()->getCode() ]);
+        $this->title->setValue('system.error')->setAttributes(['@code@' => $event->getException()->getStatusCode() ]);
 
         $response = new Response(
             $this->twig->render(':' . $this->setting->get('template', 'Default') . ':errors.html.twig', [

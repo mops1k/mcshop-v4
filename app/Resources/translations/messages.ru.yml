@@ -129,6 +129,7 @@ registration:
 system:
     message:
         unknown_error:              Произошла неизвестная ошибка. Пожалуйста, обратитесь к администратору для ее устранения.
+    error:                          "Ошибка @code@"
 form:
     registration:
         username:                   Логин
