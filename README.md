@@ -36,7 +36,7 @@ Minecraft Shop version 4
 #### Установка системы
 Клонировать репозиторий к себе:
 ```bash
-git clone https://gitlab.com/mops1k/McShop-v4.git mcshop
+git clone https://gitlab.com/jmd-team/McShop-v4.git mcshop
 ```
 
 Установить зависимости
@@ -45,7 +45,7 @@ cd mcshop/
 composer install
 ```
 В процессе установки зависимостей система задаст несколько вопросов для определения настроек. Соответственно Вам необходимо
-ввести Ваши настройки.
+ввести Ваши настройки. Сменить эти настройки позже, вы смжете в файле `app/config/parameters.yml` вручную.
 
 Если установлен *acl* и система linux, то делаем следующее:
 ```bash
@@ -104,6 +104,49 @@ php app/console cache:clear -e prod
 Если же у вас не стоит ни того и ни другого, то Вы можете запустить проект командой:
 ```bash
 php app/console server:run
+```
+
+### Пример конфигурации в лаунчере Sashok724 v3 (Open Source)
+```json
+# LaunchServer.cfg
+address: "localhost";
+bindAddress: "0.0.0.0";
+port: 7240;
+
+# Auth handler
+authHandler: "mysql";
+authHandlerConfig: {
+        fetchAll: true;
+
+        address: "localhost";
+        port: 3306;
+        username: "user";
+        password: "password";
+        database: "database"; # База данных
+
+        table: "user";
+        uuidColumn: "uuid";
+        usernameColumn: "username";
+        accessTokenColumn: "access_token";
+        serverIDColumn: "server_id";
+};
+
+# Auth provider
+authProvider: "request";
+authProviderConfig: {
+        url: "http://localhost/en/user/minecraft/%login%/%password%";
+        response: "OK:(?<username>.+)";
+};
+
+# Texture provider
+textureProvider: "request";
+textureProviderConfig: {
+        skinsURL: "http://localhost/minecraft/skins/%uuid%.png";
+        cloaksURL: "http://localhost/minecraft/cloacks/%uuid%.png";
+};
+
+# Launch4J EXE binary building
+launch4J: false;
 ```
 
 [1]: https://www.interkassa.com/
