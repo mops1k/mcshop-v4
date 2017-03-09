@@ -41,3 +41,9 @@ services:
         parent: matthias_symfony_console_form.abstract_transformer
         tags:
             - { name: form_to_question_transformer, form_type: Symfony\Component\Form\Extension\Core\Type\NumberType }
+
+    mc_shop.listener.exception:
+        class: McShop\Core\Listener\ExceptionListener
+        arguments: [ '@twig', '@mc_shop.setting.helper', '@app.title', '%kernel.environment%' ]
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception, method: 'onKernelException' }

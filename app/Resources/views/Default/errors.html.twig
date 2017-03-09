@@ -1,0 +1,10 @@
+{% extends ':Default:base.html.twig' %}
+{#{% block left_menu %}{% endblock %}#}
+{% block top_menu %}{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h3>{{ 'system.error'|trans({'@code@': exception.code}) }}</h3>
+    </div>
+    <strong class="text-danger">{{ exception.message }}</strong>
+{% endblock %}
