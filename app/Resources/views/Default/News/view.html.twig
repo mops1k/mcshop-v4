@@ -10,7 +10,7 @@
                 <b>{{ post.subject }}</b>
             </div>
             <div class="pull-right">
-                <small>{{ post.user.username }}</small>
+                <small><img src="{{ asset(post.user.avatarPath) }}" width="26px" height="26px"> {{ post.user.username }}</small>
             </div>
             <br><hr>
     	    {{ post.fullContent|raw }}
@@ -46,7 +46,7 @@
     {% for commentary in commentaries %}
         <!-- the comments -->
         <div class="comment">
-            <h3><i class="fa fa-comment"></i> {{ 'news.comments.user_says'|trans({'@username@': commentary.user.username}) }}:
+            <h3><img src="{{ asset(commentary.user.avatarPath) }}" width="26px" height="26px">  {{ 'news.comments.user_says'|trans({'@username@': commentary.user.username}) }}:
                 <small> {{ commentary.createdAt|date('d.m.Y H:i') }}</small>
                 <div class="pull-right">
                     <span class="btn-group btn-group-sm">
