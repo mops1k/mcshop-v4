@@ -85,6 +85,13 @@ swiftmailer:
     password:   "%mailer_password%"
     spool:     { type: memory }
 
+# Captcha
+gregwar_captcha:
+    width: 150
+    height: 30
+    length: 6
+    quality: 70
+
 #simple_things_entity_audit:
 #    audited_entities:
 #        - McShop\UserBundle\Entity\User
