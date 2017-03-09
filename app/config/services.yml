@@ -46,4 +46,4 @@ services:
         class: McShop\Core\Listener\ExceptionListener
         arguments: [ '@twig', '@mc_shop.setting.helper', '@app.title', '%kernel.environment%' ]
         tags:
-            - { name: kernel.event_listener, event: kernel.exception, method: 'onKernelException' }
+            - { name: kernel.event_listener, event: kernel.exception, method: 'onKernelException', priority: -100 }
