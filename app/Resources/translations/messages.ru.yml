@@ -135,6 +135,8 @@ form:
         email:                      E-mail
         password:                   Пароль
         re_password:                Повторите пароль
+        captcha:                    Код
+        captcha_help:               Введите код с картинки
 validation:
     password:
         must_match:                 Пароли должны совпадать!

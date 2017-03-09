@@ -2,6 +2,7 @@
 
 namespace McShop\UserBundle\Form;
 
+use Gregwar\CaptchaBundle\Type\CaptchaType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -33,6 +34,12 @@ class UserType extends AbstractType
                 'invalid_message' => 'validation.password.must_match',
                 'first_options' => ['label' => 'form.registration.password'],
                 'second_options' => ['label' => 'form.registration.re_password'],
+            ])
+            ->add('captcha', CaptchaType::class, [
+                'label'         => 'form.registration.captcha',
+                'attr'          => [
+                    'placeholder'   => 'form.registration.captcha_help'
+                ]
             ])
         ;
     }

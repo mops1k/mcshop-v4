@@ -1,6 +1,7 @@
 <?php
-namespace McShop\Core\Form;
+namespace McShop\Core\Form\ConsoleTransformer;
 
+use Matthias\SymfonyConsoleForm\Bridge\Transformer\AbstractTransformer;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Form\Form;
 
