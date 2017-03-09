@@ -11,6 +11,39 @@ class DefaultController extends BaseController
         if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->isAuthenticatedErrorShow();
         }
+
+        $session = $this->get('session');
+        $attemtpsCache = json_decode($session->get('login_attempts', '{"attempts":0}'), true);
+
+        $access = true;
+        ++$attemtpsCache['attempts'];
+        $previousAttempt = new \DateTime();
+        if ($attemtpsCache['attempts'] >= $this->getParameter('login')['max_attempts']) {
+            if (isset($attemtpsCache['last_attempt'])) {
+                $previousAttempt = new \DateTime($attemtpsCache['last_attempt']);
+            }
+            $previousAttempt->add(
+                \DateInterval::createFromDateString($this->getParameter('login')['interval'] . ' minutes')
+            );
+            $currentAttempt = new \DateTime();
+            if ($currentAttempt > $previousAttempt) {
+                $attemtpsCache['attempts'] = 0;
+                unset($attemtpsCache['last_attempt']);
+            } else {
+                $attemtpsCache['last_attempt'] = isset($attemtpsCache['last_attempt']) ?
+                    $attemtpsCache['last_attempt'] : $currentAttempt->format('d.m.Y H:i:s');
+                $access = false;
+            }
+        }
+        $session->set('login_attempts', json_encode($attemtpsCache));
+
+        if (!$access) {
+            throw new \Exception($this->trans('system.message.max_attempts', [
+                '@interval@'  => $this->getParameter('login')['interval'],
+                '@next_try@'  => $previousAttempt->format('d.m.Y H:i:s')
+            ]));
+        }
+
         $this->get('app.title')->setValue('title.authorization');
 
         $authenticationUtils = $this->get('security.authentication_utils');

@@ -129,6 +129,9 @@ registration:
 system:
     message:
         unknown_error:              An unknown error occurred. Please contact the administrator to fix the problem.
+        max_attempts:               |
+            You have reached your limit of authorization attempts and will not be able to log in within @interval@ minutes.
+            The next authorization attempt will be available @next_try@
     error:                          "Error @code@"
 form:
     registration:
