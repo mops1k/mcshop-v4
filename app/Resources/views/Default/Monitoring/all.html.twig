@@ -6,8 +6,8 @@
             <span class="pull-left" data-toggle="tooltip" data-placement="right" title="{{ server.data.version }}">
                 {{ server.serverName }}
             </span>
-                    <span class="pull-right" data-toggle="tooltip" data-placement="left" title="Ping: {{ server.data.ping }}ms">
-                {{ server.data.players }}/{{ server.data.maxPlayers }}
+                    <span class="pull-right" data-toggle="tooltip" data-placement="left" title="Ping: {{ server.data.ping|default(0) }}ms">
+                {{ server.data.players|default(0) }}/{{ server.data.maxPlayers|default(0) }}
             </span>
         </div>
 
