@@ -97,3 +97,8 @@ lexxpavlov_spelling:
     user_field:           username
     security:
         entity_class:     McShop\SettingBundle\Entity\SpellingSecurity
+        allowed_role:     ROLE_USER
+        query_interval:   5           # in seconds, default 5
+        ban_period:       86400       # in seconds, default one day (86400 seconds)
+        ban_check_period: 86400       # in seconds, default one day (86400 seconds)
+        ban_count:        10
