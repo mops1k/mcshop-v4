@@ -3,3 +3,7 @@ username:
         rule:               |
             Login length must be beetwen 4 and 20 simbols
             and can't content in any symbols except latin symbols and digits.
+
+validation:
+    password:
+        must_match:         Passwords does not match

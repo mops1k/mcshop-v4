@@ -34,14 +34,17 @@ class UserType extends AbstractType
                 'invalid_message' => 'validation.password.must_match',
                 'first_options' => ['label' => 'form.registration.password'],
                 'second_options' => ['label' => 'form.registration.re_password'],
-            ])
-            ->add('captcha', CaptchaType::class, [
-                'label'         => 'form.registration.captcha',
-                'attr'          => [
-                    'placeholder'   => 'form.registration.captcha_help'
-                ]
-            ])
-        ;
+            ]);
+        if (php_sapi_name() !== 'cli') {
+            $builder
+                ->add('captcha', CaptchaType::class, [
+                    'label'         => 'form.registration.captcha',
+                    'attr'          => [
+                        'placeholder'   => 'form.registration.captcha_help'
+                    ]
+                ])
+            ;
+        }
     }
     
     /**
