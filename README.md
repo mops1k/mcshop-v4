@@ -100,7 +100,7 @@ php app/console mc_shop:user:new --admin
 php app/console cache:clear -e prod
 ```
 
-Если у Вас стоит Apache или nginx, тогда необходимо настроить хост на папку web проекта.
+Если у Вас стоит Apache или nginx, тогда необходимо настроить хост на папку `public_html` проекта.
 Если же у вас не стоит ни того и ни другого, то Вы можете запустить проект командой:
 ```bash
 php app/console server:run
