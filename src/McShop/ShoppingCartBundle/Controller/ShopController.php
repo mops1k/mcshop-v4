@@ -3,6 +3,7 @@ namespace McShop\ShoppingCartBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
 use McShop\ShoppingCartBundle\Entity\Basket;
+use McShop\ShoppingCartBundle\Entity\BuyHistory;
 use McShop\ShoppingCartBundle\Entity\ShoppingCart;
 use McShop\ShoppingCartBundle\Entity\ShoppingCartCategory;
 use McShop\ShoppingCartBundle\Entity\ShoppingCartItem;
@@ -220,8 +221,15 @@ class ShopController extends BaseController
                 ->setServer($basket->getItem()->getServer()->getShoppingCartId())
                 ->setPlayer($basket->getUser()->getUsername())
             ;
+            $historyEntry = new BuyHistory();
+            $historyEntry
+                ->setItem($basket->getItem())
+                ->setUser($basket->getUser())
+                ->setAmount($basket->getAmount())
+            ;
 
             $manager->persist($shoppingCart);
+            $manager->persist($historyEntry);
             $manager->remove($basket);
         }
 

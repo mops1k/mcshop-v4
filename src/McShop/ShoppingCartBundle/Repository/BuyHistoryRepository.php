@@ -10,4 +10,13 @@ namespace McShop\ShoppingCartBundle\Repository;
  */
 class BuyHistoryRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @return mixed
+     */
+    public function getTotalCount()
+    {
+        $qb = $this->createQueryBuilder('bh');
+
+        return $qb->select('COUNT(bh)')->getQuery()->getSingleScalarResult();
+    }
 }

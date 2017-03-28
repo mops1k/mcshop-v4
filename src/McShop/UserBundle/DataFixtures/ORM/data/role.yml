@@ -133,6 +133,21 @@ ROLE_ITEM_REMOVE:
     role:   ROLE_ITEM_REMOVE
     parent: ROLE_ITEM_ADMIN
 
+ROLE_HISTORY_ADMIN:
+    name:   Полный просмотр историй действий или покупок
+    role:   ROLE_HISTORY_ADMIN
+    parent: ROLE_SUPER_ADMIN
+
+ROLE_HISTORY_LIST:
+    name:   Просмотр списков истории действий (покупок)
+    role:   ROLE_HISTORY_LIST
+    parent: ROLE_HISTORY_ADMIN
+
+ROLE_HISTORY_VIEW:
+    name:   Подробный просмотр списков истории действий (покупок)
+    role:   ROLE_HISTORY_VIEW
+    parent: ROLE_HISTORY_ADMIN
+
 ROLE_SHOPPING_CART_MANAGE:
     name:   Управление магазином
     role:   ROLE_SHOPPING_CART_MANAGE

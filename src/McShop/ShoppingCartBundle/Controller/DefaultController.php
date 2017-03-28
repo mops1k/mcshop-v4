@@ -22,10 +22,17 @@ class DefaultController extends BaseController
             ->getTotalCount()
         ;
 
+        $totalBuy = $this->getDoctrine()
+            ->getManagerForClass('McShopShoppingCartBundle:BuyHistory')
+            ->getRepository('McShopShoppingCartBundle:BuyHistory')
+            ->getTotalCount()
+        ;
+
         return $this->render(':Default/ShoppingCart:index.html.twig', [
             'total' => [
                 'categories'    => $totalCategories,
                 'items'         => $totalItems,
+                'buy'           => $totalBuy,
             ],
         ]);
     }

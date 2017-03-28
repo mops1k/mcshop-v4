@@ -25,6 +25,14 @@ class ShoppingCartMenu extends AbstractMenu
             );
         }
 
+        if ($this->isGranted('ROLE_HISTORY_LIST')) {
+            $builder->addItem(
+                'history',
+                'shopping_cart.history.menu',
+                '#'
+            );
+        }
+
         return $builder->getMenu();
     }
 }
