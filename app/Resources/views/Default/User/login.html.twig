@@ -29,6 +29,7 @@
                             <input type="checkbox" name="_remember_me"> {{ 'login.remember_me'|trans }}
                         </label>
                     </div>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                     <div class="row">
                         <div class="col-md-6"><a href="{{ path('mc_shop_user_registration') }}">{{ 'login.message.no_account'|trans }}</a></div>
                         <div class="col-md-6 text-right"><a href="{{ path('mc_shop_user_recover_username') }}">{{ 'login.message.forgot_password'|trans }}</a></div>

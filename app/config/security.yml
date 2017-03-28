@@ -21,6 +21,7 @@ security:
                 provider:   user
                 login_path: mc_shop_user_login
                 check_path: mc_shop_user_login
+                csrf_token_generator: security.csrf.token_manager
                 always_use_default_target_path: false
             logout:
                 path: mc_shop_user_logout
