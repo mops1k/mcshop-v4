@@ -91,18 +91,3 @@ gregwar_captcha:
     height: 30
     length: 6
     quality: 70
-
-#simple_things_entity_audit:
-#    audited_entities:
-#        - McShop\UserBundle\Entity\User
-#        - McShop\FinanceBundle\Entity\Coupon
-#        - McShop\FinanceBundle\Entity\Purse
-#        - McShop\NewsBundle\Entity\Post
-#        - McShop\StaticPageBundle\Entity\Page
-#        - McShop\ServersBundle\Entity\Server
-#        - McShop\ShoppingCartBundle\Entity\ShoppingCartCategory
-#        - McShop\ShoppingCartBundle\Entity\ShoppingCartItem
-#        - McShop\ShoppingCartBundle\Entity\ShoppingCart
-#    global_ignore_columns:
-#        - created_at
-#        - updated_at
