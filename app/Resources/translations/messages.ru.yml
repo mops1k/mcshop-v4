@@ -171,6 +171,7 @@ server:
         name:                       Название
         host:                       Домен или IP-адрес
         port:                       Порт
+        empty:                      Нет добавленных серверов
         rcon:
             port:                   RCON порт
             password:               RCON пароль
@@ -178,13 +179,14 @@ server:
         rcon:                       Управление RCON
         list:                       Управление серверами
     rcon:
-        select:                     Выберите сервер на который будут отправлять команды RCON
+        select:                     Выберите сервер на который будете отправлять команды RCON
         select_server:              Сервер не выбран!
         no_command:                 Нет команды для отправки!
         unknown_server:             Выбран неизвестный сервер!
         no_connection:              Ошибка соединения RCON!
         port:                       "RCON порт"
         password:                   "RCON пароль"
+        empty:                      Нет серверов с настроенным RCON соединением!
 finance:
     coupon:
         menu:                       Генерация купонов

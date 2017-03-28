@@ -16,9 +16,16 @@ class DefaultController extends BaseController
             ->getTotalCount()
         ;
 
+        $totalItems = $this->getDoctrine()
+            ->getManagerForClass('McShopShoppingCartBundle:ShoppingCartItem')
+            ->getRepository('McShopShoppingCartBundle:ShoppingCartItem')
+            ->getTotalCount()
+        ;
+
         return $this->render(':Default/ShoppingCart:index.html.twig', [
             'total' => [
                 'categories'    => $totalCategories,
+                'items'         => $totalItems,
             ],
         ]);
     }

@@ -56,12 +56,16 @@
             </div>
         </div>
     </div>
+    {% if servers|length > 0 %}
     <div class="row-fluid">
         <div class="terminal">
             <div class="terminal-view"></div>
             <div contenteditable="true" class="terminal-command"></div>
         </div>
     </div>
+    {% else %}
+    <div class="alert alert-info">{{ 'server.rcon.empty'|trans }}</div>
+    {% endif %}
 {% endblock %}
 
 {% block javascripts %}

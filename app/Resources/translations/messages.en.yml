@@ -171,6 +171,7 @@ server:
         name:                       Name
         host:                       Domain or IP-address
         port:                       Port
+        empty:                      No servers added!
         rcon:
             port:                   RCON port
             password:               RCON password
@@ -185,6 +186,7 @@ server:
         no_connection:              RCON connection error!
         port:                       "RCON port"
         password:                   "RCON password"
+        empty:                      No rcon servers yet configured!
 finance:
     coupon:
         menu:                       Generate coupons
