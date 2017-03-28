@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             new Evence\Bundle\SoftDeleteableExtensionBundle\EvenceSoftDeleteableExtensionBundle(),
             new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
+            new Lexxpavlov\SpellingBundle\LexxpavlovSpellingBundle(),
             // McShop v4 System bundles
             new McShop\NewsBundle\McShopNewsBundle(),
             new McShop\UserBundle\McShopUserBundle(),

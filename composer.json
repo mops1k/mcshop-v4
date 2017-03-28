@@ -32,7 +32,8 @@
         "mops1k/minecraftserverstatus": "~1.0",
         "mops1k/minecraftskinview": "^1.0",
         "mops1k/minecraft-rcon": "^1.0",
-        "gregwar/captcha-bundle": "^2.0"
+        "gregwar/captcha-bundle": "^2.0",
+        "lexxpavlov/spellingbundle": "^1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",

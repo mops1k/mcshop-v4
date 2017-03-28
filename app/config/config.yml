@@ -91,3 +91,9 @@ gregwar_captcha:
     height: 30
     length: 6
     quality: 70
+
+lexxpavlov_spelling:
+    entity_class:         McShop\SettingBundle\Entity\Spelling
+    user_field:           username
+    security:
+        entity_class:     McShop\SettingBundle\Entity\SpellingSecurity
