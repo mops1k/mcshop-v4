@@ -8,6 +8,10 @@ class BuyHistoryController extends Controller
 {
     public function indexAction(Request $request)
     {
+        if (!$this->isGranted('ROLE_HISTORY_LIST')) {
+            throw $this->createAccessDeniedException();
+        }
+
         $history = $this->getDoctrine()->getManagerForClass('McShopShoppingCartBundle:BuyHistory')
             ->getRepository('McShopShoppingCartBundle:BuyHistory')->findAllAsPagination();
         $history
