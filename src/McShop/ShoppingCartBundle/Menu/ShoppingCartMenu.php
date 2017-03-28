@@ -29,7 +29,7 @@ class ShoppingCartMenu extends AbstractMenu
             $builder->addItem(
                 'history',
                 'shopping_cart.history.menu',
-                '#'
+                $this->generateUrlByRouteName('mc_shop_shopping_cart_manage_history_list')
             );
         }
 
