@@ -38,8 +38,8 @@
                     <td>{{ entry.user.username }}</td>
                     <td>{{ entry.item.name }}</td>
                     <td>{{ entry.amount }}</td>
-                    <td>
-                        <a href="#" class="btn btn-default"><i class="fa fa-eye"></i></a>
+                    <td class="text-right">
+                        <a href="{{ path('mc_shop_shopping_cart_manage_history_view', {'id': entry.id}) }}" class="btn btn-default"><i class="fa fa-eye"></i></a>
                     </td>
                 </tr>
             {% endfor %}

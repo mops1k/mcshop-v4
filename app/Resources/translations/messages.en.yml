@@ -298,6 +298,25 @@ shopping_cart:
         more_money:                 "Add account on the @ amount @ rub."
         no_money:                   No money for continue
         buy_success:                Item's successfully buyed!
+    dashboard:
+        menu:                       Statistic
+    history:
+        menu:                       Purchase history
+        entry:                      "Purchase history entry #@nn@"
+        income:                     Income
+        date:                       Purchase date
+        user:                       User
+        total:                      Total purchased
+        total_price:                The total cost
+        to_list:                    Back to history list
+        item:
+            name:                   Item name
+            amount:                 Amount
+            type:                   Item type
+            code:                   Internal item code
+            server:                 Server
+            price:                  Price for 1 piece of item
+            sale:                   Sale
 setting:
     title:                          System settings
     project_title:                  Project pages title

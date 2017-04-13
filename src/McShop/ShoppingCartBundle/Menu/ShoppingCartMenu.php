@@ -9,6 +9,14 @@ class ShoppingCartMenu extends AbstractMenu
     {
         $builder = $this->getBuilder();
 
+        if ($this->isGranted('ROLE_SHOPPING_CART_MANAGE')) {
+            $builder->addItem(
+                'dashboard',
+                'shopping_cart.dashboard.menu',
+                $this->generateUrlByRouteName('mc_shop_shopping_cart_manage_index')
+            );
+        }
+
         if ($this->isGranted('ROLE_CATEGORY_LIST')) {
             $builder->addItem(
                 'category',

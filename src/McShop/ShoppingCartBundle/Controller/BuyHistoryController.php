@@ -1,11 +1,16 @@
 <?php
 namespace McShop\ShoppingCartBundle\Controller;
 
+use McShop\ShoppingCartBundle\Entity\BuyHistory;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 class BuyHistoryController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function indexAction(Request $request)
     {
         if (!$this->isGranted('ROLE_HISTORY_LIST')) {
@@ -25,6 +30,17 @@ class BuyHistoryController extends Controller
         return $this->render(':Default/ShoppingCart/History:list.html.twig', [
             'history'   => $history,
             'income'    => $income,
+        ]);
+    }
+
+    /**
+     * @param BuyHistory $history
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function viewAction(BuyHistory $history)
+    {
+        return $this->render(':Default/ShoppingCart/History:view.html.twig', [
+            'history' => $history,
         ]);
     }
 }

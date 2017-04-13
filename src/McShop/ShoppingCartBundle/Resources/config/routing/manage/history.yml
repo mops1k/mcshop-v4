@@ -2,3 +2,8 @@ mc_shop_shopping_cart_manage_history_list:
     path: /
     defaults:
         _controller: McShopShoppingCartBundle:BuyHistory:index
+
+mc_shop_shopping_cart_manage_history_view:
+    path: /{id}/view
+    defaults:
+        _controller: McShopShoppingCartBundle:BuyHistory:view
