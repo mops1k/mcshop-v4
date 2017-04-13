@@ -7,11 +7,6 @@ ROLE_MODERATOR:
     role:   ROLE_MODERATOR
     parent: ROLE_SUPER_ADMIN
 
-ROLE_ALLOWED_TO_SWITCH:
-    name:   Вход как другой пользователь
-    role:   ROLE_ALLOWED_TO_SWITCH
-    parent: ROLE_SUPER_ADMIN
-
 ROLE_USER:
     name:   Пользователь
     role:   ROLE_USER
@@ -191,4 +186,14 @@ ROLE_USERS_MANAGE:
 ROLE_USERS_LIST:
     name:   Просмотр списка пользователей
     role:   ROLE_USERS_LIST
+    parent: ROLE_USERS_MANAGE
+
+ROLE_USERS_BAN:
+    name:   Блокирование и разблокирование пользователей
+    role:   ROLE_USERS_BAN
+    parent: ROLE_USERS_MANAGE
+
+ROLE_ALLOWED_TO_SWITCH:
+    name:   Вход как другой пользователь
+    role:   ROLE_ALLOWED_TO_SWITCH
     parent: ROLE_USERS_MANAGE

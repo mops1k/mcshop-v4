@@ -49,6 +49,10 @@ class ManageController extends BaseController
      */
     public function blockAction(User $user)
     {
+        if (!$this->isGranted('ROLE_USERS_BAN')) {
+            throw $this->createAccessDeniedException();
+        }
+
         if ($this->getUser() === $user) {
             $this->addFlash('info', $this->trans('user.manage.ban_error'));
 
