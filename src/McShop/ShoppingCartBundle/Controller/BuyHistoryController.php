@@ -39,6 +39,10 @@ class BuyHistoryController extends Controller
      */
     public function viewAction(BuyHistory $history)
     {
+        if (!$this->isGranted('ROLE_HISTORY_VIEW')) {
+            throw $this->createAccessDeniedException();
+        }
+
         return $this->render(':Default/ShoppingCart/History:view.html.twig', [
             'history' => $history,
         ]);

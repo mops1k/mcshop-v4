@@ -26,9 +26,11 @@
                 <th>{{ 'shopping_cart.history.user'|trans }}</th>
                 <th>{{ 'shopping_cart.history.item.name'|trans }}</th>
                 <th>{{ 'shopping_cart.history.item.amount'|trans }}</th>
+                {% if is_granted('ROLE_HISTORY_VIEW') %}
                 <th class="text-right">
                     <i class="fa fa-cogs"></i>
                 </th>
+                {% endif %}
             </tr>
             </thead>
             <tbody>
@@ -38,9 +40,11 @@
                     <td>{{ entry.user.username }}</td>
                     <td>{{ entry.item.name }}</td>
                     <td>{{ entry.amount }}</td>
+                    {% if is_granted('ROLE_HISTORY_VIEW') %}
                     <td class="text-right">
                         <a href="{{ path('mc_shop_shopping_cart_manage_history_view', {'id': entry.id}) }}" class="btn btn-default"><i class="fa fa-eye"></i></a>
                     </td>
+                    {% endif %}
                 </tr>
             {% endfor %}
             </tbody>
