@@ -79,10 +79,11 @@ user:
     increase_real_cash:             Add real cash
     launcher:
         login:
-            error:                  Wrong username or password!
+            error:                  Authorization error!
     menu:
         profile:                    Profile
         logout:                     Logout
+        logout_to_account:          Logout to main account
         sign-in:                    Sign In
         sign-up:                    Sign Up
     recover:
@@ -102,6 +103,20 @@ user:
                                 To restore your password you need to go <a href=@code_link@>this link</a>.
                                 Or enter code below <a href=@enter_code_link@>here</a>.<br />
                                 Your code: <b>@code@</b>
+    manage:
+        menu:                       User managment
+        list:                       Users list
+        total:                      "{0} Total 0 users|{1} Total 1 user|]1, +Inf[ Total @count@ user"
+        username:                   Username
+        email:                      E-mail
+        lock_status:                Ban status
+        locked:                     banned
+        unlocked:                   unbanned
+        ban_unban:                  Ban or unban
+        search:                     Search
+        username_placeholder:       Enter username for searching
+        ban_error:                  You can't ban or unban yourself
+        login_as:                   Login as user
 title:
     registration_form:              Registration
     code_activation:                Confirmation code activation

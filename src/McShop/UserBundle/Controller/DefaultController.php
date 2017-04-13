@@ -69,7 +69,10 @@ class DefaultController extends BaseController
             ->getRepository('McShopUserBundle:User')
             ->loadUserByUsername($username);
 
-        if ($user === null || !$this->get('security.password_encoder')->isPasswordValid($user, $password)) {
+        if ($user === null
+            || !$this->get('security.password_encoder')->isPasswordValid($user, $password)
+            || $user->getLocked()
+            || !$user->getActive()) {
             return new Response($this->get('translator')->trans('user.launcher.login.error'));
         }
 

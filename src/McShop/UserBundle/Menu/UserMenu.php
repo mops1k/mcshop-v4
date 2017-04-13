@@ -131,12 +131,35 @@ class UserMenu extends AbstractMenu
                 ;
             }
 
+            if ($this->isGranted('ROLE_USERS_LIST')) {
+                $builder
+                    ->addItem(
+                        'users_manage',
+                        'user.manage.menu',
+                        $this->generateUrlByRouteName('mc_shop_users_manage_list'),
+                        [
+                            'icon'  => 'fa fa-users'
+                        ]
+                    )
+                ;
+            }
+
             $builder->addDivider();
-            $builder
-                ->addItem('logout', 'user.menu.logout', $this->generateUrlByRouteName('mc_shop_user_logout'), [
-                    'icon'  => 'fa fa-sign-out'
-                ])
-            ;
+            if ($this->isGranted('ROLE_PREVIOUS_ADMIN')) {
+                $builder
+                    ->addItem('logout', 'user.menu.logout_to_account', $this->generateUrlByRouteName('homepage', [
+                        '_switch_user'  => '_exit'
+                    ]), [
+                        'icon'  => 'fa fa-sign-out'
+                    ])
+                ;
+            } else {
+                $builder
+                    ->addItem('logout', 'user.menu.logout', $this->generateUrlByRouteName('mc_shop_user_logout'), [
+                        'icon'  => 'fa fa-sign-out'
+                    ])
+                ;
+            }
             $builder
                 ->addRootItem(
                     'cart',

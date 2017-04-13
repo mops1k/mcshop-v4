@@ -182,3 +182,13 @@ ROLE_SETTING_EDIT:
     name:   Редактирование системных настроек
     role:   ROLE_SETTING_EDIT
     parent: ROLE_SUPER_ADMIN
+
+ROLE_USERS_MANAGE:
+    name:   Управление пользователями
+    role:   ROLE_USERS_MANAGE
+    parent: ROLE_SUPER_ADMIN
+
+ROLE_USERS_LIST:
+    name:   Просмотр списка пользователей
+    role:   ROLE_USERS_LIST
+    parent: ROLE_USERS_MANAGE

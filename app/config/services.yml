@@ -14,6 +14,11 @@ services:
         tags:
             - { name: twig.extension, alias: title }
 
+    app.twig.pcre_extension:
+        class: McShop\Core\Twig\Extension\TwigPcreTwigExtension
+        tags:
+            - { name: twig.extension, alias: twig_pcre }
+
     gedmo.listener.softdeleteable:
         class: Gedmo\SoftDeleteable\SoftDeleteableListener
         tags:
