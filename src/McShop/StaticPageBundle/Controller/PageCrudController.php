@@ -24,6 +24,8 @@ class PageCrudController extends BaseController
             throw $this->createAccessDeniedException();
         }
 
+        $this->get('app.title')->setValue('page.list.title');
+
         $query = $this->getDoctrine()
             ->getManagerForClass('McShopStaticPageBundle:Page')
             ->getRepository('McShopStaticPageBundle:Page')

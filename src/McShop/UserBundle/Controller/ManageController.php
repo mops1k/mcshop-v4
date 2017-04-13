@@ -15,6 +15,8 @@ class ManageController extends BaseController
             throw $this->createAccessDeniedException();
         }
 
+        $this->get('app.title')->setValue('user.manage.list');
+
         $form = $this->createFormBuilder(null, [
                 'csrf_protection'   => false,
                 'method'            => 'GET',

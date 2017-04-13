@@ -17,6 +17,8 @@ class BuyHistoryController extends Controller
             throw $this->createAccessDeniedException();
         }
 
+        $this->get('app.title')->setValue('shopping_cart.history.menu');
+
         $history = $this->getDoctrine()->getManagerForClass('McShopShoppingCartBundle:BuyHistory')
             ->getRepository('McShopShoppingCartBundle:BuyHistory')->findAllAsPagination();
         $history
@@ -42,6 +44,11 @@ class BuyHistoryController extends Controller
         if (!$this->isGranted('ROLE_HISTORY_VIEW')) {
             throw $this->createAccessDeniedException();
         }
+
+        $this->get('app.title')
+            ->setValue('shopping_cart.history.entry')
+            ->setAttributes(['@nn@' => $history->getId()])
+        ;
 
         return $this->render(':Default/ShoppingCart/History:view.html.twig', [
             'history' => $history,

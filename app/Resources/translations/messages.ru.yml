@@ -52,6 +52,7 @@ news:
         form.title:                 Напишите свой комментарий
 user:
     profile:
+        title:                      Профиль пользователя
         use:
             avatar:                 Аватар
             head:                   Голова
@@ -178,6 +179,10 @@ server:
     block_title:                    Мониторинг
     offline:                        Выключен
     total:                          Общий онлайн
+    save:                           Сохранить
+    edit_success:                   Сервер успешно отредактирован
+    new_success:                    Сервер успешно добавлен
+    remove_success:                 Сервер успешно удален
     manage:
         list:                       Список серверов
         new:                        Добавление сервера
@@ -202,6 +207,7 @@ server:
         port:                       "RCON порт"
         password:                   "RCON пароль"
         empty:                      Нет серверов с настроенным RCON соединением!
+        manage:                     RCON консоль
 finance:
     coupon:
         menu:                       Генерация купонов

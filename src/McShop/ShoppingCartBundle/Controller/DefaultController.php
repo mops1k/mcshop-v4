@@ -10,6 +10,12 @@ class DefaultController extends BaseController
      */
     public function indexAction()
     {
+        if (!$this->isGranted('ROLE_SHOPPING_CART_MANAGE')) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $this->get('app.title')->setValue('shopping_cart.menu.managment_title');
+
         $totalCategories = $this->getDoctrine()
             ->getManagerForClass('McShopShoppingCartBundle:ShoppingCartCategory')
             ->getRepository('McShopShoppingCartBundle:ShoppingCartCategory')

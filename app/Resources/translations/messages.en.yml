@@ -52,6 +52,7 @@ news:
         form.title:                 Write your commentary
 user:
     profile:
+        title:                      User profile
         use:
             avatar:                 Show avatar
             head:                   Show head from skin
@@ -178,6 +179,10 @@ server:
     block_title:                    Monitoring
     offline:                        Offline
     total:                          Total online
+    save:                           Save
+    edit_success:                   Edit success
+    new_success:                    Add success
+    remove_success:                 Remove success
     manage:
         list:                       Server's list
         new:                        Creating server
@@ -202,6 +207,7 @@ server:
         port:                       "RCON port"
         password:                   "RCON password"
         empty:                      No rcon servers yet configured!
+        manage:                     RCON console
 finance:
     coupon:
         menu:                       Generate coupons

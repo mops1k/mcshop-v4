@@ -15,6 +15,8 @@ class RconController extends BaseController
 {
     public function pageAction()
     {
+        $this->get('app.title')->setValue('server.rcon.manage');
+
         $servers = $this->getDoctrine()
             ->getManagerForClass('McShopServersBundle:Server')
             ->getRepository('McShopServersBundle:Server')

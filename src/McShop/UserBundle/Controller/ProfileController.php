@@ -16,6 +16,8 @@ class ProfileController extends BaseController
             throw $this->createAccessDeniedException();
         }
 
+        $this->get('app.title')->setValue('user.profile.title');
+
         $passwordForm = $this->createForm(PasswordType::class, $this->getUser(), [
             'action'    => $this->generateUrl("mc_shop_user_password_change"),
         ]);

@@ -27,6 +27,8 @@ class CouponController extends BaseController
     {
         $form = $this->createForm(CouponForm::class);
 
+        $this->get('app.title')->setValue('finance.coupon.generation');
+
         if ($request->isMethod($request::METHOD_POST)) {
             $form->handleRequest($request);
             if (!$form->isValid()) {
