@@ -17,14 +17,14 @@ class TwigPcreTwigExtension extends \Twig_Extension
 
     public function getFilters()
     {
-        return array(
-            'preg_filter' => new \Twig_Filter_Method($this, '_preg_filter'),
-            'preg_grep' => new \Twig_Filter_Method($this, '_preg_grep'),
-            'preg_match' => new \Twig_Filter_Method($this, '_preg_match'),
-            'preg_quote' => new \Twig_Filter_Method($this, '_preg_quote'),
-            'preg_replace' => new \Twig_Filter_Method($this, '_preg_replace'),
-            'preg_split' => new \Twig_Filter_Method($this, '_preg_split')
-        );
+        return [
+            new \Twig_SimpleFilter('preg_filter', [$this, 'pregFilter']),
+            new \Twig_SimpleFilter('preg_grep', [$this, 'pregGrep']),
+            new \Twig_SimpleFilter('preg_match', [$this, 'pregMatch']),
+            new \Twig_SimpleFilter('preg_quote', [$this, 'pregQuote']),
+            new \Twig_SimpleFilter('preg_replace', [$this, 'pregReplace']),
+            new \Twig_SimpleFilter('preg_split', [$this, 'pregSplit']),
+        ];
     }
 
 
@@ -37,7 +37,7 @@ class TwigPcreTwigExtension extends \Twig_Extension
      * @param int $limit
      * @return string
      */
-    public function _preg_filter($subject, $pattern, $replacement='', $limit=-1)
+    public function pregFilter($subject, $pattern, $replacement = '', $limit = -1)
     {
         if (!isset($subject)) {
             return null;
@@ -54,7 +54,7 @@ class TwigPcreTwigExtension extends \Twig_Extension
      * @param string $pattern
      * @return array
      */
-    public function _preg_grep($subject, $pattern)
+    public function pregGrep($subject, $pattern)
     {
         if (!isset($subject)) {
             return null;
@@ -71,7 +71,7 @@ class TwigPcreTwigExtension extends \Twig_Extension
      * @param string $pattern
      * @return boolean
      */
-    public function _preg_match($subject, $pattern)
+    public function pregMatch($subject, $pattern)
     {
         if (!isset($subject)) {
             return null;
@@ -88,7 +88,7 @@ class TwigPcreTwigExtension extends \Twig_Extension
      * @param string $delimiter
      * @return string
      */
-    public function _preg_quote($subject, $delimiter)
+    public function pregQuote($subject, $delimiter)
     {
         if (!isset($subject)) {
             return null;
@@ -107,7 +107,7 @@ class TwigPcreTwigExtension extends \Twig_Extension
      * @param int $limit
      * @return string
      */
-    public function _preg_replace($subject, $pattern, $replacement='', $limit=-1)
+    public function pregReplace($subject, $pattern, $replacement = '', $limit = -1)
     {
         if (!isset($subject)) {
             return null;
@@ -124,7 +124,7 @@ class TwigPcreTwigExtension extends \Twig_Extension
      * @param string $pattern
      * @return array
      */
-    public function _preg_split($subject, $pattern)
+    public function pregSplit($subject, $pattern)
     {
         if (!isset($subject)) {
             return null;
