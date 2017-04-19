@@ -35,6 +35,7 @@
             <th>{{ 'user.manage.username'|trans }}</th>
             <th>{{ 'user.manage.email'|trans }}</th>
             <th>{{ 'user.manage.lock_status'|trans }}</th>
+            <th>{{ 'user.manage.roles'|trans }}</th>
             <th class="text-right">
                 <i class="fa fa-cogs"></i>
             </th>
@@ -42,19 +43,26 @@
         </thead>
         <tbody>
         {% for user in users %}
+        <tr>
             <td>{{ user.username|preg_replace('/'~form.username.vars.data~'/', '<strong>'~form.username.vars.data~'</strong>')|raw }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.locked ? 'user.manage.locked'|trans : 'user.manage.unlocked'|trans }}</td>
+            <td>{{ user.roles|join(', ') }}</td>
             <td class="text-right">
                 <div class="btn-group">
-                    <a href="{{ path('mc_shop_users_manage_ban', {'id': user.id}) }}" class="btn btn-{{ user.locked ? 'primary' : 'danger' }}"
-                       data-toggle="tooltip" title="{{ 'user.manage.ban_unban'|trans }}"><i class="fa fa-{{ user.locked ? 'unlock' : 'ban' }}"></i></a>
-                    {% if is_granted('ROLE_ALLOWED_TO_SWITCH') and not is_granted('ROLE_PREVIOUS_ADMIN') and not app.user == user %}
-                        <a href="{{ path('homepage', {'_locale': app.request.locale, '_switch_user': user.username}) }}"  class="btn btn-default"
-                           data-toggle="tooltip" title="{{ 'user.manage.login_as'|trans }}"><i class="fa fa-user-secret"></i></a>
+                    <a href="{{ path('mc_shop_users_manage_edit', {'id': user.id}) }}" class="btn btn-warning"
+                       data-toggle="tooltip" title="{{ 'user.manage.edit'|trans }}"><i class="fa fa-pencil"></i></a>
+                    {% if app.user != user %}
+                        <a href="{{ path('mc_shop_users_manage_ban', {'id': user.id}) }}" class="btn btn-{{ user.locked ? 'primary' : 'danger' }}"
+                           data-toggle="tooltip" title="{{ 'user.manage.ban_unban'|trans }}"><i class="fa fa-{{ user.locked ? 'unlock' : 'ban' }}"></i></a>
+                        {% if is_granted('ROLE_ALLOWED_TO_SWITCH') and not is_granted('ROLE_PREVIOUS_ADMIN') %}
+                            <a href="{{ path('homepage', {'_locale': app.request.locale, '_switch_user': user.username}) }}"  class="btn btn-default"
+                               data-toggle="tooltip" title="{{ 'user.manage.login_as'|trans }}"><i class="fa fa-user-secret"></i></a>
+                        {% endif %}
                     {% endif %}
                 </div>
             </td>
+        </tr>
         {% endfor %}
         </tbody>
     </table>

@@ -118,6 +118,11 @@ user:
         username_placeholder:       Введите имя пользователя для поиска
         ban_error:                  Вы не можете блокировать или разблокировать себя
         login_as:                   Войти за пользователя
+        edit:                       Редактировать
+        edit_user:                  'Редактирование пользователя "@username@"'
+        roles:                      Привилегии
+        save:                       Сохранить
+        back_to_list:               Вернуться к списку
 title:
     registration_form:              Регистрация
     code_activation:                Активация кода подтверждения

@@ -4,8 +4,10 @@ namespace McShop\UserBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
 use McShop\UserBundle\Entity\User;
+use McShop\UserBundle\Form\UserEditType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class ManageController extends BaseController
 {
@@ -67,5 +69,56 @@ class ManageController extends BaseController
         $this->getDoctrine()->getManagerForClass('McShopUserBundle:User')->flush();
 
         return $this->redirectToReferer();
+    }
+
+    /**
+     * @param User $user
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function editAction(User $user, Request $request)
+    {
+        foreach ($user->getRoles() as $role) {
+            if (!$this->isGranted($role->getRole())) {
+                throw $this->createAccessDeniedException('You can not edit this user!');
+            }
+        }
+
+        $this->get('app.title')->setValue('user.manage.edit_user')->setAttributes([
+            '@username@'    => $user->getUsername(),
+        ]);
+
+        $oldPassword = $user->getPassword();
+        $form = $this->createForm(UserEditType::class, $user, [
+            'current_user'  => $this->getUser()
+        ]);
+
+        if ($request->isMethod($request::METHOD_POST)) {
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+                $user->setPassword($oldPassword);
+                if (!empty($form->get('password')->getData()) && $form->get('password')->getData() !== null) {
+                    $password = $this->get('security.password_encoder')
+                        ->encodePassword($user, $form->get('password')->getData());
+                    $user->setPassword($password);
+                }
+
+                $this->getDoctrine()->getManagerForClass('McShopUserBundle:User')->persist($user);
+                $this->getDoctrine()->getManagerForClass('McShopUserBundle:User')->flush();
+
+                $this->addFlash('info', $this->trans('user.manage.edit_success'));
+
+//                return $this->redirectToReferer();
+            }
+
+            foreach ($form->getErrors() as $error) {
+                $this->addFlash('danger', $error->getMessage());
+            }
+        }
+
+        return $this->render(':Default/User/Manage:edit.html.twig', [
+            'user'  => $user,
+            'form'  => $form->createView(),
+        ]);
     }
 }

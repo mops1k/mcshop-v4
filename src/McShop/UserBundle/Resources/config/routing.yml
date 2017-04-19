@@ -77,3 +77,8 @@ mc_shop_users_manage_ban:
     path:   /manage/user/{id}/block
     defaults:
         _controller: McShopUserBundle:Manage:block
+
+mc_shop_users_manage_edit:
+    path:   /manage/user/{id}/edit
+    defaults:
+        _controller: McShopUserBundle:Manage:edit

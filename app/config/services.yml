@@ -52,3 +52,6 @@ services:
         arguments: [ '@twig', '@mc_shop.setting.helper', '@app.title', '%kernel.environment%' ]
         tags:
             - { name: kernel.event_listener, event: kernel.exception, method: 'onKernelException', priority: -100 }
+
+    mc_shop.access.decision_manager:
+        alias: security.access.decision_manager

@@ -1,7 +1,6 @@
 <?php
 namespace McShop\Core\Twig;
 
-
 class Title
 {
     /** @var string */

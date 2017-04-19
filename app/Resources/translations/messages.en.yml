@@ -118,6 +118,11 @@ user:
         username_placeholder:       Enter username for searching
         ban_error:                  You can't ban or unban yourself
         login_as:                   Login as user
+        edit:                       Edit
+        edit_user:                  'Edit user "@username@"'
+        roles:                      Roles
+        save:                       Save
+        back_to_list:               Back to list
 title:
     registration_form:              Registration
     code_activation:                Confirmation code activation
