@@ -26,3 +26,4 @@
 !web/minecraft/preview/.gitkeep
 /web/upload/*
 !web/upload/.gitkeep
+/web/config.php
