@@ -48,6 +48,7 @@ class BuyHistoryRepository extends \Doctrine\ORM\EntityRepository
 
     /**
      * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function getTotalCount()
     {

@@ -2,13 +2,18 @@
 namespace McShop\UserBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
+use McShop\UserBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends BaseController
 {
+    /**
+     * @return Response
+     * @throws \Exception
+     */
     public function loginAction()
     {
-        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if ($this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->isAuthenticatedErrorShow();
         }
 
@@ -62,14 +67,19 @@ class DefaultController extends BaseController
         ]);
     }
 
-    public function minecraftLoginAction($username, $password)
+    /**
+     * @param $username
+     * @param $password
+     * @return Response
+     */
+    public function minecraftLoginAction(string $username, string $password)
     {
         $user = $this->getDoctrine()
-            ->getManagerForClass('McShopUserBundle:User')
-            ->getRepository('McShopUserBundle:User')
+            ->getManagerForClass(User::class)
+            ->getRepository(User::class)
             ->loadUserByUsername($username);
 
-        if ($user === null
+        if (!$user
             || !$this->get('security.password_encoder')->isPasswordValid($user, $password)
             || $user->getLocked()
             || !$user->getActive()) {

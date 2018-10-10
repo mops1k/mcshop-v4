@@ -2,6 +2,7 @@
 
 namespace McShop\NewsBundle\Form;
 
+use McShop\NewsBundle\Entity\Commentary;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -28,7 +29,7 @@ class CommentaryType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'McShop\NewsBundle\Entity\Commentary'
+            'data_class' => Commentary::class
         ]);
     }
 

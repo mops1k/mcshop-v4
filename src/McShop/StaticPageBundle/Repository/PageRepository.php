@@ -20,6 +20,7 @@ class PageRepository extends EntityRepository
     /**
      * @param $slug
      * @return Page|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function findOneBySlug($slug)
     {
@@ -37,9 +38,10 @@ class PageRepository extends EntityRepository
     }
 
     /**
+     * @param int $returnType
      * @return Page[]|QueryBuilder|null
      */
-    public function findAll($returnType = self::RETURN_RESULT)
+    public function findAll(int $returnType = self::RETURN_RESULT)
     {
         $qb = $this->createQueryBuilder('p');
 

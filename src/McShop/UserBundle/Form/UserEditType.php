@@ -4,6 +4,7 @@ namespace McShop\UserBundle\Form;
 
 use Doctrine\ORM\EntityRepository;
 use McShop\UserBundle\Entity\Role;
+use McShop\UserBundle\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -67,7 +68,7 @@ class UserEditType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'McShop\UserBundle\Entity\User',
+            'data_class' => User::class,
             'current_user' => null,
         ]);
     }

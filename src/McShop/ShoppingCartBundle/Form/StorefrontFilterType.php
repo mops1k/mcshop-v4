@@ -35,7 +35,7 @@ class StorefrontFilterType extends AbstractType
             ->add('type', ChoiceType::class, [
                 'label' => 'shopping_cart.storefront.filter.type',
                 'required'  => false,
-                'choices'   => ShoppingCartItem::getTypes(),
+                'choices'   => array_flip(ShoppingCartItem::getTypes()),
             ])
             ->add('amount', NumberType::class, [
                 'label' => 'shopping_cart.storefront.filter.amount',

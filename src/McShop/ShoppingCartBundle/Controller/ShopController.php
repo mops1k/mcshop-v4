@@ -23,7 +23,7 @@ class ShopController extends BaseController
      */
     public function storefrontAction(ShoppingCartCategory $category = null, Request $request)
     {
-        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             throw $this->createAccessDeniedException();
         }
 
@@ -76,7 +76,7 @@ class ShopController extends BaseController
      */
     public function addToBasketAction(ShoppingCartItem $item)
     {
-        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             throw $this->createAccessDeniedException();
         }
 
@@ -111,7 +111,7 @@ class ShopController extends BaseController
      */
     public function basketAction()
     {
-        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             throw $this->createAccessDeniedException();
         }
 
@@ -133,7 +133,7 @@ class ShopController extends BaseController
      */
     public function basketRemoveAction(Basket $basket)
     {
-        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             throw $this->createAccessDeniedException();
         }
 
@@ -153,7 +153,7 @@ class ShopController extends BaseController
      */
     public function changeBasketAmountAction(Basket $basket, Request $request)
     {
-        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             throw $this->createAccessDeniedException();
         }
 
@@ -184,7 +184,7 @@ class ShopController extends BaseController
      */
     public function buyAction()
     {
-        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             throw $this->createAccessDeniedException();
         }
 

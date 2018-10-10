@@ -15,7 +15,7 @@ class PaymentController extends BaseController
      */
     public function sendFormAction($amount)
     {
-        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             throw $this->createAccessDeniedException();
         }
         return $this->redirect($this->get('mc_shop_finance.payment')->payForm($amount));
@@ -37,8 +37,8 @@ class PaymentController extends BaseController
             return new Response('Bad ip', Response::HTTP_FORBIDDEN);
         }
 
-        $manager = $this->getDoctrine()->getManagerForClass('McShopFinanceBundle:Transactions');
-        $transaction = $manager->getRepository('McShopFinanceBundle:Transactions')->find($request->get('ik_pm_no'));
+        $manager = $this->getDoctrine()->getManagerForClass(Transactions::class);
+        $transaction = $manager->getRepository(Transactions::class)->find($request->get('ik_pm_no'));
 
         if ($transaction === null || $transaction->getStatus() !== Transactions::STATUS_IN_PROCCESS) {
             if ($transaction != null) {
@@ -74,12 +74,12 @@ class PaymentController extends BaseController
 
     public function failAction(Request $request)
     {
-        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             throw $this->createAccessDeniedException();
         }
 
-        $manager = $this->getDoctrine()->getManagerForClass('McShopFinanceBundle:Transactions');
-        $transaction = $manager->getRepository('McShopFinanceBundle:Transactions')->find($request->get('ik_pm_no'));
+        $manager = $this->getDoctrine()->getManagerForClass(Transactions::class);
+        $transaction = $manager->getRepository(Transactions::class)->find($request->get('ik_pm_no'));
 
         if ($transaction != null) {
             $transaction->setStatus(Transactions::STATUS_FAILURE);

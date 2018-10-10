@@ -3,6 +3,7 @@
 namespace McShop\UserBundle\Form;
 
 use Gregwar\CaptchaBundle\Type\CaptchaType;
+use McShop\UserBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -52,9 +53,9 @@ class UserType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'McShop\UserBundle\Entity\User'
-        ));
+        $resolver->setDefaults([
+            'data_class' => User::class
+        ]);
     }
 
     /**

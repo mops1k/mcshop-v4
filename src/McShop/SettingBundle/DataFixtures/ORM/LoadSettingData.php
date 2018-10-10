@@ -19,7 +19,7 @@ class LoadSettingData extends AbstractFixture implements OrderedFixtureInterface
         $data = Yaml::parse(file_get_contents(__DIR__ . '/data/setting.yml'));
 
         foreach ($data as $name => $value) {
-            $setting = $manager->getRepository('McShopSettingBundle:Setting')->findOneByName($name);
+            $setting = $manager->getRepository(Setting::class)->findOneByName($name);
 
             if ($setting instanceof Setting && $setting->getValue() == $value) {
                     continue;
@@ -43,7 +43,7 @@ class LoadSettingData extends AbstractFixture implements OrderedFixtureInterface
      *
      * @return integer
      */
-    public function getOrder()
+    public function getOrder(): int
     {
         return 1;
     }

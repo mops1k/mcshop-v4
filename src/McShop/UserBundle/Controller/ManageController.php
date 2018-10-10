@@ -34,8 +34,8 @@ class ManageController extends BaseController
         ;
 
         $users = $this->getDoctrine()
-            ->getManagerForClass('McShopUserBundle:User')
-            ->getRepository('McShopUserBundle:User')
+            ->getManagerForClass(User::class)
+            ->getRepository(User::class)
             ->getAllPaginated($form)
             ->setCurrentPage($request->get('page', 1))
             ->setMaxPerPage($request->get('per_page', 30))
@@ -65,8 +65,8 @@ class ManageController extends BaseController
 
         $user->setLocked(!$user->getLocked());
 
-        $this->getDoctrine()->getManagerForClass('McShopUserBundle:User')->persist($user);
-        $this->getDoctrine()->getManagerForClass('McShopUserBundle:User')->flush();
+        $this->getDoctrine()->getManagerForClass(User::class)->persist($user);
+        $this->getDoctrine()->getManagerForClass(User::class)->flush();
 
         return $this->redirectToReferer();
     }
@@ -103,8 +103,8 @@ class ManageController extends BaseController
                     $user->setPassword($password);
                 }
 
-                $this->getDoctrine()->getManagerForClass('McShopUserBundle:User')->persist($user);
-                $this->getDoctrine()->getManagerForClass('McShopUserBundle:User')->flush();
+                $this->getDoctrine()->getManagerForClass(User::class)->persist($user);
+                $this->getDoctrine()->getManagerForClass(User::class)->flush();
 
                 $this->addFlash('info', $this->trans('user.manage.edit_success'));
 

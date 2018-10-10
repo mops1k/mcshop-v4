@@ -10,6 +10,9 @@ class DefaultController extends BaseController
     /**
      * @param $slug
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function indexAction($slug)
     {
@@ -50,9 +53,10 @@ class DefaultController extends BaseController
 
         $this->get('app.title')->setValue($page->getTitle());
 
+        $tplName = uniqid( 'string_template_', true );
         $twig = clone $this->get('twig');
-        $twig->setLoader(new \Twig_Loader_String());
-        $content = $twig->render($page->getContent());
+        $twig->setLoader(new \Twig_Loader_Array([ $tplName => $page->getContent() ]));
+        $content = $twig->render($tplName);
 
         return $this->render(':Default/StaticPage:view.html.twig', [
             'title'     => $page->getTitle(),

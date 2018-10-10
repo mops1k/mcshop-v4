@@ -3,6 +3,7 @@ namespace McShop\UserBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
 use McShop\UserBundle\Entity\Token;
+use McShop\UserBundle\Entity\User;
 use McShop\UserBundle\Form\RecoverType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -21,7 +22,7 @@ class RecoverController extends BaseController
      */
     public function recoverAction(Request $request)
     {
-        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if ($this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->isAuthenticatedErrorShow();
         }
         $this->get('app.title')->setValue('user.recover.message.title');
@@ -44,8 +45,8 @@ class RecoverController extends BaseController
             $data = $form->getData();
 
             $user = $this->getDoctrine()
-                ->getManagerForClass('McShopUserBundle:User')
-                ->getRepository('McShopUserBundle:User')
+                ->getManagerForClass(User::class)
+                ->getRepository(User::class)
                 ->loadUserByUsername($data['user'])
             ;
 
@@ -93,7 +94,7 @@ class RecoverController extends BaseController
      */
     public function codeAction()
     {
-        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if ($this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->isAuthenticatedErrorShow();
         }
         $this->get('app.title')->setValue('title.code_activation');
@@ -108,14 +109,14 @@ class RecoverController extends BaseController
      */
     public function codeCheckAction($code, Request $request)
     {
-        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if ($this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->isAuthenticatedErrorShow();
         }
         $this->get('app.title')->setValue('user.recover.message.password_title');
 
         $token = $this->getDoctrine()
-            ->getManagerForClass('McShopUserBundle:Token')
-            ->getRepository('McShopUserBundle:Token')
+            ->getManagerForClass(Token::class)
+            ->getRepository(Token::class)
             ->findTokenByValue($code)
         ;
 

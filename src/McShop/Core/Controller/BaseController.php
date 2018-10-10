@@ -25,7 +25,7 @@ class BaseController extends Controller
      */
     public function isAuthenticatedErrorShow()
     {
-        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if ($this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             $this->addFlash(
                 'info',
                 $this->get('translator')->trans('login.error.already_logged_in')

@@ -2,6 +2,9 @@
 namespace McShop\ShoppingCartBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
+use McShop\ShoppingCartBundle\Entity\BuyHistory;
+use McShop\ShoppingCartBundle\Entity\ShoppingCartCategory;
+use McShop\ShoppingCartBundle\Entity\ShoppingCartItem;
 
 class DefaultController extends BaseController
 {
@@ -17,20 +20,20 @@ class DefaultController extends BaseController
         $this->get('app.title')->setValue('shopping_cart.menu.managment_title');
 
         $totalCategories = $this->getDoctrine()
-            ->getManagerForClass('McShopShoppingCartBundle:ShoppingCartCategory')
-            ->getRepository('McShopShoppingCartBundle:ShoppingCartCategory')
+            ->getManagerForClass(ShoppingCartCategory::class)
+            ->getRepository(ShoppingCartCategory::class)
             ->getTotalCount()
         ;
 
         $totalItems = $this->getDoctrine()
-            ->getManagerForClass('McShopShoppingCartBundle:ShoppingCartItem')
-            ->getRepository('McShopShoppingCartBundle:ShoppingCartItem')
+            ->getManagerForClass(ShoppingCartItem::class)
+            ->getRepository(ShoppingCartItem::class)
             ->getTotalCount()
         ;
 
         $totalBuy = $this->getDoctrine()
-            ->getManagerForClass('McShopShoppingCartBundle:BuyHistory')
-            ->getRepository('McShopShoppingCartBundle:BuyHistory')
+            ->getManagerForClass(BuyHistory::class)
+            ->getRepository(BuyHistory::class)
             ->getTotalCount()
         ;
 

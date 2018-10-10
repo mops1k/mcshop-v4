@@ -19,7 +19,7 @@ class CommentaryCrudController extends BaseController
      */
     public function editAction(Commentary $commentary, Request $request)
     {
-        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             throw $this->createAccessDeniedException();
         }
 
@@ -69,8 +69,8 @@ class CommentaryCrudController extends BaseController
             throw $this->createAccessDeniedException();
         }
 
-        $this->getDoctrine()->getManagerForClass(get_class($commentary))->remove($commentary);
-        $this->getDoctrine()->getManagerForClass(get_class($commentary))->flush();
+        $this->getDoctrine()->getManagerForClass(Commentary::class)->remove($commentary);
+        $this->getDoctrine()->getManagerForClass(Commentary::class)->flush();
 
         $this->addFlash('info', $this->get('translator')->trans('news.comments.remove_success'));
 

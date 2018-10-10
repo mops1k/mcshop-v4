@@ -55,8 +55,8 @@ class CouponController extends BaseController
         $filterForm->handleRequest($request);
 
         $query = $this->getDoctrine()
-            ->getManagerForClass('McShopFinanceBundle:Coupon')
-            ->getRepository('McShopFinanceBundle:Coupon')
+            ->getManagerForClass(Coupon::class)
+            ->getRepository(Coupon::class)
             ->findWithFilters($filterForm, CouponRepository::RETURN_QUERY)
         ;
 
@@ -81,7 +81,7 @@ class CouponController extends BaseController
      */
     public function activateAction(Request $request)
     {
-        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             throw $this->createAccessDeniedException();
         }
 

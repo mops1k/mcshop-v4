@@ -2,6 +2,7 @@
 
 namespace McShop\ShoppingCartBundle\Form;
 
+use McShop\ShoppingCartBundle\Entity\ShoppingCartCategory;
 use McShop\ShoppingCartBundle\Entity\ShoppingCartItem;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -22,21 +23,21 @@ class ShoppingCartItemType extends AbstractType
             ])
             ->add('amount', NumberType::class, [
                 'label'         => 'shopping_cart.item.amount',
-                'data'          => $builder->getData() === null ? 1 : $builder->getData()->getAmount(),
+                'data'          => !$builder->getData() ? 1 : $builder->getData()->getAmount(),
                 'attr'          => [
                     'min'       => 0,
                 ]
             ])
             ->add('price', NumberType::class, [
                 'label'         => 'shopping_cart.item.price',
-                'data'          => $builder->getData() === null ? 0 : $builder->getData()->getPrice(),
+                'data'          => !$builder->getData() ? 0 : $builder->getData()->getPrice(),
                 'attr'          => [
                     'min'       => 0,
                 ]
             ])
             ->add('sale', NumberType::class, [
                 'label'         => 'shopping_cart.item.sale',
-                'data'          => $builder->getData() === null ? 0 : $builder->getData()->getSale(),
+                'data'          => !$builder->getData() ? 0 : $builder->getData()->getSale(),
                 'attr'          => [
                     'max'   => 100,
                     'min'   => 0,
@@ -44,7 +45,7 @@ class ShoppingCartItemType extends AbstractType
             ])
             ->add('category', EntityType::class, [
                 'label'         => 'shopping_cart.item.category',
-                'class'         => 'McShop\ShoppingCartBundle\Entity\ShoppingCartCategory',
+                'class'         => ShoppingCartCategory::class,
                 'choice_label'  => 'title',
                 'required'      => false,
             ])
@@ -61,7 +62,7 @@ class ShoppingCartItemType extends AbstractType
             ])
             ->add('type', ChoiceType::class, [
                 'label'         => 'shopping_cart.item.item_type',
-                'choices'   => ShoppingCartItem::getTypes(),
+                'choices'   => array_flip(ShoppingCartItem::getTypes()),
             ])
             ->add('server', EntityType::class, [
                 'label'         => 'shopping_cart.item.server',
@@ -81,7 +82,7 @@ class ShoppingCartItemType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class'    => 'McShop\ShoppingCartBundle\Entity\ShoppingCartItem'
+            'data_class'    => ShoppingCartItem::class
         ]);
     }
 

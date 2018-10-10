@@ -11,14 +11,16 @@
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
     },
     "require": {
-        "php": ">=5.4",
-        "symfony/symfony": "2.8.*",
+        "php": ">=7.0",
+        "ext-json": "*",
+        "ext-exif": "*",
+        "symfony/symfony": "3.4.*",
         "doctrine/orm": "^2.4.8",
         "doctrine/doctrine-bundle": "~1.4",
         "symfony/swiftmailer-bundle": "~2.3,>=2.3.10",
-        "symfony/monolog-bundle": "^3.0.2",
-        "sensio/distribution-bundle": "~5.0",
-        "sensio/framework-extra-bundle": "^3.0.2",
+        "symfony/monolog-bundle": "^3.1.0",
+        "sensio/distribution-bundle": "^5.0.19",
+        "sensio/framework-extra-bundle": "^5.0.0",
         "incenteev/composer-parameter-handler": "~2.0",
         "doctrine/doctrine-migrations-bundle": "^1.2",
         "matthiasnoback/symfony-console-form": "^2.1",
@@ -66,7 +68,7 @@
             "file": "app/config/parameters.yml"
         },
         "branch-alias": {
-            "dev-master": "0.1-dev"
+            "dev-master": "1.2-dev"
         }
     }
 }

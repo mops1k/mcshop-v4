@@ -5,7 +5,10 @@ use McShop\MenuBundle\Model\Common\AbstractMenu;
 
 class ShoppingCartMenu extends AbstractMenu
 {
-    public function adminMenu()
+    /**
+     * @return array
+     */
+    public function adminMenu(): array
     {
         $builder = $this->getBuilder();
 

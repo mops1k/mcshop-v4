@@ -2,6 +2,7 @@
 namespace McShop\ServersBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
+use McShop\ServersBundle\Entity\Server;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,8 +19,8 @@ class RconController extends BaseController
         $this->get('app.title')->setValue('server.rcon.manage');
 
         $servers = $this->getDoctrine()
-            ->getManagerForClass('McShopServersBundle:Server')
-            ->getRepository('McShopServersBundle:Server')
+            ->getManagerForClass(Server::class)
+            ->getRepository(Server::class)
             ->findRcon()
         ;
 
@@ -42,14 +43,14 @@ class RconController extends BaseController
         $serverId = $request->get('serverId');
         $command  = $request->get('command');
 
-        if ($serverId === null) {
+        if (!$serverId) {
             $response['success'] = false;
             $response['data']    = $this->get('translator')->trans('server.rcon.select_server');
 
             return new JsonResponse($response);
         }
 
-        if ($command === null) {
+        if (!$command) {
             $response['success'] = false;
             $response['data']    = $this->get('translator')->trans('server.rcon.no_command');
 
@@ -57,12 +58,12 @@ class RconController extends BaseController
         }
 
         $server = $this->getDoctrine()
-            ->getManagerForClass('McShopServersBundle:Server')
-            ->getRepository('McShopServersBundle:Server')
+            ->getManagerForClass(Server::class)
+            ->getRepository(Server::class)
             ->find($serverId)
         ;
 
-        if ($server === null) {
+        if (!$server) {
             $response['success'] = false;
             $response['data']    = $this->get('translator')->trans('server.rcon.unknown_server');
 

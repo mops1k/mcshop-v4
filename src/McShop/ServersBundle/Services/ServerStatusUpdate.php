@@ -36,7 +36,11 @@ class ServerStatusUpdate
         $this->status = $status;
     }
 
-    public function update(Server $server)
+    /**
+     * @param Server $server
+     * @return bool
+     */
+    public function update(Server $server): bool
     {
         $this->data = $server->getCache();
 
@@ -73,7 +77,7 @@ class ServerStatusUpdate
      * @param ServerCache $cache
      * @return bool
      */
-    private function needToUpdate(ServerCache $cache)
+    private function needToUpdate(ServerCache $cache): bool
     {
         $lastUpdate = $cache->getUpdatedAt();
         $lastUpdate->add(\DateInterval::createFromDateString('1 minute'));
@@ -85,7 +89,7 @@ class ServerStatusUpdate
     /**
      * @return ServerCache
      */
-    public function getData()
+    public function getData(): ServerCache
     {
         return $this->data;
     }

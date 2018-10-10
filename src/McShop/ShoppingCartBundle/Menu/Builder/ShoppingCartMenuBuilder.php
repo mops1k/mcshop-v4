@@ -6,14 +6,14 @@ use McShop\MenuBundle\Model\Common\AbstractBuilder;
 class ShoppingCartMenuBuilder extends AbstractBuilder
 {
     /**
-     * @param $name
+     * @param string $name
      * @param string $title
      * @param string $url
      * @param array $options
      *
      * @return $this
      */
-    public function addItem($name, $title, $url, array $options = [])
+    public function addItem(string $name, string $title, string $url, array $options = []): self
     {
         $this->menu[ $name ] = $options;
         if ($url !== 'empty') {
