@@ -4,54 +4,41 @@ parameters:
 #    parameter_name: value
 
 services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    McShop\Core\:
+        resource: '../../src/McShop/Core/*'
+        # exclude directories || files (if service is unused, it will be removed anyway)
+        exclude: '../../src/McShop/Core/{Controller, Form}'
+
     app.title:
         class: McShop\Core\Twig\Title
+        public: true
 
-    app.twig.title_extension:
-        class: McShop\Core\Twig\Extension\TitleExtension
-        arguments:
-            - '@app.title'
-        tags:
-            - { name: twig.extension, alias: title }
 
-    app.twig.pcre_extension:
-        class: McShop\Core\Twig\Extension\TwigPcreTwigExtension
-        tags:
-            - { name: twig.extension, alias: twig_pcre }
-
-    gedmo.listener.softdeleteable:
-        class: Gedmo\SoftDeleteable\SoftDeleteableListener
+    Gedmo\SoftDeleteable\SoftDeleteableListener:
         tags:
             - { name: 'doctrine.event_subscriber' }
         calls:
             - [ 'setAnnotationReader', [ '@annotation_reader' ] ]
 
-    gedmo.listener.timestampable:
-        class: Gedmo\Timestampable\TimestampableListener
+    Gedmo\Timestampable\TimestampableListener:
         tags:
             - { name: doctrine.event_subscriber }
         calls:
             - [ 'setAnnotationReader', [ '@annotation_reader' ] ]
 
-    gedmo.listener.tree:
-        class: Gedmo\Tree\TreeListener
+    Gedmo\Tree\TreeListener:
         tags:
             - { name: doctrine.event_subscriber }
         calls:
             - [ 'setAnnotationReader', [ '@annotation_reader' ] ]
 
-    mc_shop_console_form.number_transformer:
-        class: McShop\Core\Form\ConsoleTransformer\NumberTransformer
-        public: false
-        parent: matthias_symfony_console_form.abstract_transformer
+    McShop\Core\Form\ConsoleTransformer\NumberTransformer:
         tags:
             - { name: form_to_question_transformer, form_type: Symfony\Component\Form\Extension\Core\Type\NumberType }
 
-    mc_shop.listener.exception:
-        class: McShop\Core\Listener\ExceptionListener
-        arguments: [ '@twig', '@mc_shop.setting.helper', '@app.title', '%kernel.environment%' ]
-        tags:
-            - { name: kernel.event_listener, event: kernel.exception, method: 'onKernelException', priority: -100 }
-
-    mc_shop.access.decision_manager:
-        alias: security.access.decision_manager
+    mc_shop.access.decision_manager: '@security.access.decision_manager'
