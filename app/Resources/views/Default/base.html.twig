@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.offcanvas.min.css') }}"/>
 
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('bundles/lexxpavlovspelling/css/spelling.css') }}">
     {% endblock %}
 </head>
 
@@ -105,6 +106,7 @@
                     <div class="credits">
                         <a href="#">Minecraft Shop CMS</a>
                     </div>
+                    <br><span class="pull-right">{% include 'LexxpavlovSpellingBundle:Logo:one.html.twig' with {text_center: 'Ctrl+Enter'} %}</span>
                 </div>
             </div>
         </div>
@@ -112,12 +114,15 @@
     {% endblock %}
 </div>
 
+{% include 'LexxpavlovSpellingBundle::spelling.html.twig' %}
 {% block javascripts %}
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="{{ asset('assets/js/bootstrap.offcanvas.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/js/notify.min.js') }}"></script>
 <script src="{{ asset('assets/js/app.js') }}"></script>
+<script src="{{ asset('bundles/lexxpavlovspelling/js/rangy-core.js') }}"></script>
+<script src="{{ asset('bundles/lexxpavlovspelling/js/spelling.js') }}"></script>
 <script>
     {% set flashes = app.session.flashBag.all %}
     {% for type, messages in flashes %}

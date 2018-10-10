@@ -34,10 +34,10 @@ class CouponFilter extends AbstractType
             ->add('active', ChoiceType::class, [
                 'label'     => 'finance.coupon.filter.active',
                 'required'  => false,
-                'choices'   => [
+                'choices'   => array_flip([
                     'finance.coupon.deactive',
                     'finance.coupon.active',
-                ]
+                ])
             ])
         ;
     }

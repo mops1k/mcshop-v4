@@ -48,13 +48,14 @@ class UserMenuBuilder extends AbstractBuilder
     /**
      * Add item to menu
      *
-     * @param       $title
-     * @param       $url
+     * @param string $name
+     * @param string $title
+     * @param string $url
      * @param array $options
      *
      * @return $this
      */
-    public function addItem($name, $title, $url, array $options = [])
+    public function addItem(string $name, string $title, string $url, array $options = []): self
     {
         if (!isset($options['rootName'])) {
             $root = &$this->menu[ $this->lastRootName ]['items'];

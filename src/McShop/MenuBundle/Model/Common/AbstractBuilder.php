@@ -23,7 +23,14 @@ abstract class AbstractBuilder implements BuilderInterface
         $this->translator = $translator;
     }
 
-    abstract public function addItem($name, $title, $url, array $options = []);
+    /**
+     * @param string $name
+     * @param string $title
+     * @param string $url
+     * @param array $options
+     * @return mixed
+     */
+    abstract public function addItem(string $name, string $title, string $url, array $options = []);
 
     /**
      * @param string $key
@@ -40,7 +47,7 @@ abstract class AbstractBuilder implements BuilderInterface
     /**
      * @return mixed
      */
-    public function getMenu()
+    public function getMenu(): array
     {
         return $this->menu;
     }

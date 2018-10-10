@@ -1,6 +1,7 @@
 <?php
 namespace McShop\ShoppingCartBundle\Form;
 
+use McShop\ShoppingCartBundle\Entity\ShoppingCartCategory;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -18,7 +19,7 @@ class ShoppingCartCategoryType extends AbstractType
             ->add('parent', EntityType::class, [
                 'label'         => 'shopping_cart.category.parent',
                 'required'      => false,
-                'class'         => 'McShop\ShoppingCartBundle\Entity\ShoppingCartCategory',
+                'class'         => ShoppingCartCategory::class,
                 'choice_label'  => 'title',
             ])
         ;
@@ -27,7 +28,7 @@ class ShoppingCartCategoryType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class'    => 'McShop\ShoppingCartBundle\Entity\ShoppingCartCategory'
+            'data_class'    => ShoppingCartCategory::class
         ]);
     }
 

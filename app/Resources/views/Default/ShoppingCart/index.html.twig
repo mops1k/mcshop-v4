@@ -22,5 +22,52 @@
 
 
 {% block content %}
-    <p><b>Категории: {{ total.categories }}</b></p>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-tasks fa-3x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">{{ total.categories }}</div>
+                            <div>{{ 'shopping_cart.category.menu'|trans }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-cube fa-3x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">{{ total.items }}</div>
+                            <div>{{ 'shopping_cart.item.menu'|trans }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {# todo: реализовать историю покупок #}
+        <div class="col-md-4">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-shopping-cart fa-3x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">{{ total.buy }}</div>
+                            <div>{{ 'shopping_cart.history.total'|trans }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

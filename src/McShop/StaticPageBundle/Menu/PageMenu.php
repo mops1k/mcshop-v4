@@ -3,6 +3,7 @@ namespace McShop\StaticPageBundle\Menu;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use McShop\MenuBundle\Model\Common\AbstractMenu;
+use McShop\StaticPageBundle\Entity\Page;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
@@ -28,8 +29,8 @@ class PageMenu extends AbstractMenu
 
     public function pageMenu()
     {
-        $em = $this->doctrine->getManagerForClass('McShopStaticPageBundle:Page');
-        $pages = $em->getRepository('McShopStaticPageBundle:Page')->findAllForMenu();
+        $em = $this->doctrine->getManagerForClass(Page::class);
+        $pages = $em->getRepository(Page::class)->findAllForMenu();
 
         $builder = $this->getBuilder();
 

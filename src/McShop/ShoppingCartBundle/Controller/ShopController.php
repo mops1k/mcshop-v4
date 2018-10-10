@@ -3,6 +3,7 @@ namespace McShop\ShoppingCartBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
 use McShop\ShoppingCartBundle\Entity\Basket;
+use McShop\ShoppingCartBundle\Entity\BuyHistory;
 use McShop\ShoppingCartBundle\Entity\ShoppingCart;
 use McShop\ShoppingCartBundle\Entity\ShoppingCartCategory;
 use McShop\ShoppingCartBundle\Entity\ShoppingCartItem;
@@ -22,7 +23,7 @@ class ShopController extends BaseController
      */
     public function storefrontAction(ShoppingCartCategory $category = null, Request $request)
     {
-        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             throw $this->createAccessDeniedException();
         }
 
@@ -75,7 +76,7 @@ class ShopController extends BaseController
      */
     public function addToBasketAction(ShoppingCartItem $item)
     {
-        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             throw $this->createAccessDeniedException();
         }
 
@@ -110,7 +111,7 @@ class ShopController extends BaseController
      */
     public function basketAction()
     {
-        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             throw $this->createAccessDeniedException();
         }
 
@@ -132,7 +133,7 @@ class ShopController extends BaseController
      */
     public function basketRemoveAction(Basket $basket)
     {
-        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             throw $this->createAccessDeniedException();
         }
 
@@ -152,7 +153,7 @@ class ShopController extends BaseController
      */
     public function changeBasketAmountAction(Basket $basket, Request $request)
     {
-        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             throw $this->createAccessDeniedException();
         }
 
@@ -183,7 +184,7 @@ class ShopController extends BaseController
      */
     public function buyAction()
     {
-        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             throw $this->createAccessDeniedException();
         }
 
@@ -220,8 +221,15 @@ class ShopController extends BaseController
                 ->setServer($basket->getItem()->getServer()->getShoppingCartId())
                 ->setPlayer($basket->getUser()->getUsername())
             ;
+            $historyEntry = new BuyHistory();
+            $historyEntry
+                ->setItem($basket->getItem())
+                ->setUser($basket->getUser())
+                ->setAmount($basket->getAmount())
+            ;
 
             $manager->persist($shoppingCart);
+            $manager->persist($historyEntry);
             $manager->remove($basket);
         }
 

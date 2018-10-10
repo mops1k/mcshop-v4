@@ -21,7 +21,7 @@ class CouponCodeType extends AbstractType
     {
         $builder->add('code', TextType::class, [
             'label'         => 'finance.coupon.code',
-            'max_length'    => 16
+            'attr'          =>  [ 'maxlength' => 16 ],
         ]);
     }
 

@@ -67,3 +67,18 @@ mc_shop_user_image_type_change:
     defaults:
         _controller: McShopUserBundle:Profile:skinAsAvatar
     methods: ["GET"]
+
+mc_shop_users_manage_list:
+    path:   /manage/users/list
+    defaults:
+        _controller: McShopUserBundle:Manage:index
+
+mc_shop_users_manage_ban:
+    path:   /manage/user/{id}/block
+    defaults:
+        _controller: McShopUserBundle:Manage:block
+
+mc_shop_users_manage_edit:
+    path:   /manage/user/{id}/edit
+    defaults:
+        _controller: McShopUserBundle:Manage:edit

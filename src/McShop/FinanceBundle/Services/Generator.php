@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mops1k
- * Date: 09.02.2017
- * Time: 21:32
- */
-
 namespace McShop\FinanceBundle\Services;
 
 
@@ -59,7 +52,7 @@ class Generator
             return;
         }
 
-        $manager = $this->doctrine->getManagerForClass('McShopFinanceBundle:Coupon');
+        $manager = $this->doctrine->getManagerForClass(Coupon::class);
         for ($i = 0; $i < $this->count; $i++) {
             $coupon = new Coupon();
             $coupon
@@ -81,10 +74,10 @@ class Generator
      */
     public function activateCoupon($code)
     {
-        $manager = $this->doctrine->getManagerForClass('McShopFinanceBundle:Coupon');
+        $manager = $this->doctrine->getManagerForClass(Coupon::class);
 
         /** @var Coupon|null $coupon */
-        $coupon = $manager->getRepository('McShopFinanceBundle:Coupon')->findOneByCode($code);
+        $coupon = $manager->getRepository(Coupon::class)->findOneByCode($code);
         if ($coupon === null || !$coupon->isActive()) {
             return false;
         }

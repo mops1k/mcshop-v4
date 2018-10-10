@@ -3,7 +3,11 @@
 namespace McShop\UserBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use McShop\UserBundle\Entity\User;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
 use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
+use Symfony\Component\Form\Form;
 
 /**
  * UserRepository
@@ -13,6 +17,9 @@ use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
  */
 class UserRepository extends EntityRepository implements UserLoaderInterface
 {
+    /**
+     * @inheritdoc
+     */
     public function loadUserByUsername($username)
     {
         return $this->createQueryBuilder('u')
@@ -22,5 +29,33 @@ class UserRepository extends EntityRepository implements UserLoaderInterface
             ->setParameter('email', $username)
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    /**
+     * @param Form|null $form
+     * @return User[]|Pagerfanta
+     */
+    public function getAllPaginated(Form $form = null)
+    {
+        $qb = $this->createQueryBuilder('u');
+
+        $qb
+            ->select('u, r, p')
+            ->leftJoin('u.roles', 'r')
+            ->leftJoin('u.purse', 'p')
+            ->orderBy('u.id', 'DESC')
+        ;
+
+        if ($form !== null && $form->get('username')->getData() !== null) {
+            $qb
+                ->where('u.username LIKE :username')
+                ->setParameter('username', '%' . $form->get('username')->getData() . '%')
+            ;
+        }
+
+        $adapter = new DoctrineORMAdapter($qb);
+        $pagination = new Pagerfanta($adapter);
+
+        return $pagination;
     }
 }

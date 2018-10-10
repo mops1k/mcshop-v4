@@ -14,10 +14,11 @@ class RoleHierarchy extends RoleHierarchyStandart
 
     /**
      * @param array $hierarchy
+     * @param ManagerRegistry $em
      */
     public function __construct(array $hierarchy, ManagerRegistry $em)
     {
-        $this->em = $em->getManagerForClass("McShopUserBundle:Role");
+        $this->em = $em->getManagerForClass(Role::class);
         $this->hierarchy = $hierarchy;
 
         parent::__construct($this->getRoles());

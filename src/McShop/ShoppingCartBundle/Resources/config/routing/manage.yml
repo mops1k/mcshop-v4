@@ -9,3 +9,7 @@ mc_shop_shopping_cart_manage_category:
 mc_shop_shopping_cart_manage_item:
     resource: 'manage/item.yml'
     prefix:   /item
+
+mc_shop_shopping_cart_manage_history:
+    resource: 'manage/history.yml'
+    prefix:   /history

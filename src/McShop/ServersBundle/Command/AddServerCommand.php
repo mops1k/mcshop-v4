@@ -16,7 +16,7 @@ class AddServerCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('mc_shop:servers:add')
+            ->setName('mc_shop:server:add')
             ->setDescription('Add server to the system');
     }
 

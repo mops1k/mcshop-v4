@@ -13,6 +13,8 @@ class ServerListener
 {
     /**
      * @param LifecycleEventArgs $event
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function prePersist(LifecycleEventArgs $event)
     {

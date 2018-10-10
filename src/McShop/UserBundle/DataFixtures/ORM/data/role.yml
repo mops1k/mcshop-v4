@@ -7,11 +7,6 @@ ROLE_MODERATOR:
     role:   ROLE_MODERATOR
     parent: ROLE_SUPER_ADMIN
 
-ROLE_ALLOWED_TO_SWITCH:
-    name:   Вход как другой пользователь
-    role:   ROLE_ALLOWED_TO_SWITCH
-    parent: ROLE_SUPER_ADMIN
-
 ROLE_USER:
     name:   Пользователь
     role:   ROLE_USER
@@ -133,6 +128,21 @@ ROLE_ITEM_REMOVE:
     role:   ROLE_ITEM_REMOVE
     parent: ROLE_ITEM_ADMIN
 
+ROLE_HISTORY_ADMIN:
+    name:   Полный просмотр историй действий или покупок
+    role:   ROLE_HISTORY_ADMIN
+    parent: ROLE_SUPER_ADMIN
+
+ROLE_HISTORY_LIST:
+    name:   Просмотр списков истории действий (покупок)
+    role:   ROLE_HISTORY_LIST
+    parent: ROLE_HISTORY_ADMIN
+
+ROLE_HISTORY_VIEW:
+    name:   Подробный просмотр списков истории действий (покупок)
+    role:   ROLE_HISTORY_VIEW
+    parent: ROLE_HISTORY_ADMIN
+
 ROLE_SHOPPING_CART_MANAGE:
     name:   Управление магазином
     role:   ROLE_SHOPPING_CART_MANAGE
@@ -167,3 +177,23 @@ ROLE_SETTING_EDIT:
     name:   Редактирование системных настроек
     role:   ROLE_SETTING_EDIT
     parent: ROLE_SUPER_ADMIN
+
+ROLE_USERS_MANAGE:
+    name:   Управление пользователями
+    role:   ROLE_USERS_MANAGE
+    parent: ROLE_SUPER_ADMIN
+
+ROLE_USERS_LIST:
+    name:   Просмотр списка пользователей
+    role:   ROLE_USERS_LIST
+    parent: ROLE_USERS_MANAGE
+
+ROLE_USERS_BAN:
+    name:   Блокирование и разблокирование пользователей
+    role:   ROLE_USERS_BAN
+    parent: ROLE_USERS_MANAGE
+
+ROLE_ALLOWED_TO_SWITCH:
+    name:   Вход как другой пользователь
+    role:   ROLE_ALLOWED_TO_SWITCH
+    parent: ROLE_USERS_MANAGE

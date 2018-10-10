@@ -22,3 +22,7 @@ homepage:
 mc_shop_finance:
     resource: "@McShopFinanceBundle/Resources/config/routing.yml"
     prefix:   /payment
+
+lexxpavlov_spelling:
+    resource: "@LexxpavlovSpellingBundle/Resources/config/routing/routing.yml"
+    prefix: /spelling

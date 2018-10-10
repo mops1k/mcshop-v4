@@ -25,8 +25,8 @@ class DefaultController extends BaseController
     public function indexAction(Request $request)
     {
         $posts = $this->getDoctrine()
-            ->getManagerForClass('McShopNewsBundle:Post')
-            ->getRepository('McShopNewsBundle:Post')
+            ->getManagerForClass(Post::class)
+            ->getRepository(Post::class)
             ->findAll(PostRepository::RETURN_QUERY)
             ->orderBy('p.id', 'DESC')
         ;
@@ -58,7 +58,7 @@ class DefaultController extends BaseController
             ])
         ;
         $additional = [];
-        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if ($this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             $form = $this->createForm(CommentaryType::class);
 
             if ($request->isMethod($request::METHOD_POST)) {
@@ -101,9 +101,9 @@ class DefaultController extends BaseController
             ->setCurrentPage($request->get('page', 1))
         ;
 
-        return $this->render(':Default/News:view.html.twig', [
+        return $this->render(':Default/News:view.html.twig', array_merge([
             'commentaries'  => $commentaries,
             'post'  => $post,
-        ] + $additional);
+        ], $additional));
     }
 }

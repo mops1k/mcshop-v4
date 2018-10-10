@@ -4,17 +4,23 @@ namespace McShop\UserBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
 use McShop\FinanceBundle\Form\CouponCodeType;
+use McShop\UserBundle\Entity\User;
 use McShop\UserBundle\Form\PasswordType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 
 class ProfileController extends BaseController
 {
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function indexAction()
     {
-        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             throw $this->createAccessDeniedException();
         }
+
+        $this->get('app.title')->setValue('user.profile.title');
 
         $passwordForm = $this->createForm(PasswordType::class, $this->getUser(), [
             'action'    => $this->generateUrl("mc_shop_user_password_change"),
@@ -30,9 +36,13 @@ class ProfileController extends BaseController
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function passwordAction(Request $request)
     {
-        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             throw $this->createAccessDeniedException();
         }
 
@@ -65,7 +75,7 @@ class ProfileController extends BaseController
      */
     public function skinAsAvatarAction($choice)
     {
-        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             throw $this->createAccessDeniedException();
         }
 
@@ -80,15 +90,19 @@ class ProfileController extends BaseController
                 break;
         }
 
-        $this->getDoctrine()->getManagerForClass('McShopUserBundle:User')->persist($user);
-        $this->getDoctrine()->getManagerForClass('McShopUserBundle:User')->flush();
+        $this->getDoctrine()->getManagerForClass(User::class)->persist($user);
+        $this->getDoctrine()->getManagerForClass(User::class)->flush();
 
         return $this->redirectToRoute('mc_shop_user_profile');
     }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function uploadFileAction(Request $request)
     {
-        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             throw $this->createAccessDeniedException();
         }
 
@@ -164,9 +178,9 @@ class ProfileController extends BaseController
      * @param $type
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function unlinkAction($type)
+    public function unlinkAction(string $type)
     {
-        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             throw $this->createAccessDeniedException();
         }
 
@@ -229,7 +243,7 @@ class ProfileController extends BaseController
             ->setSkinAsAvatar(false)
         ;
 
-        $this->getDoctrine()->getManagerForClass('McShopUserBundle:User')->persist($user);
-        $this->getDoctrine()->getManagerForClass('McShopUserBundle:User')->flush();
+        $this->getDoctrine()->getManagerForClass(User::class)->persist($user);
+        $this->getDoctrine()->getManagerForClass(User::class)->flush();
     }
 }

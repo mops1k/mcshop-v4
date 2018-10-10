@@ -52,6 +52,7 @@ news:
         form.title:                 Write your commentary
 user:
     profile:
+        title:                      User profile
         use:
             avatar:                 Show avatar
             head:                   Show head from skin
@@ -79,10 +80,11 @@ user:
     increase_real_cash:             Add real cash
     launcher:
         login:
-            error:                  Wrong username or password!
+            error:                  Authorization error!
     menu:
         profile:                    Profile
         logout:                     Logout
+        logout_to_account:          Logout to main account
         sign-in:                    Sign In
         sign-up:                    Sign Up
     recover:
@@ -102,6 +104,25 @@ user:
                                 To restore your password you need to go <a href=@code_link@>this link</a>.
                                 Or enter code below <a href=@enter_code_link@>here</a>.<br />
                                 Your code: <b>@code@</b>
+    manage:
+        menu:                       User managment
+        list:                       Users list
+        total:                      "{0} Total 0 users|{1} Total 1 user|]1, +Inf[ Total @count@ user"
+        username:                   Username
+        email:                      E-mail
+        lock_status:                Ban status
+        locked:                     banned
+        unlocked:                   unbanned
+        ban_unban:                  Ban or unban
+        search:                     Search
+        username_placeholder:       Enter username for searching
+        ban_error:                  You can't ban or unban yourself
+        login_as:                   Login as user
+        edit:                       Edit
+        edit_user:                  'Edit user "@username@"'
+        roles:                      Roles
+        save:                       Save
+        back_to_list:               Back to list
 title:
     registration_form:              Registration
     code_activation:                Confirmation code activation
@@ -129,6 +150,9 @@ registration:
 system:
     message:
         unknown_error:              An unknown error occurred. Please contact the administrator to fix the problem.
+        max_attempts:               |
+            You have reached your limit of authorization attempts and will not be able to log in within @interval@ minutes.
+            The next authorization attempt will be available @next_try@
     error:                          "Error @code@"
 form:
     registration:
@@ -160,6 +184,10 @@ server:
     block_title:                    Monitoring
     offline:                        Offline
     total:                          Total online
+    save:                           Save
+    edit_success:                   Edit success
+    new_success:                    Add success
+    remove_success:                 Remove success
     manage:
         list:                       Server's list
         new:                        Creating server
@@ -168,6 +196,7 @@ server:
         name:                       Name
         host:                       Domain or IP-address
         port:                       Port
+        empty:                      No servers added!
         rcon:
             port:                   RCON port
             password:               RCON password
@@ -182,6 +211,8 @@ server:
         no_connection:              RCON connection error!
         port:                       "RCON port"
         password:                   "RCON password"
+        empty:                      No rcon servers yet configured!
+        manage:                     RCON console
 finance:
     coupon:
         menu:                       Generate coupons
@@ -293,6 +324,25 @@ shopping_cart:
         more_money:                 "Add account on the @ amount @ rub."
         no_money:                   No money for continue
         buy_success:                Item's successfully buyed!
+    dashboard:
+        menu:                       Statistic
+    history:
+        menu:                       Purchase history
+        entry:                      "Purchase history entry #@nn@"
+        income:                     Income
+        date:                       Purchase date
+        user:                       User
+        total:                      Total purchased
+        total_price:                The total cost
+        to_list:                    Back to history list
+        item:
+            name:                   Item name
+            amount:                 Amount
+            type:                   Item type
+            code:                   Internal item code
+            server:                 Server
+            price:                  Price for 1 piece of item
+            sale:                   Sale
 setting:
     title:                          System settings
     project_title:                  Project pages title

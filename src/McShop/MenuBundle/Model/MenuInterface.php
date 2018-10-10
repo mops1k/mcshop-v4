@@ -9,12 +9,12 @@ interface MenuInterface
      *
      * @return array
      */
-    public function get($name, array $arguments = []);
+    public function get(string $name, array $arguments = []): array;
 
     /**
      * @param BuilderInterface $builder
      *
      * @return $this
      */
-    public function setBuilder(BuilderInterface $builder);
+    public function setBuilder(BuilderInterface $builder): self;
 }

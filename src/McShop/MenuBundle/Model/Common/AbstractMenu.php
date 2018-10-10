@@ -38,58 +38,57 @@ abstract class AbstractMenu implements MenuInterface
      *
      * @return bool
      */
-    protected function isGranted($role)
+    protected function isGranted(string $role): bool
     {
         return $this->authorizationChecker->isGranted($role);
     }
 
     /**
      * @param string $route_name
-     * @param array  $parameters
+     * @param array $parameters
      *
-     * @param bool   $referenceType
+     * @param int $referenceType
      *
      * @return string
      */
-    protected function generateUrlByRouteName($route_name, $parameters = [], $referenceType = Router::ABSOLUTE_PATH)
+    protected function generateUrlByRouteName(string $route_name, array $parameters = [], int $referenceType = Router::ABSOLUTE_PATH): string
     {
         return $this->router->generate($route_name, $parameters, $referenceType);
     }
 
-    public function setBuilder(BuilderInterface $builder)
+    /**
+     * @param BuilderInterface $builder
+     * @return MenuInterface
+     */
+    public function setBuilder(BuilderInterface $builder): MenuInterface
     {
         $this->builder = $builder;
+
+        return $this;
     }
 
     /**
      * @return BuilderInterface
      */
-    protected function getBuilder()
+    protected function getBuilder(): BuilderInterface
     {
         $this->builder->clearMenu();
+
         return $this->builder;
     }
 
     /**
-     * @return string
-     */
-    protected function getClassName()
-    {
-        return get_class($this);
-    }
-
-    /**
-     * @param       $name
+     * @param string $name
      * @param array $arguments
      *
-     * @return mixed
+     * @return array
      * @throws \Exception
      */
-    public function get($name, array $arguments = [])
+    public function get(string $name, array $arguments = []): array
     {
         $methodName = $name . 'Menu';
         if (!method_exists($this, $methodName)) {
-            throw new \Exception('Menu "' . $name . '" in ' . static::getClassName() . ' does not exists');
+            throw new \Exception('Menu "' . $name . '" in ' . static::class . ' does not exists');
         }
 
         return call_user_func_array([$this, $methodName], $arguments);

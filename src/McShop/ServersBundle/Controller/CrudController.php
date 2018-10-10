@@ -3,6 +3,8 @@ namespace McShop\ServersBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
 use McShop\ServersBundle\Entity\Server;
+use McShop\ServersBundle\Form\ServerType;
+use McShop\ShoppingCartBundle\Entity\ShoppingCartItem;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -23,8 +25,8 @@ class CrudController extends BaseController
         }
 
         $this->get('app.title')->setValue('server.manage.list');
-        $servers = $this->getDoctrine()->getManagerForClass('McShopServersBundle:Server')
-            ->getRepository('McShopServersBundle:Server')->findAll();
+        $servers = $this->getDoctrine()->getManagerForClass(Server::class)
+            ->getRepository(Server::class)->findAll();
 
         return $this->render(':Default/Servers:list.html.twig', [
             'servers'   => $servers,
@@ -93,7 +95,7 @@ class CrudController extends BaseController
         }
 
         $manager = $this->getDoctrine()->getManagerForClass(get_class($server));
-        $items = $manager->getRepository('McShopShoppingCartBundle:ShoppingCartItem')->findByServer($server);
+        $items = $manager->getRepository(ShoppingCartItem::class)->findByServer($server);
 
         foreach ($items as $item) {
             $manager->remove($item);
@@ -112,12 +114,12 @@ class CrudController extends BaseController
      */
     private function getForm()
     {
-        if ($this->server === null) {
-            $this->server = new Server();
+        if (!$this->server) {
+            $this->setServer(new Server());
         }
 
-        if ($this->form === null) {
-            $this->form = $this->createForm('McShop\ServersBundle\Form\ServerType', $this->server);
+        if (!$this->form) {
+            $this->form = $this->createForm(ServerType::class, $this->server);
         }
 
         return $this->form;

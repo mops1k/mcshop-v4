@@ -6,10 +6,14 @@ use McShop\SettingBundle\Entity\Setting;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class CrudController extends BaseController
 {
-    public function indexAction()
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function indexAction(): Response
     {
         if (!$this->isGranted('ROLE_SETTING_EDIT')) {
             throw $this->createAccessDeniedException();
@@ -31,7 +35,11 @@ class CrudController extends BaseController
         ]);
     }
 
-    public function saveAction(Request $request)
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function saveAction(Request $request): Response
     {
         if (!$this->isGranted('ROLE_SETTING_EDIT')) {
             throw $this->createAccessDeniedException();
@@ -41,8 +49,8 @@ class CrudController extends BaseController
 
         foreach ($updatedSettings as $name => $value) {
             $setting = $this->getDoctrine()
-                ->getManagerForClass('McShopSettingBundle:Setting')
-                ->getRepository('McShopSettingBundle:Setting')
+                ->getManagerForClass(Setting::class)
+                ->getRepository(Setting::class)
                 ->findOneByName($name)
             ;
 
@@ -56,10 +64,10 @@ class CrudController extends BaseController
             }
 
             $setting->setValue($value);
-            $this->getDoctrine()->getManagerForClass('McShopSettingBundle:Setting')->persist($setting);
+            $this->getDoctrine()->getManagerForClass(Setting::class)->persist($setting);
         }
 
-        $this->getDoctrine()->getManagerForClass('McShopSettingBundle:Setting')->flush();
+        $this->getDoctrine()->getManagerForClass(Setting::class)->flush();
 
         $this->addFlash('success', $this->trans('setting.save_success'));
         return $this->redirectToRoute('mc_shop_setting_homepage');

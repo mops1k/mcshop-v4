@@ -32,16 +32,16 @@ class SettingHelper
      * @param bool          $loadFromCache
      * @return null|string
      */
-    public function get($name, $defaultValue = null, $loadFromCache = true)
+    public function get(string $name, $defaultValue = null, bool $loadFromCache = true)
     {
         if (isset($this->loadedSetting[$name]) && $loadFromCache) {
             return $this->loadedSetting[$name];
         }
 
-        $setting = $this->doctrine->getManagerForClass('McShopSettingBundle:Setting')
-            ->getRepository('McShopSettingBundle:Setting')->findOneByName($name);
+        $setting = $this->doctrine->getManagerForClass(Setting::class)
+            ->getRepository(Setting::class)->findOneByName($name);
 
-        $this->loadedSetting[$name] = $setting instanceof Setting ? $setting->getValue() : $defaultValue;
+        $this->loadedSetting[$name] = $setting ? $setting->getValue() : $defaultValue;
 
         return $this->loadedSetting[$name];
     }

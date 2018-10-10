@@ -21,6 +21,9 @@ class SettingExtension extends \Twig_Extension implements \Twig_ExtensionInterfa
         $this->helper = $helper;
     }
 
+    /**
+     * @return array|\Twig_Function[]
+     */
     public function getFunctions()
     {
         return [
@@ -28,6 +31,9 @@ class SettingExtension extends \Twig_Extension implements \Twig_ExtensionInterfa
         ];
     }
 
+    /**
+     * @return array|\Twig_Filter[]
+     */
     public function getFilters()
     {
         return [

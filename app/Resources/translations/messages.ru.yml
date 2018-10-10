@@ -52,6 +52,7 @@ news:
         form.title:                 Напишите свой комментарий
 user:
     profile:
+        title:                      Профиль пользователя
         use:
             avatar:                 Аватар
             head:                   Голова
@@ -79,10 +80,11 @@ user:
     activate:                       Активировать
     launcher:
         login:
-            error:                  Неверный логин или пароль!
+            error:                  Ошибка авторизации!
     menu:
         profile:                    Профиль
         logout:                     Выход
+        logout_to_account:          Вернуться в свой аккаунт
         sign-in:                    Авторизация
         sign-up:                    Регистрация
     recover:
@@ -102,6 +104,25 @@ user:
                                 Чтобы восстановить свой пароль перейдите по <a href=@code_link@>этой ссылке</a>.
                                 Или введите код вручную <a href=@enter_code_link@>здесь</a>.<br />
                                 Код активации: <b>@code@</b>
+    manage:
+        menu:                       Управление пользователями
+        list:                       Список пользователей
+        total:                      "{0} Всего 0 пользователей|{1} Всего 1 пользователь|]1,4] Всего @count@ пользователя|[5, +Inf[ Всего @count@ пользователей"
+        username:                   Имя пользователя
+        email:                      E-mail
+        lock_status:                Статус блокировки
+        locked:                     Заблокирован
+        unlocked:                   Разблокирован
+        ban_unban:                  Заблокировать или разблокировать
+        search:                     Искать
+        username_placeholder:       Введите имя пользователя для поиска
+        ban_error:                  Вы не можете блокировать или разблокировать себя
+        login_as:                   Войти за пользователя
+        edit:                       Редактировать
+        edit_user:                  'Редактирование пользователя "@username@"'
+        roles:                      Привилегии
+        save:                       Сохранить
+        back_to_list:               Вернуться к списку
 title:
     registration_form:              Регистрация
     code_activation:                Активация кода подтверждения
@@ -129,6 +150,9 @@ registration:
 system:
     message:
         unknown_error:              Произошла неизвестная ошибка. Пожалуйста, обратитесь к администратору для ее устранения.
+        max_attempts:               |
+            Вы исчерпали свой лимит попыток авторизации и не сможете авторизоваться в течении @interval@ минут(ы).
+            Следующая попытка авторизации будет доступна @next_try@
     error:                          "Ошибка @code@"
 form:
     registration:
@@ -160,6 +184,10 @@ server:
     block_title:                    Мониторинг
     offline:                        Выключен
     total:                          Общий онлайн
+    save:                           Сохранить
+    edit_success:                   Сервер успешно отредактирован
+    new_success:                    Сервер успешно добавлен
+    remove_success:                 Сервер успешно удален
     manage:
         list:                       Список серверов
         new:                        Добавление сервера
@@ -168,6 +196,7 @@ server:
         name:                       Название
         host:                       Домен или IP-адрес
         port:                       Порт
+        empty:                      Нет добавленных серверов
         rcon:
             port:                   RCON порт
             password:               RCON пароль
@@ -175,13 +204,15 @@ server:
         rcon:                       Управление RCON
         list:                       Управление серверами
     rcon:
-        select:                     Выберите сервер на который будут отправлять команды RCON
+        select:                     Выберите сервер на который будете отправлять команды RCON
         select_server:              Сервер не выбран!
         no_command:                 Нет команды для отправки!
         unknown_server:             Выбран неизвестный сервер!
         no_connection:              Ошибка соединения RCON!
         port:                       "RCON порт"
         password:                   "RCON пароль"
+        empty:                      Нет серверов с настроенным RCON соединением!
+        manage:                     RCON консоль
 finance:
     coupon:
         menu:                       Генерация купонов
@@ -293,6 +324,25 @@ shopping_cart:
         more_money:                 "Пополнить счет на @amount@ руб."
         no_money:                   Недостаточно денег для совершения покупки
         buy_success:                Покупка успешно совершена!
+    dashboard:
+        menu:                       Статистика
+    history:
+        menu:                       История покупок
+        entry:                      "Запись истории покупок #@nn@"
+        income:                     Доход
+        date:                       Дата покупки
+        user:                       Пользователь
+        total:                      Всего куплено
+        total_price:                Итоговая стоимость
+        to_list:                    К списку записей
+        item:
+            name:                   Название купленного товара
+            amount:                 Количество
+            type:                   Тип товара
+            code:                   Внутренний код товара
+            server:                 Сервер, на который товар куплен
+            price:                  Стоимость за 1 ед. товара
+            sale:                   Скидка
 setting:
     title:                          Настройки системы
     project_title:                  Заголовок страниц проекта
