@@ -2,6 +2,7 @@ services:
     mc_shop.setting.helper:
         class: McShop\SettingBundle\Service\SettingHelper
         arguments: [ "@doctrine" ]
+        public: true
 
     mc_shop.setting.twig:
         class: McShop\SettingBundle\Twig\SettingExtension
