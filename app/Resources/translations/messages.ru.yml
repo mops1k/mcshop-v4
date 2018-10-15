@@ -345,10 +345,14 @@ shopping_cart:
             sale:                   Скидка
 setting:
     title:                          Настройки системы
-    project_title:                  Заголовок страниц проекта
-    project_brand:                  Бренд проекта
+    project:
+        title:                      Заголовок страниц проекта
+        brand:                      Бренд проекта
     hd_price:                       Цена плащей и HD скинов
     hd_days:                        Срок действия HD скинов и плащей в днях (0 - вечно)
     template:                       Шаблон проекта
+    launcher_response:
+        title:                      Шаблон ответа успешной авторизации для лаунчера
+        help:                       Принимает параметры %username% и %UUID%
     save:                           Сохранить настройки
     save_success:                   Настройки успешно сохранены!

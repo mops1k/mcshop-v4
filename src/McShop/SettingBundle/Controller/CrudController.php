@@ -3,6 +3,8 @@ namespace McShop\SettingBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
 use McShop\SettingBundle\Entity\Setting;
+use McShop\SettingBundle\Form\SettingsType;
+use McShop\SettingBundle\Service\SettingHelper;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,11 +29,16 @@ class CrudController extends BaseController
         $templates = [];
         /** @var SplFileInfo $directory */
         foreach ($directories->depth(0) as $directory) {
-            $templates[] = $directory->getBasename();
+            $templates[$directory->getBasename()] = $directory->getBasename();
         }
 
+        $form = $this->createForm(SettingsType::class, null, [
+            'templates' => $templates,
+            'settings' => $this->get(SettingHelper::class),
+        ]);
+
         return $this->render(':Default/Setting:edit.html.twig', [
-            'templates'  => $templates
+            'form' => $form->createView(),
         ]);
     }
 

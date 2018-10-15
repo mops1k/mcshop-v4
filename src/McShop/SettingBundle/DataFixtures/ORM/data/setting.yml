@@ -3,3 +3,4 @@ project_title:              McShop v4 CMS Edition
 hd_price:                   10
 hd_days:                    30
 template:                   Default
+launcher_response:         OK:%username%
