@@ -58,6 +58,13 @@
                 <input type="number" name="setting[hd_days]" class="form-control" id="hd_days" min="0" step="10" value="{{ 'hd_days'|setting(0) }}">
             </div>
         </div>
+        <div class="form-group">
+            <label for="launcher_response" class="col-sm-4 control-label">{{ 'setting.launcher_response.title'|trans }}</label>
+            <div class="col-sm-8">
+                <input type="number" name="setting[launcher_response]" class="form-control" id="launcher_response" min="0" step="10" value="{{ 'launcher_response'|setting() }}">
+            </div>
+            <p class="help-block">{{ 'setting.launcher_response.help'|trans }}</p>
+        </div>
 
         <button type="submit" class="btn btn-success pull-right">{{ 'setting.save'|trans }}</button>
     </form>

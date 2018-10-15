@@ -86,6 +86,12 @@ class DefaultController extends BaseController
             return new Response($this->get('translator')->trans('user.launcher.login.error'));
         }
 
-        return new Response('OK:'.$username);
+        $preResponse = $this->getSetting('launcher_response', 'OK:%username%');
+
+        return new Response(str_replace(
+            ['%username%', '%UUID%'],
+            [$username, $user->getUUID()],
+            $preResponse
+        ));
     }
 }
