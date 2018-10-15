@@ -345,8 +345,9 @@ shopping_cart:
             sale:                   Sale
 setting:
     title:                          System settings
-    project_title:                  Project pages title
-    project_brand:                  Project brand
+    project:
+        title:                      Project pages title
+        brand:                      Project brand
     hd_price:                       Price for capes and HD skins
     hd_days:                        Buy days for capes and HD skins (0 - forewer)
     template:                       Project template
