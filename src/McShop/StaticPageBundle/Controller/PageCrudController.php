@@ -10,6 +10,7 @@ use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 /**
@@ -18,15 +19,17 @@ use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
  */
 class PageCrudController extends BaseController
 {
-    public function listAction(Request $request)
+    public function listAction(Request $request): Response
     {
         if (!$this->isGranted('ROLE_STATIC_PAGE_ADMIN')) {
             throw $this->createAccessDeniedException();
         }
 
+        $this->get('app.title')->setValue('page.list.title');
+
         $query = $this->getDoctrine()
-            ->getManagerForClass('McShopStaticPageBundle:Page')
-            ->getRepository('McShopStaticPageBundle:Page')
+            ->getManagerForClass(Page::class)
+            ->getRepository(Page::class)
             ->findAll(PageRepository::RETURN_QUERY)
         ;
 
@@ -46,7 +49,7 @@ class PageCrudController extends BaseController
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request): Response
     {
         if (!$this->isGranted('ROLE_STATIC_PAGE_ADD')) {
             throw $this->createAccessDeniedException();
@@ -79,7 +82,7 @@ class PageCrudController extends BaseController
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function editAction($slug, Request $request)
+    public function editAction($slug, Request $request): Response
     {
         if (!$this->isGranted('ROLE_STATIC_PAGE_EDIT')) {
             throw $this->createAccessDeniedException();
@@ -125,15 +128,15 @@ class PageCrudController extends BaseController
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function removeAction($slug, Request $request)
+    public function removeAction($slug, Request $request): Response
     {
         if (!$this->isGranted('ROLE_STATIC_PAGE_REMOVE')) {
             throw $this->createAccessDeniedException();
         }
 
         $page = $this->getDoctrine()
-            ->getManagerForClass('McShopStaticPageBundle:Page')
-            ->getRepository('McShopStaticPageBundle:Page')
+            ->getManagerForClass(Page::class)
+            ->getRepository(Page::class)
             ->findOneBySlug($slug)
         ;
 
@@ -153,11 +156,11 @@ class PageCrudController extends BaseController
 
     /**
      * @param Page|null $page
-     * @return \Symfony\Component\Form\Form
+     * @return \Symfony\Component\Form\FormInterface
      */
-    private function getForm($page = null)
+    private function getForm($page = null): FormInterface
     {
-        if ($page !== null && !$page instanceof Page) {
+        if ($page && !$page instanceof Page) {
             throw new UnprocessableEntityHttpException('Wrong parameter for $post');
         }
 
@@ -169,7 +172,7 @@ class PageCrudController extends BaseController
      * @param FormInterface $form
      * @return bool
      */
-    private function processForm(FormInterface $form)
+    private function processForm(FormInterface $form): bool
     {
         if (!$form->isValid()) {
             $errors = $this->get('validator')->validate($form);
@@ -182,7 +185,7 @@ class PageCrudController extends BaseController
 
         /** @var Page $page */
         $page = $form->getData();
-        if ($page->getUser() === null) {
+        if (!$page->getUser()) {
             $page->setUser($this->getUser());
         }
 

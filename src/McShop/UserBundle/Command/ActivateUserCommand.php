@@ -31,18 +31,18 @@ class ActivateUserCommand extends ContainerAwareCommand
         $doctrine = $this->getContainer()->get('doctrine');
         /** @var User $user */
         $user = $doctrine
-            ->getManagerForClass('McShopUserBundle:User')
-            ->getRepository('McShopUserBundle:User')
+            ->getManagerForClass(User::class)
+            ->getRepository(User::class)
             ->findOneByUsername($input->getArgument('user'))
         ;
         $user->setActive(true);
 
         if ($user) {
-            $doctrine->getManagerForClass('McShopUserBundle:User')->persist($user);
+            $doctrine->getManagerForClass(User::class)->persist($user);
 
             /** @var Token $token */
-            $token = $doctrine->getManagerForClass('McShopUserBundle:Token')
-                ->getRepository('McShopUserBundle:Token')
+            $token = $doctrine->getManagerForClass(Token::class)
+                ->getRepository(Token::class)
                 ->findOneBy([
                     'user'  => $user,
                     'kind'  => Token::KIND_REGISTER
@@ -51,10 +51,10 @@ class ActivateUserCommand extends ContainerAwareCommand
 
             if ($token) {
                 $token->setActive(false);
-                $doctrine->getManagerForClass('McShopUserBundle:Token')->persist($token);
+                $doctrine->getManagerForClass(Token::class)->persist($token);
             }
 
-            $doctrine->getManagerForClass('McShopUserBundle:User')->flush();
+            $doctrine->getManagerForClass(User::class)->flush();
             $output->writeln('User successfull activated!');
         } else {
             $output->writeln('User not found!');

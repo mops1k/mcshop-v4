@@ -2,6 +2,7 @@
 
 namespace McShop\UserBundle\Form;
 
+use McShop\UserBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType as FormPasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -23,7 +24,7 @@ class PasswordType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class'    => 'McShop\UserBundle\Entity\User'
+            'data_class'    => User::class
         ]);
     }
 

@@ -28,7 +28,7 @@ framework:
     #serializer:      { enable_annotations: true }
     templating:
         engines: ['twig']
-    default_locale:  "%defaultLocale%"
+    default_locale:  "%defaultlocale%"
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
@@ -92,17 +92,13 @@ gregwar_captcha:
     length: 6
     quality: 70
 
-#simple_things_entity_audit:
-#    audited_entities:
-#        - McShop\UserBundle\Entity\User
-#        - McShop\FinanceBundle\Entity\Coupon
-#        - McShop\FinanceBundle\Entity\Purse
-#        - McShop\NewsBundle\Entity\Post
-#        - McShop\StaticPageBundle\Entity\Page
-#        - McShop\ServersBundle\Entity\Server
-#        - McShop\ShoppingCartBundle\Entity\ShoppingCartCategory
-#        - McShop\ShoppingCartBundle\Entity\ShoppingCartItem
-#        - McShop\ShoppingCartBundle\Entity\ShoppingCart
-#    global_ignore_columns:
-#        - created_at
-#        - updated_at
+lexxpavlov_spelling:
+    entity_class:         McShop\SettingBundle\Entity\Spelling
+    user_field:           username
+    security:
+        entity_class:     McShop\SettingBundle\Entity\SpellingSecurity
+        allowed_role:     ROLE_USER
+        query_interval:   5           # in seconds, default 5
+        ban_period:       86400       # in seconds, default one day (86400 seconds)
+        ban_check_period: 86400       # in seconds, default one day (86400 seconds)
+        ban_count:        10

@@ -2,6 +2,7 @@
 
 namespace McShop\ServersBundle\Form;
 
+use McShop\ServersBundle\Entity\Server;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -54,7 +55,7 @@ class ServerType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'McShop\ServersBundle\Entity\Server'
+            'data_class' => Server::class
         ));
     }
 

@@ -1,0 +1,105 @@
+{% extends ':Default/ShoppingCart:index.html.twig' %}
+
+{% block header %}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        #content {
+            padding-top: 60px;
+        }
+    </style>
+{% endblock %}
+
+{% block container %}
+    <div class="row">
+        <a href="{{ path('mc_shop_shopping_cart_manage_history_list') }}" class="btn btn-default pull-right">
+            <i class="fa fa-arrow-left"></i> {{ 'shopping_cart.history.to_list'|trans }}</a>
+        <h3>{{ 'shopping_cart.history.entry'|trans({'@nn@': history.id}) }}</h3>
+    </div>
+    <hr>
+
+    <div class="row">
+        <div class="col-md-4">
+            <strong>{{ 'shopping_cart.history.date'|trans }}</strong>
+        </div>
+        <div class="col-md-8">
+            {{ history.buyAt|date('d.m.Y H:i:s') }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <strong>{{ 'shopping_cart.history.user'|trans }}</strong>
+        </div>
+        <div class="col-md-8">
+            {{ history.user.username }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <strong>{{ 'shopping_cart.history.item.name'|trans }}</strong>
+        </div>
+        <div class="col-md-8">
+            {{ history.item.name }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <strong>{{ 'shopping_cart.history.item.amount'|trans }}</strong>
+        </div>
+        <div class="col-md-8">
+            {{ history.amount }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <strong>{{ 'shopping_cart.history.item.type'|trans }}</strong>
+        </div>
+        <div class="col-md-8">
+            {{ history.item.types[history.item.type]|trans }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <strong>{{ 'shopping_cart.history.item.code'|trans }}</strong>
+        </div>
+        <div class="col-md-8">
+            {{ history.item.item }}{% if history.item.extra is not null %} (Extra: {{ history.item.extra }}){% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <strong>{{ 'shopping_cart.history.item.server'|trans }}</strong>
+        </div>
+        <div class="col-md-8">
+            {{ history.item.server.name }} ({{ history.item.server.host }}:{{ history.item.server.port }})
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <strong>{{ 'shopping_cart.history.item.price'|trans }}</strong>
+        </div>
+        <div class="col-md-8">
+            {{ history.item.price }} <i class="fa fa-ruble"></i>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <strong>{{ 'shopping_cart.history.item.sale'|trans }}</strong>
+        </div>
+        <div class="col-md-8">
+            {{ history.item.sale }} %
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h3>{{ 'shopping_cart.history.total_price'|trans }}</h3>
+        </div>
+        <div class="col-md-8">
+            <h3>{{ (history.item.price - history.item.price/100*history.item.sale)*history.amount }} <i class="fa fa-ruble"></i></h3>
+        </div>
+    </div>
+{% endblock %}

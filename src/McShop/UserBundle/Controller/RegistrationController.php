@@ -2,6 +2,7 @@
 namespace McShop\UserBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
+use McShop\UserBundle\Entity\Token;
 use McShop\UserBundle\Form\UserType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -19,7 +20,7 @@ class RegistrationController extends BaseController
      */
     public function registerAction(Request $request)
     {
-        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if ($this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->isAuthenticatedErrorShow();
         }
         $this->get('app.title')->setValue('title.registration_form');
@@ -85,7 +86,7 @@ class RegistrationController extends BaseController
      */
     public function codeAction()
     {
-        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if ($this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->isAuthenticatedErrorShow();
         }
         $this->get('app.title')->setValue('title.code_activation');
@@ -99,12 +100,12 @@ class RegistrationController extends BaseController
      */
     public function codeCheckAction($code, Request $request)
     {
-        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if ($this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->isAuthenticatedErrorShow();
         }
         $token = $this->getDoctrine()
-            ->getManagerForClass('McShopUserBundle:Token')
-            ->getRepository('McShopUserBundle:Token')
+            ->getManagerForClass(Token::class)
+            ->getRepository(Token::class)
             ->findTokenByValue($code)
         ;
 

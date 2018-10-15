@@ -2,6 +2,7 @@
 namespace McShop\UserBundle\Services\Helper;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
+use McShop\UserBundle\Entity\Role;
 use McShop\UserBundle\Entity\Token;
 use McShop\UserBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -86,8 +87,8 @@ class UserHelper
      */
     public function save($active = false, $locked = false)
     {
-        $role = $this->getEm('McShopUserBundle:Role')
-            ->getRepository('McShopUserBundle:Role')
+        $role = $this->getEm(Role::class)
+            ->getRepository(Role::class)
             ->findOneByRole($this->getRoleName())
         ;
 
@@ -96,7 +97,7 @@ class UserHelper
             ->setActive($active)
         ;
 
-        if ($role !== null) {
+        if ($role) {
             $this->user->addRole($role);
         }
 
@@ -129,7 +130,7 @@ class UserHelper
      * @param int $kind
      * @return $this
      */
-    public function generateToken($kind = Token::KIND_REGISTER)
+    public function generateToken(int $kind = Token::KIND_REGISTER)
     {
         $this->token = new Token();
         $this->token
@@ -146,10 +147,10 @@ class UserHelper
     }
 
     /**
-     * @param $class
+     * @param string $class
      * @return \Doctrine\Common\Persistence\ObjectManager|null
      */
-    public function getEm($class)
+    public function getEm(string $class)
     {
         return $this->doctrine->getManagerForClass($class);
     }

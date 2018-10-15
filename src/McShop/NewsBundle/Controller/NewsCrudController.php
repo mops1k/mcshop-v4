@@ -99,7 +99,7 @@ class NewsCrudController extends BaseController
 
     /**
      * @param Post|null $post
-     * @return \Symfony\Component\Form\Form
+     * @return \Symfony\Component\Form\FormInterface
      */
     private function getForm($post = null)
     {

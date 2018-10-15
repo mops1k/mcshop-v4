@@ -3,9 +3,11 @@ namespace McShop\ShoppingCartBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
 use McShop\ShoppingCartBundle\Entity\ShoppingCartCategory as Category;
+use McShop\ShoppingCartBundle\Entity\ShoppingCartCategory;
 use McShop\ShoppingCartBundle\Form\ShoppingCartCategoryType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 /**
@@ -17,9 +19,9 @@ class CategoryController extends BaseController
 {
     /**
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function listAction(Request $request)
+    public function listAction(Request $request): Response
     {
         if (!$this->isGranted('ROLE_CATEGORY_LIST')) {
             throw $this->createAccessDeniedException();
@@ -27,8 +29,8 @@ class CategoryController extends BaseController
 
         $this->get('app.title')->setValue('shopping_cart.category.list_title');
 
-        $categories = $this->getDoctrine()->getManagerForClass('McShopShoppingCartBundle:ShoppingCartCategory')
-            ->getRepository('McShopShoppingCartBundle:ShoppingCartCategory')
+        $categories = $this->getDoctrine()->getManagerForClass(ShoppingCartCategory::class)
+            ->getRepository(ShoppingCartCategory::class)
             ->findAllWithPagination()
             ->setMaxPerPage($request->get('per_page', 30))
             ->setCurrentPage($request->get('page', 1))
@@ -41,9 +43,9 @@ class CategoryController extends BaseController
 
     /**
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request): Response
     {
         if (!$this->isGranted('ROLE_CATEGORY_NEW')) {
             throw $this->createAccessDeniedException();
@@ -70,9 +72,9 @@ class CategoryController extends BaseController
     /**
      * @param Category $category
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function editAction(Category $category, Request $request)
+    public function editAction(Category $category, Request $request): Response
     {
         if (!$this->isGranted('ROLE_CATEGORY_EDIT')) {
             throw $this->createAccessDeniedException();

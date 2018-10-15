@@ -82,4 +82,14 @@ class ShoppingCartItemRepository extends EntityRepository
 
         return $pagination;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getTotalCount()
+    {
+        $qb = $this->createQueryBuilder('i');
+
+        return $qb->select('COUNT(i)')->getQuery()->getSingleScalarResult();
+    }
 }

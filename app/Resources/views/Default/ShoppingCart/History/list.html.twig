@@ -1,0 +1,55 @@
+{% extends ':Default/ShoppingCart:index.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-offset-8 col-md-4">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-rub fa-3x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">{{ income }}</div>
+                            <div>{{ 'shopping_cart.history.income'|trans }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-striped table-hover table-header-dark">
+            <thead>
+            <tr>
+                <th>{{ 'shopping_cart.history.date'|trans }}</th>
+                <th>{{ 'shopping_cart.history.user'|trans }}</th>
+                <th>{{ 'shopping_cart.history.item.name'|trans }}</th>
+                <th>{{ 'shopping_cart.history.item.amount'|trans }}</th>
+                {% if is_granted('ROLE_HISTORY_VIEW') %}
+                <th class="text-right">
+                    <i class="fa fa-cogs"></i>
+                </th>
+                {% endif %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for entry in history %}
+                <tr>
+                    <td>{{ entry.buyAt|date('d.m.Y H:i:s') }}</td>
+                    <td>{{ entry.user.username }}</td>
+                    <td>{{ entry.item.name }}</td>
+                    <td>{{ entry.amount }}</td>
+                    {% if is_granted('ROLE_HISTORY_VIEW') %}
+                    <td class="text-right">
+                        <a href="{{ path('mc_shop_shopping_cart_manage_history_view', {'id': entry.id}) }}" class="btn btn-default"><i class="fa fa-eye"></i></a>
+                    </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {{ history.hasPreviousPage or history.hasNextPage ? pagerfanta(history, 'twitter_bootstrap3', { 'omitFirstPage': true}) }}
+{% endblock %}

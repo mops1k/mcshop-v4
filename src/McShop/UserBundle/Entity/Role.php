@@ -226,4 +226,9 @@ class Role implements RoleInterface
     {
         $this->parents = null;
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

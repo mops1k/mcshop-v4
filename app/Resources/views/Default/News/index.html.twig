@@ -21,7 +21,7 @@
                     <small>| {{ 'news.comments.count'|trans({'@count@': post.commentaries|length}) }}</small>
                 </div>
                 <div class="pull-right">
-                    <small><a href="#">{{ post.user.username }}</a></small>
+                    <small><img src="{{ asset(post.user.avatarPath) }}" width="26px" height="26px"> <a href="#">{{ post.user.username }}</a></small>
                 </div>
                 <br /><hr>
                 {{ (post.lessContent is not null ? post.lessContent : post.fullContent)|raw }}

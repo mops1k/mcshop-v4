@@ -2,6 +2,7 @@
 
 namespace McShop\StaticPageBundle\Form;
 
+use McShop\StaticPageBundle\Entity\Page;
 use McShop\UserBundle\Entity\Role;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -36,10 +37,10 @@ class PageType extends AbstractType
                 'required'  => false,
             ])
             ->add('role', EntityType::class, [
-                'label'     => 'page.form.role',
-                'class'     => Role::class,
-                'property'  => 'name',
-                'required'  => false,
+                'label'             => 'page.form.role',
+                'class'             => Role::class,
+                'choice_label'     => 'name',
+                'required'          => false,
             ])
         ;
     }
@@ -50,7 +51,7 @@ class PageType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'McShop\StaticPageBundle\Entity\Page'
+            'data_class' => Page::class
         ));
     }
 

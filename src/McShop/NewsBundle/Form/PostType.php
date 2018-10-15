@@ -2,6 +2,7 @@
 
 namespace McShop\NewsBundle\Form;
 
+use McShop\NewsBundle\Entity\Post;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -52,7 +53,7 @@ class PostType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         return $resolver->setDefaults([
-            'data_class'    => 'McShop\NewsBundle\Entity\Post',
+            'data_class'    => Post::class,
         ]);
     }
 

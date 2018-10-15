@@ -3,6 +3,7 @@
 namespace McShop\ServersBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
+use McShop\ServersBundle\Entity\Server;
 
 class DefaultController extends BaseController
 {
@@ -12,8 +13,8 @@ class DefaultController extends BaseController
     public function queryAllAction()
     {
         $servers = $this->getDoctrine()
-            ->getManagerForClass('McShopServersBundle:Server')
-            ->getRepository('McShopServersBundle:Server')
+            ->getManagerForClass(Server::class)
+            ->getRepository(Server::class)
             ->findAll()
         ;
 

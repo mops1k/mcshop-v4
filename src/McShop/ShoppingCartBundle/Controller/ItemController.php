@@ -3,14 +3,20 @@ namespace McShop\ShoppingCartBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
 use McShop\ShoppingCartBundle\Entity\ShoppingCartItem as Item;
+use McShop\ShoppingCartBundle\Entity\ShoppingCartItem;
 use McShop\ShoppingCartBundle\Form\ShoppingCartItemType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ItemController extends BaseController
 {
-    public function listAction(Request $request)
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function listAction(Request $request): Response
     {
         if (!$this->isGranted('ROLE_ITEM_LIST')) {
             throw $this->createAccessDeniedException();
@@ -18,8 +24,8 @@ class ItemController extends BaseController
         
         $this->get('app.title')->setValue('shopping_cart.item.title.list');
 
-        $items = $this->getDoctrine()->getManagerForClass('McShopShoppingCartBundle:ShoppingCartItem')
-            ->getRepository('McShopShoppingCartBundle:ShoppingCartItem')
+        $items = $this->getDoctrine()->getManagerForClass(ShoppingCartItem::class)
+            ->getRepository(ShoppingCartItem::class)
             ->findAllAsPagination();
 
         $items
@@ -32,7 +38,11 @@ class ItemController extends BaseController
         ]);
     }
 
-    public function newAction(Request $request)
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function newAction(Request $request): Response
     {
         if (!$this->isGranted('ROLE_ITEM_NEW')) {
             throw $this->createAccessDeniedException();
@@ -56,7 +66,12 @@ class ItemController extends BaseController
         ]);
     }
 
-    public function editAction(Item $item, Request $request)
+    /**
+     * @param ShoppingCartItem $item
+     * @param Request $request
+     * @return Response
+     */
+    public function editAction(Item $item, Request $request): Response
     {
         if (!$this->isGranted('ROLE_ITEM_EDIT')) {
             throw $this->createAccessDeniedException();
@@ -81,10 +96,10 @@ class ItemController extends BaseController
     }
 
     /**
-     * @param Item $item
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @param ShoppingCartItem $item
+     * @return Response
      */
-    public function removeAction(Item $item)
+    public function removeAction(Item $item): Response
     {
         if (!$this->isGranted('ROLE_ITEM_REMOVE')) {
             throw $this->createAccessDeniedException();
@@ -104,7 +119,11 @@ class ItemController extends BaseController
         return $this->redirectToRoute('mc_shop_shopping_cart_manage_item_list');
     }
 
-    private function getForm(Item $item = null)
+    /**
+     * @param ShoppingCartItem|null $item
+     * @return FormInterface
+     */
+    private function getForm(Item $item = null): FormInterface
     {
         return $this->createForm(ShoppingCartItemType::class, $item);
     }
@@ -114,7 +133,7 @@ class ItemController extends BaseController
      * @param callable|null $callback
      * @return bool
      */
-    private function processForm(FormInterface $form, $callback = null)
+    private function processForm(FormInterface $form, $callback = null): bool
     {
         if (!$form->isValid()) {
             $errors = $this->get('validator')->validate($form);
@@ -137,7 +156,12 @@ class ItemController extends BaseController
         return true;
     }
 
-    private function getUploadCallback(Request $request, FormInterface $form)
+    /**
+     * @param Request $request
+     * @param FormInterface $form
+     * @return \Closure
+     */
+    private function getUploadCallback(Request $request, FormInterface $form): \Closure
     {
         $callback = function ($item) use ($request, $form) {
             $file = $request->files->get($form->getName())[$form->get('image')->getName()];
