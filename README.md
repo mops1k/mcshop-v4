@@ -38,7 +38,6 @@ Minecraft Shop version 4
 Клонировать репозиторий к себе:
 ```bash
 git clone https://gitlab.com/jmd-team/McShop-v4.git mcshop
-git checkout 1.1.0
 ```
 
 Установить зависимости
