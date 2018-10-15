@@ -61,9 +61,9 @@
         <div class="form-group">
             <label for="launcher_response" class="col-sm-4 control-label">{{ 'setting.launcher_response.title'|trans }}</label>
             <div class="col-sm-8">
-                <input type="number" name="setting[launcher_response]" class="form-control" id="launcher_response" min="0" step="10" value="{{ 'launcher_response'|setting() }}">
+                <input type="text" name="setting[launcher_response]" class="form-control" id="launcher_response" value="{{ 'launcher_response'|setting('OK:%username%') }}">
+                <p class="help-block">{{ 'setting.launcher_response.help'|trans }}</p>
             </div>
-            <p class="help-block">{{ 'setting.launcher_response.help'|trans }}</p>
         </div>
 
         <button type="submit" class="btn btn-success pull-right">{{ 'setting.save'|trans }}</button>
