@@ -42,6 +42,7 @@ git clone https://gitlab.com/jmd-team/McShop-v4.git mcshop
 Установить зависимости
 ```bash
 cd mcshop/
+git checkout 1.1.0
 composer install
 ```
 В процессе установки зависимостей система задаст несколько вопросов для определения настроек. Соответственно Вам необходимо
