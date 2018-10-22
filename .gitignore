@@ -29,3 +29,4 @@
 /public_html/upload/*
 !public_html/upload/.gitkeep
 /public_html/config.php
+/.env
