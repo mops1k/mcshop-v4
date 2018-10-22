@@ -9,7 +9,7 @@
 /app/phpunit.xml
 /build/
 /bin/
-!/bin/console
+!bin/console
 /composer.phar
 /.idea/
 /app/SymfonyRequirements.php
