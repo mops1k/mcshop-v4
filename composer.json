@@ -58,7 +58,8 @@
         ]
     },
     "config": {
-        "vendor-dir": "libs"
+        "vendor-dir": "libs",
+        "bin-dir": "bin"
     },
     "extra": {
         "symfony-app-dir": "app",

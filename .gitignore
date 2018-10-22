@@ -5,9 +5,11 @@
 /app/logs/*
 !app/cache/.gitkeep
 !app/logs/.gitkeep
+/app/console
 /app/phpunit.xml
 /build/
 /bin/
+!/bin/console
 /composer.phar
 /.idea/
 /app/SymfonyRequirements.php
