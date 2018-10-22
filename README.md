@@ -66,46 +66,33 @@ rm -rf app/logs/*
 chmod 0777 app/cache
 chmod 0777 app/logs
 ```
-Добавляем в файл web/app.php строку **umask(0000);**
-```php
-<?php
-
-use Symfony\Component\HttpFoundation\Request;
-
-umask(0000);
-
-/** @var \Composer\Autoload\ClassLoader $loader */
-$loader = require __DIR__.'/../app/autoload.php';
-include_once __DIR__.'/../app/bootstrap.php.cache';
-....
-```
 
 База данных, которую Вы указали при установке зависимостей уже должна быть создана или пользователь, указанный в настройках
 должен иметь право на создание баз данных.
 Если пользователь имеет право на создание баз данных тогда выполняем:
 ```bash
-php app/console doctrine:database:create
+php bin/console doctrine:database:create
 ```
 После этого инициализируем схему базы и загрузим в нее системные роли:
 ```bash
-php app/console doctrine:migrations:migrate
-php app/console doctrine:fixtures:load --append
+php bin/console doctrine:migrations:migrate
+php bin/console doctrine:fixtures:load --append
 ```
 
 Теперь создаем администратора в системе выполнив команду и ответив на вопросы в ней:
 ```bash
-php app/console mc_shop:user:new --admin
+php bin/console mc_shop:user:new --admin
 ```
 
 Нам осталось почистить кеш и можно приступать к работе с системой:
 ```bash
-php app/console cache:clear -e prod
+php bin/console cache:clear -e prod
 ```
 
 Если у Вас стоит Apache или nginx, тогда необходимо настроить хост на папку `public_html` проекта.
 Если же у вас не стоит ни того и ни другого, то Вы можете запустить проект командой:
 ```bash
-php app/console server:run
+php bin/console server:run
 ```
 
 ### Пример конфигурации в лаунчере Sashok724 v3 (Open Source)
