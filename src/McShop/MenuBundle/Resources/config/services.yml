@@ -1,9 +1,6 @@
 services:
-    mc_shop.menu.collection:
-        class: McShop\MenuBundle\Service\MenuCollection
-
-    mc_shop.builder.collection:
-        class: McShop\MenuBundle\Service\BuilderCollection
+    McShop\MenuBundle\Service\MenuCollection: ~
+    McShop\MenuBundle\Service\BuilderCollection: ~
 
     mc_shop.menu.base_menu:
         abstract: true
@@ -11,21 +8,19 @@ services:
             - '@router'
             - '@security.authorization_checker'
 
-    mc_shop.menu.factory:
-        class: McShop\MenuBundle\Factory\MenuFactory
-        arguments:
-            - '@mc_shop.menu.collection'
-            - '@mc_shop.builder.collection'
+    McShop\MenuBundle\Factory\MenuFactory:
+        autowire: true
         calls:
-            - [ 'setContainer', [ '@service_container' ]]
+            - ['setContainer', ['@service_container']]
+        public: true
 
-    mc_shop.menu.twig_extension:
-        class: McShop\MenuBundle\Twig\MenuExtension
+    McShop\MenuBundle\Twig\MenuExtension:
         arguments:
-            - '@mc_shop.menu.factory'
+            - '@McShop\MenuBundle\Factory\MenuFactory'
             - '@twig'
-            - '@mc_shop.setting.helper'
+            - '@McShop\SettingBundle\Service\SettingHelper'
             - '@filesystem'
             - '%kernel.root_dir%'
         tags:
             - { name: twig.extension, alias: mc_shop_menu }
+        public: true

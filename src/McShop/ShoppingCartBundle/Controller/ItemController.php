@@ -2,6 +2,7 @@
 namespace McShop\ShoppingCartBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
+use McShop\Core\Twig\Title;
 use McShop\ShoppingCartBundle\Entity\ShoppingCartItem as Item;
 use McShop\ShoppingCartBundle\Entity\ShoppingCartItem;
 use McShop\ShoppingCartBundle\Form\ShoppingCartItemType;
@@ -22,7 +23,7 @@ class ItemController extends BaseController
             throw $this->createAccessDeniedException();
         }
         
-        $this->get('app.title')->setValue('shopping_cart.item.title.list');
+        $this->get(Title::class)->setValue('shopping_cart.item.title.list');
 
         $items = $this->getDoctrine()->getManagerForClass(ShoppingCartItem::class)
             ->getRepository(ShoppingCartItem::class)
@@ -47,7 +48,7 @@ class ItemController extends BaseController
         if (!$this->isGranted('ROLE_ITEM_NEW')) {
             throw $this->createAccessDeniedException();
         }
-        $this->get('app.title')->setValue('shopping_cart.item.title.new');
+        $this->get(Title::class)->setValue('shopping_cart.item.title.new');
 
         $form = $this->getForm();
 
@@ -76,7 +77,7 @@ class ItemController extends BaseController
         if (!$this->isGranted('ROLE_ITEM_EDIT')) {
             throw $this->createAccessDeniedException();
         }
-        $this->get('app.title')->setValue('shopping_cart.item.title.edit');
+        $this->get(Title::class)->setValue('shopping_cart.item.title.edit');
 
         $form = $this->getForm($item);
 

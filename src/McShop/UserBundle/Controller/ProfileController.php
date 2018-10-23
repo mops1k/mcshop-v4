@@ -3,6 +3,7 @@
 namespace McShop\UserBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
+use McShop\Core\Twig\Title;
 use McShop\FinanceBundle\Form\CouponCodeType;
 use McShop\UserBundle\Entity\User;
 use McShop\UserBundle\Form\PasswordType;
@@ -20,7 +21,7 @@ class ProfileController extends BaseController
             throw $this->createAccessDeniedException();
         }
 
-        $this->get('app.title')->setValue('user.profile.title');
+        $this->get(Title::class)->setValue('user.profile.title');
 
         $passwordForm = $this->createForm(PasswordType::class, $this->getUser(), [
             'action'    => $this->generateUrl("mc_shop_user_password_change"),

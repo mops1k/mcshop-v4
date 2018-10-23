@@ -2,6 +2,7 @@
 namespace McShop\NewsBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
+use McShop\Core\Twig\Title;
 use McShop\NewsBundle\Entity\Post;
 use McShop\NewsBundle\Form\PostType;
 use Symfony\Component\Form\FormInterface;
@@ -23,7 +24,7 @@ class NewsCrudController extends BaseController
         if (!$this->isGranted('ROLE_NEWS_ADD')) {
             throw $this->createAccessDeniedException();
         }
-        $this->get('app.title')->setValue('news.add.title');
+        $this->get(Title::class)->setValue('news.add.title');
 
         $form = $this->getForm();
 
@@ -59,7 +60,7 @@ class NewsCrudController extends BaseController
             throw $this->createAccessDeniedException();
         }
 
-        $this->get('app.title')->setValue('news.edit.title')->setAttributes([ '@id@' => $post->getId() ]);
+        $this->get(Title::class)->setValue('news.edit.title')->setAttributes([ '@id@' => $post->getId() ]);
 
         $form = $this->getForm($post);
 

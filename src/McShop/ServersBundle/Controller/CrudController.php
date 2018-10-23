@@ -2,6 +2,7 @@
 namespace McShop\ServersBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
+use McShop\Core\Twig\Title;
 use McShop\ServersBundle\Entity\Server;
 use McShop\ServersBundle\Form\ServerType;
 use McShop\ShoppingCartBundle\Entity\ShoppingCartItem;
@@ -24,7 +25,7 @@ class CrudController extends BaseController
             throw $this->createAccessDeniedException();
         }
 
-        $this->get('app.title')->setValue('server.manage.list');
+        $this->get(Title::class)->setValue('server.manage.list');
         $servers = $this->getDoctrine()->getManagerForClass(Server::class)
             ->getRepository(Server::class)->findAll();
 
@@ -43,7 +44,7 @@ class CrudController extends BaseController
             throw $this->createAccessDeniedException();
         }
 
-        $this->get('app.title')->setValue('server.manage.new');
+        $this->get(Title::class)->setValue('server.manage.new');
         if ($request->isMethod($request::METHOD_POST)) {
             $this->getForm()->handleRequest($request);
             if ($this->processForm()) {
@@ -68,7 +69,7 @@ class CrudController extends BaseController
             throw $this->createAccessDeniedException();
         }
 
-        $this->get('app.title')->setValue('server.manage.edit');
+        $this->get(Title::class)->setValue('server.manage.edit');
         $this->setServer($server);
 
         if ($request->isMethod($request::METHOD_POST)) {

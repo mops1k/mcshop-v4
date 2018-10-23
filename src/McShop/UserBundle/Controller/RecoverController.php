@@ -2,6 +2,7 @@
 namespace McShop\UserBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
+use McShop\Core\Twig\Title;
 use McShop\UserBundle\Entity\Token;
 use McShop\UserBundle\Entity\User;
 use McShop\UserBundle\Form\RecoverType;
@@ -19,13 +20,16 @@ class RecoverController extends BaseController
     /**
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function recoverAction(Request $request)
     {
         if ($this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->isAuthenticatedErrorShow();
         }
-        $this->get('app.title')->setValue('user.recover.message.title');
+        $this->get(Title::class)->setValue('user.recover.message.title');
 
         $form = $this->createForm(RecoverType::class);
 
@@ -97,7 +101,7 @@ class RecoverController extends BaseController
         if ($this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->isAuthenticatedErrorShow();
         }
-        $this->get('app.title')->setValue('title.code_activation');
+        $this->get(Title::class)->setValue('title.code_activation');
 
         return $this->render(':Default/User:recover_code.html.twig');
     }
@@ -112,7 +116,7 @@ class RecoverController extends BaseController
         if ($this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->isAuthenticatedErrorShow();
         }
-        $this->get('app.title')->setValue('user.recover.message.password_title');
+        $this->get(Title::class)->setValue('user.recover.message.password_title');
 
         $token = $this->getDoctrine()
             ->getManagerForClass(Token::class)

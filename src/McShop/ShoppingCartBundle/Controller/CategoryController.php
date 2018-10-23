@@ -2,6 +2,7 @@
 namespace McShop\ShoppingCartBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
+use McShop\Core\Twig\Title;
 use McShop\ShoppingCartBundle\Entity\ShoppingCartCategory as Category;
 use McShop\ShoppingCartBundle\Entity\ShoppingCartCategory;
 use McShop\ShoppingCartBundle\Form\ShoppingCartCategoryType;
@@ -27,7 +28,7 @@ class CategoryController extends BaseController
             throw $this->createAccessDeniedException();
         }
 
-        $this->get('app.title')->setValue('shopping_cart.category.list_title');
+        $this->get(Title::class)->setValue('shopping_cart.category.list_title');
 
         $categories = $this->getDoctrine()->getManagerForClass(ShoppingCartCategory::class)
             ->getRepository(ShoppingCartCategory::class)
@@ -51,7 +52,7 @@ class CategoryController extends BaseController
             throw $this->createAccessDeniedException();
         }
 
-        $this->get('app.title')->setValue('shopping_cart.category.new_title');
+        $this->get(Title::class)->setValue('shopping_cart.category.new_title');
 
         $form = $this->getForm();
 
@@ -80,7 +81,7 @@ class CategoryController extends BaseController
             throw $this->createAccessDeniedException();
         }
 
-        $this->get('app.title')->setValue('shopping_cart.category.edit_title');
+        $this->get(Title::class)->setValue('shopping_cart.category.edit_title');
 
         $form = $this->getForm($category);
 

@@ -3,6 +3,7 @@
 namespace McShop\UserBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
+use McShop\Core\Twig\Title;
 use McShop\UserBundle\Entity\User;
 use McShop\UserBundle\Form\UserEditType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -17,7 +18,7 @@ class ManageController extends BaseController
             throw $this->createAccessDeniedException();
         }
 
-        $this->get('app.title')->setValue('user.manage.list');
+        $this->get(Title::class)->setValue('user.manage.list');
 
         $form = $this->createFormBuilder(null, [
                 'csrf_protection'   => false,
@@ -84,7 +85,7 @@ class ManageController extends BaseController
             }
         }
 
-        $this->get('app.title')->setValue('user.manage.edit_user')->setAttributes([
+        $this->get(Title::class)->setValue('user.manage.edit_user')->setAttributes([
             '@username@'    => $user->getUsername(),
         ]);
 

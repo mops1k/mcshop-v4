@@ -1,6 +1,7 @@
 <?php
 namespace McShop\Core\Controller;
 
+use McShop\SettingBundle\Service\SettingHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -73,7 +74,7 @@ class BaseController extends Controller
      */
     protected function getSetting($name, $defaultValue = null, $loadFromCache = true)
     {
-        return $this->get('mc_shop.setting.helper')->get($name, $defaultValue, $loadFromCache);
+        return $this->get(SettingHelper::class)->get($name, $defaultValue, $loadFromCache);
     }
 
     /**

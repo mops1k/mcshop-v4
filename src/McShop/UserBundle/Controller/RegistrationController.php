@@ -2,6 +2,7 @@
 namespace McShop\UserBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
+use McShop\Core\Twig\Title;
 use McShop\UserBundle\Entity\Token;
 use McShop\UserBundle\Form\UserType;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,13 +18,16 @@ class RegistrationController extends BaseController
     /**
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function registerAction(Request $request)
     {
         if ($this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->isAuthenticatedErrorShow();
         }
-        $this->get('app.title')->setValue('title.registration_form');
+        $this->get(Title::class)->setValue('title.registration_form');
 
         $form = $this->createForm(UserType::class);
         $form->handleRequest($request);
@@ -89,7 +93,7 @@ class RegistrationController extends BaseController
         if ($this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->isAuthenticatedErrorShow();
         }
-        $this->get('app.title')->setValue('title.code_activation');
+        $this->get(Title::class)->setValue('title.code_activation');
         return $this->render(':Default/User:registration_code.html.twig');
     }
 

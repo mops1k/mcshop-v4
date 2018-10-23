@@ -2,6 +2,7 @@
 namespace McShop\SettingBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
+use McShop\Core\Twig\Title;
 use McShop\SettingBundle\Entity\Setting;
 use McShop\SettingBundle\Form\SettingsType;
 use McShop\SettingBundle\Service\SettingHelper;
@@ -21,7 +22,7 @@ class CrudController extends BaseController
             throw $this->createAccessDeniedException();
         }
 
-        $this->get('app.title')->setValue('setting.title');
+        $this->get(Title::class)->setValue('setting.title');
 
         $finder = new Finder();
         $directories = $finder->in($this->getParameter('kernel.root_dir') . '/Resources/views/')->directories();

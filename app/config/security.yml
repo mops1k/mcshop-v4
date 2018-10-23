@@ -5,8 +5,6 @@ security:
     providers:
         user:
             entity: { class: McShop\UserBundle\Entity\User }
-        in_memory:
-            memory: ~
     role_hierarchy:
         ROLE_USER:       ROLE_USER
     firewalls:
@@ -30,6 +28,7 @@ security:
                 lifetime: 604800
                 path:     /
             switch_user:  true
+            logout_on_user_change: true
     encoders:
         McShop\UserBundle\Entity\User:
             id: md5salted_encoder
