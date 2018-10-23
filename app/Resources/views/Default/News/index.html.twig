@@ -30,7 +30,7 @@
                     {{ post.createdAt|date('d.m.Y H:i') }}
                 </div>
                 <div class="pull-right">
-                    <a href="{{ path('mc_shop_news_view', {'id': post.id}) }}" class="btn btn-sm btn-default">
+                    <a href="{{ path('mc_shop_news_view', {'id': post.id, 'simple': app.request.query.get('simple', 0)}) }}" class="btn btn-sm btn-default">
                         <i class="fa fa-eye"></i>
                         {{ 'news.link.read_more'|trans }}</a>
                 </div>
