@@ -49,6 +49,7 @@ news:
         no_rights:                  To post you commentary you have to login or register!
         no_comments:                No commentaries for post yet!
         user_says:                  "@username@ says"
+        published:                  Commentary was published!
         form.title:                 Write your commentary
 user:
     profile:
