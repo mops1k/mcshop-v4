@@ -25,35 +25,38 @@
 
 <body>
 <div class="wrapper">
-    <!-- Fixed navbar -->
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle offcanvas-toggle pull-right" data-toggle="offcanvas" data-target="#js-bootstrap-offcanvas">
-                    <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="{{ path('homepage', {_locale: app.request.locale}) }}">
-                    <img src="{{ asset('assets/img/brand.png') }}" width="26px"> {{ 'project_brand'|setting('McShop v4') }}
-                </a>
+    {% block navbar %}
+        <!-- Fixed navbar -->
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle offcanvas-toggle pull-right" data-toggle="offcanvas" data-target="#js-bootstrap-offcanvas">
+                        <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{ path('homepage', {_locale: app.request.locale}) }}">
+                        <img src="{{ asset('assets/img/brand.png') }}" width="26px"> {{ 'project_brand'|setting('McShop v4') }}
+                    </a>
+                </div>
+                <div class="navbar-offcanvas navbar-offcanvas-touch" id="js-bootstrap-offcanvas">
+                    {% block top_menu %}
+                        {% if is_granted('ROLE_USER') %}
+                            <ul class="nav navbar-nav">
+                                {%- set class = path(app.request.get('_route'), app.request.get('_route_params')) == path('mc_shop_shopping_cart_storefront') ? 'active' %}
+                                {# Нет выпадающего меню #}
+                                <li{{ ' class='~class }}>
+                                    <a href="{{ path('mc_shop_shopping_cart_storefront') }}">
+                                        <i class="fa fa-university"></i> {{ 'shopping_cart.storefront.menu'|trans }}</a>
+                                </li>
+                            </ul>
+                        {% endif %}
+                        {{ renderMenu('page.page', ':Default/StaticPage:menu.html.twig') }}
+                        {{ renderMenu('user.user', ':Default/User:menu.html.twig') }}
+                    {% endblock %}
+                </div><!--/.nav-collapse -->
             </div>
-            <div class="navbar-offcanvas navbar-offcanvas-touch" id="js-bootstrap-offcanvas">
-                {% block top_menu %}
-                {% if is_granted('ROLE_USER') %}
-                <ul class="nav navbar-nav">
-                    {%- set class = path(app.request.get('_route'), app.request.get('_route_params')) == path('mc_shop_shopping_cart_storefront') ? 'active' %}
-                    {# Нет выпадающего меню #}
-                    <li{{ ' class='~class }}>
-                        <a href="{{ path('mc_shop_shopping_cart_storefront') }}">
-                            <i class="fa fa-university"></i> {{ 'shopping_cart.storefront.menu'|trans }}</a>
-                    </li>
-                </ul>
-                {% endif %}
-                {{ renderMenu('page.page', ':Default/StaticPage:menu.html.twig') }}
-                {{ renderMenu('user.user', ':Default/User:menu.html.twig') }}
-                {% endblock %}
-            </div><!--/.nav-collapse -->
         </div>
-    </div>
+    {% endblock %}
+
 
     {% block header %}
     <div id="header">
