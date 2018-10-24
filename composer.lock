@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a306bc4786dd4fe8a0d2bcce38996330",
+    "content-hash": "9234ba2669d982bf83e0c8ef5abf85a7",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1881,16 +1881,16 @@
         },
         {
             "name": "matthiasnoback/symfony-console-form",
-            "version": "v2.5.0",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/matthiasnoback/symfony-console-form.git",
-                "reference": "4fe0e6dbb0d6b68705875d669e1963c8f820e624"
+                "reference": "fad000cb237b0914d1953b4abd8de82d04a5ab5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/matthiasnoback/symfony-console-form/zipball/4fe0e6dbb0d6b68705875d669e1963c8f820e624",
-                "reference": "4fe0e6dbb0d6b68705875d669e1963c8f820e624",
+                "url": "https://api.github.com/repos/matthiasnoback/symfony-console-form/zipball/fad000cb237b0914d1953b4abd8de82d04a5ab5f",
+                "reference": "fad000cb237b0914d1953b4abd8de82d04a5ab5f",
                 "shasum": ""
             },
             "require": {
@@ -1932,7 +1932,7 @@
                 "form",
                 "symfony"
             ],
-            "time": "2018-02-01T13:52:00+00:00"
+            "time": "2018-03-18T10:53:59+00:00"
         },
         {
             "name": "monolog/monolog",

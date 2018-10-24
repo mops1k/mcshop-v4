@@ -4,15 +4,18 @@ namespace McShop\UserBundle\Controller;
 use McShop\Core\Controller\BaseController;
 use McShop\Core\Twig\Title;
 use McShop\UserBundle\Entity\User;
+use McShop\UserBundle\Form\UserLoginType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends BaseController
 {
     /**
+     * @param Request $request
      * @return Response
      * @throws \Exception
      */
-    public function loginAction()
+    public function loginAction(Request $request)
     {
         if ($this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->isAuthenticatedErrorShow();
@@ -52,19 +55,20 @@ class DefaultController extends BaseController
 
         $this->get(Title::class)->setValue('title.authorization');
 
-        $authenticationUtils = $this->get('security.authentication_utils');
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
-        if ($error) {
-            $this->addFlash(
-                'error',
-                $this->get('translator')->trans($error->getMessageKey(), $error->getMessageData(), 'security')
-            );
+        $form = $this->createForm(UserLoginType::class);
+        $form->handleRequest($request);
+
+        if ($form->getErrors()) {
+            foreach ($form->getErrors() as $error) {
+                $this->addFlash(
+                    'error',
+                    $this->get('translator')->trans($error->getMessage(), $error->getMessageParameters(), 'security')
+                );
+            }
         }
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
+
         return $this->render(':Default/User:login.html.twig', [
-            'last_username'  => $lastUsername
+            'form'  => $form->createView()
         ]);
     }
 

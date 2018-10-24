@@ -3,6 +3,11 @@ services:
         class: McShop\UserBundle\Services\RoleHierarchy
         arguments: [ '%security.role_hierarchy.roles%', '@doctrine' ]
 
+    McShop\UserBundle\Form\UserLoginType:
+        arguments: ['@security.authentication_utils']
+        tags: [form.type]
+        public: true
+
     md5salted_encoder:
         class: McShop\UserBundle\Encoders\Md5PasswordEncoder
 

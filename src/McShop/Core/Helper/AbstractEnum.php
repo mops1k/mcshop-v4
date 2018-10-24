@@ -6,7 +6,7 @@ namespace McShop\Core\Helper;
 use Doctrine\Common\Inflector\Inflector;
 use ReflectionClass;
 
-class Enum
+abstract class AbstractEnum
 {
     /**
      * @var string|int
@@ -16,7 +16,7 @@ class Enum
     /**
      * Enum load
      * @param string|int $value
-     * @return Enum
+     * @return AbstractEnum
      * @throws \Exception
      */
     public function load($value): self

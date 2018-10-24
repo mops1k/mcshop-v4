@@ -3,12 +3,12 @@
 
 namespace McShop\ShoppingCartBundle\Enum;
 
-use McShop\Core\Helper\Enum;
+use McShop\Core\Helper\AbstractEnum;
 
 /**
  * Class EnchantmentEnum
  */
-class EnchantmentEnum extends Enum
+class EnchantmentEnum extends AbstractEnum
 {
     public const ARMOUR_PROTECTION = 0;
     public const ARMOUR_FIRE_PROTECTION = 1;

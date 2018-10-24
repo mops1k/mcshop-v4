@@ -8,6 +8,9 @@ services:
         autowire: true
         autoconfigure: true
         public: false
+    _instanceof:
+        McShop\Core\Helper\AbstractEnum:
+            public: true
 
     McShop\Core\:
         resource: '../../src/McShop/Core/*'
@@ -16,7 +19,6 @@ services:
 
     McShop\:
         resource: '../../src/McShop/*/Enum/*'
-        public: true
 
     McShop\Core\Twig\Title:
         public: true
