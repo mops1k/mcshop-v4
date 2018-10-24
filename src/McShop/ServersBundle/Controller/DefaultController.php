@@ -4,6 +4,7 @@ namespace McShop\ServersBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
 use McShop\ServersBundle\Entity\Server;
+use McShop\ServersBundle\Services\ServerStatusUpdate;
 
 class DefaultController extends BaseController
 {
@@ -18,7 +19,7 @@ class DefaultController extends BaseController
             ->findAll()
         ;
 
-        $query = $this->get('mc_shop.server.query');
+        $query = $this->get(ServerStatusUpdate::class);
 
         $serversData = [];
         $totalOnline = [

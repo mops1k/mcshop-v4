@@ -2,6 +2,7 @@
 namespace McShop\FinanceBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
+use McShop\Core\Twig\Title;
 use McShop\FinanceBundle\Entity\Coupon;
 use McShop\FinanceBundle\Form\CouponCodeType;
 use McShop\FinanceBundle\Form\CouponFilter;
@@ -27,7 +28,7 @@ class CouponController extends BaseController
     {
         $form = $this->createForm(CouponForm::class);
 
-        $this->get('app.title')->setValue('finance.coupon.generation');
+        $this->get(Title::class)->setValue('finance.coupon.generation');
 
         if ($request->isMethod($request::METHOD_POST)) {
             $form->handleRequest($request);

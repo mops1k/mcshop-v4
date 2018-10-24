@@ -2,6 +2,7 @@
 namespace McShop\NewsBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
+use McShop\Core\Twig\Title;
 use McShop\NewsBundle\Entity\Commentary;
 use McShop\NewsBundle\Form\CommentaryType;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,7 +29,7 @@ class CommentaryCrudController extends BaseController
             throw $this->createAccessDeniedException();
         }
 
-        $this->get('app.title')->setValue('news.comments.edit_title');
+        $this->get(Title::class)->setValue('news.comments.edit_title');
 
         $form = $this->createForm(CommentaryType::class, $commentary);
         if ($request->isMethod($request::METHOD_POST)) {

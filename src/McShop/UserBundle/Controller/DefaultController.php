@@ -2,6 +2,7 @@
 namespace McShop\UserBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
+use McShop\Core\Twig\Title;
 use McShop\UserBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -49,7 +50,7 @@ class DefaultController extends BaseController
             ]));
         }
 
-        $this->get('app.title')->setValue('title.authorization');
+        $this->get(Title::class)->setValue('title.authorization');
 
         $authenticationUtils = $this->get('security.authentication_utils');
         // get the login error if there is one

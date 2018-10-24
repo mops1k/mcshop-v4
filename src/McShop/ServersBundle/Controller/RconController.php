@@ -2,8 +2,11 @@
 namespace McShop\ServersBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
+use McShop\Core\Twig\Title;
 use McShop\ServersBundle\Entity\Server;
+use MinecraftRcon\Rcon;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Debug\Exception\ContextErrorException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -16,7 +19,7 @@ class RconController extends BaseController
 {
     public function pageAction()
     {
-        $this->get('app.title')->setValue('server.rcon.manage');
+        $this->get(Title::class)->setValue('server.rcon.manage');
 
         $servers = $this->getDoctrine()
             ->getManagerForClass(Server::class)
@@ -70,7 +73,7 @@ class RconController extends BaseController
             return new JsonResponse($response);
         }
 
-        $rcon = $this->get('minecraft.server.rcon');
+        $rcon = $this->get(Rcon::class);
         $rcon
             ->setHost($server->getHost())
             ->setPort($server->getRconPort())
@@ -78,15 +81,16 @@ class RconController extends BaseController
             ->setTimeout(10)
         ;
 
-        if ($rcon->connect()) {
+        try {
+            $rcon->connect();
             $rcon->sendCommand($command);
             $response['data'] = $rcon->getResponse($rcon::RESPONSE_FORMATTED);
             $rcon->disconnect();
             return new JsonResponse($response);
+        } catch (\ErrorException $exception) {
+            $response['success'] = false;
+            $response['data']    = $this->get('translator')->trans('server.rcon.no_connection').': '.$exception->getMessage();
         }
-
-        $response['success'] = false;
-        $response['data']    = $this->get('translator')->trans('server.rcon.no_connection');
 
         return new JsonResponse($response);
     }

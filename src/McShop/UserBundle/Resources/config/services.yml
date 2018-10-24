@@ -13,6 +13,7 @@ services:
             - '@security.password_encoder'
             - '@session'
             - '@security.token_storage'
+        public: true
 
     mc_shop.user_email.helper:
         class: McShop\UserBundle\Services\Helper\UserEmailHelper
@@ -38,18 +39,18 @@ services:
             - '@translator'
             - '%mailer_from%'
 
-    mc_shop.user.menu:
-        class: McShop\UserBundle\Menu\UserMenu
+    McShop\UserBundle\Menu\UserMenu:
         arguments:
             - '@router'
             - '@security.authorization_checker'
             - '@security.token_storage'
         tags:
             - { name: mc_shop_menu, alias: user }
+        public: true
 
-    mc_shop.user.builder:
-        class: McShop\UserBundle\Menu\Builder\UserMenuBuilder
+    McShop\UserBundle\Menu\Builder\UserMenuBuilder:
         arguments:
             - '@translator'
         tags:
             - { name: mc_shop_menu.builder, alias: user }
+        public: true

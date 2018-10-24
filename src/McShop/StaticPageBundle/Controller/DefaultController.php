@@ -3,6 +3,7 @@
 namespace McShop\StaticPageBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
+use McShop\Core\Twig\Title;
 use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends BaseController
@@ -13,6 +14,7 @@ class DefaultController extends BaseController
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function indexAction($slug)
     {
@@ -20,7 +22,7 @@ class DefaultController extends BaseController
         $page = $manager->getRepository('McShopStaticPageBundle:Page')->findOneBySlug($slug);
 
         if ($page === null) {
-            $this->get('app.title')->setValue('page.error')->setAttributes([
+            $this->get(Title::class)->setValue('page.error')->setAttributes([
                 '@number@'   => Response::HTTP_NOT_FOUND,
             ]);
             $response = $this->render(':Default/StaticPage:view.html.twig', [
@@ -37,7 +39,7 @@ class DefaultController extends BaseController
         if ($page->getRole() !== null
             && (!$this->isGranted($page->getRole()->getRole()) || !$this->isGranted('ROLE_SUPER_ADMIN'))
         ) {
-            $this->get('app.title')->setValue('page.error')->setAttributes([
+            $this->get(Title::class)->setValue('page.error')->setAttributes([
                 '@number@'   => Response::HTTP_FORBIDDEN,
             ]);
             $response = $this->render(':Default/StaticPage:view.html.twig', [
@@ -51,7 +53,7 @@ class DefaultController extends BaseController
             return $response;
         }
 
-        $this->get('app.title')->setValue($page->getTitle());
+        $this->get(Title::class)->setValue($page->getTitle());
 
         $tplName = uniqid( 'string_template_', true );
         $twig = clone $this->get('twig');

@@ -1,6 +1,7 @@
 <?php
 namespace McShop\ShoppingCartBundle\Controller;
 
+use McShop\Core\Twig\Title;
 use McShop\ShoppingCartBundle\Entity\BuyHistory;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +19,7 @@ class BuyHistoryController extends Controller
             throw $this->createAccessDeniedException();
         }
 
-        $this->get('app.title')->setValue('shopping_cart.history.menu');
+        $this->get(Title::class)->setValue('shopping_cart.history.menu');
 
         $history = $this->getDoctrine()->getManagerForClass(BuyHistory::class)
             ->getRepository(BuyHistory::class)->findAllAsPagination();
@@ -46,7 +47,7 @@ class BuyHistoryController extends Controller
             throw $this->createAccessDeniedException();
         }
 
-        $this->get('app.title')
+        $this->get(Title::class)
             ->setValue('shopping_cart.history.entry')
             ->setAttributes(['@nn@' => $history->getId()])
         ;

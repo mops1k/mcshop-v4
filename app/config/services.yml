@@ -14,10 +14,8 @@ services:
         # exclude directories || files (if service is unused, it will be removed anyway)
         exclude: '../../src/McShop/Core/{Controller, Form}'
 
-    app.title:
-        class: McShop\Core\Twig\Title
+    McShop\Core\Twig\Title:
         public: true
-
 
     Gedmo\SoftDeleteable\SoftDeleteableListener:
         tags:

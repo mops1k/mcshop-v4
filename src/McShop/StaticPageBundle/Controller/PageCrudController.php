@@ -3,6 +3,7 @@
 namespace McShop\StaticPageBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
+use McShop\Core\Twig\Title;
 use McShop\StaticPageBundle\Entity\Page;
 use McShop\StaticPageBundle\Form\PageType;
 use McShop\StaticPageBundle\Repository\PageRepository;
@@ -25,7 +26,7 @@ class PageCrudController extends BaseController
             throw $this->createAccessDeniedException();
         }
 
-        $this->get('app.title')->setValue('page.list.title');
+        $this->get(Title::class)->setValue('page.list.title');
 
         $query = $this->getDoctrine()
             ->getManagerForClass(Page::class)
@@ -55,7 +56,7 @@ class PageCrudController extends BaseController
             throw $this->createAccessDeniedException();
         }
 
-        $this->get('app.title')->setValue('page.add.title');
+        $this->get(Title::class)->setValue('page.add.title');
 
         $form = $this->getForm();
         if ($request->isMethod($request::METHOD_POST)) {
@@ -100,7 +101,7 @@ class PageCrudController extends BaseController
             return $this->redirectToReferer();
         }
 
-        $this->get('app.title')->setValue('page.edit.title');
+        $this->get(Title::class)->setValue('page.edit.title');
 
         $form = $this->getForm($page);
         $form->remove('slug');

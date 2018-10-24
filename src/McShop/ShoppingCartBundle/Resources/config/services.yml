@@ -1,15 +1,15 @@
 services:
-    mc_shop.shopping_cart.menu:
-        class: McShop\ShoppingCartBundle\Menu\ShoppingCartMenu
+    McShop\ShoppingCartBundle\Menu\ShoppingCartMenu:
         arguments:
             - '@router'
             - '@security.authorization_checker'
         tags:
             - { name: mc_shop_menu, alias: shopping_cart }
+        public: true
 
-    mc_shop.shopping_cart.builder:
-        class: McShop\ShoppingCartBundle\Menu\Builder\ShoppingCartMenuBuilder
+    McShop\ShoppingCartBundle\Menu\Builder\ShoppingCartMenuBuilder:
         arguments:
             - '@translator'
         tags:
             - { name: mc_shop_menu.builder, alias: shopping_cart }
+        public: true

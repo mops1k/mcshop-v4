@@ -2,6 +2,7 @@
 namespace McShop\ShoppingCartBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
+use McShop\Core\Twig\Title;
 use McShop\ShoppingCartBundle\Entity\BuyHistory;
 use McShop\ShoppingCartBundle\Entity\ShoppingCartCategory;
 use McShop\ShoppingCartBundle\Entity\ShoppingCartItem;
@@ -10,6 +11,7 @@ class DefaultController extends BaseController
 {
     /**
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function indexAction()
     {
@@ -17,7 +19,7 @@ class DefaultController extends BaseController
             throw $this->createAccessDeniedException();
         }
 
-        $this->get('app.title')->setValue('shopping_cart.menu.managment_title');
+        $this->get(Title::class)->setValue('shopping_cart.menu.managment_title');
 
         $totalCategories = $this->getDoctrine()
             ->getManagerForClass(ShoppingCartCategory::class)

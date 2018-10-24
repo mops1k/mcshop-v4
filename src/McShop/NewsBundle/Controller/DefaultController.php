@@ -3,6 +3,7 @@
 namespace McShop\NewsBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
+use McShop\Core\Twig\Title;
 use McShop\NewsBundle\Entity\Commentary;
 use McShop\NewsBundle\Entity\Post;
 use McShop\NewsBundle\Form\CommentaryType;
@@ -39,7 +40,12 @@ class DefaultController extends BaseController
             ->setCurrentPage($request->get('page', 1))
         ;
 
-        return $this->render(':Default/News:index.html.twig', [
+        $template = ':Default/News:index.html.twig';
+        if ($request->query->get('simple', 0)) {
+            $template = ':Default/News:index_simple.html.twig';
+        }
+
+        return $this->render($template, [
             'posts' => $posts
         ]);
     }
@@ -51,7 +57,7 @@ class DefaultController extends BaseController
      */
     public function viewAction(Post $post, Request $request)
     {
-        $this->get('app.title')
+        $this->get(Title::class)
             ->setValue('news.show')
             ->setAttributes([
                 '@subject@' => $post->getSubject(),
@@ -101,7 +107,12 @@ class DefaultController extends BaseController
             ->setCurrentPage($request->get('page', 1))
         ;
 
-        return $this->render(':Default/News:view.html.twig', array_merge([
+        $template = ':Default/News:view.html.twig';
+        if ($request->query->get('simple', 0)) {
+            $template = ':Default/News:view_simple.html.twig';
+        }
+
+        return $this->render($template, array_merge([
             'commentaries'  => $commentaries,
             'post'  => $post,
         ], $additional));

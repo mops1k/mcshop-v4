@@ -2,6 +2,7 @@
 namespace McShop\ShoppingCartBundle\Controller;
 
 use McShop\Core\Controller\BaseController;
+use McShop\Core\Twig\Title;
 use McShop\ShoppingCartBundle\Entity\Basket;
 use McShop\ShoppingCartBundle\Entity\BuyHistory;
 use McShop\ShoppingCartBundle\Entity\ShoppingCart;
@@ -21,13 +22,13 @@ class ShopController extends BaseController
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function storefrontAction(ShoppingCartCategory $category = null, Request $request)
+    public function storefrontAction(Request $request, ShoppingCartCategory $category = null)
     {
         if (!$this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             throw $this->createAccessDeniedException();
         }
 
-        $this->get('app.title')->setValue('shopping_cart.storefront.home');
+        $this->get(Title::class)->setValue('shopping_cart.storefront.home');
 
         $repository = $this->getDoctrine()->getManagerForClass('McShopShoppingCartBundle:ShoppingCartCategory')
             ->getRepository('McShopShoppingCartBundle:ShoppingCartCategory');
@@ -115,7 +116,7 @@ class ShopController extends BaseController
             throw $this->createAccessDeniedException();
         }
 
-        $this->get('app.title')->setValue('shopping_cart.basket.menu');
+        $this->get(Title::class)->setValue('shopping_cart.basket.menu');
 
         $manager = $this->getDoctrine()->getManagerForClass('McShopShoppingCartBundle:Basket');
         $repository = $manager->getRepository('McShopShoppingCartBundle:Basket');
