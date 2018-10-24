@@ -12,7 +12,11 @@ services:
     McShop\Core\:
         resource: '../../src/McShop/Core/*'
         # exclude directories || files (if service is unused, it will be removed anyway)
-        exclude: '../../src/McShop/Core/{Controller, Form}'
+        exclude: '../../src/McShop/Core/{Controller, Form, Helper}'
+
+    McShop\:
+        resource: '../../src/McShop/*/Enum/*'
+        public: true
 
     McShop\Core\Twig\Title:
         public: true
@@ -34,9 +38,5 @@ services:
             - { name: doctrine.event_subscriber }
         calls:
             - [ 'setAnnotationReader', [ '@annotation_reader' ] ]
-
-    McShop\Core\Form\ConsoleTransformer\NumberTransformer:
-        tags:
-            - { name: form_to_question_transformer, form_type: Symfony\Component\Form\Extension\Core\Type\NumberType }
 
     mc_shop.access.decision_manager: '@security.access.decision_manager'
