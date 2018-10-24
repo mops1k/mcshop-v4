@@ -40,7 +40,10 @@ Minecraft Shop version 4
 git clone https://gitlab.com/jmd-team/McShop-v4.git mcshop
 ```
 
-Установить зависимости
+База данных, которую Вы указажете при установке зависимостей уже должна быть создана или пользователь, указанный в настройках
+должен иметь право на создание баз данных.
+
+Установка зависимостей:
 ```bash
 cd mcshop/
 git checkout 1.1.0
@@ -67,18 +70,6 @@ chmod 0777 app/cache
 chmod 0777 app/logs
 ```
 
-База данных, которую Вы указали при установке зависимостей уже должна быть создана или пользователь, указанный в настройках
-должен иметь право на создание баз данных.
-Если пользователь имеет право на создание баз данных тогда выполняем:
-```bash
-php bin/console doctrine:database:create
-```
-После этого инициализируем схему базы и загрузим в нее системные роли:
-```bash
-php bin/console doctrine:migrations:migrate
-php bin/console doctrine:fixtures:load --append
-```
-
 Теперь создаем администратора в системе выполнив команду и ответив на вопросы в ней:
 ```bash
 php bin/console mc_shop:user:new --admin
@@ -89,14 +80,10 @@ php bin/console mc_shop:user:new --admin
 php bin/console cache:clear -e prod
 ```
 
-Если у Вас стоит Apache или nginx, тогда необходимо настроить хост на папку `public_html` проекта.
-Если же у вас не стоит ни того и ни другого, то Вы можете запустить проект командой:
-```bash
-php bin/console server:run
-```
+Теперь Вам необходимо настроить хост на папку `public_html` проекта.
 
 ### Пример конфигурации в лаунчере Sashok724 v3 (Open Source)
-```json
+```yaml
 # LaunchServer.cfg
 address: "localhost";
 bindAddress: "0.0.0.0";
@@ -136,6 +123,9 @@ textureProviderConfig: {
 
 # Launch4J EXE binary building
 launch4J: false;
+
+# Compress files when updating using Inflate algorithm
+compress: true;
 ```
 
 [1]: https://www.interkassa.com/
