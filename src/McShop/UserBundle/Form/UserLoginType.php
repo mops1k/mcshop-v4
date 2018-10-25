@@ -12,9 +12,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
@@ -53,7 +51,7 @@ class UserLoginType extends AbstractType
                     'placeholder' => 'login.password',
                 ],
             ])
-            ->add('captha', CaptchaType::class, [
+            ->add('captcha', CaptchaType::class, [
                 'label' => 'form.registration.captcha',
                 'attr' => [
                     'placeholder'   => 'form.registration.captcha_help'
@@ -61,6 +59,7 @@ class UserLoginType extends AbstractType
             ])
             ->add('_remember_me', CheckboxType::class, [
                 'label' => 'login.remember_me',
+                'required' => false,
             ])
         ;
 

@@ -2,7 +2,6 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: "@McShopUserBundle/Resources/config/services.yml" }
     - { resource: "@McShopNewsBundle/Resources/config/services.yml" }
     - { resource: "@McShopStaticPageBundle/Resources/config/services.yml" }
     - { resource: "@McShopServersBundle/Resources/config/services.yml" }
