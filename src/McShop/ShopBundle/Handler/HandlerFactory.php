@@ -2,13 +2,15 @@
 
 namespace McShop\ShopBundle\Handler;
 
+use McShop\ShopBundle\Entity\Item;
+
 /**
  * Class HandlerFactory
  */
 class HandlerFactory
 {
     /**
-     * @var array
+     * @var HandlerInterface[]
      */
     private $handlers = [];
 
@@ -19,12 +21,13 @@ class HandlerFactory
      *
      * @return HandlerInterface|null
      */
-    public function getHandler(string $name): ?HandlerInterface
+    public function getHandler(string $name, ?Item $item): ?HandlerInterface
     {
         if (!isset($this->handlers[$name])) {
             throw new \RuntimeException('Handler this name: '.$name.' does not exists!');
         }
 
+        $this->handlers[$name]->setItem($item);
         return $this->handlers[$name];
     }
 
@@ -42,20 +45,6 @@ class HandlerFactory
         }
 
         $this->handlers[$handler->getName()] = $handler;
-
-        return $this;
-    }
-
-    /**
-     * handle
-     *
-     * @param $name
-     *
-     * @return $this
-     */
-    public function handle($name): self
-    {
-        $this->getHandler($name)->handle();
 
         return $this;
     }

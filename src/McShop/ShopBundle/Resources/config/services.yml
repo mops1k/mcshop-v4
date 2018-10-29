@@ -5,4 +5,8 @@ services:
             public: true
 
     McShop\ShopBundle\Handler\HandlerFactory:
-      public: true
+        public: true
+
+    McShop\ShopBundle\Handler\ShoppingCartHandler:
+        autowire: true
+        autoconfigure: true

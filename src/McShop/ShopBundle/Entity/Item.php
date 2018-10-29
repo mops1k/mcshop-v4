@@ -50,6 +50,13 @@ class Item
     private $price;
 
     /**
+     * @var int|null
+     *
+     * @ORM\Column(name="discount", type="integer", nullable=true)
+     */
+    private $discount;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="amount", type="integer")
@@ -64,6 +71,29 @@ class Item
     private $extra;
 
     /**
+     * @var int
+     *
+     * @ORM\ManyToOne(targetEntity="McShop\ServersBundle\Entity\Server")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $server;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     */
+    private $image;
+
+    /**
+     * @var ItemCategory
+     *
+     * @ORM\ManyToOne(targetEntity="McShop\ShopBundle\Entity\ItemCategory", inversedBy="items")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $category;
+
+    /**
      * @var string
      *
      * @ORM\Column(name"handler_name", type="string", length=255)
@@ -75,7 +105,7 @@ class Item
      *
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -87,7 +117,7 @@ class Item
      *
      * @return Item
      */
-    public function setName($name)
+    public function setName($name): Item
     {
         $this->name = $name;
 
@@ -99,7 +129,7 @@ class Item
      *
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -111,7 +141,7 @@ class Item
      *
      * @return Item
      */
-    public function setDescription($description)
+    public function setDescription(?string $description)
     {
         $this->description = $description;
 
@@ -123,7 +153,7 @@ class Item
      *
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -131,11 +161,11 @@ class Item
     /**
      * Set price.
      *
-     * @param string $price
+     * @param float $price
      *
      * @return Item
      */
-    public function setPrice($price)
+    public function setPrice(float $price): Item
     {
         $this->price = $price;
 
@@ -145,11 +175,27 @@ class Item
     /**
      * Get price.
      *
-     * @return string
+     * @return float
      */
-    public function getPrice()
+    public function getPrice(): float
     {
         return $this->price;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getDiscount(): ?int
+    {
+        return $this->discount;
+    }
+
+    /**
+     * @param int|null $discount
+     */
+    public function setDiscount(?int $discount): void
+    {
+        $this->discount = $discount;
     }
 
     /**
@@ -159,7 +205,7 @@ class Item
      *
      * @return Item
      */
-    public function setAmount($amount)
+    public function setAmount($amount): Item
     {
         $this->amount = $amount;
 
@@ -171,7 +217,7 @@ class Item
      *
      * @return int
      */
-    public function getAmount()
+    public function getAmount(): int
     {
         return $this->amount;
     }
@@ -183,7 +229,7 @@ class Item
      *
      * @return Item
      */
-    public function setExtra($extra = null)
+    public function setExtra($extra = null): Item
     {
         $this->extra = $extra;
 
@@ -195,7 +241,7 @@ class Item
      *
      * @return array|null
      */
-    public function getExtra()
+    public function getExtra(): ?array
     {
         return $this->extra;
     }
@@ -217,5 +263,53 @@ class Item
         $this->handlerName = $handler->getName();
 
         return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getServer(): int
+    {
+        return $this->server;
+    }
+
+    /**
+     * @param int $server
+     */
+    public function setServer(int $server): void
+    {
+        $this->server = $server;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage(): string
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string $image
+     */
+    public function setImage(string $image): void
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * @return ItemCategory|null
+     */
+    public function getCategory(): ?ItemCategory
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param ItemCategory|null $category
+     */
+    public function setCategory(?ItemCategory $category): void
+    {
+        $this->category = $category;
     }
 }
