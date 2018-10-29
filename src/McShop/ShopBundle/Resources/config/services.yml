@@ -1,0 +1,8 @@
+services:
+    _instanceof:
+        McShop\ShopBundle\Handler\HandlerInterface:
+            tags: { name: "mc_shop.item_handler" }
+            public: true
+
+    McShop\ShopBundle\Handler\HandlerFactory:
+      public: true

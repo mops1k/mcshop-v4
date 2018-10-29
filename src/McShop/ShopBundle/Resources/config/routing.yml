@@ -1,0 +1,3 @@
+#mc_shop_shop_homepage:
+#    path:     /
+#    defaults: { _controller: McShopShopBundle:Default:index }

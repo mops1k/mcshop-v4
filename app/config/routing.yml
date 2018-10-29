@@ -1,3 +1,7 @@
+mc_shop_shop:
+    resource: "@McShopShopBundle/Resources/config/routing.yml"
+    prefix:   /
+
 locale_prefix:
     resource: 'routing_app.yml'
     prefix:    /{_locale}
