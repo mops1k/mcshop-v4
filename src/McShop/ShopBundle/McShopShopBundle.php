@@ -3,6 +3,7 @@
 namespace McShop\ShopBundle;
 
 use McShop\ShopBundle\DependencyInjection\CompilerPass\HandlerPass;
+use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

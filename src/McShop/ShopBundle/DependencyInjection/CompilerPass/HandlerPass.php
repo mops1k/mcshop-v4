@@ -17,10 +17,11 @@ class HandlerPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        $factory = $container->get(HandlerFactory::class);
+        $factoryDefinition = $container->getDefinition(HandlerFactory::class);
         $handlers = $container->findTaggedServiceIds('mc_shop.item_handler');
-        foreach ($handlers as $handler) {
-            $factory->addHandler($handler);
+        foreach ($handlers as $id => $handler) {
+            $definition = $container->getDefinition($id);
+            $factoryDefinition->addMethodCall('addHandler', [ $definition ]);
         }
     }
 }

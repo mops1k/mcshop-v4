@@ -96,7 +96,7 @@ class Item
     /**
      * @var string
      *
-     * @ORM\Column(name"handler_name", type="string", length=255)
+     * @ORM\Column(name="handler_name", type="string", length=255)
      */
     private $handlerName;
 
