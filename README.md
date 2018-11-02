@@ -37,7 +37,7 @@ Minecraft Shop version 4 (McShop v4)
 #### Установка системы
 Клонировать репозиторий к себе:
 ```bash
-git clone https://gitlab.com/jmd-team/McShop-v4.git mcshop
+git clone https://github.com/mops1k/mcshop-v4 mcshop
 ```
 
 База данных, которую Вы указажете при установке зависимостей уже должна быть создана или пользователь, указанный в настройках
