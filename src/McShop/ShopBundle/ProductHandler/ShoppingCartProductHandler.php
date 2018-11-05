@@ -1,16 +1,17 @@
 <?php declare(strict_types=1);
 
 
-namespace McShop\ShopBundle\Handler;
+namespace McShop\ShopBundle\ProductHandler;
 
 
 use McShop\ShopBundle\Entity\Item;
-use McShop\ShoppingCartBundle\Form\ShoppingCartItemType;
+use McShop\ShopBundle\Form\ShoppingCartItemType;
+use McShop\ShopBundle\Interfaces\ProductHandlerInterface;
 
 /**
  * Class ShoppingCartHandler
  */
-class ShoppingCartHandler implements HandlerInterface
+class ShoppingCartProductHandler implements ProductHandlerInterface
 {
     /** @var array */
     private $extra = [];
@@ -40,7 +41,7 @@ class ShoppingCartHandler implements HandlerInterface
             throw new \Exception('Item is not defined');
         }
 
-        $this->extra = $this->item->getExtra();
+        $this->extra = $this->item->getAdditionalFields();
     }
 
     /**
@@ -60,9 +61,9 @@ class ShoppingCartHandler implements HandlerInterface
      *
      * @param Item $item
      *
-     * @return HandlerInterface
+     * @return ProductHandlerInterface
      */
-    public function setItem(Item $item): HandlerInterface
+    public function setItem(Item $item): ProductHandlerInterface
     {
         $this->item = $item;
 

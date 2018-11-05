@@ -1,16 +1,17 @@
 <?php declare(strict_types=1);
 
-namespace McShop\ShopBundle\Handler;
+namespace McShop\ShopBundle\Factory;
 
 use McShop\ShopBundle\Entity\Item;
+use McShop\ShopBundle\Interfaces\ProductHandlerInterface;
 
 /**
  * Class HandlerFactory
  */
-class HandlerFactory
+class ProductHandlerFactory
 {
     /**
-     * @var HandlerInterface[]
+     * @var ProductHandlerInterface[]
      */
     private $handlers = [];
 
@@ -19,9 +20,9 @@ class HandlerFactory
      *
      * @param string $name
      *
-     * @return HandlerInterface|null
+     * @return ProductHandlerInterface|null
      */
-    public function getHandler(string $name, ?Item $item): ?HandlerInterface
+    public function getHandler(string $name, ?Item $item): ?ProductHandlerInterface
     {
         if (!isset($this->handlers[$name])) {
             throw new \RuntimeException('Handler this name: '.$name.' does not exists!');
@@ -34,11 +35,11 @@ class HandlerFactory
     /**
      * addHandler
      *
-     * @param HandlerInterface $handler
+     * @param ProductHandlerInterface $handler
      *
      * @return $this
      */
-    public function addHandler(HandlerInterface $handler): self
+    public function addHandler(ProductHandlerInterface $handler): self
     {
         if (in_array($handler, $this->handlers, true)) {
             throw new \RuntimeException('Handler: '.$handler->getName().' already exists!');
@@ -47,5 +48,13 @@ class HandlerFactory
         $this->handlers[$handler->getName()] = $handler;
 
         return $this;
+    }
+
+    /**
+     * @return ProductHandlerInterface|mixed
+     */
+    public function getHandlers()
+    {
+        return $this->handlers;
     }
 }

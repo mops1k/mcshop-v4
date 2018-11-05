@@ -27,6 +27,10 @@ mc_shop_setting:
     resource: "@McShopSettingBundle/Resources/config/routing.yml"
     prefix:   /setting
 
+mc_shop_shop:
+    resource: "@McShopShopBundle/Resources/config/routing.yml"
+    prefix:   /shop_new
+
 #
 #simple_things_entity_audit:
 #    resource: "@SimpleThingsEntityAuditBundle/Resources/config/routing.yml"

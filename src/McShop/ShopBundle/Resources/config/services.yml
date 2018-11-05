@@ -1,12 +1,16 @@
 services:
     _instanceof:
-        McShop\ShopBundle\Handler\HandlerInterface:
+        McShop\ShopBundle\Interfaces\ProductHandlerInterface:
             tags: { name: "mc_shop.item_handler" }
             public: true
 
-    McShop\ShopBundle\Handler\HandlerFactory:
+    McShop\ShopBundle\Factory\ProductHandlerFactory:
         public: true
 
-    McShop\ShopBundle\Handler\ShoppingCartHandler:
+    McShop\ShopBundle\ProductHandler\ShoppingCartProductHandler:
+        autowire: true
+        autoconfigure: true
+
+    McShop\ShopBundle\Form\ItemType:
         autowire: true
         autoconfigure: true

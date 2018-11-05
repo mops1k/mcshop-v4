@@ -4,7 +4,7 @@ namespace McShop\ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
-use McShop\ShopBundle\Handler\HandlerInterface;
+use McShop\ShopBundle\Interfaces\ProductHandlerInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 
@@ -66,9 +66,9 @@ class Item
     /**
      * @var array|null
      *
-     * @ORM\Column(name="extra", type="json_array", nullable=true)
+     * @ORM\Column(name="additional_fields", type="json_array", nullable=true)
      */
-    private $extra;
+    private $additionalFields;
 
     /**
      * @var int
@@ -225,13 +225,13 @@ class Item
     /**
      * Set extra.
      *
-     * @param array|null $extra
+     * @param array|null $additionalFields
      *
      * @return Item
      */
-    public function setExtra($extra = null): Item
+    public function setAdditionalFields($additionalFields = null): Item
     {
-        $this->extra = $extra;
+        $this->additionalFields = $additionalFields;
 
         return $this;
     }
@@ -241,9 +241,9 @@ class Item
      *
      * @return array|null
      */
-    public function getExtra(): ?array
+    public function getAdditionalFields(): ?array
     {
-        return $this->extra;
+        return $this->additionalFields;
     }
 
     /**
@@ -255,10 +255,10 @@ class Item
     }
 
     /**
-     * @param HandlerInterface $handler
+     * @param ProductHandlerInterface $handler
      * @return Item
      */
-    public function setHandlerName(HandlerInterface $handler): Item
+    public function setHandlerName(ProductHandlerInterface $handler): Item
     {
         $this->handlerName = $handler->getName();
 

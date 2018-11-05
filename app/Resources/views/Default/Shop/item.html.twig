@@ -1,0 +1,83 @@
+{% extends ':Default/ShoppingCart:index.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/bootstrap-filestyle.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#{{ form.amount.vars.id }}').number();
+            $('#{{ form.price.vars.id }}').number();
+            $('#{{ form.discount.vars.id }}').number();
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    {{ form_start(form) }}
+    {{ form_row(form.server) }}
+    <div class="row">
+        <div class="form-group col-md-6">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}
+        </div>
+        <div class="form-group col-md-6">
+            {{ form_label(form.category) }}
+            {{ form_widget(form.category) }}
+        </div>
+    </div>
+    {{ form_row(form.description) }}
+    {% set entity = form.vars.data %}
+    <div class="form-group">
+        {{ form_label(form.image) }}
+        <div class="row">
+            <div class="col-md-1 text-right">
+                {% if entity is not null and entity.image is not null  %}
+                    <img src="{{ asset(entity.image) }}" class="img-thumbnail" width="38px" height="38px">
+                {% else %}
+                    <img src="{{ asset('assets/img/no-image.png') }}" class="img-thumbnail" width="38px" height="38px">
+                {% endif %}
+            </div>
+            <div class="col-md-11">
+                {{ form_widget(form.image) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-4">
+            {{ form_label(form.amount) }}
+            {{ form_widget(form.amount) }}
+        </div>
+        <div class="form-group col-md-4">
+            {{ form_label(form.price) }}
+            {{ form_widget(form.price) }}
+        </div>
+        <div class="form-group col-md-4">
+            {{ form_label(form.discount) }}
+            {{ form_widget(form.discount) }}
+        </div>
+    </div>
+    <div class="row">
+        <h3>{{ 'shop.additional_fields'|trans }}:</h3>
+    </div>
+    <div class="row">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            {% for handler in form.additionalFields %}
+            <li role="presentation"{{ loop.first ? ' class="active"' }}><a href="#{{ handler.vars.id }}" aria-controls="home" role="tab" data-toggle="tab">{{ handler.vars.label|trans }}</a></li>
+
+            {% endfor %}
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            {% for handler in form.additionalFields %}
+            <div role="tabpanel" class="tab-pane{{ loop.first ? ' active' }}" id="{{ handler.vars.id }}">{{ form_widget(handler) }}</div>
+            {% endfor %}
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">{{ 'shopping_cart.category.save'|trans }}</button>
+    {{ form_end(form) }}
+{% endblock %}

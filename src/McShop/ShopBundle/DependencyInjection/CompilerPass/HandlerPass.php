@@ -3,9 +3,7 @@
 
 namespace McShop\ShopBundle\DependencyInjection\CompilerPass;
 
-
-use McShop\ShopBundle\Handler\HandlerFactory;
-use McShop\ShopBundle\Handler\HandlerInterface;
+use McShop\ShopBundle\Factory\ProductHandlerFactory;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
@@ -17,7 +15,7 @@ class HandlerPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        $factoryDefinition = $container->getDefinition(HandlerFactory::class);
+        $factoryDefinition = $container->getDefinition(ProductHandlerFactory::class);
         $handlers = $container->findTaggedServiceIds('mc_shop.item_handler');
         foreach ($handlers as $id => $handler) {
             $definition = $container->getDefinition($id);
